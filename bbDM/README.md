@@ -3,8 +3,8 @@
 Use the Higgs [Combine](http://cms-analysis.github.io/HiggsAnalysis-CombinedLimit/) page to install combine tool and for documentation
 
 ## Usage
-* Make the AllMETHistos.root file using bbDM_combinedroot.py file
-* Make the bbDM_WS.root file using PrepareWS_withSyst.C file
+* Make the ```AllMETHistos.root``` file using bbDM_combinedroot.py file
+* Make the ```bbDM_WS.root``` file using PrepareWS_withSyst.C file
 ```
 root -l -b -q PrepareWS_withSyst.C
 ```
