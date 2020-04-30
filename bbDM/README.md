@@ -28,3 +28,8 @@ python limit_textTOgraph.py
 ```
 python limit_plotter.py
 ```
+
+### For getting prefit and postfit plots
+```
+combine -M FitDiagnostics --saveShapes --abs --all --plots datacard.txt
+```
