@@ -9,25 +9,25 @@ This setup likley only one input from previous analysis steps, i.e. ####AllMETHi
 
 
 ### Step 1: Create Workspace ### 
-The first step is to create the workspace using ####AllMETHisto.root####. This create the rooparamhist for each of the background we need to estimate using CRs. You can create the worksapce using 
+The first step is to create the workspace using #### AllMETHisto.root ####. This create the rooparamhist for each of the background we need to estimate using CRs. You can create the worksapce using 
 ```root -l -b -q PrepareWS_withnuisance.C```
 
-Once ####monoHbb_WS.root#### woskspace is created, copy it to datacards_monoHbb_2017 
+Once #### monoHbb_WS.root #### woskspace is created, copy it to datacards_monoHbb_2017 
 
 ```cp monoHbb_WS.root datacards_monoHbb_2017```
 
 ### Step 2: Create datacards ### 
-The datacards can be created by replacing the parameters in the template datacards using ####RunLimits.py####. This is the main controlling script to perform all the steps once workspace is created and copied to respective directory. Define the parameters in ####params.txt####. After this you can create datacards using: 
+The datacards can be created by replacing the parameters in the template datacards using #### RunLimits.py ####. This is the main controlling script to perform all the steps once workspace is created and copied to respective directory. Define the parameters in #### params.txt ####. After this you can create datacards using: 
 
 ```python RunLimits.py -c --model 2hdma --merged --region "SR TOPE TOPMU WE WMU ZEE ZMUMU"``` 
 
  * -c: create datacards 
  * --model XXXX: tell the model name 
- * --merged/--resolved/--combined: code will create datacards for either one of the caregory, it will change in near future 
- * --region " ": keep all the regions you want to combine in a single string seprated by single space 
+ * --merged/--resolved/--combined: code will create datacards for either one of the caregory, it will change in near future
+ * --region " ": keep all the regions you want to combine in a single string seprated by single space
+This will read the datacards from the #### datacards_tmplate #### and save newly created datacards in the #### datacards_monoHbb_2017 ####. This create the datacards for each of the region as well as combining them. The string in the --region is same as in the histograms or used in the model formation
 
-This will read the datacards from the ####datacards_tmplate#### and save newly created datacards in the ####datacards_monoHbb_2017####. This create the datacards for each of the region as well as combining them. The string in the ```--region ``` is same as in the histograms or used in the model formation 
-
+create the workspace from AllMETHisto.root using
 
 
 
