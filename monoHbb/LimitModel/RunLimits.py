@@ -24,6 +24,7 @@ parser.add_argument("-B", "--runblind",  action="store_true", dest="runblind")
 parser.add_argument("-A", "--runasimov",  action="store_true", dest="runasimov")
 parser.add_argument("-L", "--runlimits",  action="store_true", dest="runlimits")
 parser.add_argument("-D", "--rundiagonstics",  action="store_true", dest="rundiagonstics")
+parser.add_argument("-CR", "--cronly",  action="store_true", dest="cronly") ## only for rundiagonstics
 
 parser.add_argument("-c", "--createdatacards",  action="store_true", dest="createdatacards")
 
@@ -54,7 +55,9 @@ commandpost = " -v " + str(args.verbose) +  " --rMin "+str(args.rmin) + " --rMax
 
 ''' collect all the options here ''' 
 if args.runasimov: commandlist.append(" --noFitAsimov ")
-if args.runblind: commandlist.append("  --run blind ")
+if args.runblind:  commandlist.append("  --run blind ")
+if args.cronly:    commandlist.append(" ")
+
 command_=""
 for ic in commandlist:  command_ = command_  + " " + ic
 

@@ -39,8 +39,14 @@ This create the datacards for each of the region as well as combining them. The 
 
 This will also create a .txt file **monohbb2017_datacardslist_2hdma.txt** which will have path to the newly created combined data card only [created by combining all the regions you just listed]
 
-## run all the datacards using:
-python RunLimits.py -A -L -v 0 -i monohbb2017_datacardslist_2hdma.txt
+## run all the datacards listed in the **monohbb2017_datacardslist_2hdma.txt**:
+
+```python RunLimits.py -A -L -v 0 -i monohbb2017_datacardslist_2hdma.txt```
+
+ * -A: use the asymptotic limit method 
+ * -L: run the limits using above method i.e. asymptotic [others will mot work at the moment]
+ * -v: verbose, [possible values 0,1,2,3]
+ * -i: This is the input file which is created in previous step, **monohbb2017_datacardslist_2hdma.txt**. This can be automated using decaribe.py in future 
 
 
 
@@ -59,5 +65,4 @@ combine datacard.root -M FitDiagnostics --saveShapes --saveWithUncertainties --s
 if your signal region is called "signal"
 
 mask_X 
-
 
