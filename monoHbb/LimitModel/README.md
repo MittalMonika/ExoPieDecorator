@@ -1,6 +1,12 @@
 How to create workspace, run limit and then save limit plots and cross-check plots. 
 ===================================================================================
 
+This setup likley only one input from previous analysis steps, i.e. AllMETHisto.root. This must have: 
+ * histogram for each background process 
+ * histogram for each signal process
+ * both of above for each category 
+ * up and down histogram for each of the systematic uncertainties 
+
 create the workspace from AllMETHisto.root using  
 ## This will need many configurable parameters. 
 
