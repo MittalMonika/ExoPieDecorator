@@ -75,12 +75,10 @@ In order to perform the fit checks, plot pulls, yieldratios, postfit and prefit 
 
 
 ######### To do next ###### 
-
-* run all the steps in a single shell script to automate the process for a given date or tag or some other string in order to differentiate the limits, 
-* save the Pulls and impact plots [for Asimov, CR only fit, for bkg only fit, for s+b fit]
-* save yield ratio comparison plots  [for bkg only fit, for s+b fit]
+* save limit plot 
+* add a command line option to show comparison of limit graph 
+* save impact plot 
 * save TF plots  [prefit only with systamatics ]
-* save prefit postfit comparisomn plot with data [for for bkg only fit, for s+b fit]
 
 
 from benedikt
