@@ -1,0 +1,4 @@
+plots_fitdiagnostics
+plots_fitdiagnostics/yieldratio
+plots_fitdiagnostics/pulls
+plots_fitdiagnostics/prefit_postfit

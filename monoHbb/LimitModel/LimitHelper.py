@@ -21,6 +21,23 @@ class RunLimits:
     def getfullcommand(self, commandpre, datacard, command_, commandpost):
         return commandpre+datacard+command_+commandpost
         
+    def PrintSpacing(self, nLine=1):
+        for iline in range(nLine):
+            print "***************************************************************************************************************************************"
+    
+    def TimeFormat(self):
+        from datetime import datetime
+        now = datetime.now()
+        date_str = ((str(now)).replace("-","_")).split(":")  
+        date_format = (date_str[0]).replace(" ","_") + "_" + str(date_str[1])
+        return date_format
+    
+    
+    def setupDirs(self, txtfile):
+        for idir in open(txtfile):
+            os.system('mkdir -p '+idir.rstrip())
+            os.system('cp index.php '+idir.rstrip())
+        return 0
         
     def makedatacards(self, templatecards, allparams, region):
         
@@ -95,3 +112,69 @@ class RunLimits:
         fout.close()
 
 
+    def RunImpacts(self, datacard, logfilename):
+        ## run impact  asimov 
+        print "do nothing for now"
+        ## run impact  data 
+        
+        
+    def SavePrePostComparison(self,run_mode):
+        default_fit_root   = "fitDiagnostics.root"
+        default_pull_root  = "pulls.root"
+        
+        ''' prepare the names of root file '''
+        fit_Diagnostics = default_fit_root.replace(".root", "_"+run_mode+".root")
+        pull_root       = default_pull_root.replace(".root",  "_"+run_mode+".root")
+        
+        print "run_mode, fit_Diagnostics, pull_root", run_mode, fit_Diagnostics, pull_root
+        ''' move the rootfile to avoid ambiguity '''         
+        os.system("mv "+default_fit_root+" " + fit_Diagnostics)
+        os.system("mv "+default_pull_root+" " + pull_root)
+        
+        if run_mode == "cronly":
+            self.PrintSpacing()
+            os.system('root -l -b -q plotPostNuisance_combine.C\(\\"'+fit_Diagnostics+'\\"\)')
+        
+        if run_mode != "cronly":
+            ''' get the different ce nuisances ''' 
+            self.PrintSpacing()
+            os.system("python diffNuisances.py "+fit_Diagnostics+" --abs --all -g "+pull_root)
+            self.PrintSpacing()
+            os.system('root -l -b -q PlotPulls.C\(\\"'+pull_root+'\\"\)')
+            self.PrintSpacing()
+            os.system("python yieldratio.py "+fit_Diagnostics)
+            self.PrintSpacing()
+            os.system("python PlotPreFitPostFit.py "+fit_Diagnostics)
+
+                        
+
+    
+            
+
+    def RunPulls(self, datacard, logfilename, run_mode="data"):
+        ## setup the dir structure 
+        self.setupDirs("configs/pulls_dir.txt")
+        ## data fit 
+        if run_mode == "data":
+            self.PrintSpacing(2)
+            print "performing the fit in run_mode ",run_mode
+            os.system("combine -M FitDiagnostics --saveShapes "+datacard+ " --saveWithUncertainties --saveNormalizations --X-rtd MINIMIZER_analytic ")
+            self.PrintSpacing(1)
+            self.SavePrePostComparison("data")
+        
+            
+
+        ## asimov fit 
+        if run_mode == "asimov":
+            self.PrintSpacing(2)
+            os.system("combine -M FitDiagnostics --saveShapes "+datacard + " --saveWithUncertainties --saveNormalizations --X-rtd MINIMIZER_analytic  --rMin -100 -t -1 --expectSignal 0")
+            self.PrintSpacing(1)
+            self.SavePrePostComparison("asimov")
+        
+        ## CR only fit 
+        os.system("text2workspace.py "+datacard+" --channel-masks")
+        wsname = datacard.replace(".txt",".root")
+        os.system("combine -M FitDiagnostics  "+wsname+" --saveShapes --saveWithUncertainties --setParameters mask_SR=1")
+        self.SavePrePostComparison("cronly")
+        
+        

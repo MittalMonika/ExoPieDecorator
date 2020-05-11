@@ -24,6 +24,12 @@ parser.add_argument("-B", "--runblind",  action="store_true", dest="runblind")
 parser.add_argument("-A", "--runasimov",  action="store_true", dest="runasimov")
 parser.add_argument("-L", "--runlimits",  action="store_true", dest="runlimits")
 parser.add_argument("-D", "--rundiagonstics",  action="store_true", dest="rundiagonstics")
+
+parser.add_argument("-impact","--impact", action="store_true", dest="impact")
+parser.add_argument("-pulls","--pulls", action="store_true", dest="pulls")
+parser.add_argument("-runmode", "--runmode",  dest="runmode",default="data")## possible values: data, asimov, cronly; this varibale is must for pulls or impact else default data will be picked 
+parser.add_argument("-log", "--outlog", dest="outlog", default="testing")
+
 parser.add_argument("-CR", "--cronly",  action="store_true", dest="cronly") ## only for rundiagonstics
 
 parser.add_argument("-c", "--createdatacards",  action="store_true", dest="createdatacards")
@@ -42,8 +48,11 @@ parser.add_argument("-CL", "--CL",  dest="CL", type=int, default=0.95) ## can be
 args = parser.parse_args()
 
 
-
-
+if args.pulls or args.impact or args.runasimov:
+    if args.outlog == "testing":
+        sys.exit( "please provide a good informative message for --outlog, otherwise code can't be run")
+    
+    
 ''' all the defaults needed for rest of the class, and to execute the opetations are here ''' 
 ''' many of them are coming from the command line argumnet''' 
 
@@ -146,9 +155,30 @@ def main():
             
             rl.LogToLimitList(logfilename)
             print "-----------------------------------------------------------------------------------------------------------------------"
+
+            
+    if args.impact:
+        datacardnameslist = [iline.rstrip() for iline in open(args.inputdatacardpath)]
+        for idatacard in datacardnameslist :
+            logfilename = "logs/impacts/"+idatacard.replace(".txt",".log")
+            rl.RunImpacts(idatacard,logfilename)
+            print "-----------------------------------------------------------------------------------------------------------------------"
+            
+    if args.pulls:
+        datacardnameslist = [iline.rstrip() for iline in open(args.inputdatacardpath)]
+        for idatacard in datacardnameslist :
+            logfilename = "logs/impacts/"+idatacard.replace(".txt",".log")
+            rl.RunPulls(idatacard, logfilename,args.runmode)
+            time_now = rl.TimeFormat()
+            os.system("mv plots_fitdiagnostics plots_fitdiagnostics_"+time_now)
+            os.system("cp -r plots_fitdiagnostics_"+time_now + " /afs/cern.ch/work/k/khurana/public/AnalysisStuff/monoH/LimitModelPlots")
+            print "-----------------------------------------------------------------------------------------------------------------------"
+            with open('logs/pulls/pulls.log','a') as f:
+                f.write(time_now+": "+args.runmode+" "+args.outlog+"\n")
+            
+            
             
 
-    if args.plot
 if __name__ == "__main__":
     
     print "calling main"

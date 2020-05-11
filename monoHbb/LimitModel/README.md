@@ -50,6 +50,30 @@ This will also create a .txt file **monohbb2017_datacardslist_2hdma.txt** which 
 
 
 
+## Pulls and FitDiagnostics ## 
+
+In order to perform the fit checks, plot pulls, yieldratios, postfit and prefit comparison one just need to run the command in correct manner: 
+
+```python RunLimits.py --pulls --runmode data -i monohbb2017_datacardslist_2hdma.txt``` 
+
+
+
+ * pulls: run the code to estimate the Pulls 
+ * --runmode: data OR asimov OR cronly : there is no way that these 3 modes can be run in one go. so the plots will be saved in different directory as they will result from 3 different run. 
+ * i: input text file with datacard lists, Now monohbb2017_datacardslist_2hdma.txt should contain path to ONLY one data card which will be used to perform the fit and do checks. If it will have more than one datacard then it will run on all fo them and save results only for the last one in the list. This is little time consuming. 
+ * the directory structure is hardcoded and chnaged for each time code is run so that plots are not overwritten. 
+ * outlog: provide quick text to be written into the output.log file. Without this code will not work. 
+
+## Impact plots ## 
+
+```python RunLimits.py --impact --runmode data -i monohbb2017_datacardslist_2hdma.txt```	
+
+ * impact:
+ * --runmode:
+ * i:
+
+
+
 ######### To do next ###### 
 
 * run all the steps in a single shell script to automate the process for a given date or tag or some other string in order to differentiate the limits, 
