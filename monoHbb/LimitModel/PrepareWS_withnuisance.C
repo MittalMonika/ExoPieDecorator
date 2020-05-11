@@ -112,6 +112,7 @@ void plotSystPrefit(){
 }
 
 
+std::vector<TH1F*> h_vec_tf;
 
 std::vector<std::string> createnuisance(float value_,int  nbins, int nuisanceCounter){
   std::vector<std::string> logN_nuisance_vec;
@@ -223,7 +224,7 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
   
   TH1F* htf_cr_bkg = (TH1F*) h_cr_bkg->Clone();
   htf_cr_bkg->Divide(h_sr_bkg);
-  
+  h_vec_tf.push_back(htf_cr_bkg);
   
   std::cout<<" ratio "<< htf_cr_bkg->GetBinContent(1)
 	   <<" "<<htf_cr_bkg->GetBinContent(2)
@@ -425,7 +426,8 @@ void PrepareWS_withnuisance(){
   bool usebkgsum = false;
   int met_low = 200;
   int met_hi = 1000;
-  
+  h_vec_tf.clear();
+    
   Double_t bins[]={200, 270, 345, 480, 1000};
   Int_t  binnum = sizeof(bins)/sizeof(Double_t) - 1;
   
@@ -444,7 +446,7 @@ void PrepareWS_withnuisance(){
   
   // Open input file with all the histograms. 
   TFile* fin = OpenRootFile(inputfile);
-  
+
   
 
   // this histogram is just for the binning 
@@ -457,8 +459,8 @@ void PrepareWS_withnuisance(){
   // it with 55 and vary it from 55/3 to 55*3. which is very close to freely floating. This can be checked if this works for the cases when bin content is very low, 
   // specially in the tails and can be changed easily . 
  
-   
   
+    
   std::vector <TString> nuisanceName;
   std::vector <float> nuisanceValue;
   
@@ -689,5 +691,8 @@ void PrepareWS_withnuisance(){
   // write the workspace at the very end, once everthing has been imported to the workspace 
   fOut->cd();
   wspace.Write();  
-  
+  fOut->mkdir("transferfactor");
+  fOut->cd("transferfactor");
+  for (int i=0; i< (int) h_vec_tf.size(); i++) h_vec_tf[i]->Write();
+    
 }
