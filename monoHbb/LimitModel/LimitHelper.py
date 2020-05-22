@@ -71,13 +71,21 @@ class RunLimits:
         return datacardsname
         
         
-
-    def datacard_to_mparameters(self, name_):
-        mparameters_ = ((name_.split("Merged_")[1]).replace(".log","")).split("_")
-        mparameters_ = [mp.replace("p",".") for mp in mparameters_]
-        ## ma, mA, tb, st, mdm
-        return ([mparameters_[9], mparameters_[7], mparameters_[3], mparameters_[1], mparameters_[5]])
-        
+    
+    def datacard_to_mparameters(self, name_, analysis_ = "monoH"):
+        if analysis_ == "monoH":
+            mparameters_ = ((name_.split("Merged_")[1]).replace(".log","")).split("_")
+            mparameters_ = [mp.replace("p",".") for mp in mparameters_]
+            ## ma, mA, tb, st, mdm
+            return ([mparameters_[9], mparameters_[7], mparameters_[3], mparameters_[1], mparameters_[5]])
+            
+        if analysis_ == "bbDM":
+            ## this needs to be changed
+            mparameters_ = ((name_.split("Merged_")[1]).replace(".log","")).split("_")
+            mparameters_ = [mp.replace("p",".") for mp in mparameters_]
+            ## ma, mA, tb, st, mdm
+            return ([mparameters_[9], mparameters_[7], mparameters_[3], mparameters_[1], mparameters_[5]])
+            
     ## category can be merged/resolved/combined
     def LogToLimitList(self, logfile, category="merged", mode="a"):
         expected25_="" 
