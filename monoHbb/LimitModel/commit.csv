@@ -1,11 +1,11 @@
-v0.00; First working version which seems to work providing everything, 
-      * workspace for boosted 
-      * prepare datacards 
-      * run limits 
-      * save TGraphs and pdf plots for limits 
-      * run pull and save pull in any mode 
-      * run impact and save impact plot 
-      * save TFs 
-      * save yield ratio 
-      * save pre-fit/post-fit comparison with data 
+v0.00; First working version which seems to work providing everything
+      ; workspace for boosted 
+      ; prepare datacards 
+      ; run limits 
+      ; save TGraphs and pdf plots for limits 
+      ; run pull and save pull in any mode 
+      ; run impact and save impact plot 
+      ; save TFs 
+      ; save yield ratio 
+      ; save pre-fit/post-fit comparison with data 
 v0.01; 
