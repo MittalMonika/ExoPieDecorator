@@ -15,9 +15,9 @@ parser = argparse.ArgumentParser(description=usage)
 ## string 
 parser.add_argument("-i", "--inputdatacardpath",  dest="inputdatacardpath",default="monohbb2017_datacardslist.txt") ## this should be a .txt file which include the full path of the datacards
 
-parser.add_argument("-model", "--model",  dest="model",default="params_2hdma.txt") 
+parser.add_argument("-limitTextFile", "--limitTextFile", dest="limitTextFile", default="NONEBYCHOICE") ## the limit text file
+parser.add_argument("-model", "--model",  dest="model",default="2hdma") 
 parser.add_argument("-region", "--region",  dest="region",default="SR_default") ## default should lead to crash.  
-
 
 ## booleans 
 parser.add_argument("-B", "--runblind",  action="store_true", dest="runblind")
@@ -28,6 +28,10 @@ parser.add_argument("-D", "--rundiagonstics",  action="store_true", dest="rundia
 parser.add_argument("-impact","--impact", action="store_true", dest="impact")
 parser.add_argument("-pulls","--pulls", action="store_true", dest="pulls")
 parser.add_argument("-runmode", "--runmode",  dest="runmode",default="data")## possible values: data, asimov, cronly; this varibale is must for pulls or impact else default data will be picked 
+parser.add_argument("-makegraph", "--makegraph", action="store_true", dest="makegraph")
+parser.add_argument("-savepdf", "--savepdf", action="store_true", dest="savepdf")
+
+
 parser.add_argument("-log", "--outlog", dest="outlog", default="testing")
 
 parser.add_argument("-CR", "--cronly",  action="store_true", dest="cronly") ## only for rundiagonstics
@@ -46,6 +50,13 @@ parser.add_argument("-rmin", "--rmin",  dest="rmin", type=int, default=0.0000001
 parser.add_argument("-CL", "--CL",  dest="CL", type=int, default=0.95) ## can be used for SI interpretation but not using right now 
 
 args = parser.parse_args()
+
+''' defining category based on merged/resolved/combined '''
+category=""
+if args.merged: category="merged"
+if args.resolved: category="resolved"
+if args.combined: category="combined"
+
 
 
 if args.pulls or args.impact or args.runasimov:
@@ -110,7 +121,8 @@ def main():
     
     
     if args.createdatacards:
-        fparam = open("params_"+args.model+".txt","r") 
+        
+        fparam = open("parameters/params_"+args.model+".txt","r") 
         datacardtextfile = args.inputdatacardpath.replace(".txt", "_"+args.model+".txt")
         os.system('rm '+datacardtextfile)
         ftxt = open(datacardtextfile,'w')
@@ -146,6 +158,7 @@ def main():
     datacardnameslist=[]
     if args.runlimits:
         datacardnameslist = [iline.rstrip() for iline in open(args.inputdatacardpath)]
+        datacardCounter  = 0
         for idatacard in datacardnameslist :
             print rl.getfullcommand(commandpre, idatacard, command_, commandpost)
             
@@ -153,15 +166,36 @@ def main():
             
             os.system(rl.getfullcommand(commandpre, idatacard, command_, commandpost) + " > "+logfilename)
             
-            rl.LogToLimitList(logfilename)
-            print "-----------------------------------------------------------------------------------------------------------------------"
-
+            ''' keeping file open mode to be append by default and then change based on the datacard number '''
+            mode="a"
+            if datacardCounter ==0: mode = "w"
+            if datacardCounter > 0: mode = "a"
             
+                        
+            
+            limit_textfilename = rl.LogToLimitList(logfilename,category,mode)
+            datacardCounter += 1
+            print "-----------------------------------------------------------------------------------------------------------------------"
+        if args.makegraph:
+            limit_rootfilename =  rl.TextFileToRootGraphs(limit_textfilename)
+        if args.savepdf:
+            limit_rootfilename =  rl.TextFileToRootGraphs(limit_textfilename)
+            rl.SaveLimitPdf1D(limit_rootfilename)
+            
+
+    ''' make the pdf plot without running the limits ''' 
+    if args.savepdf and os.path.exists(args.limitTextFile):
+        limit_rootfilename = rl.TextFileToRootGraphs(args.limitTextFile)
+        rl.SaveLimitPdf1D(limit_rootfilename)
+        
     if args.impact:
         datacardnameslist = [iline.rstrip() for iline in open(args.inputdatacardpath)]
         for idatacard in datacardnameslist :
             logfilename = "logs/impacts/"+idatacard.replace(".txt",".log")
-            rl.RunImpacts(idatacard,logfilename)
+            rl.RunImpacts(idatacard,logfilename,args.runmode)
+            time_now = rl.TimeFormat()
+            with open('logs/impacts/impact.log','a') as f:
+                f.write(time_now+": "+args.runmode+" "+args.outlog+"\n")
             print "-----------------------------------------------------------------------------------------------------------------------"
             
     if args.pulls:
@@ -172,11 +206,11 @@ def main():
             time_now = rl.TimeFormat()
             os.system("mv plots_fitdiagnostics plots_fitdiagnostics_"+time_now)
             os.system("cp -r plots_fitdiagnostics_"+time_now + " /afs/cern.ch/work/k/khurana/public/AnalysisStuff/monoH/LimitModelPlots")
-            print "-----------------------------------------------------------------------------------------------------------------------"
             with open('logs/pulls/pulls.log','a') as f:
                 f.write(time_now+": "+args.runmode+" "+args.outlog+"\n")
-            
-            
+            print "-----------------------------------------------------------------------------------------------------------------------"
+
+    
             
 
 if __name__ == "__main__":

@@ -6,10 +6,10 @@ import sys
 inputfile = "AllMETHistos.root"
 
 ''' For which analysis this is being done '''
-analysisName = "_bbDM"
+analysisName = "monoH"
 
 ''' For which year data this model is being run, by default it is set to 2016, but can be changed here. '''
-yearStr        = "_2016"
+yearStr        = "2016"
 
 ''' any other information needed to explain the details by rootfile name, by default it is version track, '''
 postfix     = "_V0";

@@ -91,6 +91,14 @@ for iRegionList in range(len(RegionList)):
 	h_data = PlotTemplates.Save1DHisto(Temp_data, c1, "p^{miss}_{T}", "Events")
 	h_data.SetMarkerStyle(20)
 
+        # check the maximum of three histo
+        hmax = h_postfit.GetMaximum()
+        if (hmax < h_prefit.GetMaximum()):
+        hmax = h_prefit.GetMaximum()
+        if (hmax < h_data.GetMaximum()):
+        hmax = h_data.GetMaximum()
+        h_postfit.SetMaximum(hmax*1.1)
+
 	h_postfit.Draw("HIST E")
 	h_prefit.Draw("SAME HIST E")
 	h_data.Draw("SAME")

@@ -1,7 +1,8 @@
 import os 
 import  sys 
-
-
+from array import  array
+from ROOT import TGraph, TFile, TGraphAsymmErrors
+import ROOT as rt
 
 import argparse
 
@@ -76,8 +77,9 @@ class RunLimits:
         mparameters_ = [mp.replace("p",".") for mp in mparameters_]
         ## ma, mA, tb, st, mdm
         return ([mparameters_[9], mparameters_[7], mparameters_[3], mparameters_[1], mparameters_[5]])
-
-    def LogToLimitList(self, logfile):
+        
+    ## category can be merged/resolved/combined
+    def LogToLimitList(self, logfile, category="merged", mode="a"):
         expected25_="" 
         expected16_="" 
         expected50_="" 
@@ -99,20 +101,181 @@ class RunLimits:
                 expected975_ = ilongline.replace("Expected 97.5%: r < ","").rstrip()
         
         allparameters  = self.datacard_to_mparameters(logfile)
-        towrite =  str(allparameters[0])+" "+str(allparameters[1])+" "+expected25_+" "+expected16_+" "+ expected50_+" "+ expected84_+" "+ expected975_+" "+ observed_+"\n"
+        towrite =  str(allparameters[1])+" "+str(allparameters[0])+" "+expected25_+" "+expected16_+" "+ expected50_+" "+ expected84_+" "+ expected975_+" "+ observed_+"\n"
         
         print towrite
-        outfile="bin/limits_monoH_R_2017.txt"
-        #if args.merged: outfile = 'bin/limits_monoH_B_2017.txt'
-        #if args.resolved: outfile = 'bin/limits_monoH_R_2017.txt'
-        #if args.combined: outfile = 'bin/limits_monoH_Combo_2017.txt'
+        outfile="bin/limits_monoH_"+category+"_2017.txt"
+        self.limit_text_file = outfile
+
         
-        fout = open(outfile,'a')
+        fout = open(outfile,mode)
         fout.write(towrite)
         fout.close()
+        return outfile
+    
 
 
-    def RunImpacts(self, datacard, logfilename):
+    def TextFileToRootGraphs(self, limit_text_file):#, limit_text_filename):
+        filename = limit_text_file #limit_text_filename
+        limit_root_file = limit_text_file.replace(".txt",".root")
+        
+        f = open(filename,"r")
+        med=array('f')
+        mchi=array('f')
+        expm2=array('f')
+        expm1=array('f')
+        expmed=array('f')
+        expp1=array('f')
+        expp2=array('f')
+        obs=array('f')
+        errx=array('f')
+    
+        for line in f:
+            med.append(float(line.rstrip().split()[0]))
+            mchi.append(float(line.rstrip().split()[1]))
+            
+            expm2.append(float(line.rstrip().split()[4])  )
+            expm1.append(float(line.rstrip().split()[4])  )
+            expmed.append(float(line.rstrip().split()[4]))
+            expp1.append(float(line.rstrip().split()[5])  )
+            expp2.append(float(line.rstrip().split()[6])  )
+
+            ##expm2.append(float(line.rstrip().split()[4]) - float(line.rstrip().split()[2]) )
+            ##expm1.append(float(line.rstrip().split()[4]) - float(line.rstrip().split()[3]) )
+            ##expmed.append(float(line.rstrip().split()[4]))
+            ##expp1.append(float(line.rstrip().split()[5]) - float(line.rstrip().split()[4]) )
+            ##expp2.append(float(line.rstrip().split()[6]) - float(line.rstrip().split()[4]) )
+
+            obs.append(float(line.rstrip().split()[7]))
+            errx.append(0.0)
+    
+        print ('expm2: ', expm2)
+        print ('expm1: ', expm1)
+        print ('expmed: ', expmed)
+        print ('expp1: ', expp1)
+        print ('expp2: ', expp2)
+    
+        g_exp2  = TGraphAsymmErrors(int(len(med)), med, expmed, errx, errx, expm1, expp2 )   ;  g_exp2.SetName("exp2")
+        g_exp1  = TGraphAsymmErrors(int(len(med)), med, expmed, errx, errx, expm2, expp1 )   ;  g_exp1.SetName("exp1")
+        g_expmed = TGraphAsymmErrors(int(len(med)), med, expmed)   ;  g_expmed.SetName("expmed")
+        g_obs    = TGraphAsymmErrors(int(len(med)), med, obs   )   ;  g_obs.SetName("obs")
+    
+        f1 = TFile(limit_root_file,'RECREATE')
+        g_exp2.Write()
+        g_exp1.Write()
+        g_expmed.Write()
+        g_obs.Write()
+        f1.Write()
+        f1.Close()
+        return limit_root_file
+
+    def SaveLimitPdf1D(self,rootfile):
+        self.setupDirs("configs/limits_dir.txt")
+        #rootfile = self.limit_root_file 
+        
+        rt.gStyle.SetOptTitle(0)
+        rt.gStyle.SetOptStat(0)
+        rt.gROOT.SetBatch(1)
+        c = rt.TCanvas("c","c",1500, 950)
+        c.SetGrid(1,1)
+        c.SetLogy(1)
+        leg = rt.TLegend(.15, .65, .35, .890);
+        f = rt.TFile(rootfile,"read")
+        exp2s =  f.Get("exp2")
+        exp2s.SetMarkerStyle(20)
+        exp2s.SetMarkerSize(1.1)
+        exp2s.SetLineWidth(2)
+        exp2s.SetFillColor(rt.kYellow);
+        exp2s.SetLineColor(rt.kYellow)
+        exp2s.GetXaxis().SetTitle("m_{a} [GeV]");
+        exp2s.GetYaxis().SetRangeUser(.1,1000)
+        exp2s.GetXaxis().SetTitleOffset(1.4)
+        exp2s.GetYaxis().SetTitle("95% C.L. asymptotic limit on #mu=#sigma/#sigma_{theory}");
+        exp2s.GetYaxis().SetTitleOffset(1.2)
+        exp2s.GetYaxis().SetNdivisions(20,5,0);
+        #exp2s.GetXaxis().SetNdivisions(505);
+        exp2s.GetYaxis().SetMoreLogLabels()
+        #exp2s.GetXaxis().SetMoreLogLabels()
+        #exp2s.GetXaxis().SetRangeUser(10,750)
+        exp2s.Draw("A 3")
+
+        exp1s =  f.Get("exp1")
+        exp1s.SetMarkerStyle(20)
+        exp1s.SetMarkerSize(1.1)
+        exp1s.SetLineWidth(2)
+        exp1s.SetFillColor(rt.kGreen);
+        exp1s.SetLineColor(rt.kGreen)
+        exp1s.Draw("3 same")
+    
+        exp =  f.Get("expmed")
+        exp.SetMarkerStyle(1)
+        exp.SetMarkerSize(1.1)
+        exp.SetLineStyle(2)
+        exp.SetLineWidth(3)
+        exp.Draw("L same")
+
+        obs =  f.Get("obs")
+        obs.SetMarkerStyle(20)
+        #obs.SetMarkerColor(4)
+        obs.SetMarkerSize(1.1)
+        #obs.SetLineColor(2)
+        obs.SetLineWidth(3)
+        #obs.Draw("L same")
+    
+        leg = rt.TLegend(.15, .65, .40, .890);
+        leg.SetFillColor(0);
+        leg.SetShadowColor(0);
+        leg.SetTextFont(42);
+        leg.SetTextSize(0.03);
+        leg.AddEntry(exp, " CL_{S}  Expected ", "LP");
+        leg.AddEntry(exp1s, "CL_{S}  Expected #pm 1#sigma", "LF");
+        leg.AddEntry(exp2s, " CL_{S}  Expected #pm 2#sigma", "LF");
+        # leg.AddEntry(obs, "CL_{S} Observed", "LP");
+    
+        leg.Draw("same")
+        c.Update()
+        print (c.GetUxmin(),c.GetUxmax())
+        line = rt.TLine(c.GetUxmin(),1.0,c.GetUxmax(),1.0);
+        line.SetLineColor(rt.kRed)
+        line.SetLineWidth(2)
+        line.Draw('same ')
+    
+        latex =  rt.TLatex();
+        latex.SetNDC();
+        latex.SetTextSize(0.04);
+        latex.SetTextAlign(31);
+        latex.SetTextAlign(11);
+        model_ = '2HDM+a'
+        #MA_    = str(inputstring.split('_')[1].strip('MA'))
+        #category = str(inputstring.split('_')[2])
+        #latex.DrawLatex(0.11, 0.91, "2HDM+a bb+DM  "+category+" category");
+        #latex.DrawLatex(0.53, 0.91, "m_{A}="+MA_+" GeV, tan#beta = 35, sin#theta = 0.7");
+        
+        self.limit_pdf_file  = rootfile.replace(".root",".pdf").replace("bin/","plots_limit/")
+        
+        #c.SetLogx(1)
+        c.Update()
+        #c.SaveAs(name+".png")
+        c.SaveAs(self.limit_pdf_file)
+        c.Close()
+        
+        return "pdf file is saved"
+        
+    def RunImpacts(self, datacard, logfilename, runmode="data"):
+        workspace=datacard.replace(".txt",".root")
+        
+        
+        if runmode=="data":
+            ''' First we perform an initial fit for the signal strength and its uncertainty''' 
+            os.system("combineTool.py -M Impacts -d "+workspace+" -m 200 --rMin -1 --rMax 2 --robustFit 1 --doInitialFit")
+            '''Then we run the impacts for all the nuisance parameters'''
+            os.system("combineTool.py -M Impacts -d "+workspace+" -m 200 --rMin -1 --rMax 2 --robustFit 1 --doFits")
+            '''we collect all the output and convert it to a json file'''
+            os.system("combineTool.py -M Impacts -d "+workspace+" -m 200 --rMin -1 --rMax 2 --robustFit 1 --output impacts.json")
+            '''then make a plot showing the pulls and parameter impacts, sorted by the largest impact'''
+            os.system("plotImpacts.py -i impacts.json -o impacts")
+            
+            
         ## run impact  asimov 
         print "do nothing for now"
         ## run impact  data 
