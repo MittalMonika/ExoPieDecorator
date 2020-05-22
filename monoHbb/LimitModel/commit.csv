@@ -1,2 +1,11 @@
-v0.0: First working version which seems to work without pulling the nuisances for asimov fit. This code is working only for the boosted case at this moment, 
+v0.0: First working version which seems to work providing everything, 
+      * workspace for boosted 
+      * prepare datacards 
+      * run limits 
+      * save TGraphs and pdf plots for limits 
+      * run pull and save pull in any mode 
+      * run impact and save impact plot 
+      * save TFs 
+      * save yield ratio 
+      * save pre-fit/post-fit comparison with data 
 
