@@ -55,8 +55,9 @@ This will also create a .txt file **monohbb2017_datacardslist_2hdma.txt** which 
 
 Prepare graphs using the limit.txt without runing the limits code again, just convert the .txt file into .root of .pdf. For this you need to provide the limit.txt and can be done using 
 
-```python RunLimits.py --makegraph --savepdf 
-
+```python RunLimits.py --savepdf --limitTextFile path_to_limits_text_file```
+ * --savepdf: save the graphs and pdf file for the limits 
+ * --limitTextFile: use the input from .txt file which will be provided from command line 
 
 ## Pulls and FitDiagnostics ## 
 

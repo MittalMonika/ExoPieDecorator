@@ -59,7 +59,7 @@ if args.combined: category="combined"
 
 
 
-if args.pulls or args.impact or args.runasimov:
+if args.pulls or args.impact or args.runasimov or args.runlimits or args.savepdf:
     if args.outlog == "testing":
         sys.exit( "please provide a good informative message for --outlog, otherwise code can't be run")
     
