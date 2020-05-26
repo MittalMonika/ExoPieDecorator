@@ -39,6 +39,16 @@ This create the datacards for each of the region as well as combining them. The 
 
 This will also create a .txt file **monohbb2017_datacardslist_2hdma.txt** which will have path to the newly created combined data card only [created by combining all the regions you just listed]
 
+### Step 2.2 Combine category datacards ###
+In order to combine the datacards for resolved and boosted categories, you can use the same command as to create but change the regions as below: 
+
+```python RunLimits.py -c --model 2hdma_all --region "monohbb2017_datacardslist_B_2hdma_all.txt monohbb2017_datacardslist_R_2hdma_all.txt"```
+
+Note that the order of Booseted and Resolved here should same as in the describe.py. 
+
+ * For reference we use boosted as high priority w.r.t resolved 
+ * One must provide additional list in describe.py **categories_input** to sync all the names etc. 
+
 ## run all the datacards listed in the **monohbb2017_datacardslist_2hdma.txt**:
 
 ```python RunLimits.py -A -L -v 0 -i monohbb2017_datacardslist_2hdma.txt --merged --savepdf```

@@ -132,27 +132,79 @@ def main():
             ## it should take the option of which CRs to use.
             ## to use boosted or resolved 
             datacards=[]
+            
+            dataCardName  = 'datacards_tmplate/combine_tmpl_{}{}_workspace.txt'
+            #'datacards_tmplate/combine_tmpl_'+iregion+analysis_tag+'_workspace.txt'
+            ## for resolved and merged it can be run by creating each region data card and then merge them 
+            if category != "combined":
+                for iregion in regions:
+                    datacardname = rl.makedatacards(dataCardName.format(iregion, analysis_tag),\
+                                                    iparam.split(), \
+                                                    iregion, \
+                                                    year,\
+                                                    analysis_tag, \
+                                                    category)
+                    if iregion == "SR":
+                        mergeddatacardmname = datacardname.replace("SR_ggF","Merged")
+                        ftxt.write(mergeddatacardmname+' \n')
+                    datacards.append(" "+iregion+"="+datacardname)
+                
+                combostr = ""
+                if len(datacards)>0:
+                    for idc in datacards:
+                        combostr = combostr + idc
+                print "datacards will me creating using categories: ",regions, " parameters: ", iparam.rstrip(), " datacard: ", mergeddatacardmname
+                os.system("combineCards.py "+combostr+" > "+mergeddatacardmname+"\n")
+                ## instead of datacard name write the combostr into .text file to make the combined card
+                
+
+        ## for the combined case, it need two text files, one for resolved and other for the boosted case, which has all the datacards. 
+        ## right now combine datacards is not done in the parameters loop, but it can be easily done and in that case the data card name construction has to be redone, and make sure 
+        ## that the loop is not doubled. 
+        
+        if category == "combined":
+            allregions = []
+            
             for iregion in regions:
-                datacardname = rl.makedatacards('datacards_tmplate/combine_tmpl_'+iregion+analysis_tag+'_workspace.txt',\
-                                                iparam.split(), \
-                                                iregion, \
-                                                year,\
-                                                analysis_tag, \
-                                                category)
-                if iregion == "SR":
-                    mergeddatacardmname = datacardname.replace("SR_ggF","Merged")
+                allregions.append(rl.TextFileToList(iregion))
+                #print allregions
+            NumberOfDatacards = len(rl.TextFileToList(regions[0])) ## assuming number of datacard in each .txt are same
+            datacardsList=[]
+            
+            for i in range (NumberOfDatacards):
+                idatacard=[]
+                for ig in range (len(allregions)):
+                    idatacard.append(allregions[ig][i])
+                datacardsList.append(idatacard)
+            #print "datacardsList = ",datacardsList
+            
+            regionStr =    dcb.anadetails["categories_input"]
+            rStr = dcb.myjoin(regionStr)
+            
+            
+            #" "+iregion+"="
+            if len(datacardsList)>0:
+                #print "datacardsList", datacardsList
+                for idc in datacardsList:
+                    print "idc = ",idc
+                    combostr = ""
+                    idx_=0
+                    mergeddatacardmname=""
+                    for icategory in idc:
+                        ## set the default name as boosted datacard only once in  the loop 
+                        if idx_==0: 
+                            mergeddatacardmname = idc[0]
+                        combostr = combostr + " "+regionStr[idx_]+"=" +icategory
+                        idx_ += 1
+                        
+                    mergeddatacardmname = (mergeddatacardmname.replace("_"+regionStr[0], analysis_tag)).replace("Merged","Combined")
                     ftxt.write(mergeddatacardmname+' \n')
-                datacards.append(" "+iregion+"="+datacardname)
+                    
+                    print (combostr+" > "+mergeddatacardmname+"\n\n")
+                    os.system("combineCards.py "+combostr+" > "+mergeddatacardmname+"\n")
+                        
+                
             
-            combostr = ""
-            if len(datacards)>0:
-                for idc in datacards:
-                    combostr = combostr + idc
-            print "datacards will me creating using categories: ",regions, " parameters: ", iparam.rstrip(), " datacard: ", mergeddatacardmname
-            
-            #ftxt.write("combineCards.py "+combostr+" > "+mergeddatacardmname+"\n")
-            os.system("combineCards.py "+combostr+" > "+mergeddatacardmname+"\n")
-            ## instead of datacard name write the combostr into .text file to make the combined card
         ftxt.close()
         #os.system("cp monoHbb_WS.root datacards_monoHbb_2017/monoHbb_WS.root")
 

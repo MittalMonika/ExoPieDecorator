@@ -22,10 +22,16 @@ class RunLimits:
     def getfullcommand(self, commandpre, datacard, command_, commandpost):
         return commandpre+datacard+command_+commandpost
         
+    ''' convert a text file with just one columns into a list '''
+    def TextFileToList(self, textfile):
+        return [iline.rstrip() for iline in open (textfile)]
+        
+    #def GetDataCardsForCombination(self, index_, listOflist):
+        
     def PrintSpacing(self, nLine=1):
         for iline in range(nLine):
             print "***************************************************************************************************************************************"
-    
+            
     def TimeFormat(self):
         from datetime import datetime
         now = datetime.now()
