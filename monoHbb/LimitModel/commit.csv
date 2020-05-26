@@ -8,4 +8,7 @@ v0.00, First working version which seems to work providing everything
       , save TFs 
       , save yield ratio 
       , save pre-fit/post-fit comparison with data 
-v0.01, 
+v0.01, This version has the working setup for the resolved analysis
+       , the setup is realy upto plotting the limits, 
+       , the fitdiagnostics etc are not done yet 
+       , it work for individual case, combined analysis is not yet setup 

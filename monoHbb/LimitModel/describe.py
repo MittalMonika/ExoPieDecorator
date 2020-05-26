@@ -21,8 +21,8 @@ anadetails={
     "analysisName":    "monoHbb",               ## For which analysis this is being done 
     "yearStr":         "2017",                  ## For which year data this model is being run, by default it is set to 2016, but can be changed here. 
     ## categories is made list, but at the moment accept only one value, multiple value compatibility is still not available 
-    "categories":      ["resolved"],#, "resolved"],  ## analysis categories: merged/resolved/combined
-    "categories_short": ["_R"],#, "R"],             ## short hand notation of each of the analysis category 
+    "categories":      ["combined"],#, "resolved"],  ## analysis categories: merged/resolved/combined
+    "categories_short": ["_C"],#, "R"],             ## short hand notation of each of the analysis category _B/ _R/ _C
     "postfix" :         "V0",                   ## #any other information needed to explain the details by rootfile name, by default it is version track
 }
 
