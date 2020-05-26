@@ -26,11 +26,11 @@ The out of above will be **monoHbb_WS.root**. Once **monoHbb_WS.root** woskspace
 ### Step 2: Create datacards ### 
 The datacards can be created by replacing the parameters in the template datacards using **RunLimits.py**. This is the main controlling script to perform all the steps once workspace is created and copied to respective directory. Define the parameters in **params.txt**. After this you can create datacards using: 
 
-```python RunLimits.py -c --model 2hdma --merged --region "SR TOPE TOPMU WE WMU ZEE ZMUMU"``` 
+```python RunLimits.py -c --model 2hdma --region "SR TOPE TOPMU WE WMU ZEE ZMUMU"``` 
 
  * -c: create datacards 
  * --model XXXX: tell the model name. It can take two values for now, 2HDMa and 2HDMa_all . Former used for one point and other used for all points
- * --merged/--resolved/--combined: code will create datacards for either one of the caregory, it will change in near future
+ * --merged/--resolved/--combined: depriciated, now declared in the describepy, code will create datacards for either one of the caregory, it will change in near future
  * --region " ": keep all the regions you want to combine in a single string seprated by single space
 
 This will read the datacards from the **datacards_tmplate** and save newly created datacards in the **datacards_monoHbb_2017**. 
@@ -99,3 +99,15 @@ In order to perform the fit checks, plot pulls, yieldratios, postfit and prefit 
   * [WARNING] Found [rrvbc_SR_wjets4] at boundary. 
   * [WARNING] Found [eletrigeffCMS2016_scale_] at boundary. 
  
+
+
+$$ For merged: 
+root -l -b -q PrepareWS_withnuisance.C"(\"monoHbb\", \"merged\", \"RECREATE\")"
+
+$$ For resolved: 
+root -l -b -q PrepareWS_withnuisance.C"(\"monoHbb\", \"resolved\", \"UPDATE\")"
+
+
+
+
+

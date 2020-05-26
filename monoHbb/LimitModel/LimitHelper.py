@@ -40,7 +40,7 @@ class RunLimits:
             os.system('cp index.php '+idir.rstrip())
         return 0
         
-    def makedatacards(self, templatecards, allparams, region):
+    def makedatacards(self, templatecards, allparams, region, year, category,catefull ):
         
         ma =str(allparams[0])
         mA =str(allparams[1])
@@ -65,7 +65,10 @@ class RunLimits:
             if region=="SR": iline  = iline.replace("SR", region)
             if region!="SR": iline  = iline.replace("SR_ggF", region)
             ## add other params 
-            #iline = iline.replace("monoHbb2017_B","monoHbb2017_R")
+            iline = iline.replace("YEAR",year)
+            iline = iline.replace("_CATEGORY",category)
+            iline = iline.replace("CATEGFULL",catefull)
+            
             fout.write(iline)
         fout.close()
         return datacardsname
@@ -142,17 +145,11 @@ class RunLimits:
             med.append(float(line.rstrip().split()[0]))
             mchi.append(float(line.rstrip().split()[1]))
             
-            expm2.append(float(line.rstrip().split()[4])  )
-            expm1.append(float(line.rstrip().split()[4])  )
+            expm2.append(float(line.rstrip().split()[4]) - float(line.rstrip().split()[2]) )
+            expm1.append(float(line.rstrip().split()[4]) - float(line.rstrip().split()[3]) )
             expmed.append(float(line.rstrip().split()[4]))
-            expp1.append(float(line.rstrip().split()[5])  )
-            expp2.append(float(line.rstrip().split()[6])  )
-
-            ##expm2.append(float(line.rstrip().split()[4]) - float(line.rstrip().split()[2]) )
-            ##expm1.append(float(line.rstrip().split()[4]) - float(line.rstrip().split()[3]) )
-            ##expmed.append(float(line.rstrip().split()[4]))
-            ##expp1.append(float(line.rstrip().split()[5]) - float(line.rstrip().split()[4]) )
-            ##expp2.append(float(line.rstrip().split()[6]) - float(line.rstrip().split()[4]) )
+            expp1.append(float(line.rstrip().split()[5]) - float(line.rstrip().split()[4]) )
+            expp2.append(float(line.rstrip().split()[6]) - float(line.rstrip().split()[4]) )
 
             obs.append(float(line.rstrip().split()[7]))
             errx.append(0.0)
@@ -163,8 +160,8 @@ class RunLimits:
         print ('expp1: ', expp1)
         print ('expp2: ', expp2)
     
-        g_exp2  = TGraphAsymmErrors(int(len(med)), med, expmed, errx, errx, expm1, expp2 )   ;  g_exp2.SetName("exp2")
-        g_exp1  = TGraphAsymmErrors(int(len(med)), med, expmed, errx, errx, expm2, expp1 )   ;  g_exp1.SetName("exp1")
+        g_exp2  = TGraphAsymmErrors(int(len(med)), med, expmed, errx, errx, expm2, expp2 )   ;  g_exp2.SetName("exp2")
+        g_exp1  = TGraphAsymmErrors(int(len(med)), med, expmed, errx, errx, expm1, expp1 )   ;  g_exp1.SetName("exp1")
         g_expmed = TGraphAsymmErrors(int(len(med)), med, expmed)   ;  g_expmed.SetName("expmed")
         g_obs    = TGraphAsymmErrors(int(len(med)), med, obs   )   ;  g_obs.SetName("obs")
     

@@ -417,11 +417,19 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
 
 
 
-void PrepareWS_withnuisance(){
+void PrepareWS_withnuisance(TString model_="monoHbb",TString analysiscategory_="merged", TString mode__ = "RECREATE"){
   ///afs/cern.ch/work/p/ptiwari/public/bbDM/WCr_Split/AllMETHistos.root
   TString inputfile   = "AllMETHistos.root";
-  TString outputfile  = "monoHbb_WS.root";
-  TString year        = "_2017";
+  TString year        = "2017";
+  TString outputfile  = model_+"_"+year+"_WS.root";
+  TString cat__ = "NIL";
+  if (analysiscategory_=="merged") cat__ = "B";
+  if (analysiscategory_=="resolved") cat__ = "R";
+  if (analysiscategory_=="combined") cat__ = "C";
+  
+
+  TString AnaYearCat  = model_ +  year + "_" + cat__ +"_" ;
+  std::cout<<" AnaYearCat = "<<AnaYearCat<<std::endl;
   TString version     = "_V0";
   bool usebkgsum = false;
   int met_low = 200;
@@ -434,8 +442,11 @@ void PrepareWS_withnuisance(){
   // As usual, load the combine library to get access to the RooParametricHist
   gSystem->Load("libHiggsAnalysisCombinedLimit.so");
   // Output file and workspace 
-  TFile* fOut = OpenRootFile(outputfile,"RECREATE");
-  RooWorkspace wspace("ws_monoHbb","ws_monoHbb");
+  TFile* fOut = OpenRootFile(outputfile,mode__);
+  
+  TString workspacename = "ws_"+model_+"_"+analysiscategory_+"_"+year;
+  TString workspacetitle = "work space for year "+year+", analysis "+model_+", category "+analysiscategory_;
+  RooWorkspace wspace(workspacename,workspacetitle);
 
   // A search in a MET tail, define MET as our variable 
   RooRealVar met("met","p_{T}^{miss}",met_low, met_hi);
@@ -451,7 +462,9 @@ void PrepareWS_withnuisance(){
 
   // this histogram is just for the binning 
   // --- commented on 5 Feb to see if the limis becomes same when using the opriginal data histogram
-  TH1F* h_sr_data = (TH1F*) fin->Get("monoHbb2017_B_SR_data_obs");
+  
+
+  TH1F* h_sr_data = (TH1F*) fin->Get(AnaYearCat+"SR_data_obs");
   
   //the following lines create a freely floating parameter for each of our bins (in this example, there are only 4 bins, defined for our observable met.
   // In this case we vary the normalisation in each bin of the background from N/3 to 3*N, 
@@ -482,11 +495,9 @@ void PrepareWS_withnuisance(){
       
 
   std::cout<<" calling function for Top mu"<<std::endl;
-  TH1F* h_sr_top = (TH1F*) fin->Get("monoHbb2017_B_SR_tt");
+  TH1F* h_sr_top = (TH1F*) fin->Get(AnaYearCat+"SR_tt");
   // Get the top hostogram in the Top mu CR
-  TH1F* h_topmu_2b_top = (TH1F*) fin->Get("monoHbb2017_B_TOPMU_tt");
-  
-  
+  TH1F* h_topmu_2b_top = (TH1F*) fin->Get(AnaYearCat+"TOPMU_tt");
   
   
   // Create all the inputs needed for this CR 
@@ -511,7 +522,7 @@ void PrepareWS_withnuisance(){
   nuisIndex.push_back(2); 
     std::cout<<" calling function for Top e"<<std::endl;
   // Get the top hostogram in the Top mu CR
-  TH1F* h_tope_2b_top = (TH1F*) fin->Get("monoHbb2017_B_TOPE_tt");
+  TH1F* h_tope_2b_top = (TH1F*) fin->Get(AnaYearCat+"TOPE_tt");
   // Create all the inputs needed for this CR 
   createRegion(met, h_sr_top, h_tope_2b_top, h_sr_data, wspace, "TOPE_tt", "SR_tt",  fOut, nuisIndex, nuisanceName, nuisanceValue);
 
@@ -531,10 +542,10 @@ void PrepareWS_withnuisance(){
     std::cout<<" calling function for Wenu"<<std::endl;
   
   // Get the wjets histogram in signal region
-  TH1F* h_sr_wjets = (TH1F*) fin->Get("monoHbb2017_B_SR_wjets");
+  TH1F* h_sr_wjets = (TH1F*) fin->Get(AnaYearCat+"SR_wjets");
   
   // Get the wjets hostogram in the Wenu CR
-  TH1F* h_wenu_2b_wjets = (TH1F*) fin->Get("monoHbb2017_B_WE_wjets");
+  TH1F* h_wenu_2b_wjets = (TH1F*) fin->Get(AnaYearCat+"WE_wjets");
   
   std::cout<<" integral of wenu : "<<h_sr_wjets->Integral() <<"  "<<h_wenu_2b_wjets->Integral()<<std::endl;
   // Create all the inputs needed for this CR 
@@ -552,7 +563,7 @@ void PrepareWS_withnuisance(){
 
   std::cout<<" calling function for Wmunu"<<std::endl;
   // Get the wjets hostogram in the Wmunu CR
-  TH1F* h_wmunu_2b_wjets = (TH1F*) fin->Get("monoHbb2017_B_WMU_wjets");
+  TH1F* h_wmunu_2b_wjets = (TH1F*) fin->Get(AnaYearCat+"WMU_wjets");
   // Create all the inputs needed for this CR 
   createRegion(met, h_sr_wjets, h_wmunu_2b_wjets, h_sr_data, wspace, "WMU_wjets", "SR_wjets",  fOut, nuisIndex, nuisanceName, nuisanceValue);
   
@@ -567,9 +578,9 @@ void PrepareWS_withnuisance(){
   nuisIndex.push_back(0);
   
   std::cout<<" calling function for Zmumu"<<std::endl;
-  TH1F* h_sr_Z = (TH1F*) fin->Get("monoHbb2017_B_SR_zjets");
+  TH1F* h_sr_Z = (TH1F*) fin->Get(AnaYearCat+"SR_zjets");
   // Get the top hostogram in the Top mu CR
-  TH1F* h_Zmumu_2b_Z = (TH1F*) fin->Get("monoHbb2017_B_ZMUMU_dyjets");
+  TH1F* h_Zmumu_2b_Z = (TH1F*) fin->Get(AnaYearCat+"ZMUMU_dyjets");
   // Create all the inputs needed for this CR 
   createRegion(met, h_sr_Z, h_Zmumu_2b_Z, h_sr_data, wspace, "ZMUMU_dyjets", "SR_zjets",  fOut, nuisIndex, nuisanceName, nuisanceValue);
 
@@ -585,7 +596,7 @@ void PrepareWS_withnuisance(){
   nuisIndex.push_back(2);
 
     // Get the top hostogram in the Top mu CR
-  TH1F* h_Zee_2b_Z = (TH1F*) fin->Get("monoHbb2017_B_ZEE_dyjets");
+  TH1F* h_Zee_2b_Z = (TH1F*) fin->Get(AnaYearCat+"ZEE_dyjets");
   // Create all the inputs needed for this CR 
   createRegion(met, h_sr_Z, h_Zee_2b_Z, h_sr_data, wspace, "ZEE_dyjets", "SR_zjets",  fOut, nuisIndex, nuisanceName, nuisanceValue);
 
@@ -604,31 +615,31 @@ void PrepareWS_withnuisance(){
   for (auto is=0; is<nsig; is++){
       
     mps.Form("%d",signalpoint[is]);
-    addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_B_SR_ggF_sp_0p35_tb_1p0_mXd_10_mA_"+mps+"_ma_150" ) );
+    addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"SR_ggF_sp_0p35_tb_1p0_mXd_10_mA_"+mps+"_ma_150" ) );
     addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_R_SR_ggF_sp_0p35_tb_1p0_mXd_10_mA_"+mps+"_ma_150" ) );
   }
 
   
   if (!usebkgsum){
-    addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_B_SR_data_obs" ) );
+    addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"SR_data_obs" ) );
     
-    addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_B_TOPE_data_obs" ) );
-    addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_B_TOPMU_data_obs" ) );
-    addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_B_WE_data_obs" ) );
-    addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_B_WMU_data_obs" ) );
-    addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_B_ZEE_data_obs" ) );
-    addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_B_ZMUMU_data_obs" ) );
+    addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"TOPE_data_obs" ) );
+    addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"TOPMU_data_obs" ) );
+    addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"WE_data_obs" ) );
+    addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"WMU_data_obs" ) );
+    addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"ZEE_data_obs" ) );
+    addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"ZMUMU_data_obs" ) );
     
   }
   if (usebkgsum){
    
-    addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_B_SR_data_obs" ) );
-    addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_B_TOPE_bkgSum" ) );
-    addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_B_TOPMU_bkgSum" ) );
-    addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_B_WE_bkgSum" ) );
-    addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_B_WMU_bkgSum" ) );
-    addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_B_ZEE_bkgSum" ) );
-    addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_B_ZMUMU_bkgSum" ) );
+    addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"SR_data_obs" ) );
+    addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"TOPE_bkgSum" ) );
+    addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"TOPMU_bkgSum" ) );
+    addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"WE_bkgSum" ) );
+    addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"WMU_bkgSum" ) );
+    addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"ZEE_bkgSum" ) );
+    addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"ZMUMU_bkgSum" ) );
   }
   addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_R_SR_data_obs" ) );
   addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_R_TOPE_data_obs" ) );
@@ -664,8 +675,8 @@ void PrepareWS_withnuisance(){
 
   
   std::vector<TString> category;
-  category.push_back("monoHbb2017_R_");
-  category.push_back("monoHbb2017_B_");
+  //category.push_back("monoHbb2017_R_");
+  category.push_back(AnaYearCat);
   
   TString tempname;
   for (auto ir=0; ir<regions.size(); ir++){
@@ -691,8 +702,9 @@ void PrepareWS_withnuisance(){
   // write the workspace at the very end, once everthing has been imported to the workspace 
   fOut->cd();
   wspace.Write();  
-  fOut->mkdir("transferfactor");
-  fOut->cd("transferfactor");
+  TString dirname_ = "transferfactor_" + model_ +"_"  +year + "_" + cat__  ;
+  fOut->mkdir(dirname_);
+  fOut->cd(dirname_);
   for (int i=0; i< (int) h_vec_tf.size(); i++) h_vec_tf[i]->Write();
     
 }

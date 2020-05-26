@@ -6,6 +6,8 @@ import  sys
 import argparse
 
 from LimitHelper import RunLimits
+
+import  describe as dcb
 #import params as parameters
 
 
@@ -38,10 +40,12 @@ parser.add_argument("-CR", "--cronly",  action="store_true", dest="cronly") ## o
 
 parser.add_argument("-c", "--createdatacards",  action="store_true", dest="createdatacards")
 
+'''
+now provided using describe.py
 parser.add_argument("-m", "--merged",  action="store_true", dest="merged")
 parser.add_argument("-r", "--resolved",  action="store_true", dest="resolved")
 parser.add_argument("-C", "--combined",  action="store_true", dest="combined")
-
+'''
 
 ## integers 
 parser.add_argument("-v", "--verbose",  dest="verbose", type=int, default=0)
@@ -52,10 +56,7 @@ parser.add_argument("-CL", "--CL",  dest="CL", type=int, default=0.95) ## can be
 args = parser.parse_args()
 
 ''' defining category based on merged/resolved/combined '''
-category=""
-if args.merged: category="merged"
-if args.resolved: category="resolved"
-if args.combined: category="combined"
+
 
 
 
@@ -99,12 +100,11 @@ def main():
     
     print "inside main"
     
+    ## reading the description file 
     ## resolved/merged/combined analysis 
-    analysis_tag = '_default' ## default is random, it will crash
-    if args.merged: analysis_tag = '_B'
-    if args.resolved: analysis_tag = '_R'
-    if args.combined: analysis_tag = '_C'
-    
+    category        = dcb.anadetails["categories"][0] ## this is list at this moment
+    analysis_tag    = dcb.anadetails["categories_short"][0]
+    year            = dcb.anadetails["yearStr"]
     
     ## region tag: SR, ZEE, TOPE, WE, ZMUMU, TOPMU, WMU
     #if args.region == : region_tag = 'SR'
@@ -123,7 +123,7 @@ def main():
     if args.createdatacards:
         
         fparam = open("parameters/params_"+args.model+".txt","r") 
-        datacardtextfile = args.inputdatacardpath.replace(".txt", "_"+args.model+".txt")
+        datacardtextfile = (args.inputdatacardpath.replace(".txt", analysis_tag+"_"+args.model+".txt"))
         os.system('rm '+datacardtextfile)
         ftxt = open(datacardtextfile,'w')
         for iparam in fparam:
@@ -133,7 +133,12 @@ def main():
             ## to use boosted or resolved 
             datacards=[]
             for iregion in regions:
-                datacardname = rl.makedatacards('datacards_tmplate/combine_tmpl_'+iregion+'_workspace.txt',iparam.split(), iregion)
+                datacardname = rl.makedatacards('datacards_tmplate/combine_tmpl_'+iregion+analysis_tag+'_workspace.txt',\
+                                                iparam.split(), \
+                                                iregion, \
+                                                year,\
+                                                analysis_tag, \
+                                                category)
                 if iregion == "SR":
                     mergeddatacardmname = datacardname.replace("SR_ggF","Merged")
                     ftxt.write(mergeddatacardmname+' \n')
