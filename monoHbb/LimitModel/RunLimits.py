@@ -196,13 +196,19 @@ def main():
                             mergeddatacardmname = idc[0]
                         combostr = combostr + " "+regionStr[idx_]+"=" +icategory
                         idx_ += 1
-                        
-                    mergeddatacardmname = (mergeddatacardmname.replace("_"+regionStr[0], analysis_tag)).replace("Merged","Combined")
+                    
+                    dirname_ = mergeddatacardmname.split("/")[0]
+                    replacedoubledir = dirname_+"/"+dirname_
+                    mergeddatacardmname = (mergeddatacardmname.replace("_"+regionStr[0], analysis_tag))
                     ftxt.write(mergeddatacardmname+' \n')
                     
                     print (combostr+" > "+mergeddatacardmname+"\n\n")
                     os.system("combineCards.py "+combostr+" > "+mergeddatacardmname+"\n")
-                        
+                    f_dc = open(mergeddatacardmname,"r") ; f_dc_data = f_dc.read(); f_dc.close()
+                    f_dc_data_new = f_dc_data.replace(replacedoubledir, dirname_)
+                    
+                    f_dc_new = open(mergeddatacardmname,"w") ; f_dc_new.write(f_dc_data_new) ; f_dc_new.close()
+                    
                 
             
         ftxt.close()
