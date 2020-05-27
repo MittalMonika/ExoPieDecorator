@@ -12,3 +12,6 @@ v0.01, This version has the working setup for the resolved analysis
        , the setup is realy upto plotting the limits, 
        , the fitdiagnostics etc are not done yet 
        , it work for individual case, combined analysis is not yet setup 
+v1.00, This is a major change, as the naming changed in the workspace creator. 
+       , The data cards for merged and resolved analysis can now be combined.
+       , Next is to add all kind of plots properly and add errors to them and debug the ele and mu pulls. 
