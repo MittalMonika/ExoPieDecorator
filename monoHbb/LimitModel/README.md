@@ -16,7 +16,13 @@ For myself, I don't have proper version of CMSSW where I write the mode so I nee
 ### Step 1: Create Workspace ### 
 The first step is to create the workspace using **AllMETHisto.root**. This create the rooparamhist for each of the background we need to estimate using CRs. You can create the worksapce using
  
-```root -l -b -q PrepareWS_withnuisance.C```
+For merged: 
+
+```root -l -b -q PrepareWS_withnuisance.C"(\"monoHbb\", \"merged\", \"RECREATE\")"```
+
+For resolved: 
+```root -l -b -q PrepareWS_withnuisance.C"(\"monoHbb\", \"resolved\", \"UPDATE\")"```
+
 
 The out of above will be **monoHbb_WS.root**. Once **monoHbb_WS.root** woskspace is created, copy it to **datacards_monoHbb_2017**. This file is used in the datacards to perform the simultaneous fit of SR and CRs.
 
@@ -39,7 +45,7 @@ This create the datacards for each of the region as well as combining them. The 
 
 This will also create a .txt file **monohbb2017_datacardslist_2hdma.txt** which will have path to the newly created combined data card only [created by combining all the regions you just listed]
 
-### Step 2.2 Combine category datacards ###
+#### Step 2.2 Combine category datacards ####
 In order to combine the datacards for resolved and boosted categories, you can use the same command as to create but change the regions as below: 
 
 ```python RunLimits.py -c --model 2hdma_all --region "monohbb2017_datacardslist_B_2hdma_all.txt monohbb2017_datacardslist_R_2hdma_all.txt"```
@@ -49,7 +55,7 @@ Note that the order of Booseted and Resolved here should same as in the describe
  * For reference we use boosted as high priority w.r.t resolved 
  * One must provide additional list in describe.py **categories_input** to sync all the names etc. 
 
-## run all the datacards listed in the **monohbb2017_datacardslist_2hdma.txt**:
+### Step 3: run all the datacards listed in the **monohbb2017_datacardslist_2hdma.txt**: ###
 
 ```python RunLimits.py -A -L -v 0 -i monohbb2017_datacardslist_2hdma.txt --merged --savepdf```
 
@@ -61,7 +67,7 @@ Note that the order of Booseted and Resolved here should same as in the describe
  * -v: verbose, [possible values 0,1,2,3]
  * -i: This is the input file which is created in previous step, **monohbb2017_datacardslist_2hdma.txt**. This can be automated using decaribe.py in future 
 
-## prepare results using limit.txt 
+#### Step 3.1: prepare results using limit.txt ####
 
 Prepare graphs using the limit.txt without runing the limits code again, just convert the .txt file into .root of .pdf. For this you need to provide the limit.txt and can be done using 
 
@@ -69,7 +75,7 @@ Prepare graphs using the limit.txt without runing the limits code again, just co
  * --savepdf: save the graphs and pdf file for the limits 
  * --limitTextFile: use the input from .txt file which will be provided from command line 
 
-## Pulls and FitDiagnostics ## 
+### Step 4: Pulls and FitDiagnostics ###
 
 In order to perform the fit checks, plot pulls, yieldratios, postfit and prefit comparison one just need to run the command in correct manner: 
 
@@ -84,7 +90,7 @@ In order to perform the fit checks, plot pulls, yieldratios, postfit and prefit 
  * the directory structure is hardcoded and chnaged for each time code is run so that plots are not overwritten. 
  * outlog: provide quick text to be written into the output.log file. Without this code will not work. 
 
-## Impact plots ## 
+### Step 5:  Impact plots ### 
 
 ```python RunLimits.py --impact --runmode data -i monohbb2017_datacardslist_2hdma.txt```	
 
@@ -95,7 +101,6 @@ In order to perform the fit checks, plot pulls, yieldratios, postfit and prefit 
 
 
 ## To do next ##
- * save limit plot 
  * add a command line option to show comparison of limit graph 
  * save impact plot 
  * save TF plots  [prefit only with systamatics ]
@@ -103,6 +108,7 @@ In order to perform the fit checks, plot pulls, yieldratios, postfit and prefit 
  * check what is wrong with the ele and mu sclae, why they are so pulled, 
  * checck the prefit and postfit plots to debug 
  * check the total background and its uncertainity with and without masking data in the SR. the plot is in "shapes_fit_b/signal/total_background" 
+ * write the directory for plots in the describe.py and write all the plots as per that,
  * debug following: 
   * [WARNING] Found [rrvbc_SR_wjets2] at boundary. 
   * [WARNING] Found [rrvbc_SR_wjets3] at boundary. 
@@ -110,12 +116,6 @@ In order to perform the fit checks, plot pulls, yieldratios, postfit and prefit 
   * [WARNING] Found [eletrigeffCMS2016_scale_] at boundary. 
  
 
-
-$$ For merged: 
-root -l -b -q PrepareWS_withnuisance.C"(\"monoHbb\", \"merged\", \"RECREATE\")"
-
-$$ For resolved: 
-root -l -b -q PrepareWS_withnuisance.C"(\"monoHbb\", \"resolved\", \"UPDATE\")"
 
 
 

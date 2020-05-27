@@ -12,6 +12,10 @@ def myjoin(tojoin):
         it = it +1
     return joined
 
+
+
+versionChangeLog="this is the zeroth version of the running of macro"
+
 ''' input file taken from Praveen at the moment from location
 /afs/cern.ch/work/p/ptiwari/public/bbDM/WCr_Split/AllMETHistos.root     
 
@@ -35,9 +39,17 @@ anadetails={
     "categories_short": ["_C"],#, "R"],             ## short hand notation of each of the analysis category _B/ _R/ _C
     "categories_input":["B", "R"], ## use this order in the command line also 
 
-    
-    
-    "postfix" :         "V0",                   ## #any other information needed to explain the details by rootfile name, by default it is version track
+    ## these are dir for limit and other type of plots 
+    "plotsDir":   {"limit":"plots_limit",
+                   "limitcomp":"plots_limit/limitcomp",
+                   "pulls":"plots_limit/pulls",
+                   "impact":"plots_limit/impact",
+                   "tf":"plots_limit/TF",
+                   "stack":"plots_limit/Stack",
+                   "yr":"plots_limit/YieldRatio",
+                   "pfitOverlay":"plots_limit/postfitOverlay"
+               },
+    "version" :         {"V0":versionChangeLog},            ## #any other information needed to explain the details by rootfile name, by default it is version track
 }
 
 
