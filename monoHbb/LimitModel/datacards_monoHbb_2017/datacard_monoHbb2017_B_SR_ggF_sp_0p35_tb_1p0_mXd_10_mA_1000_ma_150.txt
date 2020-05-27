@@ -16,20 +16,11 @@ shapes signal    monoHbb2017_B_SR       monoHbb_2017_WS.root ws_monoHbb_merged_2
 shapes data_obs  monoHbb2017_B_SR       monoHbb_2017_WS.root  ws_monoHbb_merged_2017:monoHbb2017_B_SR_data_obs
 
 
-shapes wjets     monoHbb2017_B_SR       monoHbb_2017_WS.root ws_monoHbb_merged_2017:rph_SR_wjets
-shapes tt     monoHbb2017_B_SR           monoHbb_2017_WS.root ws_monoHbb_merged_2017:rph_SR_tt
-shapes zjets     monoHbb2017_B_SR           monoHbb_2017_WS.root ws_monoHbb_merged_2017:rph_SR_zjets
+shapes wjets     monoHbb2017_B_SR       monoHbb_2017_WS.root ws_monoHbb_merged_2017:rph_SR_wjets_merged
+shapes tt     monoHbb2017_B_SR           monoHbb_2017_WS.root ws_monoHbb_merged_2017:rph_SR_tt_merged
+shapes zjets     monoHbb2017_B_SR           monoHbb_2017_WS.root ws_monoHbb_merged_2017:rph_SR_zjets_merged
 
 
-
-----------------------------------------------------------------------------------------------------------------------------------
-#shapes ZJets   monoHbb2017_B_SR   monoHbb_2017_WS.root   ws_monoHbb_merged_2017:rph_sr2_Z        ws_monoHbb_merged_2017:rph_sr2_Z_$SYSTEMATIC
-#shapes Top     monoHbb2017_B_SR   monoHbb_2017_WS.root   ws_monoHbb_merged_2017:rph_sr2_top      ws_monoHbb_merged_2017:rph_sr2_top_$SYSTEMATIC
-#shapes WJets   monoHbb2017_B_SR   monoHbb_2017_WS.root   ws_monoHbb_merged_2017:rph_sr2_wjets    ws_monoHbb_merged_2017:rph_sr2_wjets_$SYSTEMATIC
-----------------------------------------------------------------------------------------------------------------------------------
-
-
-------------
 
 
 bin   monoHbb2017_B_SR 
@@ -70,30 +61,31 @@ zj_hf                   lnN     -            1.05        -       -          -   
 
 
 
-rrv_CMS2017_scale_e param 0.0 1
-rrv_CMS2017_scale_m param 0.0 1
-rrv_eletrigeffCMS2017_scale_ param 0.0 1
-rrv_stats_err_TOPE_tt_bin1 param 0.0 1
-rrv_stats_err_TOPE_tt_bin2 param 0.0 1
-rrv_stats_err_TOPE_tt_bin3 param 0.0 1
-rrv_stats_err_TOPE_tt_bin4 param 0.0 1
-rrv_stats_err_TOPMU_tt_bin1 param 0.0 1
-rrv_stats_err_TOPMU_tt_bin2 param 0.0 1
-rrv_stats_err_TOPMU_tt_bin3 param 0.0 1
-rrv_stats_err_TOPMU_tt_bin4 param 0.0 1
-rrv_stats_err_WE_wjets_bin1 param 0.0 1
-rrv_stats_err_WE_wjets_bin2 param 0.0 1
-rrv_stats_err_WE_wjets_bin3 param 0.0 1
-rrv_stats_err_WE_wjets_bin4 param 0.0 1
-rrv_stats_err_WMU_wjets_bin1 param 0.0 1
-rrv_stats_err_WMU_wjets_bin2 param 0.0 1
-rrv_stats_err_WMU_wjets_bin3 param 0.0 1
-rrv_stats_err_WMU_wjets_bin4 param 0.0 1
-rrv_stats_err_ZEE_dyjets_bin1 param 0.0 1
-rrv_stats_err_ZEE_dyjets_bin2 param 0.0 1
-rrv_stats_err_ZEE_dyjets_bin3 param 0.0 1
-rrv_stats_err_ZEE_dyjets_bin4 param 0.0 1
-rrv_stats_err_ZMUMU_dyjets_bin1 param 0.0 1
-rrv_stats_err_ZMUMU_dyjets_bin2 param 0.0 1
-rrv_stats_err_ZMUMU_dyjets_bin3 param 0.0 1
-rrv_stats_err_ZMUMU_dyjets_bin4 param 0.0 1
+rrv_CMS2017_scale_e_merged param 0.0 1
+rrv_CMS2017_scale_m_merged param 0.0 1
+rrv_eletrigeffCMS2017_scale__merged param 0.0 1
+
+rrv_stats_err_TOPE_tt_merged_merged_bin1 param 0.0 1
+rrv_stats_err_TOPE_tt_merged_merged_bin2 param 0.0 1
+rrv_stats_err_TOPE_tt_merged_merged_bin3 param 0.0 1
+rrv_stats_err_TOPE_tt_merged_merged_bin4 param 0.0 1
+rrv_stats_err_TOPMU_tt_merged_merged_bin1 param 0.0 1
+rrv_stats_err_TOPMU_tt_merged_merged_bin2 param 0.0 1
+rrv_stats_err_TOPMU_tt_merged_merged_bin3 param 0.0 1
+rrv_stats_err_TOPMU_tt_merged_merged_bin4 param 0.0 1
+rrv_stats_err_WE_wjets_merged_merged_bin1 param 0.0 1
+rrv_stats_err_WE_wjets_merged_merged_bin2 param 0.0 1
+rrv_stats_err_WE_wjets_merged_merged_bin3 param 0.0 1
+rrv_stats_err_WE_wjets_merged_merged_bin4 param 0.0 1
+rrv_stats_err_WMU_wjets_merged_merged_bin1 param 0.0 1
+rrv_stats_err_WMU_wjets_merged_merged_bin2 param 0.0 1
+rrv_stats_err_WMU_wjets_merged_merged_bin3 param 0.0 1
+rrv_stats_err_WMU_wjets_merged_merged_bin4 param 0.0 1
+rrv_stats_err_ZEE_dyjets_merged_merged_bin1 param 0.0 1
+rrv_stats_err_ZEE_dyjets_merged_merged_bin2 param 0.0 1
+rrv_stats_err_ZEE_dyjets_merged_merged_bin3 param 0.0 1
+rrv_stats_err_ZEE_dyjets_merged_merged_bin4 param 0.0 1
+rrv_stats_err_ZMUMU_dyjets_merged_merged_bin1 param 0.0 1
+rrv_stats_err_ZMUMU_dyjets_merged_merged_bin2 param 0.0 1
+rrv_stats_err_ZMUMU_dyjets_merged_merged_bin3 param 0.0 1
+rrv_stats_err_ZMUMU_dyjets_merged_merged_bin4 param 0.0 1

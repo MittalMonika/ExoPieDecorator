@@ -2,61 +2,61 @@
 Will use a-priori expected background instead of a-posteriori one.
 >>> method used is AsymptoticLimits
 >>> random number generator seed is 123456
-Object rfv_TOPE_tt1 is duplicated
-Object TF1TOPE_tt is duplicated
-Object rfv_TOPE_tt2 is duplicated
-Object TF2TOPE_tt is duplicated
-Object rfv_TOPE_tt3 is duplicated
-Object TF3TOPE_tt is duplicated
-Object rfv_TOPE_tt4 is duplicated
-Object TF4TOPE_tt is duplicated
-Object rfv_TOPMU_tt1 is duplicated
-Object TF1TOPMU_tt is duplicated
-Object rfv_TOPMU_tt2 is duplicated
-Object TF2TOPMU_tt is duplicated
-Object rfv_TOPMU_tt3 is duplicated
-Object TF3TOPMU_tt is duplicated
-Object rfv_TOPMU_tt4 is duplicated
-Object TF4TOPMU_tt is duplicated
-Object rfv_WE_wjets1 is duplicated
-Object TF1WE_wjets is duplicated
-Object rfv_WE_wjets2 is duplicated
-Object TF2WE_wjets is duplicated
-Object rfv_WE_wjets3 is duplicated
-Object TF3WE_wjets is duplicated
-Object rfv_WE_wjets4 is duplicated
-Object TF4WE_wjets is duplicated
-Object rfv_WMU_wjets1 is duplicated
-Object TF1WMU_wjets is duplicated
-Object rfv_WMU_wjets2 is duplicated
-Object TF2WMU_wjets is duplicated
-Object rfv_WMU_wjets3 is duplicated
-Object TF3WMU_wjets is duplicated
-Object rfv_WMU_wjets4 is duplicated
-Object TF4WMU_wjets is duplicated
-Object rfv_ZEE_dyjets1 is duplicated
-Object TF1ZEE_dyjets is duplicated
-Object rfv_ZEE_dyjets2 is duplicated
-Object TF2ZEE_dyjets is duplicated
-Object rfv_ZEE_dyjets3 is duplicated
-Object TF3ZEE_dyjets is duplicated
-Object rfv_ZEE_dyjets4 is duplicated
-Object TF4ZEE_dyjets is duplicated
-Object rfv_ZMUMU_dyjets1 is duplicated
-Object TF1ZMUMU_dyjets is duplicated
-Object rfv_ZMUMU_dyjets2 is duplicated
-Object TF2ZMUMU_dyjets is duplicated
-Object rfv_ZMUMU_dyjets3 is duplicated
-Object TF3ZMUMU_dyjets is duplicated
-Object rfv_ZMUMU_dyjets4 is duplicated
-Object TF4ZMUMU_dyjets is duplicated
+Object rfv_TOPE_tt1_merged is duplicated
+Object TF1TOPE_tt_merged is duplicated
+Object rfv_TOPE_tt2_merged is duplicated
+Object TF2TOPE_tt_merged is duplicated
+Object rfv_TOPE_tt3_merged is duplicated
+Object TF3TOPE_tt_merged is duplicated
+Object rfv_TOPE_tt4_merged is duplicated
+Object TF4TOPE_tt_merged is duplicated
+Object rfv_TOPMU_tt1_merged is duplicated
+Object TF1TOPMU_tt_merged is duplicated
+Object rfv_TOPMU_tt2_merged is duplicated
+Object TF2TOPMU_tt_merged is duplicated
+Object rfv_TOPMU_tt3_merged is duplicated
+Object TF3TOPMU_tt_merged is duplicated
+Object rfv_TOPMU_tt4_merged is duplicated
+Object TF4TOPMU_tt_merged is duplicated
+Object rfv_WE_wjets1_merged is duplicated
+Object TF1WE_wjets_merged is duplicated
+Object rfv_WE_wjets2_merged is duplicated
+Object TF2WE_wjets_merged is duplicated
+Object rfv_WE_wjets3_merged is duplicated
+Object TF3WE_wjets_merged is duplicated
+Object rfv_WE_wjets4_merged is duplicated
+Object TF4WE_wjets_merged is duplicated
+Object rfv_WMU_wjets1_merged is duplicated
+Object TF1WMU_wjets_merged is duplicated
+Object rfv_WMU_wjets2_merged is duplicated
+Object TF2WMU_wjets_merged is duplicated
+Object rfv_WMU_wjets3_merged is duplicated
+Object TF3WMU_wjets_merged is duplicated
+Object rfv_WMU_wjets4_merged is duplicated
+Object TF4WMU_wjets_merged is duplicated
+Object rfv_ZEE_dyjets1_merged is duplicated
+Object TF1ZEE_dyjets_merged is duplicated
+Object rfv_ZEE_dyjets2_merged is duplicated
+Object TF2ZEE_dyjets_merged is duplicated
+Object rfv_ZEE_dyjets3_merged is duplicated
+Object TF3ZEE_dyjets_merged is duplicated
+Object rfv_ZEE_dyjets4_merged is duplicated
+Object TF4ZEE_dyjets_merged is duplicated
+Object rfv_ZMUMU_dyjets1_merged is duplicated
+Object TF1ZMUMU_dyjets_merged is duplicated
+Object rfv_ZMUMU_dyjets2_merged is duplicated
+Object TF2ZMUMU_dyjets_merged is duplicated
+Object rfv_ZMUMU_dyjets3_merged is duplicated
+Object TF3ZMUMU_dyjets_merged is duplicated
+Object rfv_ZMUMU_dyjets4_merged is duplicated
+Object TF4ZMUMU_dyjets_merged is duplicated
 
  -- AsymptoticLimits ( CLs ) --
-Observed Limit: r < 1.2632
-Expected  2.5%: r < 0.4059
-Expected 16.0%: r < 0.5387
-Expected 50.0%: r < 0.7529
-Expected 84.0%: r < 1.0711
-Expected 97.5%: r < 1.4804
+Observed Limit: r < 1.2738
+Expected  2.5%: r < 0.4179
+Expected 16.0%: r < 0.5484
+Expected 50.0%: r < 0.7588
+Expected 84.0%: r < 1.0764
+Expected 97.5%: r < 1.4851
 
-Done in 0.03 min (cpu), 0.03 min (real)
+Done in 0.05 min (cpu), 0.05 min (real)

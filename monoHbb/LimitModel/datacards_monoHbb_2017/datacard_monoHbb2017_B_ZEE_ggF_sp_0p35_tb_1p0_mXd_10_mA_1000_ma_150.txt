@@ -10,7 +10,7 @@ kmax *  number of nuisance parameters (sources of systematical uncertainties)
 ## shapes  process   region    path 
 
 shapes *         monoHbb2017_B_ZEE       monoHbb_2017_WS.root ws_monoHbb_merged_2017:monoHbb2017_B_ZEE_$PROCESS ws_monoHbb_merged_2017:monoHbb2017_B_ZEE_$PROCESS_$SYSTEMATIC
-shapes dyjets     monoHbb2017_B_ZEE       monoHbb_2017_WS.root ws_monoHbb_merged_2017:rph_ZEE_dyjets
+shapes dyjets     monoHbb2017_B_ZEE       monoHbb_2017_WS.root ws_monoHbb_merged_2017:rph_ZEE_dyjets_merged
 
 
 ------------
@@ -54,19 +54,13 @@ wj_hf                   lnN                   -        -       -          -     
 #pdf_accept              lnN                1.01  	  1.01       1.01     1.01  1.01  1.01
 #CMS2017_eff_t           lnN                1.03       1.03      1.03     1.03  1.03 1.03 
 
-#TF1ZEE_dyjets flatParam
-#TF2ZEE_dyjets flatParam
-#TF3ZEE_dyjets flatParam
-#TF4ZEE_dyjets flatParam
 
+rrvbc_SR_zjets_merged1 flatParam
+rrvbc_SR_zjets_merged2 flatParam
+rrvbc_SR_zjets_merged3 flatParam
+rrvbc_SR_zjets_merged4 flatParam
 
-
-rrvbc_SR_zjets1 flatParam
-rrvbc_SR_zjets2 flatParam
-rrvbc_SR_zjets3 flatParam
-rrvbc_SR_zjets4 flatParam
-
-tf1_ZEE_dyjets flatParam
-tf2_ZEE_dyjets flatParam
-tf3_ZEE_dyjets flatParam
-tf4_ZEE_dyjets flatParam
+tf1_ZEE_dyjets_merged flatParam
+tf2_ZEE_dyjets_merged flatParam
+tf3_ZEE_dyjets_merged flatParam
+tf4_ZEE_dyjets_merged flatParam

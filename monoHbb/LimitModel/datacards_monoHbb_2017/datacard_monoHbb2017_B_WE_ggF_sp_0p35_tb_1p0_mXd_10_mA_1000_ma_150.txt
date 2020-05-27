@@ -10,7 +10,7 @@ kmax *  number of nuisance parameters (sources of systematical uncertainties)
 ## shapes  process   region    path 
 
 shapes *         monoHbb2017_B_WE       monoHbb_2017_WS.root ws_monoHbb_merged_2017:monoHbb2017_B_WE_$PROCESS ws_monoHbb_merged_2017:monoHbb2017_B_WE_$PROCESS_$SYSTEMATIC
-shapes wjets     monoHbb2017_B_WE       monoHbb_2017_WS.root ws_monoHbb_merged_2017:rph_WE_wjets
+shapes wjets     monoHbb2017_B_WE       monoHbb_2017_WS.root ws_monoHbb_merged_2017:rph_WE_wjets_merged
 
 
 
@@ -63,18 +63,13 @@ zj_hf                   lnN     -            -        -       -          1.05   
 #CMS2017_eff_t           lnN    1.03        1.03     1.03       1.03       1.03      1.03     1.03     1.03
 
 
-#TF1WE_wjets flatParam
-#TF2WE_wjets flatParam
-#TF3WE_wjets flatParam
-#TF4WE_wjets flatParam
 
+tf1_WE_wjets_merged flatParam
+tf2_WE_wjets_merged flatParam
+tf3_WE_wjets_merged flatParam
+tf4_WE_wjets_merged flatParam
 
-tf1_WE_wjets flatParam
-tf2_WE_wjets flatParam
-tf3_WE_wjets flatParam
-tf4_WE_wjets flatParam
-
-rrvbc_SR_wjets1 flatParam
-rrvbc_SR_wjets2 flatParam
-rrvbc_SR_wjets3 flatParam
-rrvbc_SR_wjets4 flatParam
+rrvbc_SR_wjets_merged1 flatParam
+rrvbc_SR_wjets_merged2 flatParam
+rrvbc_SR_wjets_merged3 flatParam
+rrvbc_SR_wjets_merged4 flatParam

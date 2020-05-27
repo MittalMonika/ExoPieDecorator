@@ -10,7 +10,7 @@ kmax *  number of nuisance parameters (sources of systematical uncertainties)
 ## shapes  process   region    path 
 
 shapes *         monoHbb2017_B_ZMUMU       monoHbb_2017_WS.root ws_monoHbb_merged_2017:monoHbb2017_B_ZMUMU_$PROCESS ws_monoHbb_merged_2017:monoHbb2017_B_ZMUMU_$PROCESS_$SYSTEMATIC
-shapes dyjets     monoHbb2017_B_ZMUMU       monoHbb_2017_WS.root ws_monoHbb_merged_2017:rph_ZMUMU_dyjets
+shapes dyjets     monoHbb2017_B_ZMUMU       monoHbb_2017_WS.root ws_monoHbb_merged_2017:rph_ZMUMU_dyjets_merged
 
 
 ------------
@@ -56,12 +56,12 @@ wj_hf                   lnN                   -        -       -          -     
 
 
 
-rrvbc_SR_zjets1 flatParam
-rrvbc_SR_zjets2 flatParam
-rrvbc_SR_zjets3 flatParam
-rrvbc_SR_zjets4 flatParam
+rrvbc_SR_zjets_merged1 flatParam
+rrvbc_SR_zjets_merged2 flatParam
+rrvbc_SR_zjets_merged3 flatParam
+rrvbc_SR_zjets_merged4 flatParam
 
-tf1_ZMUMU_dyjets flatParam
-tf2_ZMUMU_dyjets flatParam
-tf3_ZMUMU_dyjets flatParam
-tf4_ZMUMU_dyjets flatParam
+tf1_ZMUMU_dyjets_merged flatParam
+tf2_ZMUMU_dyjets_merged flatParam
+tf3_ZMUMU_dyjets_merged flatParam
+tf4_ZMUMU_dyjets_merged flatParam

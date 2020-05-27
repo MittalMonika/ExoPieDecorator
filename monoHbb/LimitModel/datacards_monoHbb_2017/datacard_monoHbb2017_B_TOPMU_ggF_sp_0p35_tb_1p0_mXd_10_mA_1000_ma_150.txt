@@ -10,7 +10,7 @@ kmax *  number of nuisance parameters (sources of systematical uncertainties)
 ## shapes  process   region    path 
 
 shapes *         monoHbb2017_B_TOPMU       monoHbb_2017_WS.root ws_monoHbb_merged_2017:monoHbb2017_B_TOPMU_$PROCESS ws_monoHbb_merged_2017:monoHbb2017_B_TOPMU_$PROCESS_$SYSTEMATIC
-shapes tt     monoHbb2017_B_TOPMU       monoHbb_2017_WS.root ws_monoHbb_merged_2017:rph_TOPMU_tt
+shapes tt     monoHbb2017_B_TOPMU       monoHbb_2017_WS.root ws_monoHbb_merged_2017:rph_TOPMU_tt_merged
 
 
 ------------
@@ -51,18 +51,14 @@ zj_hf                   lnN           -            -        -       -          1
 #pdf_accept              lnN          1.01       1.01  	  1.01       1.01     1.01  1.01  1.01
 #CMS2017_eff_t           lnN          1.03       1.03       1.03      1.03     1.03  1.03 1.03 
 
-tf1_TOPMU_tt flatParam
-tf2_TOPMU_tt flatParam
-tf3_TOPMU_tt flatParam
-tf4_TOPMU_tt flatParam
+tf1_TOPMU_tt_merged flatParam
+tf2_TOPMU_tt_merged flatParam
+tf3_TOPMU_tt_merged flatParam
+tf4_TOPMU_tt_merged flatParam
 
-rrvbc_SR_tt1 flatParam
-rrvbc_SR_tt2 flatParam
-rrvbc_SR_tt3 flatParam
-rrvbc_SR_tt4 flatParam
+rrvbc_SR_tt_merged1 flatParam
+rrvbc_SR_tt_merged2 flatParam
+rrvbc_SR_tt_merged3 flatParam
+rrvbc_SR_tt_merged4 flatParam
 
 
-#TF1TOPMU_tt flatParam
-#TF2TOPMU_tt flatParam
-#TF3TOPMU_tt flatParam
-#TF4TOPMU_tt flatParam

@@ -24,6 +24,7 @@ anadetails={
     
     ## for combined additional information is needed in order to sync all the names etc, e.g. for each type is below, commented for now  '''
     ## categories is made list, but at the moment accept only one value, multiple value compatibility is still not available 
+    
     #"categories":      ["resolved"],#, "resolved"],  ## analysis categories: merged/resolved/combined
     #"categories_short": ["_R"],#, "R"],             ## short hand notation of each of the analysis category _B/ _R/ _C
     
