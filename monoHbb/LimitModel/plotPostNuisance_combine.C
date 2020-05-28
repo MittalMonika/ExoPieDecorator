@@ -21,7 +21,8 @@ void printaline(int index, char* nuiname, Double_t centralval, Double_t uncert){
 
 }
 
-void plotPostNuisance_combine(TString mlfit="fitDiagnostics.root", double MaxUncertainty = 1.0, 
+void plotPostNuisance_combine(TString mlfit="fitDiagnostics.root", TString outdir="plots_limit/pulls/", TString postfix="",
+			      double MaxUncertainty = 1.0, 
                               double MaxValue = 10.0, bool skipmu = true) {
 
   // 
@@ -141,6 +142,10 @@ void plotPostNuisance_combine(TString mlfit="fitDiagnostics.root", double MaxUnc
   h1->SetMarkerStyle(20);
   h1->SetMarkerSize(1.5);
   
-  c->SaveAs("plots_fitdiagnostics/pulls/pulls_cronly.pdf");
+  c->SaveAs(outdir+"/pulls_cronly.pdf");
+  c->SaveAs(outdir+"/pulls_cronly.png");
+  c->SaveAs(outdir+"/pulls_cronly.C");
+  c->SaveAs(outdir+"/pulls_cronly.root");
+  
 
 }

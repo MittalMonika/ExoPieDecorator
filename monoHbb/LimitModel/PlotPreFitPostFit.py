@@ -22,11 +22,13 @@ max_ = 10.0
 
 
 filename = sys.argv[1] 
-plotdir  = "plots_fitdiagnostics/prefit_postfit/"
+plotdir  = sys.argv[2] 
+postfix_ = sys.argv[3]
 postfix = ""
 if "data" in filename:  postfix = "Data"
 if "asimov" in filename: postfix = "Asimov"
 
+postfix  = postfix + postfix_
 fileObj = TFile(filename)
 
 for iRegionList in range(len(RegionList)):
@@ -94,9 +96,10 @@ for iRegionList in range(len(RegionList)):
         # check the maximum of three histo
         hmax = h_postfit.GetMaximum()
         if (hmax < h_prefit.GetMaximum()):
-        hmax = h_prefit.GetMaximum()
+                hmax = h_prefit.GetMaximum()
         if (hmax < h_data.GetMaximum()):
-        hmax = h_data.GetMaximum()
+                hmax = h_data.GetMaximum()
+
         h_postfit.SetMaximum(hmax*1.1)
 
 	h_postfit.Draw("HIST E")
@@ -137,12 +140,6 @@ for iRegionList in range(len(RegionList)):
 	c1.Update()
         c1.SaveAs(plotdir+"postfit_"+RegionList[iRegionList]+"_"+postfix+".pdf")
         c1.SaveAs(plotdir+"postfit_"+RegionList[iRegionList]+"_"+postfix+".png")
-        '''
-	#c1.SaveAs("pre_post_data_comparison_region"+RegionList[iRegionList]+".pdf")
-	if (iRegionList == 0):	
-		c1.SaveAs("pre_post_data_comparison.pdf(","pdf")
-	elif ( iRegionList == len(RegionList)-1 ):
-		c1.SaveAs("pre_post_data_comparison.pdf)","pdf")
-	else:
-		c1.SaveAs("pre_post_data_comparison.pdf","pdf")
-        '''
+        c1.SaveAs(plotdir+"postfit_"+RegionList[iRegionList]+"_"+postfix+".C")
+        c1.SaveAs(plotdir+"postfit_"+RegionList[iRegionList]+"_"+postfix+".root")
+        

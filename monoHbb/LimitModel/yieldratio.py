@@ -20,7 +20,8 @@ edges = arr.array('f')
 
 
 filename = sys.argv[1]
-plotsdir = "plots_fitdiagnostics/yieldratio/"
+plotsdir = sys.argv[2]
+postfix_ = sys.argv[3]
 
 file_obj = TFile(filename)
 
@@ -32,7 +33,7 @@ if "data" in  filename :
 if "asimov" in  filename :
     postfix = "_Asimov"
 
-
+postfix = postfix + postfix_
 #------------------------TOPE------------------------------#
 
 Tope = "shapes_fit_b/TOPE/"
@@ -369,6 +370,8 @@ for i in E1:
 
 c1.SaveAs(plotsdir+"Tope_YieldRatio"+postfix+".pdf")
 c1.SaveAs(plotsdir+"Tope_YieldRatio"+postfix+".png")
+c1.SaveAs(plotsdir+"Tope_YieldRatio"+postfix+".root")
+c1.SaveAs(plotsdir+"Tope_YieldRatio"+postfix+".C")
 
 
 #************* TOPMU ****************#
@@ -402,6 +405,8 @@ for i in E2:
 
 c2.SaveAs(plotsdir+"Topmu_YieldRatio"+postfix+".pdf")
 c2.SaveAs(plotsdir+"Topmu_YieldRatio"+postfix+".png")
+c2.SaveAs(plotsdir+"Topmu_YieldRatio"+postfix+".root")
+c2.SaveAs(plotsdir+"Topmu_YieldRatio"+postfix+".C")
 
 
 #************* WE ****************#
@@ -435,6 +440,8 @@ for i in E3:
 
 c3.SaveAs(plotsdir+"We_YieldRatio"+postfix+".pdf")
 c3.SaveAs(plotsdir+"We_YieldRatio"+postfix+".png")
+c3.SaveAs(plotsdir+"We_YieldRatio"+postfix+".C")
+c3.SaveAs(plotsdir+"We_YieldRatio"+postfix+".root")
 
 
 #************* WMU ****************#
@@ -468,6 +475,8 @@ for i in E4:
 
 c4.SaveAs(plotsdir+"Wmu_YieldRatio"+postfix+".pdf")
 c4.SaveAs(plotsdir+"Wmu_YieldRatio"+postfix+".png")
+c4.SaveAs(plotsdir+"Wmu_YieldRatio"+postfix+".root")
+c4.SaveAs(plotsdir+"Wmu_YieldRatio"+postfix+".C")
 
 
 #************* ZEE ****************#
@@ -501,6 +510,8 @@ for i in E5:
 
 c5.SaveAs(plotsdir+"Zee_YieldRatio"+postfix+".pdf")
 c5.SaveAs(plotsdir+"Zee_YieldRatio"+postfix+".png")
+c5.SaveAs(plotsdir+"Zee_YieldRatio"+postfix+".root")
+c5.SaveAs(plotsdir+"Zee_YieldRatio"+postfix+".C")
 
 
 #************* ZMUMU ****************#
@@ -534,4 +545,6 @@ for i in E6:
 
 c6.SaveAs(plotsdir+"Zmumu_YieldRatio"+postfix+".pdf")
 c6.SaveAs(plotsdir+"Zmumu_YieldRatio"+postfix+".png")
+c6.SaveAs(plotsdir+"Zmumu_YieldRatio"+postfix+".root")
+c6.SaveAs(plotsdir+"Zmumu_YieldRatio"+postfix+".C")
 

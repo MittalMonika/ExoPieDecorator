@@ -292,49 +292,61 @@ class RunLimits:
         ## run impact  data 
         
         
-    def SavePrePostComparison(self,run_mode):
+    def SavePrePostComparison(self,run_mode, outdir, category, year):
         default_fit_root   = "fitDiagnostics.root"
         default_pull_root  = "pulls.root"
         
         ''' prepare the names of root file '''
-        fit_Diagnostics = default_fit_root.replace(".root", "_"+run_mode+".root")
-        pull_root       = default_pull_root.replace(".root",  "_"+run_mode+".root")
+        fit_Diagnostics = default_fit_root.replace(".root", "_"+category+"_"+year+"_"+run_mode+".root")
+        pull_root       = default_pull_root.replace(".root",  "_"+category+"_"+year+"_"+run_mode+".root")
         
         print "run_mode, fit_Diagnostics, pull_root", run_mode, fit_Diagnostics, pull_root
         ''' move the rootfile to avoid ambiguity '''         
-        os.system("mv "+default_fit_root+" " + fit_Diagnostics)
-        os.system("mv "+default_pull_root+" " + pull_root)
+
+        postfix_ = "_"+category+"_"+year+"_"
         
         if run_mode == "cronly":
             self.PrintSpacing()
-            os.system('root -l -b -q plotPostNuisance_combine.C\(\\"'+fit_Diagnostics+'\\"\)')
+            dir_ = outdir["pulls"]
+            os.system("mv "+default_fit_root+" " + fit_Diagnostics)
+            os.system('root -l -b -q plotPostNuisance_combine.C\(\\"'+fit_Diagnostics+'\\",\\"'+dir_+'\\",\\"'+postfix_+'\\"\)')
         
         if run_mode != "cronly":
-            ''' get the different ce nuisances ''' 
+            os.system("mv "+default_fit_root+" " + fit_Diagnostics)
+            ''' get the different of nuisances ''' 
             self.PrintSpacing()
             os.system("python diffNuisances.py "+fit_Diagnostics+" --abs --all -g "+pull_root)
+            os.system("mv "+default_pull_root+" " + pull_root)
             self.PrintSpacing()
-            os.system('root -l -b -q PlotPulls.C\(\\"'+pull_root+'\\"\)')
+            dir_ = outdir["pulls"]
+            os.system('root -l -b -q PlotPulls.C\(\\"'+pull_root+'\\",\\"'+dir_+'\\",\\"'+postfix_+'\\"\)')
+            dir_ = outdir["yr"]
             self.PrintSpacing()
-            os.system("python yieldratio.py "+fit_Diagnostics)
+            os.system("python yieldratio.py "+fit_Diagnostics+" "+dir_+" "+postfix_)
+            dir_ = outdir["pfitOverlay"]
             self.PrintSpacing()
-            os.system("python PlotPreFitPostFit.py "+fit_Diagnostics)
+            os.system("python PlotPreFitPostFit.py "+fit_Diagnostics+" "+dir_+" "+postfix_)
+            dir_ = outdir["stack"]
+            print "call the stack file"
+            dir_ = outdir["tf"]
+            print "call the TF file"
+            
 
                         
 
     
             
 
-    def RunPulls(self, datacard, logfilename, run_mode="data"):
+    def RunPulls(self, datacard, run_mode, outdir, category, year):
         ## setup the dir structure 
-        self.setupDirs("configs/pulls_dir.txt")
+        #self.setupDirs("configs/pulls_dir.txt")
         ## data fit 
         if run_mode == "data":
             self.PrintSpacing(2)
             print "performing the fit in run_mode ",run_mode
             os.system("combine -M FitDiagnostics --saveShapes "+datacard+ " --saveWithUncertainties --saveNormalizations --X-rtd MINIMIZER_analytic ")
             self.PrintSpacing(1)
-            self.SavePrePostComparison("data")
+            self.SavePrePostComparison("data",outdir,category, year)
         
             
 
@@ -343,12 +355,15 @@ class RunLimits:
             self.PrintSpacing(2)
             os.system("combine -M FitDiagnostics --saveShapes "+datacard + " --saveWithUncertainties --saveNormalizations --X-rtd MINIMIZER_analytic  --rMin -100 -t -1 --expectSignal 0")
             self.PrintSpacing(1)
-            self.SavePrePostComparison("asimov")
+            self.SavePrePostComparison("asimov",outdir,category,year)
         
         ## CR only fit 
-        os.system("text2workspace.py "+datacard+" --channel-masks")
-        wsname = datacard.replace(".txt",".root")
-        os.system("combine -M FitDiagnostics  "+wsname+" --saveShapes --saveWithUncertainties --setParameters mask_SR=1")
-        self.SavePrePostComparison("cronly")
+        if run_mode == "cronly":
+            print ("text2workspace.py "+datacard+" --channel-masks")
+            os.system("text2workspace.py "+datacard+" --channel-masks")
+            wsname = datacard.replace(".txt",".root")
+            print ("combine -M FitDiagnostics  "+wsname+" --saveShapes --saveWithUncertainties --setParameters mask_SR=1")
+            os.system("combine -M FitDiagnostics  "+wsname+" --saveShapes --saveWithUncertainties --setParameters mask_SR=1")
+            self.SavePrePostComparison("cronly",outdir, category,year)
         
         

@@ -10,9 +10,9 @@
 
 
 // using  a weird default name so that code crash in cse a correct rootfile is not provided 
-void PlotPulls(TString filename="pulls_none.root"){ 
+void PlotPulls(TString filename="pulls_none.root", TString outdir="", TString postfix_=""){ 
   
-  TString plotdir = "plots_fitdiagnostics/pulls/";
+  TString plotdir = outdir;
     TFile file(filename,"READ");
     TCanvas *c = (TCanvas*)file.Get("nuisances");
     c->ls(); //check inside the c canvas
@@ -81,5 +81,7 @@ void PlotPulls(TString filename="pulls_none.root"){
     c->Modified();
     
     c->SaveAs(plotdir+filename.ReplaceAll(".root",".pdf"));
-    c->SaveAs(plotdir+filename.ReplaceAll(".root",".png"));
+    c->SaveAs(plotdir+filename.ReplaceAll(".pdf",".png"));
+    c->SaveAs(plotdir+filename.ReplaceAll(".png",".root"));
+    c->SaveAs(plotdir+filename.ReplaceAll(".root",".C"));
 }

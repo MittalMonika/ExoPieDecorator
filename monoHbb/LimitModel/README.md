@@ -81,6 +81,20 @@ In order to perform the fit checks, plot pulls, yieldratios, postfit and prefit 
 
 ```python RunLimits.py --pulls --runmode data -i monohbb2017_datacardslist_2hdma.txt``` 
 
+e.g. 
+
+#### Step 4.1 For CR only fit ####
+
+```python RunLimits.py --pulls --runmode cronly -i monohbb2017_datacardslist_B_2hdma.txt --outlog "testing the pulls"```
+
+#### Step 4.2 For asimov fit ####
+
+```python RunLimits.py --pulls --runmode asimov -i monohbb2017_datacardslist_B_2hdma.txt --outlog "testing the pulls for asimov" ```
+
+#### Step 4.3 For data fit ####
+
+```python RunLimits.py --pulls --runmode data -i monohbb2017_datacardslist_B_2hdma.txt --outlog "testing the pulls for data"  ```
+
 
 
  * --pulls: run the code to estimate the Pulls 

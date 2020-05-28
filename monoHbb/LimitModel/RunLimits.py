@@ -61,9 +61,9 @@ args = parser.parse_args()
 
 
 if args.pulls or args.impact or args.runasimov or args.runlimits or args.savepdf:
-    if args.outlog == "testing":
-        sys.exit( "please provide a good informative message for --outlog, otherwise code can't be run")
-    
+    if args.outlog == "testing" or len (args.outlog) <10 :
+        sys.exit( "please provide a good informative message (>10 chars) for --outlog, otherwise code can't be run")
+
     
 ''' all the defaults needed for rest of the class, and to execute the opetations are here ''' 
 ''' many of them are coming from the command line argumnet''' 
@@ -251,6 +251,8 @@ def main():
         limit_rootfilename = rl.TextFileToRootGraphs(args.limitTextFile)
         rl.SaveLimitPdf1D(limit_rootfilename)
         
+
+
     if args.impact:
         datacardnameslist = [iline.rstrip() for iline in open(args.inputdatacardpath)]
         for idatacard in datacardnameslist :
@@ -264,13 +266,14 @@ def main():
     if args.pulls:
         datacardnameslist = [iline.rstrip() for iline in open(args.inputdatacardpath)]
         for idatacard in datacardnameslist :
-            logfilename = "logs/impacts/"+idatacard.replace(".txt",".log")
-            rl.RunPulls(idatacard, logfilename,args.runmode)
-            time_now = rl.TimeFormat()
-            os.system("mv plots_fitdiagnostics plots_fitdiagnostics_"+time_now)
-            os.system("cp -r plots_fitdiagnostics_"+time_now + " /afs/cern.ch/work/k/khurana/public/AnalysisStuff/monoH/LimitModelPlots")
-            with open('logs/pulls/pulls.log','a') as f:
-                f.write(time_now+": "+args.runmode+" "+args.outlog+"\n")
+            #logfilename = "logs/impacts/"+idatacard.replace(".txt",".log")
+            outdir = dcb.anadetails["plotsDir"]
+            rl.RunPulls(idatacard, args.runmode, outdir, category, year )
+            #time_now = rl.TimeFormat()
+            #os.system("mv plots_fitdiagnostics plots_fitdiagnostics_"+time_now)
+            #os.system("cp -r plots_fitdiagnostics_"+time_now + " /afs/cern.ch/work/k/khurana/public/AnalysisStuff/monoH/LimitModelPlots")
+            #with open('logs/pulls/pulls.log','a') as f:
+            #    f.write(time_now+": "+args.runmode+" "+args.outlog+"\n")
             print "-----------------------------------------------------------------------------------------------------------------------"
 
     
