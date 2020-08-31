@@ -55,7 +55,7 @@ void PlotPulls(TString filename="pulls_none.root", TString outdir="", TString po
     pt2->SetFillStyle(0);
     pt2->SetTextFont(42);
     pt2->SetTextSize(lumitextsize);
-    pt2->AddText(0.81, 0.5, "41.1 fb^{-1} (13 TeV)");
+    pt2->AddText(0.81, 0.5, "41.5 fb^{-1} (13 TeV)");
     
     TPaveText *pt3 = new TPaveText(0.0377181,0.85,0.9580537,0.88,"brNDC");
     pt3->SetBorderSize(0);

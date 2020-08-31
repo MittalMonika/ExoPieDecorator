@@ -1,7 +1,7 @@
 How to create workspace, run limit and then save limit plots and cross-check plots. 
 ===================================================================================
 
-This setup likley only one input from previous analysis steps, i.e. **AllMETHisto.root**. This must have: 
+This setup will likley need only one input from previous analysis steps, i.e. **AllMETHisto.root**. This must have: 
  * histogram for each background process 
  * histogram for each signal process
  * both of above for each category 
@@ -129,6 +129,7 @@ e.g.
   * [WARNING] Found [rrvbc_SR_wjets4] at boundary. 
   * [WARNING] Found [eletrigeffCMS2016_scale_] at boundary. 
  
+
 
 
 

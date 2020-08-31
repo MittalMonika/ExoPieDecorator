@@ -10,7 +10,6 @@ from LimitHelper import RunLimits
 import  describe as dcb
 #import params as parameters
 
-
 usage = "run the script using python -i full/path/to/root/file "
 parser = argparse.ArgumentParser(description=usage)
 
@@ -118,6 +117,8 @@ def main():
     
     ## object of the RunLimits class
     rl = RunLimits(datacardtemplatename_)
+    rl.setupdir()
+    rl.writeChangeLog()
     
     
     if args.createdatacards:

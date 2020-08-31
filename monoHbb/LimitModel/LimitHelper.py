@@ -1,12 +1,11 @@
-import os 
+Aimport os 
 import  sys 
 from array import  array
 from ROOT import TGraph, TFile, TGraphAsymmErrors
 import ROOT as rt
-
 import argparse
-
-
+import csv 
+import describe as dcb
 class RunLimits:
     ''' class to perform all tasks related to the limits once datacards are prepared '''
     ''' this class exepcts that all the steps needed to prepare the datacards and prepration of its inputs are already performed '''
@@ -45,7 +44,23 @@ class RunLimits:
             os.system('mkdir -p '+idir.rstrip())
             os.system('cp index.php '+idir.rstrip())
         return 0
-        
+    def setupdir(self):
+        plotdirs  = dcb.anadetails["plotsDir"]
+        for idir in plotdirs:
+            if not os.path.exists(plotdirs[idir]):
+                os.system("mkdir "+plotdirs[idir])
+                os.system("cp index.php "+plotdirs[idir])
+    
+
+
+
+
+    def writeChangeLog(self):
+        fversion = csv.writer(open('version.csv',"a"))
+        for key_, value_ in dcb.anadetails["version"].items():
+            fversion.writerow([key_,value_])
+
+
     def makedatacards(self, templatecards, allparams, region, year, category,catefull ):
         
         ma =str(allparams[0])
@@ -278,9 +293,9 @@ class RunLimits:
         
         if runmode=="data":
             ''' First we perform an initial fit for the signal strength and its uncertainty''' 
-            os.system("combineTool.py -M Impacts -d "+workspace+" -m 200 --rMin -1 --rMax 2 --robustFit 1 --doInitialFit")
+            os.system("combineTool.py -M Impacts -d "+workspace+" -m 200 --rMin -1 --rMax 2 --robustFit 1 --doInitialFit  -t -1 ")
             '''Then we run the impacts for all the nuisance parameters'''
-            os.system("combineTool.py -M Impacts -d "+workspace+" -m 200 --rMin -1 --rMax 2 --robustFit 1 --doFits")
+            os.system("combineTool.py -M Impacts -d "+workspace+" -m 200 --rMin -1 --rMax 2 --robustFit 1 --doFits  -t -1 ")
             '''we collect all the output and convert it to a json file'''
             os.system("combineTool.py -M Impacts -d "+workspace+" -m 200 --rMin -1 --rMax 2 --robustFit 1 --output impacts.json")
             '''then make a plot showing the pulls and parameter impacts, sorted by the largest impact'''

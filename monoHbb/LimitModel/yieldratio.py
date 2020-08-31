@@ -290,7 +290,7 @@ yieldratioZmumuMC.Divide(SRzjets)
 #-----------------Plot the yield ratio----------------#
 
 yminTop = 0.0
-ymaxTop = 10.0
+ymaxTop = 30.0
 yminW = -6.0
 ymaxW = 9.0
 yminZ = 0.0

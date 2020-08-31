@@ -412,9 +412,11 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
 
 
 
-void PrepareWS_withnuisance(TString model_="monoHbb",TString analysiscategory_="merged", TString mode__ = "RECREATE"){
+void PrepareWS_withnuisance(TString model_="monoHbb",TString analysiscategory_="merged", TString mode__ = "RECREATE", TString inputdir="."){
   TString anacat_ = analysiscategory_;
   ///afs/cern.ch/work/p/ptiwari/public/bbDM/WCr_Split/AllMETHistos.root
+  //TString inputdir    = ""
+  
   TString inputfile   = "AllMETHistos.root";
   TString year        = "2017";
   TString outputfile  = model_+"_"+year+"_WS.root";
@@ -423,6 +425,9 @@ void PrepareWS_withnuisance(TString model_="monoHbb",TString analysiscategory_="
   if (analysiscategory_=="resolved") cat__ = "R";
   if (analysiscategory_=="combined") cat__ = "C";
   
+  bool debug__ = false; 
+  
+  if (debug__){
 
   TString AnaYearCat  = model_ +  year + "_" + cat__ +"_" ;
   std::cout<<" AnaYearCat = "<<AnaYearCat<<std::endl;
@@ -452,7 +457,7 @@ void PrepareWS_withnuisance(TString model_="monoHbb",TString analysiscategory_="
 
   
   // Open input file with all the histograms. 
-  TFile* fin = OpenRootFile(inputfile);
+  TFile* fin = OpenRootFile(inputdir+"/"+inputfile);
 
   
 
@@ -488,8 +493,7 @@ void PrepareWS_withnuisance(TString model_="monoHbb",TString analysiscategory_="
   */
 
   
-      
-
+  
   std::cout<<" calling function for Top mu"<<std::endl;
   TH1F* h_sr_top = (TH1F*) fin->Get(AnaYearCat+"SR_tt");
   // Get the top hostogram in the Top mu CR
@@ -597,6 +601,9 @@ void PrepareWS_withnuisance(TString model_="monoHbb",TString analysiscategory_="
   createRegion(met, h_sr_Z, h_Zee_2b_Z, h_sr_data, wspace, "ZEE_dyjets", "SR_zjets",  fOut, nuisIndex, nuisanceName, nuisanceValue, anacat_);
 
 
+
+
+  } // end of the debug__
   /*
     -------------------------------------------------------------------------------------------------------------------
     ---------------------------------------------- Signal -----------------------------------------------------------
