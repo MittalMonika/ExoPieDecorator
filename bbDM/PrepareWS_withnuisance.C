@@ -197,7 +197,7 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
   wspace.import(rph_sr_bkg);
   wspace.import(rph_sr_bkg_norm,RooFit::RecycleConflictNodes());
       
-
+  std::cout<<" rph impirted "<<std::endl;
   /*
     For the control region, the background process will be dependent on the yields of the background in the signal region using a transfer factor. 
     The transfer factor TF must account for acceptance/efficiency etc differences in the signal to control regions.
@@ -215,13 +215,14 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
   */
 
   
-  
+  std::cout<<" h_cr_bkg: "<<h_cr_bkg->Integral()<<std::endl;
   // create roodatahist of the background histogram in CR. 
   RooDataHist dh_cr_bkg("dh_"+region_proc_cr+anacat_,"dh_"+region_proc_cr+anacat_, vars, h_cr_bkg);
   
   // another copy fo the wjets in wenu CR for division and saving thr TFs central value. 
   // transfer factor is defined as ratio of TF =  bkg in CR / bkg in SR 
   
+  std::cout<<" datahist created "<<std::endl;
   TH1F* htf_cr_bkg = (TH1F*) h_cr_bkg->Clone();
   htf_cr_bkg->Divide(h_sr_bkg);
   h_vec_tf.push_back(htf_cr_bkg);
@@ -397,11 +398,14 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
   ral_cr_bkg.add(rfv_cr_bkg3);
   ral_cr_bkg.add(rfv_cr_bkg4);
     
-    
+  
+  std::cout<<" before rph "<<std::endl;
   RooParametricHist rph_cr_bkg("rph_"+region_proc_cr+anacat_, "Background PDF in control region",met,ral_cr_bkg, *h_sr_data);
   RooAddition rph_cr_bkg_norm("rph_"+region_proc_cr+anacat_+"_norm","Total Number of events from background in control region", ral_cr_bkg);
   
+  std::cout<<" before rph import "<<std::endl;
   wspace.import(rph_cr_bkg);
+  std::cout<<" before rph norm import"<<std::endl;
   wspace.import(rph_cr_bkg_norm ,RooFit::RecycleConflictNodes());
 
   
@@ -412,19 +416,23 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
 
 
 
-void PrepareWS_withnuisance(TString model_="monoHbb",TString analysiscategory_="merged", TString mode__ = "RECREATE", TString year = "2017", TString inputdir="."){
+void PrepareWS_withnuisance(TString model_="monoHbb",TString analysiscategory_="merged", TString mode__ = "RECREATE", TString inputdir="."){
   TString anacat_ = analysiscategory_;
-
+  ///afs/cern.ch/work/p/ptiwari/public/bbDM/WCr_Split/AllMETHistos.root
   //TString inputdir    = ""
   
-  TString inputfile   = "AllMETHistos.root";
-  //TString year        = "2017";
+  TString inputfile   = "AllMETHistos_v16_06_04_04.root";
+  TString year        = "2016";
   TString outputfile  = model_+"_"+year+"_WS.root";
-  TString cat__ = "NIL";
-  if (analysiscategory_=="merged") cat__ = "B";
-  if (analysiscategory_=="resolved") cat__ = "R";
-  if (analysiscategory_=="combined") cat__ = "C";
+  TString cat__ =  analysiscategory_;
   
+  //if (analysiscategory_=="merged") cat__ = "B";
+  //if (analysiscategory_=="resolved") cat__ = "R";
+  //if (analysiscategory_=="combined") cat__ = "C";
+  
+  bool debug__ = true; 
+  
+  //if (debug__){
 
   TString AnaYearCat  = model_ +  year + "_" + cat__ +"_" ;
   std::cout<<" AnaYearCat = "<<AnaYearCat<<std::endl;
@@ -434,7 +442,7 @@ void PrepareWS_withnuisance(TString model_="monoHbb",TString analysiscategory_="
   int met_hi = 1000;
   h_vec_tf.clear();
     
-  Double_t bins[]={200, 270, 345, 480, 1000};
+  Double_t bins[]={200, 250, 350, 500, 1000};
   Int_t  binnum = sizeof(bins)/sizeof(Double_t) - 1;
   
   // As usual, load the combine library to get access to the RooParametricHist
@@ -462,7 +470,7 @@ void PrepareWS_withnuisance(TString model_="monoHbb",TString analysiscategory_="
   // --- commented on 5 Feb to see if the limis becomes same when using the opriginal data histogram
   
 
-  TH1F* h_sr_data = (TH1F*) fin->Get(AnaYearCat+"SR_data_obs");
+  TH1F* h_sr_data = (TH1F*) fin->Get(AnaYearCat+"SR_bkgSum");
   
   //the following lines create a freely floating parameter for each of our bins (in this example, there are only 4 bins, defined for our observable met.
   // In this case we vary the normalisation in each bin of the background from N/3 to 3*N, 
@@ -597,10 +605,11 @@ void PrepareWS_withnuisance(TString model_="monoHbb",TString analysiscategory_="
   // Create all the inputs needed for this CR 
   createRegion(met, h_sr_Z, h_Zee_2b_Z, h_sr_data, wspace, "ZEE_dyjets", "SR_zjets",  fOut, nuisIndex, nuisanceName, nuisanceValue, anacat_);
 
+  
+  std::cout<<" all crs done "<<std::endl;
 
 
-
-
+  //} // end of the debug__
   /*
     -------------------------------------------------------------------------------------------------------------------
     ---------------------------------------------- Signal -----------------------------------------------------------
@@ -608,22 +617,23 @@ void PrepareWS_withnuisance(TString model_="monoHbb",TString analysiscategory_="
   */
 
   
-  int signalpoint[]={300, 400, 500, 600, 1000, 1200, 1600};
+  int signalpoint[]={10, 50, 100,150, 200,250, 300, 350, 400, 450, 500};
   Int_t  nsig = sizeof(signalpoint)/sizeof(int);
 
   TString mps;
   for (auto is=0; is<nsig; is++){
       
     mps.Form("%d",signalpoint[is]);
-    std::cout<<" histogram name: "<< AnaYearCat+"SR_ggF_sp_0p35_tb_1p0_mXd_10_mA_"+mps+"_ma_150"<<std::endl;
-    addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"SR_ggF_sp_0p35_tb_1p0_mXd_10_mA_"+mps+"_ma_150" ) );
-    addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"SR_ggF_sp_0p35_tb_1p0_mXd_10_mA_"+mps+"_ma_150" ) );
+    TString signalname = AnaYearCat+"SR_2HDMa_Ma"+mps+"_MChi1_MA600_tb35_st_0p7";
+    std::cout<<" signal histogram :"<<signalname<<std::endl;
+    addTemplate(wspace, vars, (TH1F*) fin->Get(signalname ) );
+    //addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_R_SR_ggF_sp_0p35_tb_1p0_mXd_10_mA_"+mps+"_ma_150" ) );
   }
 
   
+  
   if (!usebkgsum){
     addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"SR_data_obs" ) );
-    
     addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"TOPE_data_obs" ) );
     addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"TOPMU_data_obs" ) );
     addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"WE_data_obs" ) );
@@ -642,14 +652,16 @@ void PrepareWS_withnuisance(TString model_="monoHbb",TString analysiscategory_="
     addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"ZEE_bkgSum" ) );
     addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"ZMUMU_bkgSum" ) );
   }
-  addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"SR_data_obs" ) );
-  addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"TOPE_data_obs" ) );
-  addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"TOPMU_data_obs" ) );
-  addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"WE_data_obs" ) );
-  addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"WMU_data_obs" ) );
-  addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"ZEE_data_obs" ) );
-  addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"ZMUMU_data_obs" ) );
- 
+  
+  /*
+  addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_R_SR_data_obs" ) );
+  addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_R_TOPE_data_obs" ) );
+  addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_R_TOPMU_data_obs" ) );
+  addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_R_WE_data_obs" ) );
+  addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_R_WMU_data_obs" ) );
+  addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_R_ZEE_data_obs" ) );
+  addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_R_ZMUMU_data_obs" ) );
+  */
  
  // all other histograms 
   std::vector<TString> regions; 
@@ -692,7 +704,7 @@ void PrepareWS_withnuisance(TString model_="monoHbb",TString analysiscategory_="
 	//tempname = regions[ir] + "_" + category[ic] + "_" + process[ip];
 	std::cout<<" saving "<<tempname<<std::endl;
 	addTemplate(wspace, vars, (TH1F*) fin->Get(tempname)  );
-	
+	std::cout<<" ........ saved"<<std::endl;
 	
       }
     }

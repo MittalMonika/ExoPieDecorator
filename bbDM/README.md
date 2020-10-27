@@ -1,3 +1,26 @@
+## Only for Raman 
+I don't have setup of correct version of combine, so i source this script in my area, you might want to install the combine correctly. 
+source envsetter.sh
+
+## 
+root -l -b -q PrepareWS_withnuisance.C"(\"bbDM\", \"1b\", \"RECREATE\", \"AllMETHistos\")"
+
+##
+python RunLimits.py -c --model 2hdma --region "SR"
+
+##  combine 1b and 2b category 
+python RunLimits.py -c --model 2hdma_all --region "bbDM2016_datacardslist_1b_2hdma_all.txt bbDM2016_datacardslist_2b_2hdma_all.txt"
+
+
+##
+combine -M AsymptoticLimits datacards_bbDM_2016/datacard_bbDM2016_1b_Merged_sp_0p7_tb_35_mXd_1_mA_600_ma_150.txt
+
+## To do 
+
+#### move datacardtemplatename_ to describe.py 
+#### move fparam to describe.py 
+
+
 # Workflow for Limit Calculation
 ## Installation
 Use the Higgs [Combine](http://cms-analysis.github.io/HiggsAnalysis-CombinedLimit/) page to install combine tool and for documentation

@@ -18,10 +18,11 @@ The first step is to create the workspace using **AllMETHisto.root**. This creat
  
 For merged: 
 
-```root -l -b -q PrepareWS_withnuisance.C"(\"monoHbb\", \"merged\", \"RECREATE\")"```
+```root -l -b -q PrepareWS_withnuisance.C"(\"monoHbb\", \"merged\", \"RECREATE\", \"2018\", \"LimitsFiles_monohbb_ExoWorkShop_2018_noHEMVeto\")"```
+
 
 For resolved: 
-```root -l -b -q PrepareWS_withnuisance.C"(\"monoHbb\", \"resolved\", \"UPDATE\")"```
+```root -l -b -q PrepareWS_withnuisance.C"(\"monoHbb\", \"resolved\", \"UPDATE\", \"2018\", \"LimitsFiles_monohbb_ExoWorkShop_2018_noHEMVeto\")"```
 
 
 The out of above will be **monoHbb_WS.root**. Once **monoHbb_WS.root** woskspace is created, copy it to **datacards_monoHbb_2017**. This file is used in the datacards to perform the simultaneous fit of SR and CRs.
