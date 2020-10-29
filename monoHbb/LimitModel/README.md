@@ -31,7 +31,7 @@ The out of above will be **monoHbb_WS.root**. Once **monoHbb_WS.root** woskspace
 ```cp monoHbb_WS.root datacards_monoHbb_2017```
 
 ### Step 2: Create datacards ### 
-The datacards can be created by replacing the parameters in the template datacards using **RunLimits.py**. This is the main controlling script to perform all the steps once workspace is created and copied to respective directory. Define the parameters in **params.txt**. After this you can create datacards using: 
+The datacards can be created by replacing the parameters in the template datacards using **RunLimits.py**. This is the main controlling script to perform all the steps once workspace is created and copied to respective directory. Define the parameters in **parameters/params_{model..etc}.txt**. After this you can create datacards using: 
 
 ```python RunLimits.py -c --model 2hdma --region "SR TOPE TOPMU WE WMU ZEE ZMUMU"``` 
 

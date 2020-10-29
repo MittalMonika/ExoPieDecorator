@@ -1,4 +1,4 @@
-Aimport os 
+import os 
 import  sys 
 from array import  array
 from ROOT import TGraph, TFile, TGraphAsymmErrors

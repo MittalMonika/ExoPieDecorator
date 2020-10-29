@@ -113,7 +113,7 @@ def main():
     
     
     ## this can be different for each model. But for now lets keep it like this. 
-    datacardtemplatename_ = 'datacards_monoHbb_2017/datacard_monoHbb2017'+analysis_tag+'_SR_ggF_sp_YYYSP_tb_ZZZTB_mXd_AAAMDM_mA_XXXMA_ma_BBBMa.txt'
+    datacardtemplatename_ = 'datacards_monoHbb_'+str(year)+'/datacard_monoHbb'+str(year)+analysis_tag+'_SR_ggF_sp_YYYSP_tb_ZZZTB_mXd_AAAMDM_mA_XXXMA_ma_BBBMa.txt'
     
     ## object of the RunLimits class
     rl = RunLimits(datacardtemplatename_)
