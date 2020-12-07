@@ -151,6 +151,7 @@ def DrawOverlap(fileVec, histVec, titleVec,legendtext,pngname,logstatus=[0,0],xR
     pt.SetTextFont(42)
     pt.SetTextSize(0.046)
     text = pt.AddText(0.12,0.35,"CMS Internal                     41.5 fb^{-1} (2017) ")
+    #text = pt.AddText(0.12,0.35,"CMS Internal                     59.6 fb^{-1} (2018) ")
     #text = pt.AddText(0.6,0.5,"41.5 fb^{-1} (2017) ")
     pt.Draw()
    
@@ -167,14 +168,45 @@ def DrawOverlap(fileVec, histVec, titleVec,legendtext,pngname,logstatus=[0,0],xR
 
 
 print "calling the plotter"
+
+'''
+files=['bin/limits_monoH_merged_2018.root', 'bin/limits_monoH_resolved_2018.root', 'bin/limits_monoH_combined_2018.root']
+legend=['resolved', 'merged', 'combined']
+
+histoname1=['expmed']
+
+xtitle='m_{A}[GeV]'
+ytitle='#mu'
+axistitle = [xtitle, ytitle]
+DrawOverlap(files,histoname1,axistitle,legend,'limit_B_R_C_2018',[0,1],[200,1700])
+'''
+
+
+'''
 files=['bin/limits_monoH_merged_2017.root', 'bin/limits_monoH_resolved_2017.root', 'bin/limits_monoH_combined_2017.root']
 legend=['resolved', 'merged', 'combined']
 
 histoname1=['expmed']
 
-xtitle='m_{a}[GeV]'
+xtitle='m_{A}[GeV]'
 ytitle='#mu'
 axistitle = [xtitle, ytitle]
-DrawOverlap(files,histoname1,axistitle,legend,'limit_B_R_C',[0,1],[200,1700])
+DrawOverlap(files,histoname1,axistitle,legend,'limit_B_R_C_2017',[0,1],[200,1700])
+'''
+
+
+
+files=['bin/limits_monoH_combined_2017.root', 'bin/limits_monoH_combined_2018.root' , 'bin/limits_monoH_combined_Run2.root']
+legend=['2017', '2018', 'Run 2']
+
+histoname1=['expmed']
+
+xtitle='m_{A}[GeV]'
+ytitle='#mu'
+axistitle = [xtitle, ytitle]
+DrawOverlap(files,histoname1,axistitle,legend,'limit_2017_2018_Run2',[0,1],[200,1700])
+
+
+
 #DrawOverlap(files,histoname2,['E_{T}^{Miss}[GeV]',ytitle],legend,'SR_TT_abc')
 

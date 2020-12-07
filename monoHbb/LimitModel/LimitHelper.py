@@ -213,7 +213,7 @@ class RunLimits:
         exp2s.SetLineWidth(2)
         exp2s.SetFillColor(rt.kYellow);
         exp2s.SetLineColor(rt.kYellow)
-        exp2s.GetXaxis().SetTitle("m_{a} [GeV]");
+        exp2s.GetXaxis().SetTitle("m_{A} [GeV]");
         exp2s.GetYaxis().SetRangeUser(.1,1000)
         exp2s.GetXaxis().SetTitleOffset(1.4)
         exp2s.GetYaxis().SetTitle("95% C.L. asymptotic limit on #mu=#sigma/#sigma_{theory}");

@@ -76,6 +76,13 @@ Prepare graphs using the limit.txt without runing the limits code again, just co
  * --savepdf: save the graphs and pdf file for the limits 
  * --limitTextFile: use the input from .txt file which will be provided from command line 
 
+
+#### Step 3.2: The limit graphs can be compared using the macro: OverlappingPlots.py 
+
+Just provide the .root file and name of the graphs and it should do the comparison, run using 
+```python OverlappingPlots.py```
+
+
 ### Step 4: Pulls and FitDiagnostics ###
 
 In order to perform the fit checks, plot pulls, yieldratios, postfit and prefit comparison one just need to run the command in correct manner: 

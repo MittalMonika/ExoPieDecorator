@@ -222,7 +222,9 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
   // another copy fo the wjets in wenu CR for division and saving thr TFs central value. 
   // transfer factor is defined as ratio of TF =  bkg in CR / bkg in SR 
   
-  std::cout<<" datahist created "<<std::endl;
+  std::cout<<" datahist created "<<h_cr_bkg->GetName()<<" "<<h_sr_bkg->GetName()
+	   <<" "<<h_cr_bkg->GetNbinsX()<<" "<<h_sr_bkg->GetNbinsX()<<std::endl;
+  
   TH1F* htf_cr_bkg = (TH1F*) h_cr_bkg->Clone();
   htf_cr_bkg->Divide(h_sr_bkg);
   h_vec_tf.push_back(htf_cr_bkg);
@@ -416,13 +418,13 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
 
 
 
-void PrepareWS_withnuisance(TString model_="monoHbb",TString analysiscategory_="merged", TString mode__ = "RECREATE", TString inputdir="."){
+void PrepareWS_withnuisance(TString model_="monoHbb",TString analysiscategory_="merged", TString mode__ = "RECREATE", TString inputdir=".", TString inputfile="AllMETHistos.root", TString year="2016"){
   TString anacat_ = analysiscategory_;
   ///afs/cern.ch/work/p/ptiwari/public/bbDM/WCr_Split/AllMETHistos.root
   //TString inputdir    = ""
   
-  TString inputfile   = "AllMETHistos_v16_06_04_04.root";
-  TString year        = "2016";
+  //TString inputfile   = "AllMETHistos_v16_06_04_04.root";
+  //TString year        = "2016";
   TString outputfile  = model_+"_"+year+"_WS.root";
   TString cat__ =  analysiscategory_;
   
@@ -616,20 +618,52 @@ void PrepareWS_withnuisance(TString model_="monoHbb",TString analysiscategory_="
     -------------------------------------------------------------------------------------------------------------------
   */
 
-  
-  int signalpoint[]={10, 50, 100,150, 200,250, 300, 350, 400, 450, 500};
-  Int_t  nsig = sizeof(signalpoint)/sizeof(int);
-
-  TString mps;
-  for (auto is=0; is<nsig; is++){
-      
-    mps.Form("%d",signalpoint[is]);
-    TString signalname = AnaYearCat+"SR_2HDMa_Ma"+mps+"_MChi1_MA600_tb35_st_0p7";
-    std::cout<<" signal histogram :"<<signalname<<std::endl;
-    addTemplate(wspace, vars, (TH1F*) fin->Get(signalname ) );
-    //addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_R_SR_ggF_sp_0p35_tb_1p0_mXd_10_mA_"+mps+"_ma_150" ) );
+  std::vector<int> signalpoint;
+  signalpoint.clear();
+  if (year!="2016"){
+    signalpoint.push_back(10);
+    signalpoint.push_back(450);
   }
+  
+  if (year=="2017" || year == "2018" || year == "2016") {
+    signalpoint.push_back(50);
+    signalpoint.push_back(100);
+    signalpoint.push_back(150);
+    signalpoint.push_back(200);
+    signalpoint.push_back(250);
+    signalpoint.push_back(300);
+    signalpoint.push_back(350);
+    signalpoint.push_back(400);
+    signalpoint.push_back(500);
 
+  }
+  
+  std::vector<int> mApoint;
+  mApoint.clear();
+  mApoint.push_back(600.);
+  mApoint.push_back(1200.);
+  
+  
+  Int_t  nsig = signalpoint.size();
+  
+  TString mps;
+  TString mAs;
+  for (auto is=0; is<nsig; is++){
+    
+    for (auto imA=0; imA<mApoint.size(); imA++){
+      mAs.Form("%d",mApoint[imA]);
+      mps.Form("%d",signalpoint[is]);
+      if (year=="2016"){
+	if ( (signalpoint[is] == 100) && (mApoint[imA] == 1200) ) continue; 
+	if ( (signalpoint[is] == 300) && (mApoint[imA] == 1200) ) continue; 
+      }
+      TString signalname = AnaYearCat+"SR_2HDMa_Ma"+mps+"_MChi1_MA"+mAs+"_tb35_st_0p7";
+      std::cout<<" signal histogram :"<<signalname<<std::endl;
+      
+      addTemplate(wspace, vars, (TH1F*) fin->Get(signalname ) );
+    }
+  }
+  
   
   
   if (!usebkgsum){
