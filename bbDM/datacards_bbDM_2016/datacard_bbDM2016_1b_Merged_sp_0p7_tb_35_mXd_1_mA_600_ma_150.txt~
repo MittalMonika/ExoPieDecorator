@@ -1,0 +1,61 @@
+Combination of SR=datacards_bbDM_2016/datacard_bbDM2016_1b_SR_sp_0p7_tb_35_mXd_1_mA_600_ma_150.txt
+imax 1 number of bins
+jmax 7 number of processes minus 1
+kmax 41 number of nuisance parameters
+----------------------------------------------------------------------------------------------------------------------------------
+shapes *         SR        datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_1b_2016:bbDM2016_1b_SR_$PROCESS ws_bbDM_1b_2016:bbDM2016_1b_SR_$PROCESS_$SYSTEMATIC
+shapes data_obs  SR        datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_1b_2016:bbDM2016_1b_SR_data_obs
+shapes signal    SR        datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_1b_2016:bbDM2016_1b_SR_2HDMa_Ma150_MChi1_MA600_tb35_st_0p7 ws_bbDM_1b_2016:bbDM2016_1b_SR_2HDMa_Ma150_MChi1_MA600_tb35_st_0p7_$SYSTEMATIC
+shapes tt        SR        datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_1b_2016:rph_SR_tt_merged
+shapes wjets     SR        datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_1b_2016:rph_SR_wjets_merged
+shapes zjets     SR        datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_1b_2016:rph_SR_zjets_merged
+----------------------------------------------------------------------------------------------------------------------------------
+bin          SR   
+observation  -1   
+----------------------------------------------------------------------------------------------------------------------------------
+bin                                 SR       SR       SR       SR       SR       SR       SR       SR     
+process                             signal   diboson  smh      singlet  wjets    qcd      zjets    tt     
+process                             0        1        2        3        4        5        6        7      
+rate                                -1       -1       -1       -1       1        -1       1        1      
+----------------------------------------------------------------------------------------------------------------------------------
+CMS2016_eff_b           lnN         1.1      -        1.1      1.1      -        -        -        1.1    
+CMS2016_eff_met         lnN         1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04   
+CMS2016_fake_b          lnN         -        1.05     1.05     1.05     1.05     1.05     1.05     1.05   
+CMS2016_scale_pu        lnN         1.001    1.01     1.01     1.01     -        1.01     -        -      
+ak8jet_jec              lnN         1.05     1.05     1.05     1.05     -        1.05     -        -      
+doubleb                 lnN         1.1      -        1.1      -        -        -        -        -      
+lumi                    lnN         1.025    1.025    1.025    1.025    -        1.025    -        -      
+norm_diboson            lnN         -        1.2      -        -        -        -        -        -      
+norm_stop               lnN         -        -        -        1.2      -        -        -        -      
+norm_wj                 lnN         -        -        -        -        1.2      -        -        -      
+trig_met                lnN         1.02     1.02     1.02     1.02     -        1.02     -        -      
+veto_tau                lnN         1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03   
+wj_hf                   lnN         -        -        -        -        1.05     -        -        -      
+zj_hf                   lnN         -        -        -        -        -        -        1.05     -      
+rrv_stats_err_TOPE_tt_merged_bin1  param  0.0 1
+rrv_stats_err_TOPE_tt_merged_bin2  param  0.0 1
+rrv_stats_err_TOPE_tt_merged_bin3  param  0.0 1
+rrv_stats_err_TOPE_tt_merged_bin4  param  0.0 1
+rrv_stats_err_ZMUMU_dyjets_merged_bin1  param  0.0 1
+rrv_stats_err_TOPMU_tt_merged_bin2  param  0.0 1
+rrv_stats_err_TOPMU_tt_merged_bin3  param  0.0 1
+rrv_stats_err_TOPMU_tt_merged_bin1  param  0.0 1
+rrv_stats_err_TOPMU_tt_merged_bin4  param  0.0 1
+rrv_stats_err_WMU_wjets_merged_bin1  param  0.0 1
+rrv_stats_err_WMU_wjets_merged_bin2  param  0.0 1
+rrv_stats_err_WMU_wjets_merged_bin3  param  0.0 1
+rrv_stats_err_WMU_wjets_merged_bin4  param  0.0 1
+rrv_eletrigeffCMS2016_scale__merged  param  0.0 1
+rrv_CMS2016_scale_e_merged  param  0.0 1
+rrv_stats_err_ZEE_dyjets_merged_bin4  param  0.0 1
+rrv_CMS2016_scale_m_merged  param  0.0 1
+rrv_stats_err_ZMUMU_dyjets_merged_bin2  param  0.0 1
+rrv_stats_err_ZMUMU_dyjets_merged_bin3  param  0.0 1
+rrv_stats_err_ZMUMU_dyjets_merged_bin4  param  0.0 1
+rrv_stats_err_ZEE_dyjets_merged_bin1  param  0.0 1
+rrv_stats_err_ZEE_dyjets_merged_bin2  param  0.0 1
+rrv_stats_err_ZEE_dyjets_merged_bin3  param  0.0 1
+rrv_stats_err_WE_wjets_merged_bin4  param  0.0 1
+rrv_stats_err_WE_wjets_merged_bin2  param  0.0 1
+rrv_stats_err_WE_wjets_merged_bin3  param  0.0 1
+rrv_stats_err_WE_wjets_merged_bin1  param  0.0 1

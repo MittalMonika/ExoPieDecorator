@@ -197,7 +197,7 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
   wspace.import(rph_sr_bkg);
   wspace.import(rph_sr_bkg_norm,RooFit::RecycleConflictNodes());
       
-  std::cout<<" rph impirted "<<std::endl;
+  std::cout<<" rph imported "<<std::endl;
   /*
     For the control region, the background process will be dependent on the yields of the background in the signal region using a transfer factor. 
     The transfer factor TF must account for acceptance/efficiency etc differences in the signal to control regions.
@@ -215,7 +215,7 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
   */
 
   
-  std::cout<<" h_cr_bkg: "<<h_cr_bkg->Integral()<<std::endl;
+  std::cout<<" h_cr_bkg: "<<h_cr_bkg->GetName()<<" "<<h_cr_bkg->Integral()<<std::endl;
   // create roodatahist of the background histogram in CR. 
   RooDataHist dh_cr_bkg("dh_"+region_proc_cr+anacat_,"dh_"+region_proc_cr+anacat_, vars, h_cr_bkg);
   

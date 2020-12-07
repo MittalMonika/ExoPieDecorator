@@ -19,6 +19,7 @@ python RunLimits.py -c --model 2hdma --region "SR TOPE TOPMU WE WMU ZEE ZMUMU" -
 python RunLimits.py -c --model 2hdma --region "bbDM2016_datacardslist_1b_2hdma.txt bbDM2016_datacardslist_2b_2hdma.txt" --category=srall
 
 
+
 for all mass points just replace 2hdma by 2hdma_all in all three commands above, 
 python RunLimits.py -c --model 2hdma_all --region "SR TOPE TOPMU WE WMU ZEE ZMUMU" --category=sr1
 python RunLimits.py -c --model 2hdma_all --region "SR TOPE TOPMU WE WMU ZEE ZMUMU" --category=sr2

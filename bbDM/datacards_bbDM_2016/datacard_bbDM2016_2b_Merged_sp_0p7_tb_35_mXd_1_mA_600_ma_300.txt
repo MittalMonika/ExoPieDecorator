@@ -1,0 +1,108 @@
+Combination of SR=datacards_bbDM_2016/datacard_bbDM2016_2b_SR_sp_0p7_tb_35_mXd_1_mA_600_ma_300.txt  TOPE=datacards_bbDM_2016/datacard_bbDM2016_2b_TOPE_sp_0p7_tb_35_mXd_1_mA_600_ma_300.txt  TOPMU=datacards_bbDM_2016/datacard_bbDM2016_2b_TOPMU_sp_0p7_tb_35_mXd_1_mA_600_ma_300.txt  WE=datacards_bbDM_2016/datacard_bbDM2016_2b_WE_sp_0p7_tb_35_mXd_1_mA_600_ma_300.txt  WMU=datacards_bbDM_2016/datacard_bbDM2016_2b_WMU_sp_0p7_tb_35_mXd_1_mA_600_ma_300.txt  ZEE=datacards_bbDM_2016/datacard_bbDM2016_2b_ZEE_sp_0p7_tb_35_mXd_1_mA_600_ma_300.txt  ZMUMU=datacards_bbDM_2016/datacard_bbDM2016_2b_ZMUMU_sp_0p7_tb_35_mXd_1_mA_600_ma_300.txt
+imax 7 number of bins
+jmax 8 number of processes minus 1
+kmax 44 number of nuisance parameters
+----------------------------------------------------------------------------------------------------------------------------------
+shapes *         SR        datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_2b_2016:bbDM2016_2b_SR_$PROCESS ws_bbDM_2b_2016:bbDM2016_2b_SR_$PROCESS_$SYSTEMATIC
+shapes data_obs  SR        datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_2b_2016:bbDM2016_2b_SR_data_obs
+shapes signal    SR        datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_2b_2016:bbDM2016_2b_SR_2HDMa_Ma300_MChi1_MA600_tb35_st_0p7 ws_bbDM_2b_2016:bbDM2016_2b_SR_2HDMa_Ma300_MChi1_MA600_tb35_st_0p7_$SYSTEMATIC
+shapes tt        SR        datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_2b_2016:rph_SR_tt_2b
+shapes wjets     SR        datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_2b_2016:rph_SR_wjets_2b
+shapes zjets     SR        datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_2b_2016:rph_SR_zjets_2b
+shapes *         TOPE      datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_2b_2016:bbDM2016_2b_TOPE_$PROCESS ws_bbDM_2b_2016:bbDM2016_2b_TOPE_$PROCESS_$SYSTEMATIC
+shapes tt        TOPE      datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_2b_2016:rph_TOPE_tt_2b
+shapes *         TOPMU     datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_2b_2016:bbDM2016_2b_TOPMU_$PROCESS ws_bbDM_2b_2016:bbDM2016_2b_TOPMU_$PROCESS_$SYSTEMATIC
+shapes tt        TOPMU     datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_2b_2016:rph_TOPMU_tt_2b
+shapes *         WE        datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_2b_2016:bbDM2016_2b_WE_$PROCESS ws_bbDM_2b_2016:bbDM2016_2b_WE_$PROCESS_$SYSTEMATIC
+shapes wjets     WE        datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_2b_2016:rph_WE_wjets_2b
+shapes *         WMU       datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_2b_2016:bbDM2016_2b_WMU_$PROCESS ws_bbDM_2b_2016:bbDM2016_2b_WMU_$PROCESS_$SYSTEMATIC
+shapes wjets     WMU       datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_2b_2016:rph_WMU_wjets_2b
+shapes *         ZEE       datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_2b_2016:bbDM2016_2b_ZEE_$PROCESS ws_bbDM_2b_2016:bbDM2016_2b_ZEE_$PROCESS_$SYSTEMATIC
+shapes dyjets    ZEE       datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_2b_2016:rph_ZEE_dyjets_2b
+shapes *         ZMUMU     datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_2b_2016:bbDM2016_2b_ZMUMU_$PROCESS ws_bbDM_2b_2016:bbDM2016_2b_ZMUMU_$PROCESS_$SYSTEMATIC
+shapes dyjets    ZMUMU     datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_2b_2016:rph_ZMUMU_dyjets_2b
+----------------------------------------------------------------------------------------------------------------------------------
+bin          SR     TOPE   TOPMU  WE     WMU    ZEE    ZMUMU
+observation  -1     -1     -1     -1     -1     -1     -1   
+----------------------------------------------------------------------------------------------------------------------------------
+bin                                 SR       SR       SR       SR       SR       SR       SR       SR       TOPE     TOPE     TOPE     TOPE     TOPE     TOPE     TOPE     TOPMU    TOPMU    TOPMU    TOPMU    TOPMU    TOPMU    TOPMU    WE       WE       WE       WE       WE       WE       WE       WMU      WMU      WMU      WMU      WMU      WMU      WMU      ZEE      ZEE      ZEE      ZEE      ZEE      ZMUMU    ZMUMU    ZMUMU    ZMUMU    ZMUMU  
+process                             signal   diboson  smh      singlet  wjets    qcd      zjets    tt       diboson  tt       smh      singlet  wjets    qcd      dyjets   diboson  tt       smh      singlet  wjets    qcd      dyjets   diboson  tt       smh      singlet  wjets    qcd      dyjets   diboson  tt       smh      singlet  wjets    qcd      dyjets   diboson  tt       dyjets   smh      singlet  diboson  tt       dyjets   smh      singlet
+process                             0        1        2        3        4        5        6        7        1        7        2        3        4        5        8        1        7        2        3        4        5        8        1        7        2        3        4        5        8        1        7        2        3        4        5        8        1        7        8        2        3        1        7        8        2        3      
+rate                                -1       -1       -1       -1       1        -1       1        1        -1       1        -1       -1       -1       -1       -1       -1       1        -1       -1       -1       -1       -1       -1       -1       -1       -1       1        -1       -1       -1       -1       -1       -1       1        -1       -1       -1       -1       1        -1       -1       -1       -1       1        -1       -1     
+----------------------------------------------------------------------------------------------------------------------------------
+CMS2016_eff_b           lnN         1.1      -        1.1      1.1      -        -        -        1.1      -        -        1.1      1.1      1.1      -        -        -        -        1.1      1.1      1.1      -        -        -        1.1      1.1      1.1      -        -        -        -        1.1      1.1      1.1      -        -        -        -        1.1      -        1.1      1.1      -        1.1      -        1.1      1.1    
+CMS2016_eff_met         lnN         1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04   
+CMS2016_fake_b          lnN         -        1.05     1.05     1.05     1.05     1.05     1.05     1.05     1.05     1.05     1.05     1.05     1.05     1.05     1.05     1.05     1.05     1.05     1.05     1.05     1.05     1.05     1.05     1.05     1.05     1.05     -        1.05     1.05     1.05     1.05     1.05     1.05     -        1.05     1.05     1.05     1.05     -        1.05     1.05     1.05     1.05     -        1.05     1.05   
+CMS2016_scale_e         lnN         -        -        -        -        -        -        -        -        1.03     1.03     1.03     1.03     1.03     1.03     1.03     -        -        -        -        -        -        -        1.01     1.01     1.01     1.01     1.01     1.01     1.01     -        -        -        -        -        -        -        1.03     1.03     1.03     1.03     1.03     -        -        -        -        -      
+CMS2016_scale_m         lnN         -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        1.03     1.03     1.03     1.03     1.03     1.03     1.03     -        -        -        -        -        -        -        1.02     1.02     1.02     1.02     1.02     1.02     1.02     -        -        -        -        -        1.03     1.03     1.03     1.03     1.03   
+CMS2016_scale_pu        lnN         1.001    1.01     1.01     1.01     -        1.01     -        -        1.001    -        1.001    1.001    1.001    1.001    1.001    1.001    -        1.001    1.001    1.001    1.001    1.001    1.001    1.001    1.001    1.001    -        1.001    1.001    1.001    1.001    1.001    1.001    -        1.001    1.001    1.001    1.001    -        1.001    1.001    1.001    1.001    -        1.001    1.001  
+ak8jet_jec              lnN         1.05     1.05     1.05     1.05     -        1.05     -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -      
+doubleb                 lnN         1.1      -        1.1      -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -        -      
+lumi                    lnN         1.025    1.025    1.025    1.025    -        1.025    -        -        1.025    -        1.025    1.025    1.025    1.025    1.025    1.025    -        1.025    1.025    1.025    1.025    1.025    1.025    1.025    1.025    1.025    -        1.025    1.025    1.025    1.025    1.025    1.025    -        1.025    1.025    1.025    1.025    -        1.025    1.025    1.025    1.025    -        1.025    1.025  
+norm_diboson            lnN         -        1.2      -        -        -        -        -        -        1.2      -        -        -        -        -        -        1.2      -        -        -        -        -        -        1.2      -        -        -        -        -        -        1.2      -        -        -        -        -        -        1.2      -        -        -        -        1.2      -        -        -        -      
+norm_stop               lnN         -        -        -        1.2      -        -        -        -        -        -        -        1.2      -        -        -        -        -        -        1.2      -        -        -        -        -        -        1.2      -        -        -        -        -        -        1.2      -        -        -        -        -        -        -        1.2      -        -        -        -        1.2    
+norm_wj                 lnN         -        -        -        -        1.2      -        -        -        -        -        -        -        1.2      -        -        -        -        -        -        1.2      -        -        -        -        -        -        1.2      -        -        -        -        -        -        1.2      -        -        -        -        -        -        -        -        -        -        -        -      
+trig_ele                lnN         -        -        -        -        -        -        -        -        1.05     -        1.05     1.05     1.05     1.05     1.05     1.05     -        1.05     1.05     1.05     1.05     1.05     1.01     1.01     1.01     1.01     1.01     1.01     1.01     -        -        -        -        -        -        -        1.05     1.05     -        1.05     1.05     1.05     1.05     -        1.05     1.05   
+trig_met                lnN         1.02     1.02     1.02     1.02     -        1.02     -        -        1.02     -        1.02     1.02     1.02     1.02     1.02     1.02     -        1.02     1.02     1.02     1.02     1.02     1.02     1.02     1.02     1.02     -        1.02     1.02     1.02     1.02     1.02     1.02     -        1.02     1.02     1.02     1.02     -        1.02     1.02     1.02     1.02     -        1.02     1.02   
+veto_tau                lnN         1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03   
+wj_hf                   lnN         -        -        -        -        1.05     -        -        -        -        -        -        -        1.05     -        -        -        -        -        -        1.05     -        -        -        -        -        -        1.05     -        -        -        -        -        -        1.05     -        -        -        -        -        -        -        -        -        -        -        -      
+zj_hf                   lnN         -        -        -        -        -        -        1.05     -        -        -        -        -        -        -        1.05     -        -        -        -        -        -        1.05     -        -        -        -        -        -        1.05     -        -        -        -        -        -        1.05     -        -        -        -        -        -        -        -        -        -      
+rrv_stats_err_TOPE_tt_2b_bin1  param  0.0 1
+rrv_stats_err_ZEE_dyjets_2b_bin4  param  0.0 1
+rrv_stats_err_WMU_wjets_2b_bin1  param  0.0 1
+rrv_stats_err_WMU_wjets_2b_bin2  param  0.0 1
+rrv_stats_err_WMU_wjets_2b_bin3  param  0.0 1
+rrv_stats_err_WMU_wjets_2b_bin4  param  0.0 1
+rrv_stats_err_ZEE_dyjets_2b_bin1  param  0.0 1
+rrv_stats_err_ZEE_dyjets_2b_bin2  param  0.0 1
+rrv_stats_err_ZEE_dyjets_2b_bin3  param  0.0 1
+rrv_stats_err_ZMUMU_dyjets_2b_bin1  param  0.0 1
+rrv_stats_err_ZMUMU_dyjets_2b_bin2  param  0.0 1
+rrv_stats_err_ZMUMU_dyjets_2b_bin3  param  0.0 1
+rrv_stats_err_ZMUMU_dyjets_2b_bin4  param  0.0 1
+rrv_eletrigeffCMS2016_scale__2b  param  0.0 1
+rrv_CMS2016_scale_e_2b  param  0.0 1
+rrv_stats_err_TOPE_tt_2b_bin2  param  0.0 1
+rrv_stats_err_TOPE_tt_2b_bin3  param  0.0 1
+rrv_stats_err_TOPE_tt_2b_bin4  param  0.0 1
+rrv_stats_err_WE_wjets_2b_bin4  param  0.0 1
+rrv_stats_err_WE_wjets_2b_bin2  param  0.0 1
+rrv_stats_err_WE_wjets_2b_bin3  param  0.0 1
+rrv_stats_err_WE_wjets_2b_bin1  param  0.0 1
+rrv_stats_err_TOPMU_tt_2b_bin2  param  0.0 1
+rrv_stats_err_TOPMU_tt_2b_bin3  param  0.0 1
+rrv_stats_err_TOPMU_tt_2b_bin1  param  0.0 1
+rrv_stats_err_TOPMU_tt_2b_bin4  param  0.0 1
+rrv_CMS2016_scale_m_2b  param  0.0 1
+tf4_ZMUMU_dyjets_2b  flatParam
+tf3_ZMUMU_dyjets_2b  flatParam
+tf3_ZEE_dyjets_2b  flatParam
+rrvbc_SR_wjets_2b1  flatParam
+rrvbc_SR_wjets_2b2  flatParam
+rrvbc_SR_wjets_2b3  flatParam
+rrvbc_SR_wjets_2b4  flatParam
+tf2_ZEE_dyjets_2b  flatParam
+tf2_TOPMU_tt_2b  flatParam
+tf3_TOPE_tt_2b  flatParam
+rrvbc_SR_tt_2b2  flatParam
+rrvbc_SR_tt_2b3  flatParam
+rrvbc_SR_tt_2b1  flatParam
+tf1_TOPE_tt_2b  flatParam
+rrvbc_SR_tt_2b4  flatParam
+tf4_TOPE_tt_2b  flatParam
+tf2_TOPE_tt_2b  flatParam
+tf1_ZEE_dyjets_2b  flatParam
+tf4_TOPMU_tt_2b  flatParam
+tf1_WE_wjets_2b  flatParam
+tf4_WE_wjets_2b  flatParam
+tf3_TOPMU_tt_2b  flatParam
+tf1_TOPMU_tt_2b  flatParam
+tf4_ZEE_dyjets_2b  flatParam
+tf3_WE_wjets_2b  flatParam
+tf2_WE_wjets_2b  flatParam
+tf1_ZMUMU_dyjets_2b  flatParam
+rrvbc_SR_zjets_2b4  flatParam
+rrvbc_SR_zjets_2b1  flatParam
+tf2_ZMUMU_dyjets_2b  flatParam
+rrvbc_SR_zjets_2b3  flatParam
+rrvbc_SR_zjets_2b2  flatParam

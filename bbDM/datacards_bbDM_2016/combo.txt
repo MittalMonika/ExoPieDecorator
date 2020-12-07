@@ -1,0 +1,34 @@
+Combination of b=datacard_bbDM2016_1b_Merged_sp_0p7_tb_35_mXd_1_mA_600_ma_150.txt  bb=datacard_bbDM2016_2b_Merged_sp_0p7_tb_35_mXd_1_mA_600_ma_150.txt
+imax 2 number of bins
+jmax 7 number of processes minus 1
+kmax 14 number of nuisance parameters
+----------------------------------------------------------------------------------------------------------------------------------
+shapes *         b         datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_1b_2016:bbDM2016_1b_SR_$PROCESS ws_bbDM_1b_2016:bbDM2016_1b_SR_$PROCESS_$SYSTEMATIC
+shapes data_obs  b         datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_1b_2016:bbDM2016_1b_SR_data_obs
+shapes signal    b         datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_1b_2016:bbDM2016_1b_SR_2HDMa_Ma150_MChi1_MA600_tb35_st_0p7 ws_bbDM_1b_2016:bbDM2016_1b_SR_2HDMa_Ma150_MChi1_MA600_tb35_st_0p7_$SYSTEMATIC
+shapes *         bb        datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_2b_2016:bbDM2016_2b_SR_$PROCESS ws_bbDM_2b_2016:bbDM2016_2b_SR_$PROCESS_$SYSTEMATIC
+shapes data_obs  bb        datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_2b_2016:bbDM2016_2b_SR_data_obs
+shapes signal    bb        datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_2b_2016:bbDM2016_2b_SR_2HDMa_Ma150_MChi1_MA600_tb35_st_0p7 ws_bbDM_2b_2016:bbDM2016_2b_SR_2HDMa_Ma150_MChi1_MA600_tb35_st_0p7_$SYSTEMATIC
+----------------------------------------------------------------------------------------------------------------------------------
+bin          b      bb   
+observation  -1     -1   
+----------------------------------------------------------------------------------------------------------------------------------
+bin                                 b        b        b        b        b        b        b        b        bb       bb       bb       bb       bb       bb       bb       bb     
+process                             signal   diboson  smh      singlet  wjets    qcd      zjets    tt       signal   diboson  smh      singlet  wjets    qcd      zjets    tt     
+process                             0        1        2        3        4        5        6        7        0        1        2        3        4        5        6        7      
+rate                                -1       -1       -1       -1       -1       -1       -1       -1       -1       -1       -1       -1       -1       -1       -1       -1     
+----------------------------------------------------------------------------------------------------------------------------------
+CMS2016_eff_b           lnN         1.1      -        1.1      1.1      -        -        -        1.1      1.1      -        1.1      1.1      -        -        -        1.1    
+CMS2016_eff_met         lnN         1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04     1.04   
+CMS2016_fake_b          lnN         -        1.05     1.05     1.05     1.05     1.05     1.05     1.05     -        1.05     1.05     1.05     1.05     1.05     1.05     1.05   
+CMS2016_scale_pu        lnN         1.001    1.01     1.01     1.01     -        1.01     -        -        1.001    1.01     1.01     1.01     -        1.01     -        -      
+ak8jet_jec              lnN         1.05     1.05     1.05     1.05     -        1.05     -        -        1.05     1.05     1.05     1.05     -        1.05     -        -      
+doubleb                 lnN         1.1      -        1.1      -        -        -        -        -        1.1      -        1.1      -        -        -        -        -      
+lumi                    lnN         1.025    1.025    1.025    1.025    -        1.025    -        -        1.025    1.025    1.025    1.025    -        1.025    -        -      
+norm_diboson            lnN         -        1.2      -        -        -        -        -        -        -        1.2      -        -        -        -        -        -      
+norm_stop               lnN         -        -        -        1.2      -        -        -        -        -        -        -        1.2      -        -        -        -      
+norm_wj                 lnN         -        -        -        -        1.2      -        -        -        -        -        -        -        1.2      -        -        -      
+trig_met                lnN         1.02     1.02     1.02     1.02     -        1.02     -        -        1.02     1.02     1.02     1.02     -        1.02     -        -      
+veto_tau                lnN         1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03     1.03   
+wj_hf                   lnN         -        -        -        -        1.05     -        -        -        -        -        -        -        1.05     -        -        -      
+zj_hf                   lnN         -        -        -        -        -        -        1.05     -        -        -        -        -        -        -        1.05     -      

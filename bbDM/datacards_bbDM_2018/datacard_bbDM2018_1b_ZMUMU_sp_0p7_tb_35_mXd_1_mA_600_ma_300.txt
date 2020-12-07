@@ -1,0 +1,67 @@
+# Simple counting experiment, with one signal and a few background processes 
+# First iteration of the monoHbb 2018
+
+imax *  number of channels
+jmax *  number of backgrounds
+kmax *  number of nuisance parameters (sources of systematical uncertainties)
+---------------------------------------------------------------------------------------------------------------------------------
+
+## these are new shapes for the fitting model
+## shapes  process   region    path 
+
+shapes *         bbDM2018_1b_ZMUMU       bbDM_2018_WS.root ws_bbDM_1b_2018:bbDM2018_1b_ZMUMU_$PROCESS ws_bbDM_1b_2018:bbDM2018_1b_ZMUMU_$PROCESS_$SYSTEMATIC
+shapes dyjets     bbDM2018_1b_ZMUMU       bbDM_2018_WS.root ws_bbDM_1b_2018:rph_ZMUMU_dyjets_1b
+
+
+------------
+bin   bbDM2018_1b_ZMUMU 
+observation -1
+------------
+
+
+# now we list the expected events for signal and all backgrounds in that bin
+# the second 'process' line must have a positive number for backgrounds, and 0 for signal
+# then we list the independent sources of uncertainties, and give their effect (syst. error)
+# on each process and bin
+bin                          bbDM2018_1b_ZMUMU  bbDM2018_1b_ZMUMU  bbDM2018_1b_ZMUMU  bbDM2018_1b_ZMUMU   bbDM2018_1b_ZMUMU  
+process                                   tt        singlet        dyjets  diboson   smh 
+process                               1        2           3           4        5        
+rate                                 -1        -1         1           -1       -1           
+------------					        
+						        
+doubleb                 lnN                -            -         -       -      1.10
+CMS2018_eff_b           lnN                1.10            1.10      -       -       1.10    
+CMS2018_fake_b          lnN                1.05      1.05        -      1.05  1.05 
+lumi                    lnN               1.025     1.025     -       1.025   1.025 
+
+CMS2018_scale_pu        lnN               1.001      1.001     -    1.001   1.001 
+
+trig_met                lnN                1.02          1.02      -     1.02    1.02  
+
+norm_stop               lnN                -         1.2        -       -          -           
+norm_diboson            lnN               -          -         -        1.2        -
+norm_wj                 lnN               -          -        -        -             -        
+
+ak8jet_jec              lnN                 1.05      1.05      -          1.05       1.05     
+trig_ele                lnN                 1.05       1.05     -      1.05        1.05   
+veto_tau                lnN                  1.03     1.03       1.03       1.03      1.03     1.03    
+CMS2018_scale_e         lnN                   -        -         -          -          -     
+CMS2018_scale_m         lnN                  1.03     1.03       1.03       1.03      1.03     1.03    
+CMS2018_eff_met         lnN                  1.04     1.04       1.04       1.04      1.04    
+wj_hf                   lnN                   -        -       -          -          -     
+#zj_hf                   lnN                   -        -           1.05          -   -
+
+#pdf_accept              lnN                1.01  	  1.01       1.01     1.01  1.01  1.01
+#CMS2018_eff_t           lnN                1.03       1.03      1.03     1.03  1.03 1.03 
+
+
+
+rrvbc_SR_zjets_1b1 flatParam
+rrvbc_SR_zjets_1b2 flatParam
+rrvbc_SR_zjets_1b3 flatParam
+rrvbc_SR_zjets_1b4 flatParam
+
+tf1_ZMUMU_dyjets_1b flatParam
+tf2_ZMUMU_dyjets_1b flatParam
+tf3_ZMUMU_dyjets_1b flatParam
+tf4_ZMUMU_dyjets_1b flatParam
