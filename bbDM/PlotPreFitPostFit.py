@@ -16,8 +16,14 @@ RegionList = ['SR', 'TOPE', 'TOPMU', 'WE', 'WMU', 'ZEE', 'ZMUMU']
 RegionList_1b=["cat_1b_"+ir for ir in RegionList]
 RegionList_2b=["cat_2b_"+ir for ir in RegionList]
 
+RegionList = RegionList_1b + RegionList_2b
+
 RegionName = ['SR', 'Top (e) CR', 'Top (mu) CR', 
               'W (e) CR', 'W (mu) CR', 'Z (ee) CR', 'Z (mumu) CR']
+RegionName_1b = [ir + " 1b" for ir in RegionName]
+RegionName_2b = [ir + " 2b" for ir in RegionName]
+RegionName = RegionName_1b + RegionName_2b
+
 nbins = 4
 edges = arr.array('f')
 min_ = 0.0
@@ -37,7 +43,7 @@ fileObj = TFile(filename)
 for iRegionList in range(len(RegionList)):
 #------------------------ postfit ------------------------------#
 
-	postfit = "shapes_fit_b/"+RegionList_1b[iRegionList]
+	postfit = "shapes_fit_b/"+RegionList[iRegionList]
 	#getDir = file.cd("shapes_fit_b/TOPE")
 
 	#get the histogram inside shapes_fit_b/TOPE
@@ -59,7 +65,7 @@ for iRegionList in range(len(RegionList)):
 		Temp_data.SetBinError(i+1, Datatmp.GetErrorY(i))
 	#------------------------ prefit ------------------------------#
 
-	prefit = "shapes_prefit/"+RegionList_1b[iRegionList]
+	prefit = "shapes_prefit/"+RegionList[iRegionList]
 	#get the histogram inside shapes_fit_b/TOPE
 
 	Temp_prefit = fileObj.Get(prefit+"/total_background")
@@ -141,8 +147,8 @@ for iRegionList in range(len(RegionList)):
 	c1.cd()
 	c1.Modified()
 	c1.Update()
-        c1.SaveAs(plotdir+"postfit_"+RegionList_1b[iRegionList]+"_"+postfix+".pdf")
-        c1.SaveAs(plotdir+"postfit_"+RegionList_1b[iRegionList]+"_"+postfix+".png")
-        c1.SaveAs(plotdir+"postfit_"+RegionList_1b[iRegionList]+"_"+postfix+".C")
-        c1.SaveAs(plotdir+"postfit_"+RegionList_1b[iRegionList]+"_"+postfix+".root")
+        c1.SaveAs(plotdir+"postfit_"+RegionList[iRegionList]+"_"+postfix+".pdf")
+        c1.SaveAs(plotdir+"postfit_"+RegionList[iRegionList]+"_"+postfix+".png")
+        c1.SaveAs(plotdir+"postfit_"+RegionList[iRegionList]+"_"+postfix+".C")
+        c1.SaveAs(plotdir+"postfit_"+RegionList[iRegionList]+"_"+postfix+".root")
         
