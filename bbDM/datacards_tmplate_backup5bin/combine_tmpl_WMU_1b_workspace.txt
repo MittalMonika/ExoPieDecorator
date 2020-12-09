@@ -1,0 +1,67 @@
+# Simple counting experiment, with one signal and a few background processes 
+# First iteration of the monoHbb YEAR
+
+imax *  number of channels
+jmax *  number of backgrounds
+kmax *  number of nuisance parameters (sources of systematical uncertainties)
+---------------------------------------------------------------------------------------------------------------------------------
+
+## these are new shapes for the fitting model
+## shapes  process   region    path 
+
+shapes *         bbDMYEAR_CATEGORY_WMU       bbDM_YEAR_WS.root ws_bbDM_CATEGFULL_YEAR:bbDMYEAR_CATEGORY_WMU_$PROCESS ws_bbDM_CATEGFULL_YEAR:bbDMYEAR_CATEGORY_WMU_$PROCESS_$SYSTEMATIC
+shapes wjets     bbDMYEAR_CATEGORY_WMU       bbDM_YEAR_WS.root ws_bbDM_CATEGFULL_YEAR:rph_WMU_wjets_1b
+
+
+
+------------
+
+
+bin   bbDMYEAR_CATEGORY_WMU 
+observation -1
+------------
+
+
+# now we list the expected events for signal and all backgrounds in that bin
+# the second 'process' line must have a positive number for backgrounds, and 0 for signal
+# then we list the independent sources of uncertainties, and give their effect (syst. error)
+# on each process and bin
+bin               bbDMYEAR_CATEGORY_WMU  bbDMYEAR_CATEGORY_WMU  bbDMYEAR_CATEGORY_WMU  bbDMYEAR_CATEGORY_WMU   bbDMYEAR_CATEGORY_WMU  bbDMYEAR_CATEGORY_WMU  bbDMYEAR_CATEGORY_WMU 
+process               wjets                tt                 singlet             qcd              dyjets             diboson             smh
+process                 1                  2                    3                  4                 5                  6                  7      
+rate                   1                 -1                   -1                 -1                -1                -1                  -1    
+------------
+
+doubleb                 lnN           -        -         -         -         -       -       1.10
+CMSYEAR_eff_b           lnN           -       1.10       1.10      -         -       -        1.10
+CMSYEAR_fake_b          lnN           -       1.05       1.05      1.05      1.05    1.05     1.05 
+lumi                    lnN           -       1.025      1.025    1.025     1.025    1.025     1.025
+CMSYEAR_scale_pu        lnN           -       1.001      1.001     1.001     1.001    1.001      1.001
+trig_met                lnN           -       1.02       1.02      1.02     1.02      1.02        1.02        
+norm_stop               lnN           -         -         1.2        -       -          -            -
+norm_diboson            lnN           -        -          -         -        -          1.2         - 
+norm_wj                 lnN           1.2      -          -        -        -             -         -
+ak8jet_jec              lnN           -        1.05      1.05      1.05     1.05         1.05      1.05
+trig_ele                lnN     -            -        -         -          -          -      -         ## this is dummy for SR, it exist only for ele CRs
+veto_tau                lnN    1.03        1.03     1.03       1.03       1.03      1.03     1.03     1.03
+CMSYEAR_scale_e         lnN     -            -        -         -          -          -      -         ## this is dummy for SR, it exist only for ele CRs
+CMSYEAR_scale_m         lnN     1.02        1.02        1.02         1.02          1.02          1.02      1.02 
+CMSYEAR_eff_met         lnN    1.04        1.04     1.04       1.04       1.04      1.04     1.04     
+wj_hf                   lnN     1.05         -        -       -          -          -      -       
+zj_hf                   lnN     -            -        -       -          1.05          -      -      
+
+#pdf_accept              lnN    1.01        1.01     1.01       1.01      1.01      1.01     1.01     1.01
+#CMSYEAR_eff_t           lnN    1.03        1.03     1.03       1.03       1.03      1.03     1.03     1.03
+
+tf1_TOPMU_tt_1b flatParam
+tf2_TOPMU_tt_1b flatParam
+tf3_TOPMU_tt_1b flatParam
+tf4_TOPMU_tt_1b flatParam
+tf5_TOPMU_tt_1b flatParam
+
+rrvbc_SR_wjets_1b1 flatParam
+rrvbc_SR_wjets_1b2 flatParam
+rrvbc_SR_wjets_1b3 flatParam
+rrvbc_SR_wjets_1b4 flatParam
+rrvbc_SR_wjets_1b5 flatParam
+
