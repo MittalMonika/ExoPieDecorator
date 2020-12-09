@@ -57,9 +57,11 @@ tf1_TOPMU_tt_2b flatParam
 tf2_TOPMU_tt_2b flatParam
 tf3_TOPMU_tt_2b flatParam
 tf4_TOPMU_tt_2b flatParam
+tf5_TOPMU_tt_2b flatParam
 
 rrvbc_SR_wjets_2b1 flatParam
 rrvbc_SR_wjets_2b2 flatParam
 rrvbc_SR_wjets_2b3 flatParam
 rrvbc_SR_wjets_2b4 flatParam
+rrvbc_SR_wjets_2b5 flatParam
 

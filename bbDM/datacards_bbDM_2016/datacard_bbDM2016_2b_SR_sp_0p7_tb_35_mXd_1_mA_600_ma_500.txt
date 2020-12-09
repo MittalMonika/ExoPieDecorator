@@ -70,23 +70,35 @@ rrv_stats_err_TOPE_tt_2b_bin1 param 0.0 1
 rrv_stats_err_TOPE_tt_2b_bin2 param 0.0 1
 rrv_stats_err_TOPE_tt_2b_bin3 param 0.0 1
 rrv_stats_err_TOPE_tt_2b_bin4 param 0.0 1
+rrv_stats_err_TOPE_tt_2b_bin5 param 0.0 1
+
 rrv_stats_err_TOPMU_tt_2b_bin1 param 0.0 1
 rrv_stats_err_TOPMU_tt_2b_bin2 param 0.0 1
 rrv_stats_err_TOPMU_tt_2b_bin3 param 0.0 1
 rrv_stats_err_TOPMU_tt_2b_bin4 param 0.0 1
+rrv_stats_err_TOPMU_tt_2b_bin5 param 0.0 1
+
 rrv_stats_err_WE_wjets_2b_bin1 param 0.0 1
 rrv_stats_err_WE_wjets_2b_bin2 param 0.0 1
 rrv_stats_err_WE_wjets_2b_bin3 param 0.0 1
 rrv_stats_err_WE_wjets_2b_bin4 param 0.0 1
+rrv_stats_err_WE_wjets_2b_bin5 param 0.0 1
+
 rrv_stats_err_WMU_wjets_2b_bin1 param 0.0 1
 rrv_stats_err_WMU_wjets_2b_bin2 param 0.0 1
 rrv_stats_err_WMU_wjets_2b_bin3 param 0.0 1
 rrv_stats_err_WMU_wjets_2b_bin4 param 0.0 1
+rrv_stats_err_WMU_wjets_2b_bin5 param 0.0 1
+
 rrv_stats_err_ZEE_dyjets_2b_bin1 param 0.0 1
 rrv_stats_err_ZEE_dyjets_2b_bin2 param 0.0 1
 rrv_stats_err_ZEE_dyjets_2b_bin3 param 0.0 1
 rrv_stats_err_ZEE_dyjets_2b_bin4 param 0.0 1
+rrv_stats_err_ZEE_dyjets_2b_bin5 param 0.0 1
+
 rrv_stats_err_ZMUMU_dyjets_2b_bin1 param 0.0 1
 rrv_stats_err_ZMUMU_dyjets_2b_bin2 param 0.0 1
 rrv_stats_err_ZMUMU_dyjets_2b_bin3 param 0.0 1
 rrv_stats_err_ZMUMU_dyjets_2b_bin4 param 0.0 1
+rrv_stats_err_ZMUMU_dyjets_2b_bin5 param 0.0 1
+

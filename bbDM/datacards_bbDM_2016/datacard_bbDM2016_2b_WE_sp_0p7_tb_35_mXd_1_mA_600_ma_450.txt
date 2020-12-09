@@ -64,8 +64,10 @@ tf1_WE_wjets_2b flatParam
 tf2_WE_wjets_2b flatParam
 tf3_WE_wjets_2b flatParam
 tf4_WE_wjets_2b flatParam
+tf5_WE_wjets_2b flatParam
 
 rrvbc_SR_wjets_2b1 flatParam
 rrvbc_SR_wjets_2b2 flatParam
 rrvbc_SR_wjets_2b3 flatParam
 rrvbc_SR_wjets_2b4 flatParam
+rrvbc_SR_wjets_2b5 flatParam

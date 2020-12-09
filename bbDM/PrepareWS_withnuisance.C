@@ -177,27 +177,34 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
   /* Get the bin content of each bin of the histogram in a vector which can be used later */ 
   std::vector<float> bincontents_sr_bkg = GetBinContents(h_sr_bkg);
   
-  // This will create the RooRealVar with 0 to 10*bin content  range. 
+  // This will create the RooRealVar with 0 to 10*bin content  range.
+  // The bkg contribution in SR is RooRealVar and then converted to RooArgList
+
   // create a vector of RooRealVar, this is needed because I didn't find  way to retrive the RooRealVar back from the RooArgList
   std::vector<RooRealVar> rrvbc_sr_bkg = GetRooRealVar(bincontents_sr_bkg, "rrvbc_"+region_proc_sr+anacat_);
   
-  RooArgList ralbc_sr_bkg;
+  RooArgList ralbc_sr_bkg; // this can be converted to a for loop
   ralbc_sr_bkg.add(rrvbc_sr_bkg[0]);
   ralbc_sr_bkg.add(rrvbc_sr_bkg[1]);
   ralbc_sr_bkg.add(rrvbc_sr_bkg[2]);
   ralbc_sr_bkg.add(rrvbc_sr_bkg[3]);
   
   // Create a RooParametericHist which contains those yields, last argument is just for the binning, we can use the data TH1 for that
-  RooParametricHist rph_sr_bkg("rph_"+region_proc_sr+anacat_, "wjets PDF in signal region "+anacat_,met,ralbc_sr_bkg, *h_sr_data);
+  // RPH for the bkg yield in the SR 
+  RooParametricHist rph_sr_bkg("rph_"+region_proc_sr+anacat_, " "+region_proc_sr+" PDF in signal region "+anacat_,met,ralbc_sr_bkg, *h_sr_data);
   
+
   // Always include a _norm term which should be the sum of the yields (thats how combine likes to play with pdfs)
+  // not sure yet why is this needed? 
   RooAddition rph_sr_bkg_norm("rph_"+region_proc_sr+anacat_+"_norm","Total Number of events from background in signal region "+anacat_,ralbc_sr_bkg);
 
 
   wspace.import(rph_sr_bkg);
   wspace.import(rph_sr_bkg_norm,RooFit::RecycleConflictNodes());
       
-  std::cout<<" rph imported "<<std::endl;
+  std::cout<<" rph for bkg in SR is imported in the WS"<<std::endl;
+
+
   /*
     For the control region, the background process will be dependent on the yields of the background in the signal region using a transfer factor. 
     The transfer factor TF must account for acceptance/efficiency etc differences in the signal to control regions.
@@ -215,7 +222,10 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
   */
 
   
+  // check the anme and integral of bkg histogram in CR
   std::cout<<" h_cr_bkg: "<<h_cr_bkg->GetName()<<" "<<h_cr_bkg->Integral()<<std::endl;
+
+  
   // create roodatahist of the background histogram in CR. 
   RooDataHist dh_cr_bkg("dh_"+region_proc_cr+anacat_,"dh_"+region_proc_cr+anacat_, vars, h_cr_bkg);
   
@@ -227,6 +237,8 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
   
   TH1F* htf_cr_bkg = (TH1F*) h_cr_bkg->Clone();
   htf_cr_bkg->Divide(h_sr_bkg);
+
+  // writing this to the root file for presentation purpose. 
   h_vec_tf.push_back(htf_cr_bkg);
   
   std::cout<<" ratio "<< htf_cr_bkg->GetBinContent(1)
@@ -295,7 +307,7 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
   int syst_counter = 0;
   
   TString rfv_bin1 = Form("@%d*",syst_counter++); // this is transfer factor  ,  ++ is needed so that the counter is increamented automatically after its usage 
-  TString rfv_bin2 = rfv_bin1; 
+  TString rfv_bin2 = rfv_bin1; // yes this is correct: this is to write @0 for each bin and at next occurenace it will become @1 and so on, 
   TString rfv_bin3 = rfv_bin1;
   TString rfv_bin4 = rfv_bin1;
   
@@ -311,10 +323,11 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
   //RooRealVar rrv_stats_err_bin3("rrv_stats_err_"+region_proc_cr+"_bin3", "rrv_stats_err_"+region_proc_cr+"_bin3",0);
   //RooRealVar rrv_stats_err_bin4("rrv_stats_err_"+region_proc_cr+"_bin4", "rrv_stats_err_"+region_proc_cr+"_bin4",0);
 
-  RooRealVar rrv_stats_err_bin1("rrv_stats_err_"+region_proc_cr+anacat_+"_bin1", "rrv_stats_err_"+region_proc_cr+"_bin1",tf_stats_err_vector[0],0,2.*tf_stats_err_vector[0]);
-  RooRealVar rrv_stats_err_bin2("rrv_stats_err_"+region_proc_cr+anacat_+"_bin2", "rrv_stats_err_"+region_proc_cr+"_bin2",tf_stats_err_vector[1],0,2.*tf_stats_err_vector[1]);
-  RooRealVar rrv_stats_err_bin3("rrv_stats_err_"+region_proc_cr+anacat_+"_bin3", "rrv_stats_err_"+region_proc_cr+"_bin3",tf_stats_err_vector[2],0,2.*tf_stats_err_vector[2]);
-  RooRealVar rrv_stats_err_bin4("rrv_stats_err_"+region_proc_cr+anacat_+"_bin4", "rrv_stats_err_"+region_proc_cr+"_bin4",tf_stats_err_vector[3],0,2.*tf_stats_err_vector[3]);
+  // allow the stats error to vary fom 0 to  2* sigma 
+  RooRealVar rrv_stats_err_bin1("rrv_stats_err_"+region_proc_cr+anacat_+"_bin1", "rrv_stats_err_"+region_proc_cr+"_bin1",tf_stats_err_vector[0],  0,  2.*tf_stats_err_vector[0]);
+  RooRealVar rrv_stats_err_bin2("rrv_stats_err_"+region_proc_cr+anacat_+"_bin2", "rrv_stats_err_"+region_proc_cr+"_bin2",tf_stats_err_vector[1],  0,  2.*tf_stats_err_vector[1]);
+  RooRealVar rrv_stats_err_bin3("rrv_stats_err_"+region_proc_cr+anacat_+"_bin3", "rrv_stats_err_"+region_proc_cr+"_bin3",tf_stats_err_vector[2],  0,  2.*tf_stats_err_vector[2]);
+  RooRealVar rrv_stats_err_bin4("rrv_stats_err_"+region_proc_cr+anacat_+"_bin4", "rrv_stats_err_"+region_proc_cr+"_bin4",tf_stats_err_vector[3],  0,  2.*tf_stats_err_vector[3]);
   
   RooArgList ral_bin1;
   RooArgList ral_bin2;
@@ -558,6 +571,11 @@ void PrepareWS_withnuisance(TString model_="monoHbb",TString analysiscategory_="
   // Create all the inputs needed for this CR 
   createRegion(met, h_sr_wjets, h_wenu_2b_wjets, h_sr_data, wspace, "WE_wjets", "SR_wjets",  fOut, nuisIndex, nuisanceName, nuisanceValue, anacat_);
 
+  //  fixme, creating new for cross-transfer factors 
+  // ttbar in SR linked to top in W+Jets 
+  TH1F* h_wenu_2b_top = (TH1F*) fin->Get(AnaYearCat+"WE_tt");
+  createRegion(met, h_sr_top, h_wenu_2b_top, h_sr_data, wspace, "WE_tt", "SR_tt",  fOut, nuisIndex, nuisanceName, nuisanceValue, anacat_);
+
 
   /*
     -------------------------------------------------------------------------------------------------------------------
@@ -573,7 +591,12 @@ void PrepareWS_withnuisance(TString model_="monoHbb",TString analysiscategory_="
   TH1F* h_wmunu_2b_wjets = (TH1F*) fin->Get(AnaYearCat+"WMU_wjets");
   // Create all the inputs needed for this CR 
   createRegion(met, h_sr_wjets, h_wmunu_2b_wjets, h_sr_data, wspace, "WMU_wjets", "SR_wjets",  fOut, nuisIndex, nuisanceName, nuisanceValue, anacat_);
-  
+
+  //  fixme, creating new for cross-transfer factors 
+  // ttbar in SR linked to top in W+Jets 
+  TH1F* h_wmunu_2b_top = (TH1F*) fin->Get(AnaYearCat+"WMU_tt");
+  createRegion(met, h_sr_top, h_wmunu_2b_top, h_sr_data, wspace, "WMU_tt", "SR_tt",  fOut, nuisIndex, nuisanceName, nuisanceValue, anacat_);
+
 
   /*
     -------------------------------------------------------------------------------------------------------------------

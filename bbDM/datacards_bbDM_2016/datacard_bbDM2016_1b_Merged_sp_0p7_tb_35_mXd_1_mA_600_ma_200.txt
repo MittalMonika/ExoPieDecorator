@@ -1,7 +1,7 @@
 Combination of SR=datacards_bbDM_2016/datacard_bbDM2016_1b_SR_sp_0p7_tb_35_mXd_1_mA_600_ma_200.txt  TOPE=datacards_bbDM_2016/datacard_bbDM2016_1b_TOPE_sp_0p7_tb_35_mXd_1_mA_600_ma_200.txt  TOPMU=datacards_bbDM_2016/datacard_bbDM2016_1b_TOPMU_sp_0p7_tb_35_mXd_1_mA_600_ma_200.txt  WE=datacards_bbDM_2016/datacard_bbDM2016_1b_WE_sp_0p7_tb_35_mXd_1_mA_600_ma_200.txt  WMU=datacards_bbDM_2016/datacard_bbDM2016_1b_WMU_sp_0p7_tb_35_mXd_1_mA_600_ma_200.txt  ZEE=datacards_bbDM_2016/datacard_bbDM2016_1b_ZEE_sp_0p7_tb_35_mXd_1_mA_600_ma_200.txt  ZMUMU=datacards_bbDM_2016/datacard_bbDM2016_1b_ZMUMU_sp_0p7_tb_35_mXd_1_mA_600_ma_200.txt
 imax 7 number of bins
 jmax 8 number of processes minus 1
-kmax 44 number of nuisance parameters
+kmax 50 number of nuisance parameters
 ----------------------------------------------------------------------------------------------------------------------------------
 shapes *         SR        datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_1b_2016:bbDM2016_1b_SR_$PROCESS ws_bbDM_1b_2016:bbDM2016_1b_SR_$PROCESS_$SYSTEMATIC
 shapes data_obs  SR        datacards_bbDM_2016/bbDM_2016_WS.root ws_bbDM_1b_2016:bbDM2016_1b_SR_data_obs
@@ -50,26 +50,32 @@ zj_hf                   lnN         -        -        -        -        -       
 rrv_stats_err_WE_wjets_1b_bin1  param  0.0 1
 rrv_stats_err_WE_wjets_1b_bin3  param  0.0 1
 rrv_stats_err_WMU_wjets_1b_bin4  param  0.0 1
-rrv_stats_err_WMU_wjets_1b_bin3  param  0.0 1
+rrv_stats_err_WE_wjets_1b_bin5  param  0.0 1
 rrv_stats_err_WMU_wjets_1b_bin2  param  0.0 1
 rrv_stats_err_WMU_wjets_1b_bin1  param  0.0 1
+rrv_stats_err_ZMUMU_dyjets_1b_bin5  param  0.0 1
 rrv_stats_err_ZMUMU_dyjets_1b_bin4  param  0.0 1
 rrv_stats_err_ZMUMU_dyjets_1b_bin3  param  0.0 1
 rrv_stats_err_ZMUMU_dyjets_1b_bin2  param  0.0 1
 rrv_stats_err_ZMUMU_dyjets_1b_bin1  param  0.0 1
 rrv_CMS2016_scale_e_1b  param  0.0 1
+rrv_stats_err_TOPMU_tt_1b_bin5  param  0.0 1
 rrv_stats_err_TOPMU_tt_1b_bin4  param  0.0 1
 rrv_stats_err_TOPMU_tt_1b_bin1  param  0.0 1
 rrv_stats_err_TOPMU_tt_1b_bin3  param  0.0 1
 rrv_stats_err_TOPMU_tt_1b_bin2  param  0.0 1
 rrv_CMS2016_scale_m_1b  param  0.0 1
+rrv_stats_err_WMU_wjets_1b_bin5  param  0.0 1
 rrv_stats_err_WE_wjets_1b_bin2  param  0.0 1
+rrv_stats_err_WMU_wjets_1b_bin3  param  0.0 1
 rrv_stats_err_WE_wjets_1b_bin4  param  0.0 1
 rrv_stats_err_ZEE_dyjets_1b_bin3  param  0.0 1
 rrv_stats_err_ZEE_dyjets_1b_bin2  param  0.0 1
 rrv_stats_err_ZEE_dyjets_1b_bin1  param  0.0 1
+rrv_stats_err_ZEE_dyjets_1b_bin5  param  0.0 1
 rrv_stats_err_ZEE_dyjets_1b_bin4  param  0.0 1
 rrv_eletrigeffCMS2016_scale__1b  param  0.0 1
+rrv_stats_err_TOPE_tt_1b_bin5  param  0.0 1
 rrv_stats_err_TOPE_tt_1b_bin4  param  0.0 1
 rrv_stats_err_TOPE_tt_1b_bin3  param  0.0 1
 rrv_stats_err_TOPE_tt_1b_bin2  param  0.0 1
@@ -82,8 +88,12 @@ tf2_TOPMU_tt_1b  flatParam
 tf4_ZMUMU_dyjets_1b  flatParam
 tf3_TOPMU_tt_1b  flatParam
 tf1_WE_wjets_1b  flatParam
+tf5_TOPMU_tt_1b  flatParam
 tf2_ZMUMU_dyjets_1b  flatParam
+tf5_ZMUMU_dyjets_1b  flatParam
 tf2_TOPE_tt_1b  flatParam
+tf5_WE_wjets_1b  flatParam
+rrvbc_SR_wjets_1b5  flatParam
 rrvbc_SR_wjets_1b4  flatParam
 rrvbc_SR_wjets_1b3  flatParam
 rrvbc_SR_wjets_1b2  flatParam
@@ -93,16 +103,20 @@ rrvbc_SR_zjets_1b2  flatParam
 rrvbc_SR_zjets_1b3  flatParam
 rrvbc_SR_zjets_1b1  flatParam
 rrvbc_SR_zjets_1b4  flatParam
+rrvbc_SR_zjets_1b5  flatParam
+rrvbc_SR_tt_1b5  flatParam
 rrvbc_SR_tt_1b4  flatParam
 tf2_WE_wjets_1b  flatParam
 rrvbc_SR_tt_1b1  flatParam
 rrvbc_SR_tt_1b3  flatParam
 rrvbc_SR_tt_1b2  flatParam
+tf5_ZEE_dyjets_1b  flatParam
 tf1_ZMUMU_dyjets_1b  flatParam
 tf2_ZEE_dyjets_1b  flatParam
 tf3_ZEE_dyjets_1b  flatParam
 tf3_ZMUMU_dyjets_1b  flatParam
 tf4_TOPMU_tt_1b  flatParam
 tf4_WE_wjets_1b  flatParam
+tf5_TOPE_tt_1b  flatParam
 tf1_TOPE_tt_1b  flatParam
 tf3_TOPE_tt_1b  flatParam
