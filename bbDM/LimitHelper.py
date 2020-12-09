@@ -349,10 +349,14 @@ class RunLimits:
             os.system('root -l -b -q PlotPulls.C\(\\"'+pull_root+'\\",\\"'+dir_+'\\",\\"'+postfix_+'\\"\)')
             dir_ = outdir["yr"]
             self.PrintSpacing()
+            print ("python yieldratio.py "+fit_Diagnostics+" "+dir_+" "+postfix_)
             os.system("python yieldratio.py "+fit_Diagnostics+" "+dir_+" "+postfix_)
             dir_ = outdir["pfitOverlay"]
             self.PrintSpacing()
+            
+            print ("python PlotPreFitPostFit.py "+fit_Diagnostics+" "+dir_+" "+postfix_)
             os.system("python PlotPreFitPostFit.py "+fit_Diagnostics+" "+dir_+" "+postfix_)
+            
             dir_ = outdir["stack"]
             print "call the stack file"
             dir_ = outdir["tf"]
