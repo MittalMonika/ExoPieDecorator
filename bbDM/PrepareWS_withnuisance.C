@@ -80,7 +80,7 @@ std::vector<float> GetBinContents(TH1F* h){
 void addTemplate(RooWorkspace& ws,  RooArgList& vars, TH1F* hist) {
   std::cout<<" name = "<<hist->GetName()<<std::endl;
   RooDataHist rhist(hist->GetName(), hist->GetName(),  vars, hist);
-  std::cout<<" integral of the histogram for "<<hist->GetName()<<" is "<<rhist.sumEntries()<<"  "<<hist->Integral()<<std::endl;
+  std::cout<<" integral of the histogram for "<<hist->GetName()<<" is "<<rhist.sumEntries()<<"  "<<hist->Integral()<<" bins: "<<hist->GetNbinsX()<<std::endl;
   ws.import(rhist);
 }
 

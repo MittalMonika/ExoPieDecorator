@@ -12,8 +12,8 @@ import PlotTemplates
 from PlotTemplates import *
 
 import array as arr
-isgraph = True
-year="2017"
+isgraph = False
+year="2016"
 
 inputRootFileName=""
 if not isgraph:
@@ -67,6 +67,10 @@ def drawenergy():
     if isgraph :
         if year=="2017":
             pt2.AddText(0.53,0.5,"41.5 fb^{-1} (13 TeV)")
+        if year=="2016":
+            pt2.AddText(0.53,0.5,"36 fb^{-1} (13 TeV)")
+        if year=="2018":
+            pt2.AddText(0.53,0.5,"59 fb^{-1} (13 TeV)")
     if not isgraph:
         pt2.AddText(0.53,0.5,"139 fb^{-1} (13 TeV)")
     
@@ -347,3 +351,7 @@ for i in range(len(regionlist_1b)):
     makeStackMerged = myStack(fname_ = inputRootFileName, region_ = regionlist_1b[i], isSR = isSR, prefitbackgroundlist_ = prefitbkglist, legendname_ = legendlist, colorlist_ = color, regionName_ = regionName_1b[i], dirName_='plots_limit/Stack/', isMerged = True, pad1ymax_ = 100)
 
     makeStackResolved = myStack(fname_ = inputRootFileName, region_ = regionlist_2b[i], isSR = isSR, prefitbackgroundlist_ = prefitbkglist, legendname_ = legendlist, colorlist_ = color, regionName_ = regionName_2b[i], dirName_='plots_limit/Stack/', isMerged = False, pad1ymax_ = 1000)
+
+
+print "copying now.... "
+os.system("source copy.sh")

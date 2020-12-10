@@ -61,8 +61,8 @@ for iDirs in baseDirs:
             histname = iDirs+"/"+iregion+"/"+iprocess
             print (iDirs+"/"+iregion+"/"+iprocess)
             h1= f1.Get(histname)
-            h2= f1.Get(histname)
-            h3= f1.Get(histname)
+            h2= f2.Get(histname)
+            h3= f3.Get(histname)
             if h1:
                 print h1.Integral()
                 print h2.Integral()

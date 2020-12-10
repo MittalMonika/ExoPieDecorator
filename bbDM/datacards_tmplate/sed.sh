@@ -1,4 +1,4 @@
-sed -i 's/2016/YEAR/g' *b_workspace.txt
+sed -i 's/ak8jet_jec/#ak8jet_jec/g' *b_workspace.txt
 #sed -i 's/monoHbbYEAR/bbDMYEAR/g' *.txt
 #sed -i 's/monoHbb_2017_WS.root/bbDM_2016_WS.root/g' *.txt
 #sed -i 's/ws_monoHbb_CATEGFULL_YEAR/ws_bbDM_CATEGFULL_YEAR/g' *.txt

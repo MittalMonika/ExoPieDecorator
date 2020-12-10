@@ -32,7 +32,7 @@ process                 1                  2                    3               
 rate                   1                 -1                   -1                 -1                -1                -1                  -1    
 ------------
 
-doubleb                 lnN           -        -         -         -         -       -       1.10
+#doubleb                 lnN           -        -         -         -         -       -       1.10
 CMS2017_eff_b           lnN           -       1.10       1.10      -         -       -        1.10
 CMS2017_fake_b          lnN           -       1.05       1.05      1.05      1.05    1.05     1.05 
 lumi                    lnN           -       1.025      1.025    1.025     1.025    1.025     1.025
@@ -41,7 +41,7 @@ trig_met                lnN           -       1.02       1.02      1.02     1.02
 norm_stop               lnN           -         -         1.2        -       -          -            -
 norm_diboson            lnN           -        -          -         -        -          1.2         - 
 norm_wj                 lnN           1.2      -          -        -        -             -         -
-ak8jet_jec              lnN           -        1.05      1.05      1.05     1.05         1.05      1.05
+#ak8jet_jec              lnN           -        1.05      1.05      1.05     1.05         1.05      1.05
 trig_ele                lnN     -            -        -         -          -          -      -         ## this is dummy for SR, it exist only for ele CRs
 veto_tau                lnN    1.03        1.03     1.03       1.03       1.03      1.03     1.03     1.03
 CMS2017_scale_e         lnN     -            -        -         -          -          -      -         ## this is dummy for SR, it exist only for ele CRs

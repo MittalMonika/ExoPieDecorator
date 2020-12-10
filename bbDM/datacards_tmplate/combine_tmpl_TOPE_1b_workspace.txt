@@ -29,7 +29,7 @@ process                               1        2           3           4        
 rate                                 -1        1         -1          -1       -1       -1    -1   
 ------------					        
 						        
-doubleb                 lnN           -         -            -         -       -      -      1.10
+#doubleb                 lnN           -         -            -         -       -      -      1.10
 CMSYEAR_eff_b           lnN          1.10      -            1.10      -       -      -      1.10
 CMSYEAR_fake_b          lnN          1.05       1.05      1.05       1.05     1.05  1.05 1.05
 lumi                    lnN         1.025       -         1.025      1.025    1.025   1.025  1.025
@@ -39,7 +39,7 @@ norm_stop               lnN           -         -         1.2        -       -  
 norm_diboson            lnN           -        -          -         -        -          1.2         -
 norm_wj                 lnN           1.2      -          -        -        -             -         -
 
-ak8jet_jec              lnN           1.05       -      1.05      1.05     1.05         1.05      1.05
+#ak8jet_jec              lnN           1.05       -      1.05      1.05     1.05         1.05      1.05
 trig_ele                lnN           1.05       -        1.05      1.05      1.05        1.05    1.05
 veto_tau                lnN           1.03        1.03     1.03       1.03       1.03      1.03     1.03     1.03
 CMSYEAR_scale_e         lnN           1.03        1.03     1.03       1.03       1.03      1.03     1.03     1.03

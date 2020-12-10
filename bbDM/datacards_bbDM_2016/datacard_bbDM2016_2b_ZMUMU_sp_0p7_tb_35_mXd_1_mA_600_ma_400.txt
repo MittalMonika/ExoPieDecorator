@@ -56,10 +56,8 @@ rrvbc_SR_zjets_2b1 flatParam
 rrvbc_SR_zjets_2b2 flatParam
 rrvbc_SR_zjets_2b3 flatParam
 rrvbc_SR_zjets_2b4 flatParam
-rrvbc_SR_zjets_2b5 flatParam
 
 tf1_ZMUMU_dyjets_2b flatParam
 tf2_ZMUMU_dyjets_2b flatParam
 tf3_ZMUMU_dyjets_2b flatParam
 tf4_ZMUMU_dyjets_2b flatParam
-tf5_ZMUMU_dyjets_2b flatParam
