@@ -6,7 +6,10 @@
 ##     - directing the plots in required directory 
 ##     - added .png file for html viewing 
 
+
 import ROOT
+ROOT.gROOT.SetBatch(True)
+sys.argv.append( '-b-' )
 from ROOT import TFile, TH1F, TGraph, TGraphAsymmErrors
 
 

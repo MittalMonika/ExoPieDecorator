@@ -499,7 +499,7 @@ void PrepareWS_withnuisance(TString model_="monoHbb",TString analysiscategory_="
   std::vector <float> nuisanceValue;
   
   nuisanceName.clear();    nuisanceValue.clear();
-  TString nuisancePostfix = "CMS2016_scale_";
+  TString nuisancePostfix = "CMS"+year+"_scale_";
   nuisanceValue.clear();
   // these number are temporary at this moment, these has to be updated 
   nuisanceName.push_back(nuisancePostfix+"m");             nuisanceValue.push_back(0.02);  // 0 
