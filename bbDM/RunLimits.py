@@ -1,5 +1,7 @@
 import os 
 import  sys 
+## Add the functionality to mask a given channel by providing the name of the channel 
+## run the limits after making workspace instead of directly the .txt file. 
 
 
 

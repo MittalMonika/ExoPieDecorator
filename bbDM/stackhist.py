@@ -12,19 +12,22 @@ import PlotTemplates
 from PlotTemplates import *
 
 import array as arr
-isgraph = False
-year="2016"
+
+## For 2016, 17 18, isgraph = True 
+## for combined run2: isgraph = False
+isgraph = True
+year="2017"
 
 inputRootFileName=""
 if not isgraph:
     inputRootFileName = "run2_postfit/run2_fitDiagnostics_combined_140fbinv.root"
 if  isgraph:
     if year=="2016":
-        inputRootFileName = "run2_postfit/fitDiagnostics_combined_2016_data.root"
+        inputRootFileName = "run2_postfit/fitDiagnostics_combined_2016_cronly.root"
     if year=="2017":
-        inputRootFileName = "run2_postfit/fitDiagnostics_combined_2017_data.root"
+        inputRootFileName = "run2_postfit/fitDiagnostics_combined_2017_cronly.root"
     if year=="2018":
-        inputRootFileName = "run2_postfit/fitDiagnostics_combined_2018_data.root"
+        inputRootFileName = "run2_postfit/fitDiagnostics_combined_2018_cronly.root"
 
 outdir='plots_limit/Stack/'
 if isgraph: 
@@ -354,4 +357,4 @@ for i in range(len(regionlist_1b)):
 
 
 print "copying now.... "
-os.system("source copy.sh")
+os.system("./copy.sh")

@@ -10,7 +10,11 @@
 #include "RooWorkspace.h"
 #include "RooPlot.h"
 
-
+// To be added , 
+// all the gaussian constraints should be within -1 and 1 sigma  OR 0 to 1 sigma NOT 5 sigma. 
+// fix TF stats 
+// fix other systematics 
+// access systematics via histograms from the .root file so that there is no confusion. 
 
 using namespace RooFit ;
 
@@ -96,7 +100,7 @@ std::vector <RooRealVar> GetRooRealVar(std::vector<float>  bcs, TString name){
     // fix the naming here using some automation  and also in the next function
 
     std::cout<<" name inside GetRooRealVar = "<<name+postfix<<std::endl;
-    rrvV_.push_back(RooRealVar(name+postfix,"Background yield in signal region, bin 1", bcs[i], 0.2*bcs[i], 5*bcs[i]));
+    rrvV_.push_back(RooRealVar(name+postfix,"Background yield in signal region, bin 1", bcs[i], 0.2*bcs[i], 10*bcs[i]));
     
   }
   
@@ -324,10 +328,10 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
   //RooRealVar rrv_stats_err_bin4("rrv_stats_err_"+region_proc_cr+"_bin4", "rrv_stats_err_"+region_proc_cr+"_bin4",0);
 
   // allow the stats error to vary fom 0 to  2* sigma 
-  RooRealVar rrv_stats_err_bin1("rrv_stats_err_"+region_proc_cr+anacat_+"_bin1", "rrv_stats_err_"+region_proc_cr+"_bin1",tf_stats_err_vector[0],  0,  2.*tf_stats_err_vector[0]);
-  RooRealVar rrv_stats_err_bin2("rrv_stats_err_"+region_proc_cr+anacat_+"_bin2", "rrv_stats_err_"+region_proc_cr+"_bin2",tf_stats_err_vector[1],  0,  2.*tf_stats_err_vector[1]);
-  RooRealVar rrv_stats_err_bin3("rrv_stats_err_"+region_proc_cr+anacat_+"_bin3", "rrv_stats_err_"+region_proc_cr+"_bin3",tf_stats_err_vector[2],  0,  2.*tf_stats_err_vector[2]);
-  RooRealVar rrv_stats_err_bin4("rrv_stats_err_"+region_proc_cr+anacat_+"_bin4", "rrv_stats_err_"+region_proc_cr+"_bin4",tf_stats_err_vector[3],  0,  2.*tf_stats_err_vector[3]);
+  RooRealVar rrv_stats_err_bin1("rrv_stats_err_"+region_proc_cr+anacat_+"_bin1", "rrv_stats_err_"+region_proc_cr+"_bin1",tf_stats_err_vector[0],  0,  1.*tf_stats_err_vector[0]);
+  RooRealVar rrv_stats_err_bin2("rrv_stats_err_"+region_proc_cr+anacat_+"_bin2", "rrv_stats_err_"+region_proc_cr+"_bin2",tf_stats_err_vector[1],  0,  1.*tf_stats_err_vector[1]);
+  RooRealVar rrv_stats_err_bin3("rrv_stats_err_"+region_proc_cr+anacat_+"_bin3", "rrv_stats_err_"+region_proc_cr+"_bin3",tf_stats_err_vector[2],  0,  1.*tf_stats_err_vector[2]);
+  RooRealVar rrv_stats_err_bin4("rrv_stats_err_"+region_proc_cr+anacat_+"_bin4", "rrv_stats_err_"+region_proc_cr+"_bin4",tf_stats_err_vector[3],  0,  1.*tf_stats_err_vector[3]);
   
   RooArgList ral_bin1;
   RooArgList ral_bin2;
@@ -366,7 +370,7 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
     
     //rrv_syst = new RooRealVar("rrv_"+nuisanceName[nuisIndex[isys]], "rrv_"+nuisanceName[nuisIndex[isys]], 0);
     //rrv_syst = new RooRealVar("rrv_"+nuisanceName[nuisIndex[isys]], "rrv_"+nuisanceName[nuisIndex[isys]], nuisanceValue[nuisIndex[isys]], 0., 5*nuisanceValue[nuisIndex[isys]]);
-    rrv_syst = new RooRealVar(nuisanceName[nuisIndex[isys]]+anacat_, "rrv_"+nuisanceName[nuisIndex[isys]], nuisanceValue[nuisIndex[isys]], 0., 5*nuisanceValue[nuisIndex[isys]]);
+    rrv_syst = new RooRealVar(nuisanceName[nuisIndex[isys]]+anacat_, "rrv_"+nuisanceName[nuisIndex[isys]], nuisanceValue[nuisIndex[isys]], 0., 1.*nuisanceValue[nuisIndex[isys]]);
     
     ral_bin1.add(*rrv_syst);
     ral_bin2.add(*rrv_syst);
@@ -376,6 +380,12 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
   }
   
   std::cout<<" bins already included in the lists "<<ral_bin1<<std::endl;
+
+  
+  std::cout<<" bin 1 total unc is "<<rfv_bin1<<std::endl;
+  std::cout<<" bin 2 total unc is "<<rfv_bin2<<std::endl;
+  std::cout<<" bin 3 total unc is "<<rfv_bin3<<std::endl;
+  std::cout<<" bin 4 total unc is "<<rfv_bin4<<std::endl;
   /*
     RooFormulaVar TF1("TF1"+region_proc_cr,"Transfer factor","@2*TMath::Power(1.01,@0)*TMath::Power(1.02,@1)",RooArgList(efficiency,acceptance,tf1));
   RooFormulaVar TF2("TF2"+region_proc_cr,"Transfer factor","@2*TMath::Power(1.01,@0)*TMath::Power(1.02,@1)",RooArgList(efficiency,acceptance,tf2));

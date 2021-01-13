@@ -332,6 +332,7 @@ class RunLimits:
 
         postfix_ = "_"+category+"_"+year+"_"
         
+        
         if run_mode == "cronly":
             self.PrintSpacing()
             dir_ = outdir["pulls"]
@@ -394,7 +395,8 @@ class RunLimits:
             os.system("text2workspace.py "+datacard+" --channel-masks")
             wsname = datacard.replace(".txt",".root")
             print ("combine -M FitDiagnostics  "+wsname+" --saveShapes --saveWithUncertainties --setParameters mask_SR=1")
-            os.system("combine -M FitDiagnostics  "+wsname+" --saveShapes --saveWithUncertainties --setParameters mask_SR=1")
+            os.system("combine -M FitDiagnostics  "+wsname+" --saveShapes --saveWithUncertainties --setParameters mask_SR=1,mask_cat_1b_SR=1,mask_cat_2b_SR=1")
+            
             self.SavePrePostComparison("cronly",outdir, category,year)
         
         
