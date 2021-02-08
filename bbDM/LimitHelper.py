@@ -11,11 +11,12 @@ class RunLimits:
     ''' this class exepcts that all the steps needed to prepare the datacards and prepration of its inputs are already performed '''
     
     ''' instantiation of the class is done here ''' 
-    def __init__(self, datacardtemplatename, year, analysis, analysisbin):#, runmode):
+    def __init__(self, datacardtemplatename, year, analysis, analysisbin, postfix):
         self.datacardtemplatename_ = datacardtemplatename
-        self.year_ = year
-        self.analysis_ = analysis 
-        self.analysisbin_ = analysisbin 
+        self.year_                 = year
+        self.analysis_             = analysis 
+        self.analysisbin_          = analysisbin 
+        self.postfix_              = postfix
         
         #self.runmode = runmode
         print "class instantiation done"
@@ -148,7 +149,9 @@ class RunLimits:
         towrite =  str(allparameters[1])+" "+str(allparameters[0])+" "+expected25_+" "+expected16_+" "+ expected50_+" "+ expected84_+" "+ expected975_+" "+ observed_+"\n"
         
         print towrite
-        outfile="bin/limits_"+self.analysis_+"_"+category+"_"+self.year_+".txt"
+        os.system ("mkdir -p bin/"+self.postfix_)
+        os.system ("mkdir -p plots_limit/"+self.postfix_)
+        outfile="bin/"+self.postfix_+"/limits_"+self.analysis_+"_"+category+"_"+self.year_+".txt"
         self.limit_text_file = outfile
 
         
@@ -290,7 +293,6 @@ class RunLimits:
         #latex.DrawLatex(0.53, 0.91, "m_{A}="+MA_+" GeV, tan#beta = 35, sin#theta = 0.7");
         
         self.limit_pdf_file  = rootfile.replace(".root",".pdf").replace("bin/","plots_limit/")
-        
         #c.SetLogx(1)
         c.Update()
         #c.SaveAs(name+".png")

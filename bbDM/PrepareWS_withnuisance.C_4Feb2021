@@ -68,7 +68,7 @@ TFile* OpenRootFile(TString filename, TString mode="READ"){
 std::vector<float> GetBinContents(TH1F* h){
   std::vector<float> bcs;
   bcs.clear();
-  std::cout<<" histogram name :"<<h->GetName()<<std::endl;
+  
   int nbinsx = h->GetNbinsX();
   for (auto ibin=1; ibin<=nbinsx; ibin++){
     bcs.push_back(h->GetBinContent(ibin));
@@ -441,17 +441,27 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
 
 
 
-void PrepareWS_withnuisance(TString model_="monoHbb",TString analysiscategory_="merged", TString mode__ = "RECREATE", TString inputdir=".", TString inputfile="AllMETHistos.root", TString year="2016", TString version     = "_V0"){
+void PrepareWS_withnuisance(TString model_="monoHbb",TString analysiscategory_="merged", TString mode__ = "RECREATE", TString inputdir=".", TString inputfile="AllMETHistos.root", TString year="2016"){
   TString anacat_ = analysiscategory_;
+  ///afs/cern.ch/work/p/ptiwari/public/bbDM/WCr_Split/AllMETHistos.root
+  //TString inputdir    = ""
   
+  //TString inputfile   = "AllMETHistos_v16_06_04_04.root";
+  //TString year        = "2016";
   TString outputfile  = model_+"_"+year+"_WS.root";
   TString cat__ =  analysiscategory_;
   
+  //if (analysiscategory_=="merged") cat__ = "B";
+  //if (analysiscategory_=="resolved") cat__ = "R";
+  //if (analysiscategory_=="combined") cat__ = "C";
   
   bool debug__ = true; 
   
+  //if (debug__){
+
   TString AnaYearCat  = model_ +  year + "_" + cat__ +"_" ;
   std::cout<<" AnaYearCat = "<<AnaYearCat<<std::endl;
+  TString version     = "_V0";
   bool usebkgsum = false;
   int met_low = 200;
   int met_hi = 1000;
@@ -514,7 +524,7 @@ void PrepareWS_withnuisance(TString model_="monoHbb",TString analysiscategory_="
 
   
   
-  std::cout<<" calling function for Top mu: "<<AnaYearCat+"SR_tt"<<" "<<AnaYearCat+"TOPMU_tt"<<std::endl;
+  std::cout<<" calling function for Top mu"<<std::endl;
   TH1F* h_sr_top = (TH1F*) fin->Get(AnaYearCat+"SR_tt");
   // Get the top hostogram in the Top mu CR
   TH1F* h_topmu_2b_top = (TH1F*) fin->Get(AnaYearCat+"TOPMU_tt");
