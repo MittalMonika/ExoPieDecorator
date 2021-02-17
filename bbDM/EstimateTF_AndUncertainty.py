@@ -2,6 +2,7 @@ import os
 import sys 
 from ROOT import TFile, TH1, TH1F, TH1D
 from copy import copy 
+from TFPlotter import plotTF
 
 fout = TFile("bin/TF.root","RECREATE")
 
@@ -122,3 +123,17 @@ for isyst in alltfhists:
 
 ## close the file outside of loop 
 fout.Close()
+
+'''
+CALLING TF PLotter Macro
+'''
+infile='bin/TF.root'
+SR_BKG = ['SR_zjets','SR_zjets','SR_wjets','SR_wjets','SR_tt','SR_tt']
+CR_BKG = ['ZEE_dyjets','ZMUMU_dyjets','WE_wjets','WMU_wjets','TOPE_tt','TOPMU_tt']  #PLEASE MAKE SURE YOU GIVE PROCESS NAME IN AN ORDER AS SR
+postfix= ['allbinUp','JECUp','PrefireUp']
+cats   = ['1b','2b']
+yaxis  = ['transfer factor (z#nu#nu SR/zee )','transfer factor (z#nu#nu SR/z#mu#mu )',\
+        'transfer factor (wl#nu SR/we#nu )','transfer factor (wl#nu SR/w#mu#nu )',\
+        'transfer factor (Top SR/Top(e) )','transfer factor (Top SR/Top(#mu) )']
+plotTF(infile,SR_BKG,CR_BKG,postfix,cats,yaxis)
+
