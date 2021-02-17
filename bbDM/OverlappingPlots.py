@@ -22,7 +22,7 @@ from ROOT import TPaveText
 from ROOT import TLatex
 
 import os
-colors=[1,2,4,5,8,9,11,41,46,30,12,28,20,32]
+colors=[1,2,4,5,8,11,9,41,46,30,12,28,20,32]
 markerStyle=[23,21,22,20,24,25,26,27,28,29,20,21,22,23]            
 linestyle=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 
@@ -46,14 +46,14 @@ def DrawOverlap(fileVec, histVec, titleVec,legendtext,pngname,logstatus=[0,0],xR
     ## Legend    
     leg = TLegend(0.1, 0.70, 0.89, 0.89)#,NULL,"brNDC");
     leg.SetBorderSize(0)
-    leg.SetNColumns(3)
+    leg.SetNColumns(2)
     leg.SetLineColor(1)
     leg.SetLineStyle(1)
     leg.SetLineWidth(1)
     leg.SetFillColor(0)
     leg.SetFillStyle(0)
     leg.SetTextFont(42)
-    leg.SetTextSize(0.05)
+    leg.SetTextSize(0.04)
      
     c = TCanvas("c1", "c1",0,0,500,500)
     c.SetBottomMargin(0.15)
@@ -207,8 +207,7 @@ ytitle='#mu'
 axistitle = [xtitle, ytitle]
 DrawOverlap(files,histoname1,axistitle,legend,'limit_2016_binOptimisation',[0,1],[10,1000])
 '''
-
-
+'''
 files=['bin/limits_bbDM_combined_2017_FixedSignalSamples.root', 'bin/limits_bbDM_2b_2017_MonoHCode.root']
 legend=['bb+DM', 'bb+DM with monoH f/w']
 
@@ -218,6 +217,22 @@ xtitle='m_{A}[GeV]'
 ytitle='#mu'
 axistitle = [xtitle, ytitle]
 DrawOverlap(files,histoname1,axistitle,legend,'limit_bbDM_monoH_comparison',[0,1],[10,1000])
+
+'''
+
+
+
+
+
+files=['bin/v17_12_00_00/limits_bbDM_combined_2017.root', 'bin/v17_12_00_00_Jet1Pt75/limits_bbDM_combined_2017.root', 'bin/v17_12_00_00_Jet1Pt100/limits_bbDM_combined_2017.root', 'bin/noNJetSel/limits_bbDM_combined_2017.root', 'bin/v17_12_00_00_MET250/limits_bbDM_combined_2017.root', 'bin/v17_12_00_00_MET250_Jet1Pt100/limits_bbDM_combined_2017.root']
+legend=['jet p_{T}>50 GeV', 'jet p_{T}>75 GeV', 'jet p_{T}>100 GeV', 'No njet cut', 'MET>250', 'jet p_{T}>100 GeV & MET>250']
+
+histoname1=['expmed']
+
+xtitle='m_{A}[GeV]'
+ytitle='#mu'
+axistitle = [xtitle, ytitle]
+DrawOverlap(files,histoname1,axistitle,legend,'limit_bbDM_jetpT_optimise',[0,1],[10,1000])
 
 
 
