@@ -457,8 +457,8 @@ void PrepareWS_withnuisance(TString model_="monoHbb",TString analysiscategory_="
   int met_hi = 1000;
   h_vec_tf.clear();
     
-  //Double_t bins[]={200, 250, 350, 500, 1000};
-  Double_t bins[]={250,300,400,550,1000};
+  Double_t bins[]={200, 250, 350, 500, 1000};
+  //Double_t bins[]={250,300,400,550,1000};
   Int_t  binnum = sizeof(bins)/sizeof(Double_t) - 1;
   
   // As usual, load the combine library to get access to the RooParametricHist

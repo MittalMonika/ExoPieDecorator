@@ -38,26 +38,36 @@ process          0        1        2        3        4               5       6  
 rate             -1       1       1       1       -1             -1         -1    -1
 ------------
 
-#doubleb                 lnN    1.10          -        -         -         -         -       -       1.10
+lumi                    lnN    1.025         -        -         -        1.025    1.025    1.025    1.025
+CMS2017_PU              lnN    1.001         -        -         -        1.01     1.01     1.01     1.01
+
+CMS2017_trig_met                lnN    1.02         -        -         -        1.02      1.02      1.02     1.02 
+CMS2017_trig_ele                lnN     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for ele CRs 
+
 CMS2017_eff_b           lnN    1.10          -        -        1.10       1.10      -       -         1.10
 CMS2017_fake_b          lnN      -         1.05     1.05       1.05       1.05      1.05     1.05     1.05 
-lumi                    lnN    1.025         -        -         -        1.025    1.025    1.025    1.025
-CMS2017_scale_pu        lnN    1.001         -        -         -        1.01     1.01     1.01     1.01
-trig_met                lnN    1.02         -        -         -        1.02      1.02      1.02     1.02 
-norm_stop               lnN     -            -        -         -          1.2       -      -         -
-norm_diboson            lnN     -            -        -         -          -         -      1.2       -
-norm_wj                 lnN     -            -        1.2       -          -         -      -         -
-#ak8jet_jec              lnN    1.05          -        -         -        1.05      1.05    1.05    1.05 
-trig_ele                lnN     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for ele CRs 
-veto_tau                lnN    1.03        1.03     1.03       1.03       1.03      1.03     1.03     1.03
-CMS2017_scale_e         lnN     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for ele CRs 
-CMS2017_scale_m         lnN     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for mu CRs 
-CMS2017_eff_met         lnN    1.04        1.04     1.04       1.04   	  1.04      1.04     1.04     1.04
+
+CMS2017_EleID         lnN     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for ele CRs 
+CMS2017_EleRECO         lnN     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for ele CRs 
+
+CMS2017_MuTRK         lnN     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for mu CRs 
+CMS2017_MuID         lnN     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for mu CRs 
+
+CMS2017veto_tau       lnN    1.03        1.03     1.03       1.03       1.03      1.03     1.03     1.03
+
 wj_hf                   lnN     -            -        1.05       -          -          -      -       -  
 zj_hf                   lnN     -            1.05        -       -          -          -      -       -  
 
-#pdf_accept              lnN    1.01        1.01     1.01       1.01   	  1.01      1.01     1.01     1.01
+norm_stop               lnN     -            -        -         -          1.2       -      -         -
+norm_diboson            lnN     -            -        -         -          -         -      1.2       -
+norm_smh                 lnN     -            -        -       -          -         -      -         1.2
+
+
+CMS2017_pdf              lnN    1.01        -     -       -       1.01      1.01     1.01     1.01
+CMS2017_mu_scale         lnN    1.01        -     -       -       1.01      1.01     1.01     1.01
+
 #CMS2017_eff_t           lnN    1.03        1.03     1.03       1.03       1.03      1.03     1.03     1.03
+#CMS2017_eff_met         lnN    1.04        1.04     1.04       1.04   	  1.04      1.04     1.04     1.04
 
 #this is 2b datacard
 
@@ -66,27 +76,27 @@ rrv_CMS2017_scale_e_2b param 0.0 1
 rrv_CMS2017_scale_m_2b param 0.0 1
 rrv_eletrigeffCMS2017_scale__2b param 0.0 1
 
-rrv_stats_err_TOPE_tt_2b_bin1 param 0.0 1
-rrv_stats_err_TOPE_tt_2b_bin2 param 0.0 1
-rrv_stats_err_TOPE_tt_2b_bin3 param 0.0 1
-rrv_stats_err_TOPE_tt_2b_bin4 param 0.0 1
-rrv_stats_err_TOPMU_tt_2b_bin1 param 0.0 1
-rrv_stats_err_TOPMU_tt_2b_bin2 param 0.0 1
-rrv_stats_err_TOPMU_tt_2b_bin3 param 0.0 1
-rrv_stats_err_TOPMU_tt_2b_bin4 param 0.0 1
-rrv_stats_err_WE_wjets_2b_bin1 param 0.0 1
-rrv_stats_err_WE_wjets_2b_bin2 param 0.0 1
-rrv_stats_err_WE_wjets_2b_bin3 param 0.0 1
-rrv_stats_err_WE_wjets_2b_bin4 param 0.0 1
-rrv_stats_err_WMU_wjets_2b_bin1 param 0.0 1
-rrv_stats_err_WMU_wjets_2b_bin2 param 0.0 1
-rrv_stats_err_WMU_wjets_2b_bin3 param 0.0 1
-rrv_stats_err_WMU_wjets_2b_bin4 param 0.0 1
-rrv_stats_err_ZEE_dyjets_2b_bin1 param 0.0 1
-rrv_stats_err_ZEE_dyjets_2b_bin2 param 0.0 1
-rrv_stats_err_ZEE_dyjets_2b_bin3 param 0.0 1
-rrv_stats_err_ZEE_dyjets_2b_bin4 param 0.0 1
-rrv_stats_err_ZMUMU_dyjets_2b_bin1 param 0.0 1
-rrv_stats_err_ZMUMU_dyjets_2b_bin2 param 0.0 1
-rrv_stats_err_ZMUMU_dyjets_2b_bin3 param 0.0 1
-rrv_stats_err_ZMUMU_dyjets_2b_bin4 param 0.0 1
+rrv_CMS2017_stats_err_TOPE_tt_2b_bin1 param 0.0 1
+rrv_CMS2017_stats_err_TOPE_tt_2b_bin2 param 0.0 1
+rrv_CMS2017_stats_err_TOPE_tt_2b_bin3 param 0.0 1
+rrv_CMS2017_stats_err_TOPE_tt_2b_bin4 param 0.0 1
+rrv_CMS2017_stats_err_TOPMU_tt_2b_bin1 param 0.0 1
+rrv_CMS2017_stats_err_TOPMU_tt_2b_bin2 param 0.0 1
+rrv_CMS2017_stats_err_TOPMU_tt_2b_bin3 param 0.0 1
+rrv_CMS2017_stats_err_TOPMU_tt_2b_bin4 param 0.0 1
+rrv_CMS2017_stats_err_WE_wjets_2b_bin1 param 0.0 1
+rrv_CMS2017_stats_err_WE_wjets_2b_bin2 param 0.0 1
+rrv_CMS2017_stats_err_WE_wjets_2b_bin3 param 0.0 1
+rrv_CMS2017_stats_err_WE_wjets_2b_bin4 param 0.0 1
+rrv_CMS2017_stats_err_WMU_wjets_2b_bin1 param 0.0 1
+rrv_CMS2017_stats_err_WMU_wjets_2b_bin2 param 0.0 1
+rrv_CMS2017_stats_err_WMU_wjets_2b_bin3 param 0.0 1
+rrv_CMS2017_stats_err_WMU_wjets_2b_bin4 param 0.0 1
+rrv_CMS2017_stats_err_ZEE_dyjets_2b_bin1 param 0.0 1
+rrv_CMS2017_stats_err_ZEE_dyjets_2b_bin2 param 0.0 1
+rrv_CMS2017_stats_err_ZEE_dyjets_2b_bin3 param 0.0 1
+rrv_CMS2017_stats_err_ZEE_dyjets_2b_bin4 param 0.0 1
+rrv_CMS2017_stats_err_ZMUMU_dyjets_2b_bin1 param 0.0 1
+rrv_CMS2017_stats_err_ZMUMU_dyjets_2b_bin2 param 0.0 1
+rrv_CMS2017_stats_err_ZMUMU_dyjets_2b_bin3 param 0.0 1
+rrv_CMS2017_stats_err_ZMUMU_dyjets_2b_bin4 param 0.0 1

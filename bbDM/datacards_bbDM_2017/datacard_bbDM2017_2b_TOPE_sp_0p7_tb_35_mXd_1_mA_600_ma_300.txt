@@ -28,33 +28,43 @@ process                             wjets      tt        singlet      qcd    dyj
 process                               1        2           3           4        5        6   7   
 rate                                 -1        1         -1          -1       -1       -1    -1   
 ------------					        
-						        
-CMS2017_eff_b           lnN          1.10      -            1.10      -       -      -      1.10
-CMS2017_fake_b          lnN          1.05       1.05      1.05       1.05     1.05  1.05 1.05
-lumi                    lnN         1.025       -         1.025      1.025    1.025   1.025  1.025
-CMS2017_scale_pu        lnN         1.001       -         1.001      1.001    1.001   1.001  1.001 
-trig_met                lnN          1.02       -          1.02      1.02     1.02    1.02   1.02
-norm_stop               lnN           -         -         1.2        -       -          -            -
-norm_diboson            lnN           -        -          -         -        -          1.2         -
-norm_wj                 lnN           1.2      -          -        -        -             -         -
 
-trig_ele                lnN           1.05       -        1.05      1.05      1.05        1.05    1.05
-veto_tau                lnN           1.03        1.03     1.03       1.03       1.03      1.03     1.03     1.03
-CMS2017_scale_e         lnN           1.03        1.03     1.03       1.03       1.03      1.03     1.03     1.03
-CMS2017_scale_m         lnN           -            -        -         -          -          -      -
-CMS2017_eff_met         lnN           1.04        1.04     1.04       1.04       1.04      1.04     1.04
+lumi                    lnN         1.025       -         1.025      1.025    1.025   1.025  1.025
+CMS2017_PU              lnN         1.001       -         1.001      1.001    1.001   1.001  1.001 
+						        
+CMS2017_trig_ele                lnN           1.05       -        1.05      1.05      1.05        1.05    1.05
+CMS2017_trig_met                lnN          1.02       -          1.02      1.02     1.02    1.02   1.02
+
+CMS2017_eff_b           lnN          1.10      -          1.10       -        -      -      1.10
+CMS2017_fake_b          lnN          1.05       1.05      1.05       1.05     1.05  1.05 1.05
+
+CMS2017_EleID         lnN           1.03        1.03     1.03       1.03       1.03      1.03     1.03     1.03
+CMS2017_EleRECO         lnN           1.03        1.03     1.03       1.03       1.03      1.03     1.03     1.03
+
+CMS2017_MuTRK         lnN           -            -        -         -          -          -      -
+CMS2017_MUID         lnN           -            -        -         -          -          -      -
+
+CMS2017_veto_tau       lnN           1.03        1.03     1.03       1.03       1.03      1.03     1.03     1.03
+
 wj_hf                   lnN           1.05         -        -       -          -          -      -
 zj_hf                   lnN           -            -        -       -          1.05          -      -
 
-#pdf_accept              lnN          1.01       1.01  	  1.01       1.01     1.01  1.01  1.01
+norm_stop               lnN           -         -         1.2        -       -          -            -
+norm_diboson            lnN           -        -          -         -        -          1.2         -
+norm_smh                 lnN          -      -          -        -        -             -         1.2
+
+CMS2017_pdf              lnN    1.01        -     1.01       1.01       1.01      1.01     1.01     1.01
+CMS2017_mu_scale         lnN    1.01        -     1.01       1.01       1.01      1.01     1.01     1.01
+
 #CMS2017_eff_t           lnN          1.03       1.03       1.03      1.03     1.03  1.03 1.03 
+#CMS2017_eff_met         lnN           1.04        1.04     1.04       1.04       1.04      1.04     1.04
 
-tf1_TOPE_tt_2b flatParam
-tf2_TOPE_tt_2b flatParam
-tf3_TOPE_tt_2b flatParam
-tf4_TOPE_tt_2b flatParam
+tf1_TOPE_tt_2b_2017 flatParam
+tf2_TOPE_tt_2b_2017 flatParam
+tf3_TOPE_tt_2b_2017 flatParam
+tf4_TOPE_tt_2b_2017 flatParam
 
-rrvbc_SR_tt_2b1 flatParam
-rrvbc_SR_tt_2b2 flatParam
-rrvbc_SR_tt_2b3 flatParam
-rrvbc_SR_tt_2b4 flatParam
+rrvbc_SR_tt_2b1_2017 flatParam
+rrvbc_SR_tt_2b2_2017 flatParam
+rrvbc_SR_tt_2b3_2017 flatParam
+rrvbc_SR_tt_2b4_2017 flatParam

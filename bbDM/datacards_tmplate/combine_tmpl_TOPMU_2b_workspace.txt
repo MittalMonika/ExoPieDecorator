@@ -28,35 +28,48 @@ process                             wjets      tt        singlet      qcd    dyj
 process                               1        2           3           4        5        6   7   
 rate                                 -1        1         -1          -1       -1       -1    -1   
 ------------					        
-						        
-CMSYEAR_eff_b           lnN          1.10      -            1.10      -       -      -      1.10
-CMSYEAR_fake_b          lnN          1.05       1.05      1.05       1.05     1.05  1.05 1.05
-lumi                    lnN         1.025       -         1.025      1.025    1.025   1.025  1.025
-CMSYEAR_scale_pu        lnN         1.001       -         1.001      1.001    1.001   1.001  1.001 
-trig_met                lnN          1.02       -          1.02      1.02     1.02    1.02   1.02
-norm_stop               lnN           -         -         1.2        -       -          -            -
-norm_diboson            lnN           -        -          -         -        -          1.2         -
-norm_wj                 lnN           1.2      -          -        -        -             -         -
 
-trig_ele                lnN           1.05       -        1.05      1.05      1.05        1.05    1.05
-veto_tau                lnN           1.03        1.03     1.03       1.03       1.03      1.03     1.03     1.03
-CMSYEAR_scale_e         lnN           -            -        -         -          -          -      -
-CMSYEAR_scale_m         lnN           1.03        1.03     1.03       1.03       1.03      1.03     1.03     1.03
-CMSYEAR_eff_met         lnN           1.04        1.04     1.04       1.04       1.04      1.04     1.04
+lumi                    lnN         1.025       -         1.025      1.025    1.025   1.025  1.025
+CMSYEAR_PU              shape         1       -         1      1    1   1  1 
+						        
+CMSYEAR_trig_met                shape          1       -          1      1     1    1   1
+CMSYEAR_trig_ele                shape           -       -        -      -      -        -    -
+
+CMSYEAR_eff_b           shape          1      -            1      -       -      -      1
+CMSYEAR_fake_b          shape          1       1      1       1     1  1 1
+
+CMSYEAR_EleID         shape           -            -        -         -          -          -      -
+CMSYEAR_EleRECO         shape           -            -        -         -          -          -      -
+
+CMSYEAR_MuTRK         shape           1        -     1       1       1      1     1    
+CMSYEAR_MuID         shape           1        -     1       1       1      1     1     
+
+CMSYEAR_veto_tau                lnN           1.03        1.03     1.03       1.03       1.03      1.03     1.03   
+
 wj_hf                   lnN           1.05         -        -       -          -          -      -
 zj_hf                   lnN           -            -        -       -          1.05          -      -
 
-#pdf_accept              lnN          1.01       1.01  	  1.01       1.01     1.01  1.01  1.01
+norm_stop               lnN           -         -         1.2        -       -          -            -
+norm_diboson            lnN           -        -          -         -        -          1.2         -
+norm_smh                 lnN           -      -          -        -        -             -         1.2
+
+#CMSYEAR_pdf              shape    1        -     1       1       1      1     1     
+#CMSYEAR_mu_scale         shape    1        -     1       1       1      1     1     
+
+CMSYEAR_pdf       shape - - -	   - - - 1
+CMSYEAR_mu_scale shape - - -    - - - 1
+
+CMSYEAR_qcd_norm        lnN - - - 2.0 - - -
 #CMSYEAR_eff_t           lnN          1.03       1.03       1.03      1.03     1.03  1.03 1.03 
+#CMSYEAR_eff_met         lnN           1.04        1.04     1.04       1.04       1.04      1.04     1.04
 
-tf1_TOPMU_tt_2b flatParam
-tf2_TOPMU_tt_2b flatParam
-tf3_TOPMU_tt_2b flatParam
-tf4_TOPMU_tt_2b flatParam
-
-rrvbc_SR_tt_2b1 flatParam
-rrvbc_SR_tt_2b2 flatParam
-rrvbc_SR_tt_2b3 flatParam
-rrvbc_SR_tt_2b4 flatParam
+tf1_TOPMU_tt_2b_YEAR flatParam
+tf2_TOPMU_tt_2b_YEAR flatParam
+tf3_TOPMU_tt_2b_YEAR flatParam
+tf4_TOPMU_tt_2b_YEAR flatParam
+rrvbc_SR_tt_2b1_YEAR flatParam
+rrvbc_SR_tt_2b2_YEAR flatParam
+rrvbc_SR_tt_2b3_YEAR flatParam
+rrvbc_SR_tt_2b4_YEAR flatParam
 
 

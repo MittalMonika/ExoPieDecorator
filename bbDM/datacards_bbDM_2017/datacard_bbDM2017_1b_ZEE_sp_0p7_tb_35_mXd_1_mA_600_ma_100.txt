@@ -28,39 +28,49 @@ process                                   tt        singlet        dyjets  dibos
 process                               1        2           3           4        5        
 rate                                 -1        -1         1          -1       -1           
 ------------					        
-						        
-#doubleb                 lnN                -            -         -       -      1.10
-CMS2017_eff_b           lnN                1.10            1.10      -       -       1.10    
-CMS2017_fake_b          lnN                1.05      1.05        -      1.05  1.05 
 lumi                    lnN               1.025     1.025     -       1.025   1.025 
+CMS2017_PU        shape               1      1     -    1   1 
+						        
+CMS2017_eff_b           shape                1            1      -       -       1    
+CMS2017_fake_b          shape                1      1        -      1  1 
 
-CMS2017_scale_pu        lnN               1.001      1.001     -    1.001   1.001 
 
-trig_met                lnN                1.02          1.02      -     1.02    1.02  
+CMS2017_trig_met                shape                - - - - -
+CMS2017_trig_ele                shape                 1       1     -      1        1   
+
+CMS2017_EleID         shape                  1     1       -       1      1     
+CMS2017_EleRECO         shape                  1     1       -       1      1   
+
+CMS2017_MuTRK         shape                   -        -         -          -          -     
+CMS2017_MuID         shape                   -        -         -          -          -     
+
+CMS2017_veto_tau                lnN                  1.03     1.03       -       1.03      1.03    
+
+wj_hf                   lnN                   -        -       -          -          -     
+zj_hf                   lnN                   -        -           1.05          -   -
 
 norm_stop               lnN                -         1.2        -       -          -           
 norm_diboson            lnN               -          -         -        1.2        -
-norm_wj                 lnN               -          -        -        -             -        
+norm_smh                 lnN               -          -        -        -             1.2
 
-#ak8jet_jec              lnN                 1.05      1.05      -          1.05       1.05     
-trig_ele                lnN                 1.05       1.05     -      1.05        1.05   
-veto_tau                lnN                  1.03     1.03       1.03       1.03      1.03     1.03    
-CMS2017_scale_e         lnN                  1.03     1.03       1.03       1.03      1.03     1.03    
-CMS2017_scale_m         lnN                   -        -         -          -          -     
-CMS2017_eff_met         lnN                  1.04     1.04       1.04       1.04      1.04    
-wj_hf                   lnN                   -        -       -          -          -     
-#zj_hf                   lnN                   -        -           1.05          -   -
+#CMS2017_pdf              shape                1  	  1       -     1  1  
+#CMS2017_mu_scale              shape            1  	  1       -     1  1  
 
-#pdf_accept              lnN                1.01  	  1.01       1.01     1.01  1.01  1.01
-#CMS2017_eff_t           lnN                1.03       1.03      1.03     1.03  1.03 1.03 
+CMS2017_pdf shape  - - - - 1
+CMS2017_mu_scale shape  - -	- - 1
+CMS2017_qcd_norm lnN - - - - -
+#CMS2017_eff_met         lnN                  1.04     1.04       1.04       1.04      1.04    
 
 
-rrvbc_SR_zjets_1b1 flatParam
-rrvbc_SR_zjets_1b2 flatParam
-rrvbc_SR_zjets_1b3 flatParam
-rrvbc_SR_zjets_1b4 flatParam
+#CMS2017_eff_t           lnN                1.03       1.03      1.03     1.03  1.03 
 
-tf1_ZEE_dyjets_1b flatParam
-tf2_ZEE_dyjets_1b flatParam
-tf3_ZEE_dyjets_1b flatParam
-tf4_ZEE_dyjets_1b flatParam
+
+rrvbc_SR_zjets_1b1_2017 flatParam
+rrvbc_SR_zjets_1b2_2017 flatParam
+rrvbc_SR_zjets_1b3_2017 flatParam
+rrvbc_SR_zjets_1b4_2017 flatParam
+
+tf1_ZEE_dyjets_1b_2017 flatParam
+tf2_ZEE_dyjets_1b_2017 flatParam
+tf3_ZEE_dyjets_1b_2017 flatParam
+tf4_ZEE_dyjets_1b_2017 flatParam

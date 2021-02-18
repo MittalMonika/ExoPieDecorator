@@ -151,6 +151,7 @@ def main():
             datacards=[]
             
             dataCardName  = 'datacards_tmplate/combine_tmpl_{}{}_workspace.txt'
+
             #'datacards_tmplate/combine_tmpl_'+iregion+analysis_tag+'_workspace.txt'
             ## for resolved and merged it can be run by creating each region data card and then merge them 
             if category != "combined":

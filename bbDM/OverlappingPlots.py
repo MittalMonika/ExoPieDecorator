@@ -22,7 +22,7 @@ from ROOT import TPaveText
 from ROOT import TLatex
 
 import os
-colors=[1,2,4,5,8,11,9,41,46,30,12,28,20,32]
+colors=[1,41,4,5,8,2,9,41,46,30,12,28,20,32]
 markerStyle=[23,21,22,20,24,25,26,27,28,29,20,21,22,23]            
 linestyle=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 
