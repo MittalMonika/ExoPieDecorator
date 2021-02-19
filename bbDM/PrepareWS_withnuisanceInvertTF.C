@@ -333,10 +333,10 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
 
   // allow the stats error to vary fom 0 to  1* sigma 
   // to make them gaussian constrained add param line in the datacards otherwise it is not gaussian constrained. 
-  RooRealVar rrv_stats_err_bin1("rrv_stats_err_"+region_proc_cr+anacat_+"_bin1", "rrv_stats_err_"+region_proc_cr+"_bin1",tf_stats_err_vector[0],  0,  1.*tf_stats_err_vector[0]);
-  RooRealVar rrv_stats_err_bin2("rrv_stats_err_"+region_proc_cr+anacat_+"_bin2", "rrv_stats_err_"+region_proc_cr+"_bin2",tf_stats_err_vector[1],  0,  1.*tf_stats_err_vector[1]);
-  RooRealVar rrv_stats_err_bin3("rrv_stats_err_"+region_proc_cr+anacat_+"_bin3", "rrv_stats_err_"+region_proc_cr+"_bin3",tf_stats_err_vector[2],  0,  1.*tf_stats_err_vector[2]);
-  RooRealVar rrv_stats_err_bin4("rrv_stats_err_"+region_proc_cr+anacat_+"_bin4", "rrv_stats_err_"+region_proc_cr+"_bin4",tf_stats_err_vector[3],  0,  1.*tf_stats_err_vector[3]);
+  RooRealVar rrv_stats_err_bin1("rrv_CMS2017_stats_err_"+region_proc_cr+anacat_+"_bin1", "rrv_stats_err_"+region_proc_cr+"_bin1",tf_stats_err_vector[0],  0.2*tf_stats_err_vector[0],10.*tf_stats_err_vector[0]);
+  RooRealVar rrv_stats_err_bin2("rrv_CMS2017_stats_err_"+region_proc_cr+anacat_+"_bin2", "rrv_stats_err_"+region_proc_cr+"_bin2",tf_stats_err_vector[1],  0.2*tf_stats_err_vector[1],10.*tf_stats_err_vector[1]);
+  RooRealVar rrv_stats_err_bin3("rrv_CMS2017_stats_err_"+region_proc_cr+anacat_+"_bin3", "rrv_stats_err_"+region_proc_cr+"_bin3",tf_stats_err_vector[2],  0.2*tf_stats_err_vector[2],10.*tf_stats_err_vector[2]);
+  RooRealVar rrv_stats_err_bin4("rrv_CMS2017_stats_err_"+region_proc_cr+anacat_+"_bin4", "rrv_stats_err_"+region_proc_cr+"_bin4",tf_stats_err_vector[3],  0.2*tf_stats_err_vector[3],10.*tf_stats_err_vector[3]);
   
   RooArgList ral_bin1;
   RooArgList ral_bin2;
@@ -373,9 +373,9 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
     std::cout<<" bin 3 stats unc "<< rfv_bin3<<" after including "<<nuisanceName[nuisIndex[isys]]<<std::endl;
     std::cout<<" bin 4 stats unc "<< rfv_bin4<<" after including "<<nuisanceName[nuisIndex[isys]]<<std::endl;
     
-    //rrv_syst = new RooRealVar("rrv_"+nuisanceName[nuisIndex[isys]], "rrv_"+nuisanceName[nuisIndex[isys]], 0);
-    //rrv_syst = new RooRealVar("rrv_"+nuisanceName[nuisIndex[isys]], "rrv_"+nuisanceName[nuisIndex[isys]], nuisanceValue[nuisIndex[isys]], 0., 5*nuisanceValue[nuisIndex[isys]]);
-    rrv_syst = new RooRealVar(nuisanceName[nuisIndex[isys]]+anacat_, "rrv_"+nuisanceName[nuisIndex[isys]], nuisanceValue[nuisIndex[isys]], 0., 1.*nuisanceValue[nuisIndex[isys]]);
+    
+    //rrv_syst = new RooRealVar(nuisanceName[nuisIndex[isys]]+anacat_, "rrv_"+nuisanceName[nuisIndex[isys]], nuisanceValue[nuisIndex[isys]], 0., 1.*nuisanceValue[nuisIndex[isys]]);
+    rrv_syst = new RooRealVar(nuisanceName[nuisIndex[isys]], "rrv_"+nuisanceName[nuisIndex[isys]], nuisanceValue[nuisIndex[isys]], 0., 1.*nuisanceValue[nuisIndex[isys]]);
     
     ral_bin1.add(*rrv_syst);
     ral_bin2.add(*rrv_syst);
@@ -512,7 +512,7 @@ void PrepareWS_withnuisanceInvertTF(TString model_="monoHbb",TString analysiscat
   nuisanceName.push_back(nuisancePostfix+"eleID");                nuisanceValue.push_back(0.02) ;  //  2
   
   nuisanceName.push_back(nuisancePostfix+"muReco");               nuisanceValue.push_back(0.01) ;   // 3
-  nuisanceName.push_back(nuisancePostfix+"muID");                 nuisanceValue.push_back(0.02) ;   // 4 
+  nuisanceName.push_back(nuisancePostfix+"muID");                 nuisanceValue.push_back(0.03) ;   // 4 
   //nuisanceName.push_back(nuisancePostfix+"muIso");                nuisanceValue.push_back(0.02) ;   // 5 
   
   //nuisanceName.push_back(nuisancePostfix+"metTrig");              nuisanceValue.push_back(0.05) ;   // 6 

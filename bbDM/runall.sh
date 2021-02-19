@@ -12,17 +12,17 @@ root -l -b -q PrepareWS_withnuisanceInvertTF.C"(\"bbDM\", \"2b\", \"UPDATE\", \"
 ##########
 ##########
 ########### Prepare the cards for sr 1b, sr 2b and combined. 
-python RunLimits.py -c --model 2hdma --region "SR TOPE TOPMU WE WMU ZEE ZMUMU" --category=sr1
-python RunLimits.py -c --model 2hdma --region "SR TOPE TOPMU WE WMU ZEE ZMUMU" --category=sr2
-python RunLimits.py -c --model 2hdma --region "bbDM${year}_datacardslist_1b_2hdma.txt bbDM${year}_datacardslist_2b_2hdma.txt" --category=srall
+#python RunLimits.py -c --model 2hdma --region "SR TOPE TOPMU WE WMU ZEE ZMUMU" --category=sr1
+#python RunLimits.py -c --model 2hdma --region "SR TOPE TOPMU WE WMU ZEE ZMUMU" --category=sr2
+#python RunLimits.py -c --model 2hdma --region "bbDM${year}_datacardslist_1b_2hdma.txt bbDM${year}_datacardslist_2b_2hdma.txt" --category=srall
 #####
 ########### copy the workspace to datacard directory 
 cp bbDM_${year}_WS.root datacards_bbDM_${year}/bbDM_${year}_WS.root
 #####
 ########### run limit for each [1b, 2b, combo] and save pdf in the plot dir. 
-python RunLimits.py -A -L -v 0 -i bbDM${year}_datacardslist_1b_2hdma.txt --category=sr1 --postfix $postfix --savepdf --outlog="running limits for 1b"
-python RunLimits.py -A -L -v 0 -i bbDM${year}_datacardslist_2b_2hdma.txt --category=sr2 --postfix $postfix --savepdf --outlog="running limits for 2b"
-python RunLimits.py -A -L -v 0 -i bbDM${year}_datacardslist_C_2hdma.txt --category=srall --postfix $postfix --savepdf --outlog="running limits for 1b+2b"
+#python RunLimits.py -A -L -v 0 -i bbDM${year}_datacardslist_1b_2hdma.txt --category=sr1 --postfix $postfix --savepdf --outlog="running limits for 1b"
+#python RunLimits.py -A -L -v 0 -i bbDM${year}_datacardslist_2b_2hdma.txt --category=sr2 --postfix $postfix --savepdf --outlog="running limits for 2b"
+#python RunLimits.py -A -L -v 0 -i bbDM${year}_datacardslist_C_2hdma.txt --category=srall --postfix $postfix --savepdf --outlog="running limits for 1b+2b"
 
 #python RunLimits.py --savepdf --limitTextFile bin/limits_bbDM_1b_${year}.txt --outlog "saving pdf for 1b" --category=sr1
 #python RunLimits.py --savepdf --limitTextFile bin/limits_bbDM_2b_${year}.txt --outlog "saving pdf for 2b" --category=sr2

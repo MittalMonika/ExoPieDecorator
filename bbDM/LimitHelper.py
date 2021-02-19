@@ -345,10 +345,13 @@ class RunLimits:
             os.system("mv "+default_fit_root+" " + fit_Diagnostics)
             ''' get the different of nuisances ''' 
             self.PrintSpacing()
+            print ("python diffNuisances.py "+fit_Diagnostics+" --abs --all -g "+pull_root)
             os.system("python diffNuisances.py "+fit_Diagnostics+" --abs --all -g "+pull_root)
             os.system("mv "+default_pull_root+" " + pull_root)
             self.PrintSpacing()
             dir_ = outdir["pulls"]
+            
+            print ('root -l -b -q PlotPulls.C\(\\"'+pull_root+'\\",\\"'+dir_+'\\",\\"'+postfix_+'\\"\)')
             os.system('root -l -b -q PlotPulls.C\(\\"'+pull_root+'\\",\\"'+dir_+'\\",\\"'+postfix_+'\\"\)')
             dir_ = outdir["yr"]
             self.PrintSpacing()
@@ -378,6 +381,7 @@ class RunLimits:
         if run_mode == "data":
             self.PrintSpacing(2)
             print "performing the fit in run_mode ",run_mode
+            print ("combine -M FitDiagnostics --saveShapes "+datacard+ " --saveWithUncertainties --saveNormalizations --X-rtd MINIMIZER_analytic ")
             os.system("combine -M FitDiagnostics --saveShapes "+datacard+ " --saveWithUncertainties --saveNormalizations --X-rtd MINIMIZER_analytic ")
             self.PrintSpacing(1)
             self.SavePrePostComparison("data",outdir,category, year)
@@ -387,6 +391,7 @@ class RunLimits:
         ## asimov fit 
         if run_mode == "asimov":
             self.PrintSpacing(2)
+            print ("combine -M FitDiagnostics --saveShapes "+datacard + " --saveWithUncertainties --saveNormalizations --X-rtd MINIMIZER_analytic  --rMin -100 -t -1 --expectSignal 0")
             os.system("combine -M FitDiagnostics --saveShapes "+datacard + " --saveWithUncertainties --saveNormalizations --X-rtd MINIMIZER_analytic  --rMin -100 -t -1 --expectSignal 0")
             self.PrintSpacing(1)
             self.SavePrePostComparison("asimov",outdir,category,year)

@@ -36,7 +36,7 @@ CMSYEAR_trig_met                shape                1          1      -     1  
 CMSYEAR_trig_ele                shape                 -       -     -      -        -
 
 CMSYEAR_eff_b           shape                1            1      -       -       1    
-CMSYEAR_fake_b          shape                1      1        -      1  1 
+#CMSYEAR_fake_b          shape                1      1        -      1  1 
 
 CMSYEAR_EleID         shape                   -        -         -          -          -     
 CMSYEAR_EleRECO         shape                   -        -         -          -          -     
@@ -45,8 +45,8 @@ CMSYEAR_MuID         shape                  1     1       -       1      1
 
 CMSYEAR_veto_tau                lnN                  1.03     1.03       -       1.03      1.03
 
-wj_hf                   lnN                   -        -       -          -          -     
-zj_hf                   lnN                   -        -           1.05          -   -
+#wj_hf                   lnN                   -        -       -          -          -     
+#zj_hf                   lnN                   -        -           1.05          -   -
 
 norm_stop               lnN                -         1.2        -       -          -           
 norm_diboson            lnN               -          -         -        1.2        -
