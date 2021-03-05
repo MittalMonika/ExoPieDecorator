@@ -46,6 +46,18 @@ CMSYEAR_MuID         shape           1        -     1       1       1      1    
 
 CMSYEAR_veto_tau                lnN           1.03        1.03     1.03       1.03       1.03      1.03     1.03   
 
+JECAbsolute shape 1 - 1		1 1 1 1
+JECAbsolute_YEAR shape 1 - 1  1 1 1 1
+JECBBEC1 shape 1 - 1   1 1 1 1
+JECBBEC1_YEAR shape 1 - 1  1 1 1 1
+JECEC2 shape 1 - 1  1 1 1 1
+JECEC2_YEAR shape 1 - 1 1 1 1 1
+JECFlavorQCD shape 1 - 1  1 1 1 1
+JECHF shape 1 - 1  1 1 1 1
+JECHF_YEAR shape 1 - 1 1 1 1 1
+JECRelativeBal shape 1 - 1 1 1 1 1
+JECRelativeSample_YEAR shape 1 - 1      1 1 1 1
+
 #wj_hf                   lnN           1.05         -        -       -          -          -      -
 #zj_hf                   lnN           -            -        -       -          1.05          -      -
 

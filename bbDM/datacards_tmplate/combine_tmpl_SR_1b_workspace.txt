@@ -55,6 +55,20 @@ CMSYEAR_MuID         shape     -            -        -         -          -     
 
 CMSYEAR_veto_tau     lnN    1.03        1.03     1.03       1.03       1.03      1.03     1.03     1.03
 
+
+JECAbsolute shape 1 - - - 1 1 1 1 
+JECAbsolute_YEAR shape 1 - -  - 1 1 1	1
+JECBBEC1 shape 1 - -   - 1 1 1	1
+JECBBEC1_YEAR shape 1 - -  - 1 1 1	1
+JECEC2 shape 1 - -  - 1 1 1  1
+JECEC2_YEAR shape 1 - -	- 1 1 1	1
+JECFlavorQCD shape 1 - -  - 1 1 1	1
+JECHF shape 1 - -  - 1 1 1  1
+JECHF_YEAR shape 1 - - - 1 1 1	1
+JECRelativeBal shape 1 - - - 1 1 1	1
+JECRelativeSample_YEAR shape 1 - -	- 1 1 1	1
+
+
 #wj_hf                   lnN     -            -        1.05       -          -          -      -       -  
 #zj_hf                   lnN     -            1.05        -       -          -          -      -       -  
 
@@ -76,11 +90,12 @@ CMSYEAR_qcd_norm        lnN - - - - - 1.5 - -
 #rrv_CMSYEAR_scale_m_1b param 0.0 1
 #rrv_eletrigeffCMSYEAR_scale__1b param 0.0 1
 
-CMS2017_eleTrig			 param  0.0 1
-CMS2017_eleReco param  0.0 1
-CMS2017_eleID param  0.0 1
-CMS2017_muReco param  0.0 1
-CMS2017_muID param  0.0 1
+CMS2017_EleTrig                 param  0.0 1
+CMS2017_EleRECO param  0.0 1
+CMS2017_EleID param  0.0 1
+CMS2017_MuTRK param  0.0 1
+#CMS2017_MuID param  0.0 1
+
 
 
 rrv_CMSYEAR_stats_err_TOPE_tt_1b_bin1 param 0.0 1

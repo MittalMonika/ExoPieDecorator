@@ -340,6 +340,9 @@ class RunLimits:
             dir_ = outdir["pulls"]
             os.system("mv "+default_fit_root+" " + fit_Diagnostics)
             os.system('root -l -b -q plotPostNuisance_combine.C\(\\"'+fit_Diagnostics+'\\",\\"'+dir_+'\\",\\"'+postfix_+'\\"\)')
+            
+            print ("python PlotPreFitPostFit.py "+fit_Diagnostics+" "+dir_+" "+postfix_)
+            os.system("python PlotPreFitPostFit.py "+fit_Diagnostics+" "+dir_+" "+postfix_)
         
         if run_mode != "cronly":
             os.system("mv "+default_fit_root+" " + fit_Diagnostics)
@@ -401,8 +404,9 @@ class RunLimits:
             print ("text2workspace.py "+datacard+" --channel-masks")
             os.system("text2workspace.py "+datacard+" --channel-masks")
             wsname = datacard.replace(".txt",".root")
-            print ("combine -M FitDiagnostics  "+wsname+" --saveShapes --saveWithUncertainties --setParameters mask_SR=1")
-            os.system("combine -M FitDiagnostics  "+wsname+" --saveShapes --saveWithUncertainties --setParameters mask_SR=1,mask_cat_1b_SR=1,mask_cat_2b_SR=1")
+
+            print("combine -M FitDiagnostics  "+wsname+" --saveShapes --saveWithUncertainties --setParameters mask_SR=1,mask_cat_1b_SR=1,mask_cat_2b_SR=1 --X-rtd MINIMIZER_analytic")
+            os.system("combine -M FitDiagnostics  "+wsname+" --saveShapes --saveWithUncertainties --setParameters mask_SR=1,mask_cat_1b_SR=1,mask_cat_2b_SR=1 --X-rtd MINIMIZER_analytic")
             
             self.SavePrePostComparison("cronly",outdir, category,year)
         

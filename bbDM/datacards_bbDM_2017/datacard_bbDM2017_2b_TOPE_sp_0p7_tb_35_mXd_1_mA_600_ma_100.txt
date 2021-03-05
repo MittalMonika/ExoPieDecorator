@@ -45,9 +45,21 @@ CMS2017_MuTRK           shape           -            -        -         -       
 CMS2017_MuID            shape           -            -        -         -          -          -      -
 
 CMS2017_veto_tau        lnN           1.03        1.03     1.03       1.03       1.03      1.03     1.03    
+JECAbsolute shape 1 - 1	1 1 1 1
+JECAbsolute_2017 shape 1 - 1  1 1 1 1
+JECBBEC1 shape 1 - 1   1 1 1 1
+JECBBEC1_2017 shape 1 - 1  1 1 1 1
+JECEC2 shape 1 - 1  1 1 1 1
+JECEC2_2017 shape 1 - 1 1 1 1 1
+JECFlavorQCD shape 1 - 1  1 1 1 1
+JECHF shape 1 - 1  1 1 1 1
+JECHF_2017 shape 1 - 1 1 1 1 1
+JECRelativeBal shape 1 - 1 1 1 1 1
+JECRelativeSample_2017 shape 1 - 1      1 1 1 1
 
-wj_hf                   lnN           1.05         -        -       -          -          -      -
-zj_hf                   lnN           -            -        -       -          1.05          -      -
+
+#wj_hf                   lnN           1.05         -        -       -          -          -      -
+#zj_hf                   lnN           -            -        -       -          1.05          -      -
 
 norm_stop               lnN           -         -         1.2        -       -          -            -
 norm_diboson            lnN           -        -          -         -        -          1.2         -
@@ -60,7 +72,7 @@ CMS2017_pdf       shape - - -	   - - - 1
 CMS2017_mu_scale shape - - -    - - - 1
 
 
-CMS2017_qcd_norm     lnN - - - 2.0 - - -
+CMS2017_qcd_norm     lnN - - - 1.5 - - -
 
 
 #CMS2017_eff_met         lnN           1.04        1.04     1.04       1.04       1.04      1.04     1.04
