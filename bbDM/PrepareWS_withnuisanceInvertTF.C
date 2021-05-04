@@ -100,7 +100,7 @@ std::vector <RooRealVar> GetRooRealVar(std::vector<float>  bcs, TString name, TS
     // fix the naming here using some automation  and also in the next function
 
     std::cout<<" name inside GetRooRealVar = "<<name+postfix<<std::endl;
-    rrvV_.push_back(RooRealVar(name+postfix+"_"+year,"Background yield in signal region, bin 1", bcs[i], 0.2*bcs[i], 10*bcs[i]));
+    rrvV_.push_back(RooRealVar(name+postfix+"_"+year,"Background yield in signal region, bin 1", bcs[i], 0.02*bcs[i], 10*bcs[i]));
     
   }
   
@@ -457,11 +457,12 @@ void PrepareWS_withnuisanceInvertTF(TString model_="monoHbb",TString analysiscat
   TString AnaYearCat  = model_ +  year + "_" + cat__ +"_" ;
   std::cout<<" AnaYearCat = "<<AnaYearCat<<std::endl;
   bool usebkgsum = false;
-  int met_low = 200;
+  int met_low = 250;
   int met_hi = 1000;
   h_vec_tf.clear();
     
-  Double_t bins[]={200, 250, 350, 500, 1000};
+  //Double_t bins[]={200, 250, 350, 500, 1000};
+  Double_t bins[]={250.,300.,400.,550., 1000.};
   Int_t  binnum = sizeof(bins)/sizeof(Double_t) - 1;
   
   // As usual, load the combine library to get access to the RooParametricHist
@@ -507,7 +508,7 @@ void PrepareWS_withnuisanceInvertTF(TString model_="monoHbb",TString analysiscat
   nuisanceValue.clear();
   
   
-  nuisanceName.push_back(nuisancePostfix+"EleTrig");              nuisanceValue.push_back(0.03) ;  //  0
+  nuisanceName.push_back(nuisancePostfix+"trig_ele");              nuisanceValue.push_back(0.03) ;  //  0
   nuisanceName.push_back(nuisancePostfix+"EleRECO");              nuisanceValue.push_back(0.01) ;  //  1
   nuisanceName.push_back(nuisancePostfix+"EleID");                nuisanceValue.push_back(0.02) ;  //  2
   
@@ -536,7 +537,9 @@ void PrepareWS_withnuisanceInvertTF(TString model_="monoHbb",TString analysiscat
   // Create all the inputs needed for this CR 
   // list of systematics for Top mu CR 
   std::vector<int> nuisIndex; nuisIndex.clear(); // this is the index of nuisances which are to be used for mu CR 
-  nuisIndex.push_back(3); 
+  if (year=="2016"){
+    nuisIndex.push_back(3); }
+  
   nuisIndex.push_back(4); 
   //if (year=="2017") nuisIndex.push_back(7);
   
@@ -607,7 +610,9 @@ void PrepareWS_withnuisanceInvertTF(TString model_="monoHbb",TString analysiscat
     */
 
   nuisIndex.clear();
-  nuisIndex.push_back(3); 
+  if (year=="2016"){
+    nuisIndex.push_back(3); 
+  }
   nuisIndex.push_back(4); 
   //nuisIndex.push_back(5); 
   //if (year=="2017") nuisIndex.push_back(7);
@@ -632,7 +637,9 @@ void PrepareWS_withnuisanceInvertTF(TString model_="monoHbb",TString analysiscat
   */
 
   nuisIndex.clear();
-  nuisIndex.push_back(3);
+  if (year=="2016"){
+    nuisIndex.push_back(3);
+  }
   nuisIndex.push_back(4);
   //nuisIndex.push_back(5);
   //if (year=="2017") nuisIndex.push_back(7);
@@ -692,6 +699,7 @@ void PrepareWS_withnuisanceInvertTF(TString model_="monoHbb",TString analysiscat
   nuisancesName.push_back("CMS2017_pdfUp");
   nuisancesName.push_back("CMS2017_mu_scaleUp");
   
+ 
   nuisancesName.push_back("JECAbsoluteUp");
   nuisancesName.push_back("JECAbsolute_"+year+"Up");
   nuisancesName.push_back("JECBBEC1Up");
@@ -728,6 +736,18 @@ void PrepareWS_withnuisanceInvertTF(TString model_="monoHbb",TString analysiscat
   nuisancesName.push_back("JECHF_"+year+"Down");
   nuisancesName.push_back("JECRelativeBalDown");
   nuisancesName.push_back("JECRelativeSample_"+year+"Down");
+ 
+
+  // stats  only for signal for now 
+  nuisancesName.push_back("eff_bin1Up");
+  nuisancesName.push_back("eff_bin2Up");
+  nuisancesName.push_back("eff_bin3Up");
+  nuisancesName.push_back("eff_bin4Up");
+
+  nuisancesName.push_back("eff_bin1Down");
+  nuisancesName.push_back("eff_bin2Down");
+  nuisancesName.push_back("eff_bin3Down");
+  nuisancesName.push_back("eff_bin4Down");
   
   std::vector<int> signalpoint;
   signalpoint.clear();
@@ -782,10 +802,6 @@ void PrepareWS_withnuisanceInvertTF(TString model_="monoHbb",TString analysiscat
       }
       std::cout<<" ........ saved"<<std::endl;
       
-      //std::cout<<" signal histogram :"<<signalname<<std::endl;
-      
-      
-      //addTemplate(wspace, vars, (TH1F*) fin->Get(signalname ) );
     }
   }
   }
@@ -850,32 +866,31 @@ void PrepareWS_withnuisanceInvertTF(TString model_="monoHbb",TString analysiscat
   category.push_back(AnaYearCat);
   
   TString tempname;
+  
   for (auto inuis=0; inuis<nuisancesName.size(); inuis++){
-  for (auto ir=0; ir<regions.size(); ir++){
-
-    for (auto ip=0; ip<process.size(); ip++){
-
-      for (auto ic=0; ic<category.size(); ic++){
-	if (process[ip] == "wjets" && ( (regions[ir] =="WE") || (regions[ir] =="WMU") ) ) continue ;
-	if (process[ip] == "tt" && ( (regions[ir] =="TOPE") || (regions[ir] =="TOPMU") ) ) continue ;
+    for (auto ir=0; ir<regions.size(); ir++){
+      
+      for (auto ip=0; ip<process.size(); ip++){
 	
-	tempname = category[ic] + regions[ir] + "_" +  process[ip] ;
-	if (nuisancesName[inuis]!="") tempname = tempname  + "_" +nuisancesName[inuis];
-	//std::cout<<" saving "<<tempname<<" "<<(TH1F*) fin->Get(tempname)<<std::endl;
-	//TH1F* histogram_ = (TH1F*) fin->Get(tempname); 
-	if ((TH1F*) fin->Get(tempname) == 0 ) {
-	  std::cout<<" histogram : "<< 	tempname <<" does not exist"<<std::endl;
+	for (auto ic=0; ic<category.size(); ic++){
+	  //if (process[ip] == "wjets" && ( (regions[ir] =="WE") || (regions[ir] =="WMU") ) ) continue ;
+	  //if (process[ip] == "tt" && ( (regions[ir] =="TOPE") || (regions[ir] =="TOPMU") ) ) continue ;
+	  
+	  tempname = category[ic] + regions[ir] + "_" +  process[ip] ;
+	  if (nuisancesName[inuis]!="") tempname = tempname  + "_" +nuisancesName[inuis];
+	  if ((TH1F*) fin->Get(tempname) == 0 ) {
+	    std::cout<<" histogram : "<< 	tempname <<" does not exist"<<std::endl;
+	  }
+	  
+	  if ((TH1F*) fin->Get(tempname) != 0 )  {
+	    std::cout<<" histogram : "<<  tempname <<" exist and saving "<<std::endl;
+	    addTemplate(wspace, vars, (TH1F*) fin->Get(tempname)  );
+	  }
+	  std::cout<<" ........ saved"<<std::endl;
+	  
 	}
-		
-	if ((TH1F*) fin->Get(tempname) != 0 )  {
-	  std::cout<<" histogram : "<<  tempname <<" exist and saving "<<std::endl;
-	  addTemplate(wspace, vars, (TH1F*) fin->Get(tempname)  );
-	}
-	std::cout<<" ........ saved"<<std::endl;
-	
       }
     }
-  }
   }
   
     

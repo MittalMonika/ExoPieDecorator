@@ -39,18 +39,18 @@ rate             -1       1       1       1       -1             -1         -1  
 ------------
 
 lumi                    lnN    1.025         -        -         -        1.025    1.025    1.025    1.025
-CMSYEAR_PU        shape    1.001         -        -         -        1.01     1.01     1.01     1.01
+CMSYEAR_PU        shape    1         -        -         -        1     1     1     1
 
 CMSYEAR_trig_met                shape    1 - - -	1 1 1 1
 CMSYEAR_trig_ele                shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for ele CRs 
 
 CMSYEAR_eff_b           shape    1          -        -        -       1      -       -         1
-#CMSYEAR_fake_b          shape    1 - - -      1      1     1     1 
+CMSYEAR_fake_b          shape    1 - - -      1      1     1     1 
 
 CMSYEAR_EleID         shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for ele CRs 
 CMSYEAR_EleRECO       shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for ele CRs 
 
-CMSYEAR_MuTRK         shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for mu CRs 
+#CMSYEAR_MuTRK         shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for mu CRs 
 CMSYEAR_MuID         shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for mu CRs 
 
 CMSYEAR_veto_tau     lnN    1.03        1.03     1.03       1.03       1.03      1.03     1.03     1.03
@@ -68,11 +68,16 @@ JECHF_YEAR shape 1 - - - 1 1 1	1
 JECRelativeBal shape 1 - - - 1 1 1	1
 JECRelativeSample_YEAR shape 1 - -	- 1 1 1	1
 
+eff_bin1 shape 1 - - - - - - -
+eff_bin2 shape 1 - - - - - - -
+eff_bin3 shape 1 - - - - - - -
+eff_bin4 shape 1 - - - - - - -
+
 
 #wj_hf                   lnN     -            -        1.05       -          -          -      -       -  
 #zj_hf                   lnN     -            1.05        -       -          -          -      -       -  
 
-norm_stop               lnN     -            -        -         -          1.2       -      -         -
+norm_stop               lnN     -            -        -         -          1.1       -      -         -
 norm_diboson            lnN     -            -        -         -          -         -      1.2       -
 norm_smh                lnN     -            -        -         -          -         -      -       1.2	
 
@@ -90,11 +95,11 @@ CMSYEAR_qcd_norm        lnN - - - - - 1.5 - -
 #rrv_CMSYEAR_scale_m_1b param 0.0 1
 #rrv_eletrigeffCMSYEAR_scale__1b param 0.0 1
 
-CMS2017_EleTrig                 param  0.0 1
+CMS2017_EleTrig  param  0.0 1
 CMS2017_EleRECO param  0.0 1
 CMS2017_EleID param  0.0 1
 CMS2017_MuTRK param  0.0 1
-#CMS2017_MuID param  0.0 1
+CMS2017_MuID param  0.0 1
 
 
 

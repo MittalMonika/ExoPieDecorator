@@ -68,6 +68,11 @@ JECHF_2017 shape 1 - - - 1 1 1	1
 JECRelativeBal shape 1 - - - 1 1 1	1
 JECRelativeSample_2017 shape 1 - -	- 1 1 1	1
 
+eff_bin1 shape 1 - - - - - - -
+eff_bin2 shape 1 - - - - - - -
+eff_bin3 shape 1 - - - - - - -
+eff_bin4 shape 1 - - - - - - -
+
 
 #wj_hf                   lnN     -            -        1.05       -          -          -      -       -  
 #zj_hf                   lnN     -            1.05        -       -          -          -      -       -  
@@ -90,11 +95,11 @@ CMS2017_qcd_norm        lnN - - - - - 1.5 - -
 #rrv_CMS2017_scale_m_1b param 0.0 1
 #rrv_eletrigeffCMS2017_scale__1b param 0.0 1
 
-CMS2017_EleTrig                 param  0.0 1
+CMS2017_EleTrig  param  0.0 1
 CMS2017_EleRECO param  0.0 1
 CMS2017_EleID param  0.0 1
 CMS2017_MuTRK param  0.0 1
-#CMS2017_MuID param  0.0 1
+CMS2017_MuID param  0.0 1
 
 
 

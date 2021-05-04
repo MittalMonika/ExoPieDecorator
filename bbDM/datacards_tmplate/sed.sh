@@ -1,7 +1,10 @@
 #sed -i 's/CMSYEAR_fake_b/#CMSYEAR_fake_b/g' *b_workspace.txt
 #sed -i 's/wj_hf/#wj_hf/g' *b_workspace.txt
 #sed -i 's/zj_hf/#zj_hf/g' *b_workspace.txt
-sed -i 's/2.0/1.5/g' *b_workspace.txt
+
+
+#sed -i 's/CMSYEAR_MuTRK/#CMSYEAR_MuTRK/g' *b_workspace.txt
+sed -i 's/#CMSYEAR_fake_b/CMSYEAR_fake_b/g' *b_workspace.txt
 
 
 #sed -i 's/monoHbbYEAR/bbDMYEAR/g' *.txt

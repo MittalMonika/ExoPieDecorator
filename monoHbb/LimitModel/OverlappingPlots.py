@@ -169,9 +169,10 @@ def DrawOverlap(fileVec, histVec, titleVec,legendtext,pngname,logstatus=[0,0],xR
 
 print "calling the plotter"
 
-'''
+
 files=['bin/limits_monoH_merged_2018.root', 'bin/limits_monoH_resolved_2018.root', 'bin/limits_monoH_combined_2018.root']
-legend=['resolved', 'merged', 'combined']
+legend=[ 'merged', 'resolved', 'combined']
+
 
 histoname1=['expmed']
 
@@ -179,12 +180,12 @@ xtitle='m_{A}[GeV]'
 ytitle='#mu'
 axistitle = [xtitle, ytitle]
 DrawOverlap(files,histoname1,axistitle,legend,'limit_B_R_C_2018',[0,1],[200,1700])
-'''
 
 
-'''
+
+
 files=['bin/limits_monoH_merged_2017.root', 'bin/limits_monoH_resolved_2017.root', 'bin/limits_monoH_combined_2017.root']
-legend=['resolved', 'merged', 'combined']
+legend=[ 'merged', 'resolved', 'combined']
 
 histoname1=['expmed']
 
@@ -192,7 +193,7 @@ xtitle='m_{A}[GeV]'
 ytitle='#mu'
 axistitle = [xtitle, ytitle]
 DrawOverlap(files,histoname1,axistitle,legend,'limit_B_R_C_2017',[0,1],[200,1700])
-'''
+
 
 
 

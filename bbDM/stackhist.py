@@ -6,6 +6,7 @@ import ROOT
 ROOT.gROOT.SetBatch(True)
 sys.argv.append( '-b-' )
 
+
 from ROOT import TFile, TH1F, TGraph, TGraphAsymmErrors, THStack, TCanvas, TLegend, TPad, gStyle, gPad
 
 import PlotTemplates
@@ -16,7 +17,24 @@ import array as arr
 ## For 2016, 17 18, isgraph = True 
 ## for combined run2: isgraph = False
 isgraph = True
-year="2017"
+#year="2017"
+rootfilename="run2_postfit/fitDiagnostics_2b_2017_cronly.root" 
+category="" ## 1b :: 2b :: C
+mode=""## cronly :: asimov :: srcr 
+year="" 
+#python stackhist.py file.root 2b asimov
+if len(sys.argv) >= 3:
+    rootfilename = sys.argv[1]
+
+if len(sys.argv) >= 4:
+    category = sys.argv[2]
+    
+if len(sys.argv) >= 5:
+    mode = sys.argv[3]
+
+if len(sys.argv) >= 6:
+    year = sys.argv[4]
+
 
 inputRootFileName=""
 if not isgraph:
@@ -25,10 +43,13 @@ if  isgraph:
     if year=="2016":
         inputRootFileName = "run2_postfit/fitDiagnostics_combined_2016_cronly.root"
     if year=="2017":
-        inputRootFileName = "run2_postfit/fitDiagnostics_combined_2017_cronly.root"
+        inputRootFileName = "run2_postfit/fitDiagnostics_2b_2017_cronly.root" #fitDiagnostics_2b_2017_cronly.root
     if year=="2018":
         inputRootFileName = "run2_postfit/fitDiagnostics_combined_2018_cronly.root"
 
+
+inputRootFileName = rootfilename
+print ("filename: ", inputRootFileName)
 outdir='plots_limit/Stack/'
 if isgraph: 
     postfix="_"+year
@@ -306,8 +327,8 @@ def myStack(fname_, region_, isSR, prefitbackgroundlist_, legendname_, colorlist
     pad[0].Modified()
     pad[0].Update()
     #    if isMerged:
-    pad[0].SaveAs(dirName_+region_+postfix+".pdf")
-    pad[0].SaveAs(dirName_+region_+postfix+".png")
+    pad[0].SaveAs(dirName_+region_+"_"+category+"_"+mode+postfix+".pdf")
+    pad[0].SaveAs(dirName_+region_+"_"+category+"_"+mode+postfix+".png")
 #    if not isMerged:
 #        pad[0].SaveAs(dirName_+region_+"_resolved_2017.pdf")
 #        pad[0].SaveAs(dirName_+region_+"_resolved_2017.png")
@@ -334,6 +355,7 @@ regionName_2b=[ir+" 2b" for ir in regionName]
 
 for i in range(len(regionlist_1b)):
     if (i == 0):
+        continue ;
         isSR = True
         prefitbkglist = ["diboson", "qcd", "singlet", "smh", "tt", "wjets", "zjets"]
         legendlist = ["WW/WZ/ZZ", "QCD", "Single t", "SM H", "t#bar{t}", "W(l#nu)+Jets", "Z(ll)+Jets"]
@@ -351,10 +373,12 @@ for i in range(len(regionlist_1b)):
 
         
     print ("region: ", regionlist_1b[i])
-    makeStackMerged = myStack(fname_ = inputRootFileName, region_ = regionlist_1b[i], isSR = isSR, prefitbackgroundlist_ = prefitbkglist, legendname_ = legendlist, colorlist_ = color, regionName_ = regionName_1b[i], dirName_='plots_limit/Stack/', isMerged = True, pad1ymax_ = 100)
+    makeStackMerged = myStack(fname_ = inputRootFileName, region_ = regionlist[i], isSR = isSR, prefitbackgroundlist_ = prefitbkglist, legendname_ = legendlist, colorlist_ = color, regionName_ = regionName[i], dirName_='plots_limit/Stack/', isMerged = True, pad1ymax_ = 100)
 
-    makeStackResolved = myStack(fname_ = inputRootFileName, region_ = regionlist_2b[i], isSR = isSR, prefitbackgroundlist_ = prefitbkglist, legendname_ = legendlist, colorlist_ = color, regionName_ = regionName_2b[i], dirName_='plots_limit/Stack/', isMerged = False, pad1ymax_ = 1000)
+    #makeStackMerged = myStack(fname_ = inputRootFileName, region_ = regionlist_1b[i], isSR = isSR, prefitbackgroundlist_ = prefitbkglist, legendname_ = legendlist, colorlist_ = color, regionName_ = regionName_1b[i], dirName_='plots_limit/Stack/', isMerged = True, pad1ymax_ = 100)
+
+    #makeStackResolved = myStack(fname_ = inputRootFileName, region_ = regionlist_2b[i], isSR = isSR, prefitbackgroundlist_ = prefitbkglist, legendname_ = legendlist, colorlist_ = color, regionName_ = regionName_2b[i], dirName_='plots_limit/Stack/', isMerged = False, pad1ymax_ = 1000)
 
 
-print "copying now.... "
-os.system("./copy.sh")
+#print "copying now.... "
+#os.system("./copy.sh")

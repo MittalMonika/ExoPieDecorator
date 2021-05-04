@@ -39,12 +39,12 @@ CMSYEAR_trig_met                shape           -       1       1      1     1  
 CMSYEAR_trig_ele                shape     -            -        -         -          -          -      -         ## this is dummy for SR, it exist only for ele CRs
 
 CMSYEAR_eff_b           shape           -       1       1      -         -       -        1
-#CMSYEAR_fake_b          shape           -       1       1      1      1    1     1 
+CMSYEAR_fake_b          shape           -       1       1      1      1    1     1 
 
 CMSYEAR_EleID         shape     -            -        -         -          -          -      -         ## this is dummy for SR, it exist only for ele CRs
 CMSYEAR_EleRECO         shape     -            -        -         -          -          -      -         ## this is dummy for SR, it exist only for ele CRs
 
-CMSYEAR_MuTRK         shape     -        1        1         1          1          1      1 
+#CMSYEAR_MuTRK         shape     -        1        1         1          1          1      1 
 CMSYEAR_MuID         shape     -        1        1         1          1          1      1 
 
 CMSYEAR_veto_tau                lnN    -        1.03     1.03       1.03       1.03      1.03     1.03     
@@ -64,7 +64,7 @@ JECRelativeSample_YEAR shape - 1 1	1 1 1 1
 #wj_hf                   lnN     1.05         -        -       -          -          -      -       
 #zj_hf                   lnN     -            -        -       -          1.05          -      -      
 
-norm_stop               lnN           -         -         1.2        -       -          -            -
+norm_stop               lnN           -         -         1.1        -       -          -            -
 norm_diboson            lnN           -        -          -         -        -          1.2         - 
 norm_smh                 lnN           -      -          -        -        -             -         1.2
 
