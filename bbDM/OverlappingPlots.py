@@ -80,7 +80,7 @@ def DrawOverlap(fileVec, histVec, titleVec,legendtext,pngname,logstatus=[0,0],xR
             histList1.append(histo)
             #print histList[ii].Integral()
             #histList[ii].Rebin(xRange[2])
-            #histList[ii].Scale(1.0/histList[ii].Integral())
+            histList[ii].Scale(1.0/histList[ii].Integral())
             maximum.append(histList[ii].GetMaximum())
             maximum.sort()
             ii=ii+1
@@ -89,8 +89,10 @@ def DrawOverlap(fileVec, histVec, titleVec,legendtext,pngname,logstatus=[0,0],xR
     for ih in range(len(histList)):
         tt = type(histList[ih])
         if logstatus[1] is 1 :
-            histList[ih].SetMaximum(100) #1.4 for log
-            histList[ih].SetMinimum(0.1) #1.4 for log
+            #histList[ih].SetMaximum(100) #1.4 for log
+            #histList[ih].SetMinimum(0.1) #1.4 for log
+            histList[ih].SetMaximum(10)
+            histList[ih].SetMinimum(0.001)
         if logstatus[1] is 0 :
             histList[ih].SetMaximum(1.4) #1.4 for log
             histList[ih].SetMinimum(0.001) #1.4 for log
@@ -100,13 +102,13 @@ def DrawOverlap(fileVec, histVec, titleVec,legendtext,pngname,logstatus=[0,0],xR
             if tt is TGraphAsymmErrors : 
                 histList[ih].Draw("APL")
             if (tt is TH1D) or (tt is TH1F) or (tt is TH1) or (tt is TH1I) :
-                histList[ih].Draw("hist")   
+                histList[ih].Draw()## removed hist   
         if ih > 0 :
             #histList[ih].SetLineWidth(2)
             if tt is TGraphAsymmErrors : 
                 histList[ih].Draw("PL same")
             if (tt is TH1D) or (tt is TH1F) or (tt is TH1) or (tt is TH1I) :
-                histList[ih].Draw("hist same")   
+                histList[ih].Draw("same")   ## removed hist 
 
         if tt is TGraphAsymmErrors :
             histList[ih].SetMaximum(100) 
@@ -222,7 +224,7 @@ DrawOverlap(files,histoname1,axistitle,legend,'limit_bbDM_monoH_comparison',[0,1
 
 
 
-
+'''
 
 files=['bin/v17_12_00_00/limits_bbDM_combined_2017.root', 'bin/v17_12_00_00_Jet1Pt75/limits_bbDM_combined_2017.root', 'bin/v17_12_00_00_Jet1Pt100/limits_bbDM_combined_2017.root', 'bin/noNJetSel/limits_bbDM_combined_2017.root', 'bin/v17_12_00_00_MET250/limits_bbDM_combined_2017.root', 'bin/v17_12_00_00_MET250_Jet1Pt100/limits_bbDM_combined_2017.root']
 legend=['jet p_{T}>50 GeV', 'jet p_{T}>75 GeV', 'jet p_{T}>100 GeV', 'No njet cut', 'MET>250', 'jet p_{T}>100 GeV & MET>250']
@@ -233,6 +235,20 @@ xtitle='m_{A}[GeV]'
 ytitle='#mu'
 axistitle = [xtitle, ytitle]
 DrawOverlap(files,histoname1,axistitle,legend,'limit_bbDM_jetpT_optimise',[0,1],[10,1000])
+'''
+
+
+
+
+files=["AllMETHistos/AllMETHistos_v17_12_00_02.root"]
+legend=["tt in SR", "tt in Top CR", "tt in W CR"]
+
+histoname1=["bbDM2017_2b_SR_tt","bbDM2017_2b_TOPE_tt","bbDM2017_2b_WE_tt"]
+
+xtitle='p_{T}^{miss}[GeV]'
+ytitle='# of events'
+axistitle = [xtitle, ytitle]
+DrawOverlap(files,histoname1,axistitle,legend,'tt_yield_comparison',[0,1],xRange=[250,1000])
 
 
 

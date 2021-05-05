@@ -135,3 +135,13 @@ tf2_ZEE_dyjets_2b_2017  flatParam
 tf1_ZMUMU_dyjets_2b_2017  flatParam
 tf3_ZEE_dyjets_2b_2017  flatParam
 tf3_TOPE_tt_2b_2017  flatParam
+
+
+
+
+#ratett rateParam  SR tt 1 [0.1,10.]
+#ratett rateParam WE tt 1 [0.1,10.]
+#ratett rateParam WMU tt 1 [0.1,10.]
+
+#ratett rateParam  TOPE tt 1 [0.1,10.]
+#ratett rateParam  TOPMU tt 1 [0.1,10.]
