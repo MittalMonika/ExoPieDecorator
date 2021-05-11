@@ -18,9 +18,9 @@ root -l -b -q PrepareWS_withnuisanceInvertTF.C"(\"bbDM\", \"2b\", \"UPDATE\", \"
 
 
 ########### Prepare the cards for sr 1b, sr 2b and combined. 
-#python RunLimits.py -c --model 2hdma_all --region "SR TOPE TOPMU WE WMU ZEE ZMUMU" --category=sr1
-#python RunLimits.py -c --model 2hdma_all --region "SR TOPE TOPMU WE WMU ZEE ZMUMU" --category=sr2
-#python RunLimits.py -c --model 2hdma_all --region "bbDM${year}_datacardslist_1b_2hdma_all.txt bbDM${year}_datacardslist_2b_2hdma_all.txt" --category=srall
+python RunLimits.py -c --model 2hdma_all --region "SR TOPE TOPMU WE WMU ZEE ZMUMU" --category=sr1
+python RunLimits.py -c --model 2hdma_all --region "SR TOPE TOPMU WE WMU ZEE ZMUMU" --category=sr2
+python RunLimits.py -c --model 2hdma_all --region "bbDM${year}_datacardslist_1b_2hdma_all.txt bbDM${year}_datacardslist_2b_2hdma_all.txt" --category=srall
 #####
 ########### copy the workspace to datacard directory 
 cp bbDM_${year}_WS.root datacards_bbDM_${year}/bbDM_${year}_WS.root

@@ -49,12 +49,12 @@ CMS2017_trig_ele                shape           -       1       1      1     1  
 
 
 CMS2017_eff_b           shape           -       1       1      -         -       -       1
-#CMS2017_fake_b          shape           -       1       1      1      1    1     1 
+CMS2017_fake_b          shape           -       1       1      1      1    1     1 
 
 CMS2017_EleID         shape     -            1        1         1          1          1      1          
 CMS2017_EleRECO         shape     -            1        1         1          1          1      1        
 
-CMS2017_MuTRK         shape     -        -        -         -          -          -      - 
+#CMS2017_MuTRK         shape     -        -        -         -          -          -      - 
 CMS2017_MuID         shape     -        -        -         -          -          -      - 
 
 CMS2017_veto_tau                lnN    -        1.03     1.03       1.03       1.03      1.03     1.03     
@@ -75,7 +75,7 @@ JECRelativeSample_2017 shape - 1 1      1 1 1 1
 #wj_hf                   lnN     1.05         -        -       -          -          -      -       
 #zj_hf                   lnN     -            -        -       -          1.05          -      -      
 
-norm_stop               lnN           -         -         1.2        -       -          -            -
+norm_stop               lnN           -         -         1.1        -       -          -            -
 norm_diboson            lnN           -        -          -         -        -          1.2         - 
 norm_smh                 lnN           -      -          -        -        -             -         1.2
 

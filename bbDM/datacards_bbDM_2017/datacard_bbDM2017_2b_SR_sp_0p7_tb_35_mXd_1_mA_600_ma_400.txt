@@ -39,21 +39,21 @@ rate             -1       1       1       1       -1             -1         -1  
 ------------
 
 lumi                    lnN    1.025         -        -         -        1.025    1.025    1.025    1.025
-CMS2017_PU        shape    1.001         -        -         -        1.01     1.01     1.01     1.01
+CMS2017_PU        shape    1         -        -         -        1     1     1     1
 
 CMS2017_trig_met                shape    1 - - -	1 1 1 1
 CMS2017_trig_ele                shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for ele CRs 
 
 CMS2017_eff_b           shape    1          -        -        -       1      -       -         1
-#CMS2017_fake_b          shape    1 - - -      1      1     1     1 
+CMS2017_fake_b          shape    1 - - -      1      1     1     1 
 
 CMS2017_EleID         shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for ele CRs 
 CMS2017_EleRECO       shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for ele CRs 
 
-CMS2017_MuTRK         shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for mu CRs 
+#CMS2017_MuTRK         shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for mu CRs 
 CMS2017_MuID         shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for mu CRs 
 
-CMS2017_veto_tau     lnN    1.03        1.03     1.03       1.03       1.03      1.03     1.03     1.03
+CMS2017_veto_tau     lnN    1.03        - - -       1.03      1.03     1.03     1.03
 
 JECAbsolute shape 1 - -	    - 1 1 1	1
 JECAbsolute_2017 shape 1 - -  - 1 1 1   1
@@ -76,7 +76,7 @@ eff_bin4 shape 1 - - - - - - -
 #wj_hf                   lnN     -            -        1.05       -          -          -      -       -  
 #zj_hf                   lnN     -            1.05        -       -          -          -      -       -  
 
-norm_stop               lnN     -            -        -         -          1.2       -      -         -
+norm_stop               lnN     -            -        -         -          1.1       -      -         -
 norm_diboson            lnN     -            -        -         -          -         -      1.2       -
 norm_smh                lnN     -            -        -         -          -         -      -       1.2	
 
@@ -97,11 +97,12 @@ CMS2017_qcd_norm        lnN - - - - - 1.5 - -
 #rrv_CMS2017_scale_m_2b param 0.0 1
 #rrv_eletrigeffCMS2017_scale__2b param 0.0 1
 
-CMS2017_EleTrig	param  0.0 1
+#CMS2017_EleTrig	param  0.0 1
 CMS2017_EleRECO param  0.0 1
 CMS2017_EleID param  0.0 1
-CMS2017_MuTRK param  0.0 1
+#CMS2017_MuTRK param  0.0 1
 CMS2017_MuID param  0.0 1
+CMS2017_trig_ele param 0.0 1
 
 rrv_CMS2017_stats_err_TOPE_tt_2b_bin1 param 0.0 1
 rrv_CMS2017_stats_err_TOPE_tt_2b_bin2 param 0.0 1
