@@ -127,3 +127,5 @@ python diffNuisances.py fitDiagnostics_fit_CRonly_result.root -a  --abs -g pulls
 
 
 
+--freezeParameters ratett --setParameters ratett=1.2
+
