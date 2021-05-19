@@ -18,8 +18,6 @@
 
 using namespace RooFit ;
 
-
-
 /*
 PrepareWS.C  Package to build statistical fitting model for background estimation and limit extraction                                                                      
 Author: Raman Khurana

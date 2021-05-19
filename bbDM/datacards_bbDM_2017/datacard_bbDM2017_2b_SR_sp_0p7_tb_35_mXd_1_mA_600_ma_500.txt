@@ -1,4 +1,4 @@
-# Simple counting experiment, with one signal and a few background processes 
+
 # First iteration of the monoHbb 2017
 
 imax *  number of channels
@@ -53,7 +53,7 @@ CMS2017_EleRECO       shape     -            -        -         -          -    
 #CMS2017_MuTRK         shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for mu CRs 
 CMS2017_MuID         shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for mu CRs 
 
-CMS2017_veto_tau     lnN    1.03        - - -       1.03      1.03     1.03     1.03
+CMS2017_veto_tau     lnN    1.03        -    -  -        1.03      1.03     1.03     1.03
 
 JECAbsolute shape 1 - -	    - 1 1 1	1
 JECAbsolute_2017 shape 1 - -  - 1 1 1   1
@@ -100,7 +100,7 @@ CMS2017_qcd_norm        lnN - - - - - 1.5 - -
 #CMS2017_EleTrig	param  0.0 1
 CMS2017_EleRECO param  0.0 1
 CMS2017_EleID param  0.0 1
-#CMS2017_MuTRK param  0.0 1
+CMS2017_MuTRK param  0.0 1
 CMS2017_MuID param  0.0 1
 CMS2017_trig_ele param 0.0 1
 
@@ -128,3 +128,14 @@ rrv_CMS2017_stats_err_ZMUMU_dyjets_2b_bin1 param 0.0 1
 rrv_CMS2017_stats_err_ZMUMU_dyjets_2b_bin2 param 0.0 1
 rrv_CMS2017_stats_err_ZMUMU_dyjets_2b_bin3 param 0.0 1
 rrv_CMS2017_stats_err_ZMUMU_dyjets_2b_bin4 param 0.0 1
+
+
+rrv_CMS2017_stats_err_WE_tt_2b_bin1 param 0.0 1
+rrv_CMS2017_stats_err_WE_tt_2b_bin2 param 0.0 1
+rrv_CMS2017_stats_err_WE_tt_2b_bin3 param 0.0 1
+rrv_CMS2017_stats_err_WE_tt_2b_bin4 param 0.0 1
+
+rrv_CMS2017_stats_err_WMU_tt_2b_bin1 param 0.0 1
+rrv_CMS2017_stats_err_WMU_tt_2b_bin2 param 0.0 1
+rrv_CMS2017_stats_err_WMU_tt_2b_bin3 param 0.0 1
+rrv_CMS2017_stats_err_WMU_tt_2b_bin4 param 0.0 1

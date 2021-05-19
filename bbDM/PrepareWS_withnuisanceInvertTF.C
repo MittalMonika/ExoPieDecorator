@@ -458,11 +458,14 @@ void PrepareWS_withnuisanceInvertTF(TString model_="monoHbb",TString analysiscat
   std::cout<<" AnaYearCat = "<<AnaYearCat<<std::endl;
   bool usebkgsum = false;
   int met_low = 250;
-  int met_hi = 1000;
+  int met_hi = 500;
   h_vec_tf.clear();
     
   //Double_t bins[]={200, 250, 350, 500, 1000};
   Double_t bins[]={250.,300.,400.,550., 1000.};
+  //Double_t bins[]={250.,300.,350,400.,500.};
+  //Double_t bins[]={250.,313.,375.,437.,500.};
+
   Int_t  binnum = sizeof(bins)/sizeof(Double_t) - 1;
   
   // As usual, load the combine library to get access to the RooParametricHist
@@ -508,13 +511,13 @@ void PrepareWS_withnuisanceInvertTF(TString model_="monoHbb",TString analysiscat
   nuisanceValue.clear();
   
   
-  nuisanceName.push_back(nuisancePostfix+"trig_ele");              nuisanceValue.push_back(0.03) ;  //  0
+  nuisanceName.push_back(nuisancePostfix+"trig_ele");              nuisanceValue.push_back(0.02) ;  //  0
   nuisanceName.push_back(nuisancePostfix+"EleRECO");              nuisanceValue.push_back(0.01) ;  //  1
-  nuisanceName.push_back(nuisancePostfix+"EleID");                nuisanceValue.push_back(0.02) ;  //  2
+  nuisanceName.push_back(nuisancePostfix+"EleID");                nuisanceValue.push_back(0.03) ;  //  2
   
-  nuisanceName.push_back(nuisancePostfix+"MuTRK");               nuisanceValue.push_back(0.03) ;   // 3
+  nuisanceName.push_back(nuisancePostfix+"MuTRK");               nuisanceValue.push_back(0.01) ;   // 3
   nuisanceName.push_back(nuisancePostfix+"MuID");                 nuisanceValue.push_back(0.01) ;   // 4 
-  //nuisanceName.push_back(nuisancePostfix+"muIso");                nuisanceValue.push_back(0.02) ;   // 5 
+  //nuisanceName.push_back(nuisancePostfix+"muIso");                nuisanceValue.push_back(0.01) ;   // 5 
   
   //nuisanceName.push_back(nuisancePostfix+"metTrig");              nuisanceValue.push_back(0.05) ;   // 6 
   //nuisanceName.push_back(nuisancePostfix+"Prefiring");            nuisanceValue.push_back(0.02) ;   // 7 

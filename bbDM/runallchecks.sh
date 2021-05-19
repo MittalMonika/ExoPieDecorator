@@ -11,8 +11,9 @@ datacardws=`echo $datacard | sed  's|.txt|.root|g'`
 echo $datacardws
 
 ## run limits 
-combine -M AsymptoticLimits $datacard  --noFitAsimov  -v 0 --rMin 1e-07 --rMax 30 > ${dirname}/limit.txt
-combine -M AsymptoticLimits $datacard  --noFitAsimov  -v 0 --rMin 1e-07 --rMax 30 > ${dirname}/limit_blind.txt
+mkdir -p ${dirname}
+combine -M AsymptoticLimits $datacard    -v 0 --rMin 1e-07 --rMax 30 > ${dirname}/limit.txt
+combine -M AsymptoticLimits $datacard  -t -1  -v 0 --rMin 1e-07 --rMax 30 > ${dirname}/limit_blind.txt
 
 
 ## run pulls and impact asimov b-only 
