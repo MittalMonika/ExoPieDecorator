@@ -26,10 +26,11 @@ root -l -b -q PlotPulls.C\(\"pulls_${catg}_${year}_${mode}_${dirname}.root\",\"$
 
 #### impacts
 #--freezeParameters ratett --setParameters ratett=1.2
+text2workspace.py $datacard --channel-masks
 combineTool.py -M Impacts -d $datacardws --doInitialFit --robustFit 1 -m 125 -t -1 --expectSignal 0 --rMin -10
 combineTool.py -M Impacts -d $datacardws --doFits  --robustFit 1 -m 125 --parallel 32 -t -1 --expectSignal 0 --rMin -10
 combineTool.py -M Impacts -d  $datacardws -m 125 -o impacts_t0.json
-plotImpacts.py -i  impacts_t0.json -o   ${dirname}/impacts_t0
+plotImpacts.py -i  impacts_t0.json -o   ${dirname}/impacts_t0_${dirname}
 
 ## run pulls and impact asimov signal injected 
 ### pulls 
@@ -45,7 +46,7 @@ root -l -b -q PlotPulls.C\(\"pulls_${catg}_${year}_${mode}_${dirname}.root\",\"$
 combineTool.py -M Impacts -d $datacardws --doInitialFit --robustFit 1 -m 125 -t -1 --expectSignal 1 --rMin -10
 combineTool.py -M Impacts -d $datacardws --doFits  --robustFit 1 -m 125 --parallel 32 -t -1 --expectSignal 1 --rMin -10
 combineTool.py -M Impacts -d  $datacardws -m 125 -o impacts_t1.json
-plotImpacts.py -i  impacts_t1.json -o  ${dirname}/impacts_t1
+plotImpacts.py -i  impacts_t1.json -o  ${dirname}/impacts_t1_${dirname}
 
 
 
@@ -58,4 +59,7 @@ root -l -b -q plotPostNuisance_combine.C\(\"fitDiagnostics_${catg}_${year}_${mod
 ## CR only postfit summary plot 
 python crSummary_postfit.py -i fitDiagnostics_${catg}_${year}_${mode}_${dirname}.root -d b -c 2b -t ${catg}_${year}_${mode}_${dirname} -y 2017
 
+
+
+combine -M FitDiagnostics -d $datacardws -n _${catg}_${year}_${mode}_${dirname}  --saveShapes --saveWithUncertainties --freezeParameters ratett --setParameters mask_SR=1,ratett=1.2 --X-rtd MINIMIZER_analytic --cminFallbackAlgo Minuit2,0:1.0
 

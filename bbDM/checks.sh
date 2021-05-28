@@ -115,7 +115,7 @@ combine -M GoodnessOfFit -d $datacardws --algo=saturated -n _result_sb
 ### for data
 combine -M GoodnessOfFit -d $datacardws --algo=saturated -n _result_bonly_CRonly --setParametersForFit mask_SR=1 --setParametersForEval mask_SR=0 --freezeParameters r --setParameters r=0
 ### for toys
-combine -M GoodnessOfFit -d  $datacardws --algo=saturated -n _result_bonly_CRonly_toy --setParametersForFit mask_SR=1 --setParametersForEval mask_SR=0 --freezeParameters r --setParameters r=0,mask_SR=1 -t 50 --toysFrequentist -s 123
+combine -M GoodnessOfFit -d  $datacardws --algo=saturated -n _result_bonly_CRonly_toy --setParametersForFit mask_SR=1 --setParametersForEval mask_SR=0 --freezeParameters r --setParameters r=0,mask_SR=1 -t 50 --toysFrequentist -s 123  #--trackParameters
 
 combineTool.py -M GoodnessOfFit -d  $datacardws --algo=saturated -n _result_bonly_CRonly_toy --setParametersForFit mask_SR=1 --setParametersForEval mask_SR=0 --freezeParameters r --setParameters r=0,mask_SR=1 -t 10 --toysFrequentist -s 123 --job-mode condor --sub-opt`+JobFlavour = "workday"`
 

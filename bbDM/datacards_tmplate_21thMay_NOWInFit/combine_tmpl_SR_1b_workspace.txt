@@ -1,0 +1,129 @@
+# Simple counting experiment, with one signal and a few background processes 
+# First iteration of the monoHbb YEAR
+
+imax *  number of channels
+jmax *  number of backgrounds
+kmax *  number of nuisance parameters (sources of systematical uncertainties)
+---------------------------------------------------------------------------------------------------------------------------------
+
+## these are new shapes for the fitting model
+## shapes  process   region    path 
+
+shapes *         bbDMYEAR_CATEGORY_SR       bbDM_YEAR_WS.root ws_bbDM_CATEGFULL_YEAR:bbDMYEAR_CATEGORY_SR_$PROCESS ws_bbDM_CATEGFULL_YEAR:bbDMYEAR_CATEGORY_SR_$PROCESS_$SYSTEMATIC
+
+
+shapes signal    bbDMYEAR_CATEGORY_SR       bbDM_YEAR_WS.root ws_bbDM_CATEGFULL_YEAR:bbDMYEAR_CATEGORY_SR_2HDMa_MaXXX_MChiCCC_MAYYY_tbTTT_st_SSS ws_bbDM_CATEGFULL_YEAR:bbDMYEAR_CATEGORY_SR_2HDMa_MaXXX_MChiCCC_MAYYY_tbTTT_st_SSS_$SYSTEMATIC
+shapes data_obs  bbDMYEAR_CATEGORY_SR       bbDM_YEAR_WS.root  ws_bbDM_CATEGFULL_YEAR:bbDMYEAR_CATEGORY_SR_data_obs
+
+
+shapes wjets     bbDMYEAR_CATEGORY_SR       bbDM_YEAR_WS.root ws_bbDM_CATEGFULL_YEAR:rph_SR_wjets_1b
+shapes tt        bbDMYEAR_CATEGORY_SR           bbDM_YEAR_WS.root ws_bbDM_CATEGFULL_YEAR:rph_SR_tt_1b
+shapes zjets     bbDMYEAR_CATEGORY_SR           bbDM_YEAR_WS.root ws_bbDM_CATEGFULL_YEAR:rph_SR_zjets_1b
+
+
+
+
+bin   bbDMYEAR_CATEGORY_SR 
+observation -1
+------------
+
+
+# now we list the expected events for signal and all backgrounds in that bin
+# the second 'process' line must have a positive number for backgrounds, and 0 for signal
+# then we list the independent sources of uncertainties, and give their effect (syst. error)
+# on each process and bin
+bin             bbDMYEAR_CATEGORY_SR   bbDMYEAR_CATEGORY_SR  bbDMYEAR_CATEGORY_SR  bbDMYEAR_CATEGORY_SR  bbDMYEAR_CATEGORY_SR   bbDMYEAR_CATEGORY_SR  bbDMYEAR_CATEGORY_SR bbDMYEAR_CATEGORY_SR
+process         signal     zjets  wjets    tt     singlet        qcd      diboson    smh
+process          0        1        2        3        4               5       6        7
+rate             -1       1       1       1       -1             -1         -1    -1
+------------
+
+lumi                    lnN    1.025         -        -         -        1.025    1.025    1.025    1.025
+CMSYEAR_PU        shape    1         -        -         -        1     1     1     1
+
+CMSYEAR_trig_met                shape    1 - - -	1 1 1 1
+CMSYEAR_trig_ele                shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for ele CRs 
+
+CMSYEAR_eff_b           shape    1          -        -        -       1      -       -         1
+CMSYEAR_fake_b          shape    1 - - -      1      1     1     1 
+
+CMSYEAR_EleID         shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for ele CRs 
+CMSYEAR_EleRECO       shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for ele CRs 
+
+#CMSYEAR_MuTRK         shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for mu CRs 
+CMSYEAR_MuID         shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for mu CRs 
+
+CMSYEAR_veto_tau     lnN    1.03       - - -       1.03      1.03     1.03     1.03
+
+
+JECAbsolute shape 1 - - - 1 1 1 1 
+JECAbsolute_YEAR shape 1 - -  - 1 1 1	1
+JECBBEC1 shape 1 - -   - 1 1 1	1
+JECBBEC1_YEAR shape 1 - -  - 1 1 1	1
+JECEC2 shape 1 - -  - 1 1 1  1
+JECEC2_YEAR shape 1 - -	- 1 1 1	1
+JECFlavorQCD shape 1 - -  - 1 1 1	1
+JECHF shape 1 - -  - 1 1 1  1
+JECHF_YEAR shape 1 - - - 1 1 1	1
+JECRelativeBal shape 1 - - - 1 1 1	1
+JECRelativeSample_YEAR shape 1 - -	- 1 1 1	1
+
+eff_bin1 shape 1 - - - - - - -
+eff_bin2 shape 1 - - - - - - -
+eff_bin3 shape 1 - - - - - - -
+eff_bin4 shape 1 - - - - - - -
+
+
+#wj_hf                   lnN     -            -        1.05       -          -          -      -       -  
+#zj_hf                   lnN     -            1.05        -       -          -          -      -       -  
+
+norm_stop               lnN     -            -        -         -          1.1       -      -         -
+norm_diboson            lnN     -            -        -         -          -         -      1.2       -
+norm_smh                lnN     -            -        -         -          -         -      -       1.2	
+
+CMSYEAR_pdf              shape    1        -     -       -   	  -      -     -     1
+CMSYEAR_mu_scale         shape    1        -     -       -   	  -      -     -     1
+
+CMSYEAR_qcd_norm        lnN - - - - - 1.5 - -
+
+##CMSYEAR_eff_met         lnN    1.04        1.04     1.04       1.04   	  1.04      1.04     1.04     1.04
+#CMSYEAR_eff_t           lnN    1.03        1.03     1.03       1.03       1.03      1.03     1.03     1.03
+
+
+
+#rrv_CMSYEAR_scale_e_1b param 0.0 1
+#rrv_CMSYEAR_scale_m_1b param 0.0 1
+#rrv_eletrigeffCMSYEAR_scale__1b param 0.0 1
+
+#CMS2017_EleTrig  param  0.0 1
+CMS2017_EleRECO param  0.0 1
+CMS2017_EleID param  0.0 1
+CMS2017_MuTRK param  0.0 1
+CMS2017_MuID param  0.0 1
+
+CMSYEAR_trig_ele param 0.0 1
+
+rrv_CMSYEAR_stats_err_TOPE_tt_1b_bin1 param 0.0 1
+rrv_CMSYEAR_stats_err_TOPE_tt_1b_bin2 param 0.0 1
+rrv_CMSYEAR_stats_err_TOPE_tt_1b_bin3 param 0.0 1
+rrv_CMSYEAR_stats_err_TOPE_tt_1b_bin4 param 0.0 1
+rrv_CMSYEAR_stats_err_TOPMU_tt_1b_bin1 param 0.0 1
+rrv_CMSYEAR_stats_err_TOPMU_tt_1b_bin2 param 0.0 1
+rrv_CMSYEAR_stats_err_TOPMU_tt_1b_bin3 param 0.0 1
+rrv_CMSYEAR_stats_err_TOPMU_tt_1b_bin4 param 0.0 1
+rrv_CMSYEAR_stats_err_WE_wjets_1b_bin1 param 0.0 1
+rrv_CMSYEAR_stats_err_WE_wjets_1b_bin2 param 0.0 1
+rrv_CMSYEAR_stats_err_WE_wjets_1b_bin3 param 0.0 1
+rrv_CMSYEAR_stats_err_WE_wjets_1b_bin4 param 0.0 1
+rrv_CMSYEAR_stats_err_WMU_wjets_1b_bin1 param 0.0 1
+rrv_CMSYEAR_stats_err_WMU_wjets_1b_bin2 param 0.0 1
+rrv_CMSYEAR_stats_err_WMU_wjets_1b_bin3 param 0.0 1
+rrv_CMSYEAR_stats_err_WMU_wjets_1b_bin4 param 0.0 1
+rrv_CMSYEAR_stats_err_ZEE_dyjets_1b_bin1 param 0.0 1
+rrv_CMSYEAR_stats_err_ZEE_dyjets_1b_bin2 param 0.0 1
+rrv_CMSYEAR_stats_err_ZEE_dyjets_1b_bin3 param 0.0 1
+rrv_CMSYEAR_stats_err_ZEE_dyjets_1b_bin4 param 0.0 1
+rrv_CMSYEAR_stats_err_ZMUMU_dyjets_1b_bin1 param 0.0 1
+rrv_CMSYEAR_stats_err_ZMUMU_dyjets_1b_bin2 param 0.0 1
+rrv_CMSYEAR_stats_err_ZMUMU_dyjets_1b_bin3 param 0.0 1
+rrv_CMSYEAR_stats_err_ZMUMU_dyjets_1b_bin4 param 0.0 1
