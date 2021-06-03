@@ -17,7 +17,7 @@ shapes data_obs  bbDMYEAR_CATEGORY_SR       bbDM_YEAR_WS.root  ws_bbDM_CATEGFULL
 
 
 shapes wjets     bbDMYEAR_CATEGORY_SR       bbDM_YEAR_WS.root ws_bbDM_CATEGFULL_YEAR:rph_SR_wjets_1b
-shapes tt        bbDMYEAR_CATEGORY_SR           bbDM_YEAR_WS.root ws_bbDM_CATEGFULL_YEAR:rph_SR_tt_1b
+#shapes tt        bbDMYEAR_CATEGORY_SR           bbDM_YEAR_WS.root ws_bbDM_CATEGFULL_YEAR:rph_SR_tt_1b
 shapes zjets     bbDMYEAR_CATEGORY_SR           bbDM_YEAR_WS.root ws_bbDM_CATEGFULL_YEAR:rph_SR_zjets_1b
 
 
@@ -35,17 +35,17 @@ observation -1
 bin             bbDMYEAR_CATEGORY_SR   bbDMYEAR_CATEGORY_SR  bbDMYEAR_CATEGORY_SR  bbDMYEAR_CATEGORY_SR  bbDMYEAR_CATEGORY_SR   bbDMYEAR_CATEGORY_SR  bbDMYEAR_CATEGORY_SR bbDMYEAR_CATEGORY_SR
 process         signal     zjets  wjets    tt     singlet        qcd      diboson    smh
 process          0        1        2        3        4               5       6        7
-rate             -1       1       1       1       -1             -1         -1    -1
+rate             -1       1       1       -1       -1             -1         -1    -1
 ------------
 
-lumi                    lnN    1.025         -        -         -        1.025    1.025    1.025    1.025
-CMSYEAR_PU        shape    1         -        -         -        1     1     1     1
+lumi                    lnN    1.025         -        -         1.025        1.025    1.025    1.025    1.025
+CMSYEAR_PU        shape    1         -        -         1        1     1     1     1
 
-CMSYEAR_trig_met                shape    1 - - -	1 1 1 1
+CMSYEAR_trig_met                shape    1 - - 1	1 1 1 1
 CMSYEAR_trig_ele                shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for ele CRs 
 
-CMSYEAR_eff_b           shape    1          -        -        -       1      -       -         1
-CMSYEAR_fake_b          shape    1 - - -      1      1     1     1 
+CMSYEAR_eff_b           shape    1          -        -        1       1      -       -         1
+CMSYEAR_fake_b          shape    1 - - 1      1      1     1     1 
 
 CMSYEAR_EleID         shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for ele CRs 
 CMSYEAR_EleRECO       shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for ele CRs 
@@ -53,20 +53,20 @@ CMSYEAR_EleRECO       shape     -            -        -         -          -    
 #CMSYEAR_MuTRK         shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for mu CRs 
 CMSYEAR_MuID         shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for mu CRs 
 
-CMSYEAR_veto_tau     lnN    1.03       - - -       1.03      1.03     1.03     1.03
+CMSYEAR_veto_tau     lnN    1.03       - - 1.03       1.03      1.03     1.03     1.03
 
 
-JECAbsolute shape 1 - - - 1 1 1 1 
-JECAbsolute_YEAR shape 1 - -  - 1 1 1	1
-JECBBEC1 shape 1 - -   - 1 1 1	1
-JECBBEC1_YEAR shape 1 - -  - 1 1 1	1
-JECEC2 shape 1 - -  - 1 1 1  1
-JECEC2_YEAR shape 1 - -	- 1 1 1	1
-JECFlavorQCD shape 1 - -  - 1 1 1	1
-JECHF shape 1 - -  - 1 1 1  1
-JECHF_YEAR shape 1 - - - 1 1 1	1
-JECRelativeBal shape 1 - - - 1 1 1	1
-JECRelativeSample_YEAR shape 1 - -	- 1 1 1	1
+JECAbsolute shape 1 - - 1 1 1 1 1 
+JECAbsolute_YEAR shape 1 - -  1 1 1 1	1
+JECBBEC1 shape 1 - -   1 1 1 1	1
+JECBBEC1_YEAR shape 1 - -  1 1 1 1	1
+JECEC2 shape 1 - -  1 1 1 1  1
+JECEC2_YEAR shape 1 - -	1 1 1 1	1
+JECFlavorQCD shape 1 - -  1 1 1 1	1
+JECHF shape 1 - -  1 1 1 1  1
+JECHF_YEAR shape 1 - - 1 1 1 1	1
+JECRelativeBal shape 1 - - 1 1 1 1	1
+JECRelativeSample_YEAR shape 1 - -	1 1 1 1	1
 
 eff_bin1 shape 1 - - - - - - -
 eff_bin2 shape 1 - - - - - - -
@@ -95,12 +95,11 @@ CMSYEAR_qcd_norm        lnN - - - - - 1.5 - -
 #rrv_CMSYEAR_scale_m_1b param 0.0 1
 #rrv_eletrigeffCMSYEAR_scale__1b param 0.0 1
 
-#CMS2017_EleTrig  param  0.0 1
-CMS2017_EleRECO param  0.0 1
-CMS2017_EleID param  0.0 1
-CMS2017_MuTRK param  0.0 1
-CMS2017_MuID param  0.0 1
-
+#CMSYEAR_EleTrig  param  0.0 1
+CMSYEAR_EleRECO param  0.0 1
+CMSYEAR_EleID param  0.0 1
+CMSYEAR_MuTRK param  0.0 1
+CMSYEAR_MuID param  0.0 1
 CMSYEAR_trig_ele param 0.0 1
 
 rrv_CMSYEAR_stats_err_TOPE_tt_1b_bin1 param 0.0 1

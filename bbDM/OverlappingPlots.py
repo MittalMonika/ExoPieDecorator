@@ -80,7 +80,7 @@ def DrawOverlap(fileVec, histVec, titleVec,legendtext,pngname,logstatus=[0,0],xR
             histList1.append(histo)
             #print histList[ii].Integral()
             #histList[ii].Rebin(xRange[2])
-            histList[ii].Scale(1.0/histList[ii].Integral())
+            #histList[ii].Scale(1.0/histList[ii].Integral())
             maximum.append(histList[ii].GetMaximum())
             maximum.sort()
             ii=ii+1
@@ -239,6 +239,19 @@ DrawOverlap(files,histoname1,axistitle,legend,'limit_bbDM_jetpT_optimise',[0,1],
 
 
 
+files=["bin/AllMETHistos_v17_12-00-02_noBjetsCond_onlyZ__NO_WCR_In_The_Fit/limits_bbDM_2b_2017.root", "bin/AllMETHistos_v17_12-00-03_withBDT_binset2/limits_bbDM_2b_2017.root"]
+legend=["MET", "BDT"]
+
+histoname1=['expmed']
+
+xtitle='m_{A}[GeV]'
+ytitle='#mu'
+axistitle = [xtitle, ytitle]
+DrawOverlap(files,histoname1,axistitle,legend,'limit_bbDM_MET_vs_BDT',[0,1],[10,1000])
+
+
+
+'''
 
 files=["AllMETHistos/AllMETHistos_v17_12_00_02.root"]
 legend=["tt in SR", "tt in Top CR", "tt in W CR"]
@@ -254,3 +267,4 @@ DrawOverlap(files,histoname1,axistitle,legend,'tt_yield_comparison',[0,1],xRange
 
 #DrawOverlap(files,histoname2,['E_{T}^{Miss}[GeV]',ytitle],legend,'SR_TT_abc')
 
+'''

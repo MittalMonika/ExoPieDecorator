@@ -101,6 +101,3 @@ tf2_ZEE_dyjets_2b_2017  flatParam
 tf1_ZMUMU_dyjets_2b_2017  flatParam
 tf3_ZEE_dyjets_2b_2017  flatParam
 tf3_TOPE_tt_2b_2017  flatParam
-
-
-ratett rateParam * tt 1.2 [1.19,1.21]
