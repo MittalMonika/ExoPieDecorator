@@ -46,6 +46,7 @@ CMS2017_EleRECO         shape     -            -        -         -          -  
 
 #CMS2017_MuTRK         shape     -        1        1         1          1          1      1 
 CMS2017_MuID         shape     -        1        1         1          1          1      1 
+CMS2017_MuISO         shape     -        1        1         1          1          1      1 
 
 CMS2017_veto_tau                lnN    -        1.03     1.03       1.03       1.03      1.03     1.03     
 
@@ -77,11 +78,6 @@ CMS2017_mu_scale shape - - -    - - - 1
 CMS2017_qcd_norm  lnN - - - 1.5 - - -
 #CMS2017_eff_met         lnN    1.04        1.04     1.04       1.04       1.04      1.04     1.04     
 #CMS2017_eff_t           lnN    1.03        1.03     1.03       1.03       1.03      1.03     1.03    
-
-tf1_TOPMU_tt_1b_2017 flatParam
-tf2_TOPMU_tt_1b_2017 flatParam
-tf3_TOPMU_tt_1b_2017 flatParam
-tf4_TOPMU_tt_1b_2017 flatParam
 
 rrvbc_SR_wjets_1b1_2017 flatParam
 rrvbc_SR_wjets_1b2_2017 flatParam

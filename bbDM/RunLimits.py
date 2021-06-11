@@ -23,6 +23,8 @@ parser.add_argument("-model", "--model",  dest="model",default="2hdma")
 parser.add_argument("-region", "--region",  dest="region",default="SR_default") ## default should lead to crash.  
 parser.add_argument("-postfix", "--postfix",  dest="postfix",default="forgottenpostfix") ## default should lead to crash.  
 
+parser.add_argument("-year", "--year",  dest="year",default="year") 
+
 ## booleans 
 parser.add_argument("-B", "--runblind",  action="store_true", dest="runblind")
 parser.add_argument("-A", "--runasimov",  action="store_true", dest="runasimov")
@@ -113,7 +115,7 @@ def main():
     regionStr =    dcb.anadetails[cat__]["categories_input"]
     #category        = dcb.anadetails["categories"][0] ## this is list at this moment
     #analysis_tag    = dcb.anadetails["categories_short"][0]
-    year            = dcb.anadetails["yearStr"]
+    year            = args.year ##dcb.anadetails["yearStr"]
     #dcb.anadetails["plotsDir"]["bin"]= args.postfix
     inputdatacardpath_ = args.inputdatacardpath.replace("YEAR",year)
     
@@ -127,10 +129,15 @@ def main():
     
     ## this can be different for each model. But for now lets keep it like this. 
     ## move this to describe.py 
-    datacardtemplatename_ = 'datacards_bbDM_'+year+'/datacard_bbDM'+year+''+analysis_tag+'_SR_sp_YYYSP_tb_ZZZTB_mXd_AAAMDM_mA_XXXMA_ma_BBBMa.txt'
+    datacardtemplatename_=""
+    if "2hdma" in args.model:
+        datacardtemplatename_ = 'datacards_bbDM_'+year+'/datacard_bbDM'+year+''+analysis_tag+'_SR_sp_YYYSP_tb_ZZZTB_mXd_AAAMDM_mA_XXXMA_ma_BBBMa.txt'
+    if "dmsimp" in args.model:
+        datacardtemplatename_ = 'datacards_bbDM_'+year+'/datacard_bbDM'+year+''+analysis_tag+'_SR_mphi_YYYMPHI_mchi_ZZZMDM.txt'
+
     
     ## object of the RunLimits class
-    rl = RunLimits(datacardtemplatename_,year, dcb.anadetails["analysisName"], category, args.postfix)
+    rl = RunLimits(datacardtemplatename_,year, dcb.anadetails["analysisName"], category, args.postfix, args.model)
     rl.setupdir()
     rl.writeChangeLog()
     
@@ -166,7 +173,8 @@ def main():
                                                     iregion, \
                                                     year,\
                                                     analysis_tag, \
-                                                    category)
+                                                    category, 
+                                                    args.model)
                     if iregion == "SR":
                         mergeddatacardmname = datacardname.replace("SR","Merged")
                         ftxt.write(mergeddatacardmname+' \n')

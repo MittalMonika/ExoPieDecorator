@@ -42,6 +42,7 @@ CMSYEAR_EleID         shape                   -        -         -          -   
 CMSYEAR_EleRECO         shape                   -        -         -          -          -     
 #CMSYEAR_MuTRK         shape                  1     1       -       1      1      
 CMSYEAR_MuID         shape                  1     1       -       1      1         
+CMSYEAR_MuISO         shape                  1     1       -       1      1         
 
 CMSYEAR_veto_tau                lnN                  1.03     1.03       -       1.03      1.03
 

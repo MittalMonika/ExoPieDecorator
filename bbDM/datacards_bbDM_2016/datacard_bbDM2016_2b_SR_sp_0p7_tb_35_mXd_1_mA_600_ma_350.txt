@@ -1,4 +1,4 @@
-# Simple counting experiment, with one signal and a few background processes 
+
 # First iteration of the monoHbb 2016
 
 imax *  number of channels
@@ -16,8 +16,8 @@ shapes signal    bbDM2016_2b_SR       bbDM_2016_WS.root ws_bbDM_2b_2016:bbDM2016
 shapes data_obs  bbDM2016_2b_SR       bbDM_2016_WS.root  ws_bbDM_2b_2016:bbDM2016_2b_SR_data_obs
 
 
-shapes wjets     bbDM2016_2b_SR       bbDM_2016_WS.root ws_bbDM_2b_2016:rph_SR_wjets_2b
-shapes tt     bbDM2016_2b_SR           bbDM_2016_WS.root ws_bbDM_2b_2016:rph_SR_tt_2b
+#shapes wjets     bbDM2016_2b_SR       bbDM_2016_WS.root ws_bbDM_2b_2016:rph_SR_wjets_2b
+shapes tt        bbDM2016_2b_SR           bbDM_2016_WS.root ws_bbDM_2b_2016:rph_SR_tt_2b
 shapes zjets     bbDM2016_2b_SR           bbDM_2016_WS.root ws_bbDM_2b_2016:rph_SR_zjets_2b
 
 
@@ -35,58 +35,113 @@ observation -1
 bin             bbDM2016_2b_SR   bbDM2016_2b_SR  bbDM2016_2b_SR  bbDM2016_2b_SR  bbDM2016_2b_SR   bbDM2016_2b_SR  bbDM2016_2b_SR bbDM2016_2b_SR
 process         signal     zjets  wjets    tt     singlet        qcd      diboson    smh
 process          0        1        2        3        4               5       6        7
-rate             -1       1       1       1       -1             -1         -1    -1
+rate             -1       1       -1       1       -1             -1         -1    -1
 ------------
 
-doubleb                 lnN    1.10          -        -         -         -         -       -       1.10
-CMS2016_eff_b           lnN    1.10          -        -        1.10       1.10      -       -         1.10
-CMS2016_fake_b          lnN      -         1.05     1.05       1.05       1.05      1.05     1.05     1.05 
-lumi                    lnN    1.025         -        -         -        1.025    1.025    1.025    1.025
-CMS2016_scale_pu        lnN    1.001         -        -         -        1.01     1.01     1.01     1.01
-trig_met                lnN    1.02         -        -         -        1.02      1.02      1.02     1.02 
-norm_stop               lnN     -            -        -         -          1.2       -      -         -
-norm_diboson            lnN     -            -        -         -          -         -      1.2       -
-norm_wj                 lnN     -            -        1.2       -          -         -      -         -
-ak8jet_jec              lnN    1.05          -        -         -        1.05      1.05    1.05    1.05 
-trig_ele                lnN     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for ele CRs 
-veto_tau                lnN    1.03        1.03     1.03       1.03       1.03      1.03     1.03     1.03
-CMS2016_scale_e         lnN     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for ele CRs 
-CMS2016_scale_m         lnN     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for mu CRs 
-CMS2016_eff_met         lnN    1.04        1.04     1.04       1.04   	  1.04      1.04     1.04     1.04
-wj_hf                   lnN     -            -        1.05       -          -          -      -       -  
-zj_hf                   lnN     -            1.05        -       -          -          -      -       -  
+lumi                    lnN    1.025         -        1.025         -        1.025    1.025    1.025    1.025
+CMS2016_PU        shape    1         -        1         -        1     1     1     1
 
-#pdf_accept              lnN    1.01        1.01     1.01       1.01   	  1.01      1.01     1.01     1.01
+CMS2016_trig_met                shape    1 - 1 -	1 1 1 1
+CMS2016_trig_ele                shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for ele CRs 
+
+CMS2016_eff_b           shape    1          -        1        -       1      -       -         1
+CMS2016_fake_b          shape    1 - 1 -      1      1     1     1 
+
+CMS2016_EleID         shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for ele CRs 
+CMS2016_EleRECO       shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for ele CRs 
+
+#CMS2016_MuTRK         shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for mu CRs 
+CMS2016_MuID         shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for mu CRs 
+CMS2016_MuISO shape     -            -        -         -          -          -      -       -
+CMS2016_veto_tau     lnN    1.03        -    1.03  -        1.03      1.03     1.03     1.03
+
+JECAbsolute shape 1 - 1	    - 1 1 1	1
+JECAbsolute_2016 shape 1 - 1  - 1 1 1   1
+JECBBEC1 shape 1 - 1   - 1 1 1  1
+JECBBEC1_2016 shape 1 - 1  - 1 1 1      1
+JECEC2 shape 1 - 1  - 1 1 1  1
+JECEC2_2016 shape 1 - 1 - 1 1 1 1
+JECFlavorQCD shape 1 - 1  - 1 1 1       1
+JECHF shape 1 - 1  - 1 1 1  1
+JECHF_2016 shape 1 - 1 - 1 1 1  1
+JECRelativeBal shape 1 - 1 - 1 1 1      1
+JECRelativeSample_2016 shape 1 - 1      - 1 1 1 1
+
+CMS2016_prefire shape 1 - 1      - 1 1 1 1
+
+eff_bin1 shape 1 - - - - - - -
+eff_bin2 shape 1 - - - - - - -
+eff_bin3 shape 1 - - - - - - -
+eff_bin4 shape 1 - - - - - - -
+
+
+#wj_hf                   lnN     -            -        1.05       -          -          -      -       -  
+#zj_hf                   lnN     -            1.05        -       -          -          -      -       -  
+
+norm_stop               lnN     -            -        -         -          1.1       -      -         -
+norm_diboson            lnN     -            -        -         -          -         -      1.2       -
+norm_smh                lnN     -            -        -         -          -         -      -       1.2	
+
+CMS2016_pdf              shape    1        -     -       -   	  -      -     -     1
+CMS2016_mu_scale         shape    1        -     -       -   	  -      -     -     1
+
+CMS2016_qcd_norm        lnN - - - - - 1.5 - -
+
+
+
+
+##CMS2016_eff_met         lnN    1.04        1.04     1.04       1.04   	  1.04      1.04     1.04     1.04
 #CMS2016_eff_t           lnN    1.03        1.03     1.03       1.03       1.03      1.03     1.03     1.03
 
-#this is 2b datacard
 
 
-rrv_CMS2016_scale_e_2b param 0.0 1
-rrv_CMS2016_scale_m_2b param 0.0 1
-rrv_eletrigeffCMS2016_scale__2b param 0.0 1
+#rrv_CMS2016_scale_e_2b param 0.0 1
+#rrv_CMS2016_scale_m_2b param 0.0 1
+#rrv_eletrigeffCMS2016_scale__2b param 0.0 1
 
-rrv_stats_err_TOPE_tt_2b_bin1 param 0.0 1
-rrv_stats_err_TOPE_tt_2b_bin2 param 0.0 1
-rrv_stats_err_TOPE_tt_2b_bin3 param 0.0 1
-rrv_stats_err_TOPE_tt_2b_bin4 param 0.0 1
-rrv_stats_err_TOPMU_tt_2b_bin1 param 0.0 1
-rrv_stats_err_TOPMU_tt_2b_bin2 param 0.0 1
-rrv_stats_err_TOPMU_tt_2b_bin3 param 0.0 1
-rrv_stats_err_TOPMU_tt_2b_bin4 param 0.0 1
-rrv_stats_err_WE_wjets_2b_bin1 param 0.0 1
-rrv_stats_err_WE_wjets_2b_bin2 param 0.0 1
-rrv_stats_err_WE_wjets_2b_bin3 param 0.0 1
-rrv_stats_err_WE_wjets_2b_bin4 param 0.0 1
-rrv_stats_err_WMU_wjets_2b_bin1 param 0.0 1
-rrv_stats_err_WMU_wjets_2b_bin2 param 0.0 1
-rrv_stats_err_WMU_wjets_2b_bin3 param 0.0 1
-rrv_stats_err_WMU_wjets_2b_bin4 param 0.0 1
-rrv_stats_err_ZEE_dyjets_2b_bin1 param 0.0 1
-rrv_stats_err_ZEE_dyjets_2b_bin2 param 0.0 1
-rrv_stats_err_ZEE_dyjets_2b_bin3 param 0.0 1
-rrv_stats_err_ZEE_dyjets_2b_bin4 param 0.0 1
-rrv_stats_err_ZMUMU_dyjets_2b_bin1 param 0.0 1
-rrv_stats_err_ZMUMU_dyjets_2b_bin2 param 0.0 1
-rrv_stats_err_ZMUMU_dyjets_2b_bin3 param 0.0 1
-rrv_stats_err_ZMUMU_dyjets_2b_bin4 param 0.0 1
+#CMS2016_EleTrig	param  0.0 1
+CMS2016_EleRECO param  0.0 1
+CMS2016_EleID param  0.0 1
+#CMS2016_MuTRK param  0.0 1
+CMS2016_MuID param  0.0 1
+CMS2016_trig_ele param 0.0 1
+CMS2016_MuISO param  0.0 1
+
+CMS2016_eff_b param 0.0 1
+CMS2016_prefire param 0.0 1
+
+rrv_CMS2016_stats_err_TOPE_tt_2b_bin1 param 0.0 1
+rrv_CMS2016_stats_err_TOPE_tt_2b_bin2 param 0.0 1
+rrv_CMS2016_stats_err_TOPE_tt_2b_bin3 param 0.0 1
+rrv_CMS2016_stats_err_TOPE_tt_2b_bin4 param 0.0 1
+rrv_CMS2016_stats_err_TOPMU_tt_2b_bin1 param 0.0 1
+rrv_CMS2016_stats_err_TOPMU_tt_2b_bin2 param 0.0 1
+rrv_CMS2016_stats_err_TOPMU_tt_2b_bin3 param 0.0 1
+rrv_CMS2016_stats_err_TOPMU_tt_2b_bin4 param 0.0 1
+#rrv_CMS2016_stats_err_WE_wjets_2b_bin1 param 0.0 1
+#rrv_CMS2016_stats_err_WE_wjets_2b_bin2 param 0.0 1
+#rrv_CMS2016_stats_err_WE_wjets_2b_bin3 param 0.0 1
+#rrv_CMS2016_stats_err_WE_wjets_2b_bin4 param 0.0 1
+#rrv_CMS2016_stats_err_WMU_wjets_2b_bin1 param 0.0 1
+#rrv_CMS2016_stats_err_WMU_wjets_2b_bin2 param 0.0 1
+#rrv_CMS2016_stats_err_WMU_wjets_2b_bin3 param 0.0 1
+#rrv_CMS2016_stats_err_WMU_wjets_2b_bin4 param 0.0 1
+rrv_CMS2016_stats_err_ZEE_dyjets_2b_bin1 param 0.0 1
+rrv_CMS2016_stats_err_ZEE_dyjets_2b_bin2 param 0.0 1
+rrv_CMS2016_stats_err_ZEE_dyjets_2b_bin3 param 0.0 1
+rrv_CMS2016_stats_err_ZEE_dyjets_2b_bin4 param 0.0 1
+rrv_CMS2016_stats_err_ZMUMU_dyjets_2b_bin1 param 0.0 1
+rrv_CMS2016_stats_err_ZMUMU_dyjets_2b_bin2 param 0.0 1
+rrv_CMS2016_stats_err_ZMUMU_dyjets_2b_bin3 param 0.0 1
+rrv_CMS2016_stats_err_ZMUMU_dyjets_2b_bin4 param 0.0 1
+
+
+#rrv_CMS2016_stats_err_WE_tt_2b_bin1 param 0.0 1
+#rrv_CMS2016_stats_err_WE_tt_2b_bin2 param 0.0 1
+#rrv_CMS2016_stats_err_WE_tt_2b_bin3 param 0.0 1
+#rrv_CMS2016_stats_err_WE_tt_2b_bin4 param 0.0 1
+#
+#rrv_CMS2016_stats_err_WMU_tt_2b_bin1 param 0.0 1
+#rrv_CMS2016_stats_err_WMU_tt_2b_bin2 param 0.0 1
+#rrv_CMS2016_stats_err_WMU_tt_2b_bin3 param 0.0 1
+#rrv_CMS2016_stats_err_WMU_tt_2b_bin4 param 0.0 1

@@ -117,6 +117,7 @@ void plotSystPrefit(){
 
 
 std::vector<TH1F*> h_vec_tf;
+TFile* f_TF = new TFile("TFnuiusance.root","READ");
 
 std::vector<std::string> createnuisance(float value_,int  nbins, int nuisanceCounter){
   std::vector<std::string> logN_nuisance_vec;
@@ -364,16 +365,16 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
 
   // allow the stats error to vary fom 0 to  1* sigma
   // to make them gaussian constrained add param line in the datacards otherwise it is not gaussian constrained.
-  RooRealVar rrv_stats_err_bin1("rrv_CMS2017_stats_err_"+region_proc_cr+anacat_+"_bin1", "rrv_stats_err_"+region_proc_cr+"_bin1",tf_stats_err_vector[0],  0.5*tf_stats_err_vector[0],2.*tf_stats_err_vector[0]);
-  RooRealVar rrv_stats_err_bin2("rrv_CMS2017_stats_err_"+region_proc_cr+anacat_+"_bin2", "rrv_stats_err_"+region_proc_cr+"_bin2",tf_stats_err_vector[1],  0.5*tf_stats_err_vector[1],2.*tf_stats_err_vector[1]);
-  RooRealVar rrv_stats_err_bin3("rrv_CMS2017_stats_err_"+region_proc_cr+anacat_+"_bin3", "rrv_stats_err_"+region_proc_cr+"_bin3",tf_stats_err_vector[2],  0.5*tf_stats_err_vector[2],2.*tf_stats_err_vector[2]);
-  RooRealVar rrv_stats_err_bin4("rrv_CMS2017_stats_err_"+region_proc_cr+anacat_+"_bin4", "rrv_stats_err_"+region_proc_cr+"_bin4",tf_stats_err_vector[3],  0.5*tf_stats_err_vector[3],2.*tf_stats_err_vector[3]);
+  RooRealVar rrv_stats_err_bin1("rrv_CMS"+year_+"_stats_err_"+region_proc_cr+anacat_+"_bin1", "rrv_stats_err_"+region_proc_cr+"_bin1",tf_stats_err_vector[0],  0.5*tf_stats_err_vector[0],2.*tf_stats_err_vector[0]);
+  RooRealVar rrv_stats_err_bin2("rrv_CMS"+year_+"_stats_err_"+region_proc_cr+anacat_+"_bin2", "rrv_stats_err_"+region_proc_cr+"_bin2",tf_stats_err_vector[1],  0.5*tf_stats_err_vector[1],2.*tf_stats_err_vector[1]);
+  RooRealVar rrv_stats_err_bin3("rrv_CMS"+year_+"_stats_err_"+region_proc_cr+anacat_+"_bin3", "rrv_stats_err_"+region_proc_cr+"_bin3",tf_stats_err_vector[2],  0.5*tf_stats_err_vector[2],2.*tf_stats_err_vector[2]);
+  RooRealVar rrv_stats_err_bin4("rrv_CMS"+year_+"_stats_err_"+region_proc_cr+anacat_+"_bin4", "rrv_stats_err_"+region_proc_cr+"_bin4",tf_stats_err_vector[3],  0.5*tf_stats_err_vector[3],2.*tf_stats_err_vector[3]);
 
   // -- Following code is to extend the number of bins
-  //RooRealVar rrv_stats_err_bin5("rrv_CMS2017_stats_err_"+region_proc_cr+anacat_+"_bin5", "rrv_stats_err_"+region_proc_cr+"_bin5",tf_stats_err_vector[4],  0.5*tf_stats_err_vector[4],2.*tf_stats_err_vector[4]);
-  //RooRealVar rrv_stats_err_bin6("rrv_CMS2017_stats_err_"+region_proc_cr+anacat_+"_bin6", "rrv_stats_err_"+region_proc_cr+"_bin6",tf_stats_err_vector[5],  0.5*tf_stats_err_vector[5],2.*tf_stats_err_vector[5]);
-  //RooRealVar rrv_stats_err_bin7("rrv_CMS2017_stats_err_"+region_proc_cr+anacat_+"_bin7", "rrv_stats_err_"+region_proc_cr+"_bin7",tf_stats_err_vector[6],  0.5*tf_stats_err_vector[6],2.*tf_stats_err_vector[6]);
-  //RooRealVar rrv_stats_err_bin8("rrv_CMS2017_stats_err_"+region_proc_cr+anacat_+"_bin8", "rrv_stats_err_"+region_proc_cr+"_bin7",tf_stats_err_vector[7],  0.5*tf_stats_err_vector[7],2.*tf_stats_err_vector[7]);
+  //RooRealVar rrv_stats_err_bin5("rrv_CMS"+year_+"_stats_err_"+region_proc_cr+anacat_+"_bin5", "rrv_stats_err_"+region_proc_cr+"_bin5",tf_stats_err_vector[4],  0.5*tf_stats_err_vector[4],2.*tf_stats_err_vector[4]);
+  //RooRealVar rrv_stats_err_bin6("rrv_CMS"+year_+"_stats_err_"+region_proc_cr+anacat_+"_bin6", "rrv_stats_err_"+region_proc_cr+"_bin6",tf_stats_err_vector[5],  0.5*tf_stats_err_vector[5],2.*tf_stats_err_vector[5]);
+  //RooRealVar rrv_stats_err_bin7("rrv_CMS"+year_+"_stats_err_"+region_proc_cr+anacat_+"_bin7", "rrv_stats_err_"+region_proc_cr+"_bin7",tf_stats_err_vector[6],  0.5*tf_stats_err_vector[6],2.*tf_stats_err_vector[6]);
+  //RooRealVar rrv_stats_err_bin8("rrv_CMS"+year_+"_stats_err_"+region_proc_cr+anacat_+"_bin8", "rrv_stats_err_"+region_proc_cr+"_bin7",tf_stats_err_vector[7],  0.5*tf_stats_err_vector[7],2.*tf_stats_err_vector[7]);
 
 
   RooArgList ral_bin1;
@@ -416,7 +417,15 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
   //RooRealVar* rrv_syst_bin3;
   //RooRealVar* rrv_syst_bin4;
   for (int isys=0; isys < (int) nuisIndex.size(); isys++){
-    std::vector<std::string> add_logN_systematic = createnuisance(nuisanceValue[nuisIndex[isys]], nHistbins, syst_counter++);
+    std::vector<std::string> add_logN_systematic ;
+    add_logN_systematic.clear();
+    
+    if (nuisIndex[isys] != 8) add_logN_systematic = createnuisance(nuisanceValue[nuisIndex[isys]], nHistbins, syst_counter++);
+    if (nuisIndex[isys] == 8) {
+      TH1F* btagunc = (TH1F*) f_TF->Get("btag");
+      std::vector<float> btaguncvec = GetBinContents(btagunc);
+      add_logN_systematic = createnuisance(btaguncvec, nHistbins, syst_counter++);
+    }
     //for (int i =0; i<4; i++)  std::cout<<" add_logN_systematic = "<<add_logN_systematic[i]<<std::endl;
     rfv_bin1 += "*"+add_logN_systematic[0];
     rfv_bin2 += "*"+add_logN_systematic[1];
@@ -549,7 +558,11 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
   h_vec_tf.clear();
 
   // Double_t bins[]={200, 250, 350, 500, 1000};
-  Double_t bins[]={250.,300.,400.,550., 1000.};  // baseline
+  //Double_t bins[]={250.,300.,400.,550., 1000.};  // baseline
+  Double_t bins[]={250,275,300,350,400,475,550,775,1000};
+
+
+
   // Double_t bins[]={250., 280., 340., 460., 1000.}; // to get more stat in last bin
   // Double_t bins[] = {-1, -0.1, 0.0, 0.1, 1.0};  // binset4
 
@@ -602,17 +615,18 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
   TString nuisancePostfix = "CMS"+year+"_";
   nuisanceValue.clear();
 
-
-  nuisanceName.push_back(nuisancePostfix+"trig_ele");              nuisanceValue.push_back(0.03) ;  //  0
+  
+  nuisanceName.push_back(nuisancePostfix+"trig_ele");             nuisanceValue.push_back(0.02) ;  //  0
   nuisanceName.push_back(nuisancePostfix+"EleRECO");              nuisanceValue.push_back(0.01) ;  //  1
   nuisanceName.push_back(nuisancePostfix+"EleID");                nuisanceValue.push_back(0.02) ;  //  2
 
-  nuisanceName.push_back(nuisancePostfix+"MuTRK");               nuisanceValue.push_back(0.03) ;   // 3
-  nuisanceName.push_back(nuisancePostfix+"MuID");                 nuisanceValue.push_back(0.01) ;   // 4
-  //nuisanceName.push_back(nuisancePostfix+"muIso");                nuisanceValue.push_back(0.01) ;   // 5
+  nuisanceName.push_back(nuisancePostfix+"MuTRK");                nuisanceValue.push_back(0.03) ;   // 3
+  nuisanceName.push_back(nuisancePostfix+"MuID");                 nuisanceValue.push_back(0.007) ;   // 4
+  nuisanceName.push_back(nuisancePostfix+"muISO");                nuisanceValue.push_back(0.008) ;   // 5
 
-  //nuisanceName.push_back(nuisancePostfix+"metTrig");              nuisanceValue.push_back(0.05) ;   // 6
-  //nuisanceName.push_back(nuisancePostfix+"Prefiring");            nuisanceValue.push_back(0.02) ;   // 7
+  nuisanceName.push_back(nuisancePostfix+"metTrig");              nuisanceValue.push_back(0.05) ;   // 6
+  nuisanceName.push_back(nuisancePostfix+"prefire");            nuisanceValue.push_back(0.005) ;   // 7
+  nuisanceName.push_back(nuisancePostfix+"eff_b");                nuisanceValue.push_back(0.03) ;   // 8
 
 
   /*
@@ -621,8 +635,10 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
     -------------------------------------------------------------------------------------------------------------------
   */
 
+  std::vector<int> nuisIndex; nuisIndex.clear(); // this is the index of nuisances which are to be used for mu CR
 
-
+  if(anacat_=="2b"){
+    
   std::cout<<" calling function for Top mu: "<<AnaYearCat+"SR_tt"<<std::endl;
   TH1F* h_sr_top = (TH1F*) fin->Get(AnaYearCat+"SR_tt");
   // Get the top hostogram in the Top mu CR
@@ -631,12 +647,11 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
 
   // Create all the inputs needed for this CR
   // list of systematics for Top mu CR
-  std::vector<int> nuisIndex; nuisIndex.clear(); // this is the index of nuisances which are to be used for mu CR
   if (year=="2016"){
     nuisIndex.push_back(3); }
-
   nuisIndex.push_back(4);
-  //if (year=="2017") nuisIndex.push_back(7);
+  nuisIndex.push_back(5);
+  if (year=="2017") nuisIndex.push_back(7);
 
 
   // mu efficiency for Top mu CR
@@ -655,14 +670,14 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
   nuisIndex.push_back(1);
   nuisIndex.push_back(2);
   //nuisIndex.push_back(6);
-  //if (year=="2017") nuisIndex.push_back(7);
+  if (year=="2017") nuisIndex.push_back(7);
 
     std::cout<<" calling function for Top e"<<std::endl;
   // Get the top hostogram in the Top mu CR
   TH1F* h_tope_2b_top = (TH1F*) fin->Get(AnaYearCat+"TOPE_tt");
   // Create all the inputs needed for this CR
   createRegion(met, h_sr_top, h_tope_2b_top, h_sr_data, wspace, "TOPE_tt", "SR_tt",  fOut, nuisIndex, nuisanceName, nuisanceValue,anacat_,year);
-
+  }/// if(anacat_=="2b")
 
   /*
     -------------------------------------------------------------------------------------------------------------------
@@ -672,13 +687,13 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
 
 
   std::cout<<" anacat_: "<<(anacat_=="1b")<<std::endl;
-  if (false){
+  if (anacat_=="1b"){
   nuisIndex.clear();
   nuisIndex.push_back(0);
   nuisIndex.push_back(1);
   nuisIndex.push_back(2);
   //nuisIndex.push_back(6);
-  //if (year=="2017") nuisIndex.push_back(7);
+  if (year=="2017") nuisIndex.push_back(7);
 
 
     std::cout<<" calling function for Wenu"<<std::endl;
@@ -695,9 +710,9 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
 
   //  fixme, creating new for cross-transfer factors
   // ttbar in SR linked to top in W+Jets
-  TH1F* h_wenu_2b_top = (TH1F*) fin->Get(AnaYearCat+"WE_tt");
-  createRegion(met, h_sr_top, h_wenu_2b_top, h_sr_data, wspace, "WE_tt", "SR_tt",  fOut, nuisIndex, nuisanceName, nuisanceValue, anacat_, year);
-  }
+  //TH1F* h_wenu_2b_top = (TH1F*) fin->Get(AnaYearCat+"WE_tt");
+  //createRegion(met, h_sr_top, h_wenu_2b_top, h_sr_data, wspace, "WE_tt", "SR_tt",  fOut, nuisIndex, nuisanceName, nuisanceValue, anacat_, year);
+  
   
   /*
     -------------------------------------------------------------------------------------------------------------------
@@ -705,14 +720,14 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
     -------------------------------------------------------------------------------------------------------------------
     */
 
-  if(false){
+
   nuisIndex.clear();
   if (year=="2016"){
     nuisIndex.push_back(3);
   }
   nuisIndex.push_back(4);
-  //nuisIndex.push_back(5);
-  //if (year=="2017") nuisIndex.push_back(7);
+  nuisIndex.push_back(5);
+  if (year=="2017") nuisIndex.push_back(7);
 
   //TH1F* h_sr_wjets = (TH1F*) fin->Get(AnaYearCat+"SR_wjets");
 
@@ -724,8 +739,8 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
 
   //  fixme, creating new for cross-transfer factors
   // ttbar in SR linked to top in W+Jets
-  TH1F* h_wmunu_2b_top = (TH1F*) fin->Get(AnaYearCat+"WMU_tt");
-  createRegion(met, h_sr_top, h_wmunu_2b_top, h_sr_data, wspace, "WMU_tt", "SR_tt",  fOut, nuisIndex, nuisanceName, nuisanceValue, anacat_, year);
+  //TH1F* h_wmunu_2b_top = (TH1F*) fin->Get(AnaYearCat+"WMU_tt");
+  //createRegion(met, h_sr_top, h_wmunu_2b_top, h_sr_data, wspace, "WMU_tt", "SR_tt",  fOut, nuisIndex, nuisanceName, nuisanceValue, anacat_, year);
 
   }
   /*
@@ -739,9 +754,9 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
     nuisIndex.push_back(3);
   }
   nuisIndex.push_back(4);
-  //nuisIndex.push_back(5);
-  //if (year=="2017") nuisIndex.push_back(7);
-
+  nuisIndex.push_back(5);
+  if (year=="2017") nuisIndex.push_back(7);
+  nuisIndex.push_back(8);
 
   std::cout<<" calling function for Zmumu"<<std::endl;
   TH1F* h_sr_Z = (TH1F*) fin->Get(AnaYearCat+"SR_zjets");
@@ -762,8 +777,9 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
   nuisIndex.push_back(1);
   nuisIndex.push_back(2);
   //nuisIndex.push_back(6);
-  //if (year=="2017") nuisIndex.push_back(7);
-
+  if (year=="2017") nuisIndex.push_back(7);
+  nuisIndex.push_back(8);
+  
 
     // Get the top hostogram in the Top mu CR
   TH1F* h_Zee_2b_Z = (TH1F*) fin->Get(AnaYearCat+"ZEE_dyjets");
@@ -785,17 +801,18 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
   nuisancesName.clear();
   nuisancesName.push_back("");
   // ups
-  nuisancesName.push_back("CMS2017_PUUp");
-  nuisancesName.push_back("CMS2017_eff_bUp");
-  nuisancesName.push_back("CMS2017_fake_bUp");
-  nuisancesName.push_back("CMS2017_trig_metUp");
-  nuisancesName.push_back("CMS2017_trig_eleUp");
-  nuisancesName.push_back("CMS2017_EleIDUp");
-  nuisancesName.push_back("CMS2017_EleRECOUp");
-  nuisancesName.push_back("CMS2017_MuTRKUp");
-  nuisancesName.push_back("CMS2017_MuIDUp");
-  nuisancesName.push_back("CMS2017_pdfUp");
-  nuisancesName.push_back("CMS2017_mu_scaleUp");
+  nuisancesName.push_back("CMS"+year+"_PUUp");
+  nuisancesName.push_back("CMS"+year+"_eff_bUp");
+  nuisancesName.push_back("CMS"+year+"_fake_bUp");
+  nuisancesName.push_back("CMS"+year+"_trig_metUp");
+  nuisancesName.push_back("CMS"+year+"_trig_eleUp");
+  nuisancesName.push_back("CMS"+year+"_EleIDUp");
+  nuisancesName.push_back("CMS"+year+"_EleRECOUp");
+  nuisancesName.push_back("CMS"+year+"_MuTRKUp");
+  nuisancesName.push_back("CMS"+year+"_MuIDUp");
+  nuisancesName.push_back("CMS"+year+"_MuISOUp");
+  nuisancesName.push_back("CMS"+year+"_pdfUp");
+  nuisancesName.push_back("CMS"+year+"_mu_scaleUp");
 
 
   nuisancesName.push_back("JECAbsoluteUp");
@@ -810,18 +827,23 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
   nuisancesName.push_back("JECRelativeBalUp");
   nuisancesName.push_back("JECRelativeSample_"+year+"Up");
 
+  
+  nuisancesName.push_back("CMS"+year+"_prefireUp");
+  
+
   // down
-  nuisancesName.push_back("CMS2017_PUDown");
-  nuisancesName.push_back("CMS2017_eff_bDown");
-  nuisancesName.push_back("CMS2017_fake_bDown");
-  nuisancesName.push_back("CMS2017_trig_metDown");
-  nuisancesName.push_back("CMS2017_trig_eleDown");
-  nuisancesName.push_back("CMS2017_EleIDDown");
-  nuisancesName.push_back("CMS2017_EleRECODown");
-  nuisancesName.push_back("CMS2017_MuTRKDown");
-  nuisancesName.push_back("CMS2017_MuIDDown");
-  nuisancesName.push_back("CMS2017_pdfDown");
-  nuisancesName.push_back("CMS2017_mu_scaleDown");
+  nuisancesName.push_back("CMS"+year+"_PUDown");
+  nuisancesName.push_back("CMS"+year+"_eff_bDown");
+  nuisancesName.push_back("CMS"+year+"_fake_bDown");
+  nuisancesName.push_back("CMS"+year+"_trig_metDown");
+  nuisancesName.push_back("CMS"+year+"_trig_eleDown");
+  nuisancesName.push_back("CMS"+year+"_EleIDDown");
+  nuisancesName.push_back("CMS"+year+"_EleRECODown");
+  nuisancesName.push_back("CMS"+year+"_MuTRKDown");
+  nuisancesName.push_back("CMS"+year+"_MuIDDown");
+  nuisancesName.push_back("CMS"+year+"_MuISODown");
+  nuisancesName.push_back("CMS"+year+"_pdfDown");
+  nuisancesName.push_back("CMS"+year+"_mu_scaleDown");
 
   nuisancesName.push_back("JECAbsoluteDown");
   nuisancesName.push_back("JECAbsolute_"+year+"Down");
@@ -835,6 +857,7 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
   nuisancesName.push_back("JECRelativeBalDown");
   nuisancesName.push_back("JECRelativeSample_"+year+"Down");
 
+  nuisancesName.push_back("CMS"+year+"_prefireDown");
 
   // stats  only for signal for now
   nuisancesName.push_back("eff_bin1Up");
@@ -847,6 +870,10 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
   nuisancesName.push_back("eff_bin3Down");
   nuisancesName.push_back("eff_bin4Down");
 
+  
+  //-------------------------------------------------//
+  // --------- ADD 2HDM+a signal shapes -------------//
+  //-------------------------------------------------//
   std::vector<int> signalpoint;
   signalpoint.clear();
   if (year!="2016"){
@@ -905,12 +932,63 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
   }
 
 
+  //-------------------------------------------------//
+  // --------- ADD DMSIMP signal shapes -------------//
+  //-------------------------------------------------//
+  std::vector<int> mphi, mChi;
+  mphi.clear(); mChi.clear();
+  
+  mphi.push_back(10);
+  mphi.push_back(50);
+  mphi.push_back(100);
+  mphi.push_back(150);
+  mphi.push_back(200);
+  mphi.push_back(250);
+  mphi.push_back(300);
+  mphi.push_back(400);
+  mphi.push_back(450);
+  mphi.push_back(500);
+  mphi.push_back(700);
+  mphi.push_back(750);
+  mphi.push_back(1000);
+  
+  mChi.push_back(1);
+  
+  TString MPHI;
+  TString MCHI;
+  for (auto inuis=0; inuis<nuisancesName.size(); inuis++){
+    for (auto iphi=0; iphi<int(mphi.size()); iphi++){
+      
+      for (auto iChi=0; iChi<mChi.size(); iChi++){
+	MPHI.Form("%d",mphi[iphi]);
+	MCHI.Form("%d",mChi[iChi]);
+	
+	TString signalname = AnaYearCat+"SR_DMSimp_MPhi"+MPHI+"_MChi"+MCHI;
+	if (nuisancesName[inuis]!="") signalname = signalname  + "_" +nuisancesName[inuis];
+	if ((TH1F*) fin->Get(signalname) == 0 ) {
+	  std::cout<<" histogram : "<<  signalname <<" does not exist"<<std::endl;
+	}
+
+	if ((TH1F*) fin->Get(signalname) != 0 )  {
+	  std::cout<<" histogram : "<<  signalname <<" exist and saving "<<std::endl;
+	  addTemplate(wspace, vars, (TH1F*) fin->Get(signalname)  );
+	}
+	std::cout<<" ........ saved"<<std::endl;
+
+      }
+    }
+  }
+
+
+
   if (!usebkgsum){
     addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"SR_data_obs" ) );
     addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"TOPE_data_obs" ) );
     addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"TOPMU_data_obs" ) );
-    //addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"WE_data_obs" ) );
-    //addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"WMU_data_obs" ) );
+    if (anacat_=="1b"){
+      addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"WE_data_obs" ) );
+      addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"WMU_data_obs" ) );
+    }
     addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"ZEE_data_obs" ) );
     addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"ZMUMU_data_obs" ) );
 
@@ -926,15 +1004,6 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
     addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"ZMUMU_bkgSum" ) );
   }
 
-  /*
-  addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_R_SR_data_obs" ) );
-  addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_R_TOPE_data_obs" ) );
-  addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_R_TOPMU_data_obs" ) );
-  addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_R_WE_data_obs" ) );
-  addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_R_WMU_data_obs" ) );
-  addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_R_ZEE_data_obs" ) );
-  addTemplate(wspace, vars, (TH1F*) fin->Get("monoHbb2017_R_ZMUMU_data_obs" ) );
-  */
 
  // all other histograms
   std::vector<TString> regions;

@@ -42,6 +42,7 @@ CMS2017_EleID         shape                   -        -         -          -   
 CMS2017_EleRECO         shape                   -        -         -          -          -     
 #CMS2017_MuTRK         shape                  1     1       -       1      1      
 CMS2017_MuID         shape                  1     1       -       1      1         
+CMS2017_MuISO         shape                  1     1       -       1      1         
 
 CMS2017_veto_tau                lnN                  1.03     1.03       -       1.03      1.03
 

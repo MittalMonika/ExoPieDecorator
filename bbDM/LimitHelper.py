@@ -11,12 +11,13 @@ class RunLimits:
     ''' this class exepcts that all the steps needed to prepare the datacards and prepration of its inputs are already performed '''
     
     ''' instantiation of the class is done here ''' 
-    def __init__(self, datacardtemplatename, year, analysis, analysisbin, postfix):
+    def __init__(self, datacardtemplatename, year, analysis, analysisbin, postfix, model):
         self.datacardtemplatename_ = datacardtemplatename
         self.year_                 = year
         self.analysis_             = analysis 
         self.analysisbin_          = analysisbin 
         self.postfix_              = postfix
+        self.model_                = model
         
         #self.runmode = runmode
         print "class instantiation done"
@@ -65,32 +66,62 @@ class RunLimits:
             fversion.writerow([key_,value_])
 
 
-    def makedatacards(self, templatecards, allparams, region, year, category,catefull ):
+    def makedatacards(self, templatecards, allparams, region, year, category,catefull, model ):
         
-        ma =str(allparams[0])
-        mA =str(allparams[1])
-        tb =(str(allparams[2])).replace(".","p")
-        st =(str(allparams[3])).replace(".","p")
-        mdm=str(allparams[4])
+        ## default values for the parameters 
+        ma=""
+        mA=""
+        tb=""
+        st=""
+        mdm=""
         
-        ## get datacard name
-        datacardsname = self.datacardtemplatename_.replace("XXXMA", mA)
-        datacardsname = datacardsname.replace("BBBMa",ma)
-        datacardsname = datacardsname.replace("ZZZTB",tb)
-        datacardsname = datacardsname.replace("YYYSP",st)
-        datacardsname = datacardsname.replace("AAAMDM",mdm)
-        datacardsname = datacardsname.replace("SR",region)
+        mphi=""
+        
+        datacardsname=""
+        
+        if ("2hdma" in model) and (len(allparams)==5):
+            ma  = str(allparams[0])
+            mA  = str(allparams[1])
+            tb  = (str(allparams[2])).replace(".","p")
+            st  = (str(allparams[3])).replace(".","p")
+            mdm = str(allparams[4])
+            
+            ## get datacard name for 2HDM+a model
+            datacardsname = self.datacardtemplatename_.replace("XXXMA", mA)
+            datacardsname = datacardsname.replace("BBBMa",ma)
+            datacardsname = datacardsname.replace("ZZZTB",tb)
+            datacardsname = datacardsname.replace("YYYSP",st)
+            datacardsname = datacardsname.replace("AAAMDM",mdm)
+            datacardsname = datacardsname.replace("SR",region)
+            
+        if ('dmsimp' in model) and (len(allparams)==2):
+            mphi = str(allparams[0])
+            mdm = str(allparams[1])
+            
+            ## get datacard name for DMSIMP model
+            datacardsname = self.datacardtemplatename_.replace("YYYMPHI", mphi)
+            datacardsname = datacardsname.replace("ZZZMDM",mdm)
+            datacardsname = datacardsname.replace("SR",region)
+
+            
+
         
         #print 'data card name is ===',datacardsname
         os.system('rm '+datacardsname)
         fout = open(datacardsname,"a")
         for iline in open(templatecards): 
+            
+            if ("2hdma" in model) and (len(allparams)==5):
+                iline  = iline.replace("XXX", ma)
+                iline  = iline.replace("YYY", mA)
+                iline  = iline.replace("CCC", mdm)
+                iline  = iline.replace("TTT", tb)
+                iline  = iline.replace("SSS", st)
 
-            iline  = iline.replace("XXX", ma)
-            iline  = iline.replace("YYY", mA)
-            iline  = iline.replace("CCC", mdm)
-            iline  = iline.replace("TTT", tb)
-            iline  = iline.replace("SSS", st)
+            if ("dmsimp" in model) and (len(allparams)==2):
+                iline  = iline.replace("2HDMa_MaXXX_MChiCCC_MAYYY_tbTTT_st_SSS", "DMSimp_MPhiXXX_MChiYYY")
+                iline  = iline.replace("XXX", mphi)
+                iline  = iline.replace("YYY", mdm)
 
             
             
@@ -108,19 +139,20 @@ class RunLimits:
         
     
     def datacard_to_mparameters(self, name_, analysis_ = "bbDM"):
-        print (analysis_, self.analysis_)
-        if analysis_ == self.analysis_:
+        print ("LimitHelper.py::datacard_to_mparameters: ",analysis_, self.analysis_, self.model_, name_)
+        
+        if ("2hdma" in self.model_) and (analysis_ == self.analysis_):
             mparameters_ = ((name_.split("Merged_")[1]).replace(".log","")).split("_")
             mparameters_ = [mp.replace("p",".") for mp in mparameters_]
             ## ma, mA, tb, st, mdm
             return ([mparameters_[9], mparameters_[7], mparameters_[3], mparameters_[1], mparameters_[5]])
             
-        if analysis_ == self.analysis_:
+        if ("dmsimp" in self.model_) and (analysis_ == self.analysis_):
             ## this needs to be changed
             mparameters_ = ((name_.split("Merged_")[1]).replace(".log","")).split("_")
-            mparameters_ = [mp.replace("p",".") for mp in mparameters_]
-            ## ma, mA, tb, st, mdm
-            return ([mparameters_[9], mparameters_[7], mparameters_[3], mparameters_[1], mparameters_[5]])
+            #mparameters_ = [mp.replace("p",".") for mp in mparameters_]
+            ## mPhi, mChi
+            return ([mparameters_[1], mparameters_[3] ])
             
     ## category can be merged/resolved/combined
     def LogToLimitList(self, logfile, category="merged", mode="a"):

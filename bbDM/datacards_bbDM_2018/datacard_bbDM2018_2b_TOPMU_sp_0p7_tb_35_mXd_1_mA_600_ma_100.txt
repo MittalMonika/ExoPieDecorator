@@ -28,35 +28,58 @@ process                             wjets      tt        singlet      qcd    dyj
 process                               1        2           3           4        5        6   7   
 rate                                 -1        1         -1          -1       -1       -1    -1   
 ------------					        
-						        
-CMS2018_eff_b           lnN          1.10      -            1.10      -       -      -      1.10
-CMS2018_fake_b          lnN          1.05       1.05      1.05       1.05     1.05  1.05 1.05
+
 lumi                    lnN         1.025       -         1.025      1.025    1.025   1.025  1.025
-CMS2018_scale_pu        lnN         1.001       -         1.001      1.001    1.001   1.001  1.001 
-trig_met                lnN          1.02       -          1.02      1.02     1.02    1.02   1.02
-norm_stop               lnN           -         -         1.2        -       -          -            -
+CMS2018_PU              shape         1       -         1      1    1   1  1 
+						        
+CMS2018_trig_met                shape          1       -          1      1     1    1   1
+CMS2018_trig_ele                shape           -       -        -      -      -        -    -
+
+CMS2018_eff_b           shape          1      -            1      -       -      -      1
+CMS2018_fake_b          shape          1       -      1       1     1  1 1
+
+CMS2018_EleID         shape           -            -        -         -          -          -      -
+CMS2018_EleRECO         shape           -            -        -         -          -          -      -
+
+#CMS2018_MuTRK         shape           1        -     1       1       1      1     1    
+CMS2018_MuISO         shape           1        -     1       1       1      1     1    
+CMS2018_MuID         shape           1        -     1       1       1      1     1     
+
+CMS2018_veto_tau                lnN           1.03        1.03     1.03       1.03       1.03      1.03     1.03   
+
+JECAbsolute shape 1 - 1 1 1 1 1
+JECAbsolute_2018 shape 1 - 1  1 1 1 1
+JECBBEC1 shape 1 - 1   1 1 1 1
+JECBBEC1_2018 shape 1 - 1  1 1 1 1
+JECEC2 shape 1 - 1  1 1 1 1
+JECEC2_2018 shape 1 - 1	1 1 1 1
+JECFlavorQCD shape 1 - 1  1 1 1 1
+JECHF shape 1 - 1  1 1 1 1
+JECHF_2018 shape 1 - 1 1 1 1 1
+JECRelativeBal shape 1 - 1 1 1 1 1
+JECRelativeSample_2018 shape 1 - 1	1 1 1 1
+CMS2018_prefire shape 1 - 1	1 1 1 1
+
+#wj_hf                   lnN           1.05         -        -       -          -          -      -
+#zj_hf                   lnN           -            -        -       -          1.05          -      -
+
+norm_stop               lnN           -         -         1.1        -       -          -            -
 norm_diboson            lnN           -        -          -         -        -          1.2         -
-norm_wj                 lnN           1.2      -          -        -        -             -         -
+norm_smh                 lnN           -      -          -        -        -             -         1.2
 
-trig_ele                lnN           1.05       -        1.05      1.05      1.05        1.05    1.05
-veto_tau                lnN           1.03        1.03     1.03       1.03       1.03      1.03     1.03     1.03
-CMS2018_scale_e         lnN           -            -        -         -          -          -      -
-CMS2018_scale_m         lnN           1.03        1.03     1.03       1.03       1.03      1.03     1.03     1.03
-CMS2018_eff_met         lnN           1.04        1.04     1.04       1.04       1.04      1.04     1.04
-wj_hf                   lnN           1.05         -        -       -          -          -      -
-zj_hf                   lnN           -            -        -       -          1.05          -      -
+#CMS2018_pdf              shape    1        -     1       1       1      1     1     
+#CMS2018_mu_scale         shape    1        -     1       1       1      1     1     
 
-#pdf_accept              lnN          1.01       1.01  	  1.01       1.01     1.01  1.01  1.01
+CMS2018_pdf       shape - - -	   - - - 1
+CMS2018_mu_scale shape - - -    - - - 1
+
+CMS2018_qcd_norm        lnN - - - 1.5 - - -
 #CMS2018_eff_t           lnN          1.03       1.03       1.03      1.03     1.03  1.03 1.03 
+#CMS2018_eff_met         lnN           1.04        1.04     1.04       1.04       1.04      1.04     1.04
 
-tf1_TOPMU_tt_2b flatParam
-tf2_TOPMU_tt_2b flatParam
-tf3_TOPMU_tt_2b flatParam
-tf4_TOPMU_tt_2b flatParam
-
-rrvbc_SR_tt_2b1 flatParam
-rrvbc_SR_tt_2b2 flatParam
-rrvbc_SR_tt_2b3 flatParam
-rrvbc_SR_tt_2b4 flatParam
+rrvbc_SR_tt_2b1_2018 flatParam
+rrvbc_SR_tt_2b2_2018 flatParam
+rrvbc_SR_tt_2b3_2018 flatParam
+rrvbc_SR_tt_2b4_2018 flatParam
 
 

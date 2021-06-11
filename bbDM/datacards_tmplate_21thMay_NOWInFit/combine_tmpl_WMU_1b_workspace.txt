@@ -46,6 +46,7 @@ CMSYEAR_EleRECO         shape     -            -        -         -          -  
 
 #CMSYEAR_MuTRK         shape     -        1        1         1          1          1      1 
 CMSYEAR_MuID         shape     -        1        1         1          1          1      1 
+CMSYEAR_MuISO         shape     -        1        1         1          1          1      1 
 
 CMSYEAR_veto_tau                lnN    -        1.03     1.03       1.03       1.03      1.03     1.03     
 
@@ -77,11 +78,6 @@ CMSYEAR_mu_scale shape - - -    - - - 1
 CMSYEAR_qcd_norm  lnN - - - 1.5 - - -
 #CMSYEAR_eff_met         lnN    1.04        1.04     1.04       1.04       1.04      1.04     1.04     
 #CMSYEAR_eff_t           lnN    1.03        1.03     1.03       1.03       1.03      1.03     1.03    
-
-tf1_TOPMU_tt_1b_YEAR flatParam
-tf2_TOPMU_tt_1b_YEAR flatParam
-tf3_TOPMU_tt_1b_YEAR flatParam
-tf4_TOPMU_tt_1b_YEAR flatParam
 
 rrvbc_SR_wjets_1b1_YEAR flatParam
 rrvbc_SR_wjets_1b2_YEAR flatParam

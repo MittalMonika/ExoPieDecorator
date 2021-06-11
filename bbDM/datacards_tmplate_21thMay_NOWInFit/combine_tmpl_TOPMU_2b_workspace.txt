@@ -42,6 +42,7 @@ CMSYEAR_EleID         shape           -            -        -         -         
 CMSYEAR_EleRECO         shape           -            -        -         -          -          -      -
 
 #CMSYEAR_MuTRK         shape           1        -     1       1       1      1     1    
+CMSYEAR_MuISO         shape           1        -     1       1       1      1     1    
 CMSYEAR_MuID         shape           1        -     1       1       1      1     1     
 
 CMSYEAR_veto_tau                lnN           1.03        1.03     1.03       1.03       1.03      1.03     1.03   
@@ -57,6 +58,7 @@ JECHF shape 1 - 1  1 1 1 1
 JECHF_YEAR shape 1 - 1 1 1 1 1
 JECRelativeBal shape 1 - 1 1 1 1 1
 JECRelativeSample_YEAR shape 1 - 1	1 1 1 1
+CMSYEAR_prefire shape 1 - 1	1 1 1 1
 
 #wj_hf                   lnN           1.05         -        -       -          -          -      -
 #zj_hf                   lnN           -            -        -       -          1.05          -      -
@@ -75,10 +77,6 @@ CMSYEAR_qcd_norm        lnN - - - 1.5 - - -
 #CMSYEAR_eff_t           lnN          1.03       1.03       1.03      1.03     1.03  1.03 1.03 
 #CMSYEAR_eff_met         lnN           1.04        1.04     1.04       1.04       1.04      1.04     1.04
 
-tf1_TOPMU_tt_2b_YEAR flatParam
-tf2_TOPMU_tt_2b_YEAR flatParam
-tf3_TOPMU_tt_2b_YEAR flatParam
-tf4_TOPMU_tt_2b_YEAR flatParam
 rrvbc_SR_tt_2b1_YEAR flatParam
 rrvbc_SR_tt_2b2_YEAR flatParam
 rrvbc_SR_tt_2b3_YEAR flatParam

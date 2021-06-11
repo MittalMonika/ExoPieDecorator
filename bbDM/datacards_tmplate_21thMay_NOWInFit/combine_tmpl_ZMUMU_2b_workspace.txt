@@ -41,6 +41,8 @@ CMSYEAR_fake_b          shape                1      1        -      1  1
 CMSYEAR_EleID         shape                   -        -         -          -          -     
 CMSYEAR_EleRECO         shape                   -        -         -          -          -     
 #CMSYEAR_MuTRK         shape                  1     1       -       1      1      
+CMSYEAR_MuISO         shape                  1     1       -       1      1      
+
 CMSYEAR_MuID         shape                  1     1       -       1      1         
 
 CMSYEAR_veto_tau                lnN                  1.03     1.03       -       1.03      1.03
@@ -56,6 +58,7 @@ JECHF shape 1 1 -  1 1
 JECHF_YEAR shape 1 1 -  1 1
 JECRelativeBal shape 1 1 -      1 1
 JECRelativeSample_YEAR shape 1 1 -      1 1
+CMSYEAR_prefire shape 1 1 -      1 1
 
 
 #wj_hf                   lnN                   -        -       -          -          -     

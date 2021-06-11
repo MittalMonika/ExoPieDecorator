@@ -52,6 +52,7 @@ CMSYEAR_EleRECO       shape     -            -        -         -          -    
 
 #CMSYEAR_MuTRK         shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for mu CRs 
 CMSYEAR_MuID         shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for mu CRs 
+CMSYEAR_MuISO         shape     -            -        -         -          -          -      -       -   ## this is dummy for SR, it exist only for mu CRs 
 
 CMSYEAR_veto_tau     lnN    1.03       - - 1.03       1.03      1.03     1.03     1.03
 
@@ -86,6 +87,8 @@ CMSYEAR_mu_scale         shape    1        -     -       -   	  -      -     -  
 
 CMSYEAR_qcd_norm        lnN - - - - - 1.5 - -
 
+CMSYEAR_prefire shape 1 - -  1 1 1 1 1
+
 ##CMSYEAR_eff_met         lnN    1.04        1.04     1.04       1.04   	  1.04      1.04     1.04     1.04
 #CMSYEAR_eff_t           lnN    1.03        1.03     1.03       1.03       1.03      1.03     1.03     1.03
 
@@ -96,32 +99,43 @@ CMSYEAR_qcd_norm        lnN - - - - - 1.5 - -
 #rrv_eletrigeffCMSYEAR_scale__1b param 0.0 1
 
 #CMSYEAR_EleTrig  param  0.0 1
+
 CMSYEAR_EleRECO param  0.0 1
 CMSYEAR_EleID param  0.0 1
 CMSYEAR_MuTRK param  0.0 1
 CMSYEAR_MuID param  0.0 1
 CMSYEAR_trig_ele param 0.0 1
+CMSYEAR_MuISO param  0.0 1
 
-rrv_CMSYEAR_stats_err_TOPE_tt_1b_bin1 param 0.0 1
-rrv_CMSYEAR_stats_err_TOPE_tt_1b_bin2 param 0.0 1
-rrv_CMSYEAR_stats_err_TOPE_tt_1b_bin3 param 0.0 1
-rrv_CMSYEAR_stats_err_TOPE_tt_1b_bin4 param 0.0 1
-rrv_CMSYEAR_stats_err_TOPMU_tt_1b_bin1 param 0.0 1
-rrv_CMSYEAR_stats_err_TOPMU_tt_1b_bin2 param 0.0 1
-rrv_CMSYEAR_stats_err_TOPMU_tt_1b_bin3 param 0.0 1
-rrv_CMSYEAR_stats_err_TOPMU_tt_1b_bin4 param 0.0 1
+
+CMSYEAR_eff_b param 0.0 1
+CMSYEAR_prefire param 0.0 1
+
+
+#rrv_CMSYEAR_stats_err_TOPE_tt_1b_bin1 param 0.0 1
+#rrv_CMSYEAR_stats_err_TOPE_tt_1b_bin2 param 0.0 1
+#rrv_CMSYEAR_stats_err_TOPE_tt_1b_bin3 param 0.0 1
+#rrv_CMSYEAR_stats_err_TOPE_tt_1b_bin4 param 0.0 1
+#rrv_CMSYEAR_stats_err_TOPMU_tt_1b_bin1 param 0.0 1
+#rrv_CMSYEAR_stats_err_TOPMU_tt_1b_bin2 param 0.0 1
+#rrv_CMSYEAR_stats_err_TOPMU_tt_1b_bin3 param 0.0 1
+#rrv_CMSYEAR_stats_err_TOPMU_tt_1b_bin4 param 0.0 1
+
 rrv_CMSYEAR_stats_err_WE_wjets_1b_bin1 param 0.0 1
 rrv_CMSYEAR_stats_err_WE_wjets_1b_bin2 param 0.0 1
 rrv_CMSYEAR_stats_err_WE_wjets_1b_bin3 param 0.0 1
 rrv_CMSYEAR_stats_err_WE_wjets_1b_bin4 param 0.0 1
+
 rrv_CMSYEAR_stats_err_WMU_wjets_1b_bin1 param 0.0 1
 rrv_CMSYEAR_stats_err_WMU_wjets_1b_bin2 param 0.0 1
 rrv_CMSYEAR_stats_err_WMU_wjets_1b_bin3 param 0.0 1
 rrv_CMSYEAR_stats_err_WMU_wjets_1b_bin4 param 0.0 1
+
 rrv_CMSYEAR_stats_err_ZEE_dyjets_1b_bin1 param 0.0 1
 rrv_CMSYEAR_stats_err_ZEE_dyjets_1b_bin2 param 0.0 1
 rrv_CMSYEAR_stats_err_ZEE_dyjets_1b_bin3 param 0.0 1
 rrv_CMSYEAR_stats_err_ZEE_dyjets_1b_bin4 param 0.0 1
+
 rrv_CMSYEAR_stats_err_ZMUMU_dyjets_1b_bin1 param 0.0 1
 rrv_CMSYEAR_stats_err_ZMUMU_dyjets_1b_bin2 param 0.0 1
 rrv_CMSYEAR_stats_err_ZMUMU_dyjets_1b_bin3 param 0.0 1

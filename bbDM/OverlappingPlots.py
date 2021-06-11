@@ -22,7 +22,7 @@ from ROOT import TPaveText
 from ROOT import TLatex
 
 import os
-colors=[1,41,4,5,8,2,9,41,46,30,12,28,20,32]
+colors=[1,4,5,8,2,9,41,46,30,12,28,20,32]
 markerStyle=[23,21,22,20,24,25,26,27,28,29,20,21,22,23]            
 linestyle=[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 
@@ -224,19 +224,34 @@ DrawOverlap(files,histoname1,axistitle,legend,'limit_bbDM_monoH_comparison',[0,1
 
 
 
-'''
 
-files=['bin/v17_12_00_00/limits_bbDM_combined_2017.root', 'bin/v17_12_00_00_Jet1Pt75/limits_bbDM_combined_2017.root', 'bin/v17_12_00_00_Jet1Pt100/limits_bbDM_combined_2017.root', 'bin/noNJetSel/limits_bbDM_combined_2017.root', 'bin/v17_12_00_00_MET250/limits_bbDM_combined_2017.root', 'bin/v17_12_00_00_MET250_Jet1Pt100/limits_bbDM_combined_2017.root']
-legend=['jet p_{T}>50 GeV', 'jet p_{T}>75 GeV', 'jet p_{T}>100 GeV', 'No njet cut', 'MET>250', 'jet p_{T}>100 GeV & MET>250']
+dirname='bin/AllMETHistos_v17_12-00-02_nobZCR'
+files=[dirname+'/limits_bbDM_1b_2017.root', dirname+'/limits_bbDM_2b_2017.root', dirname+'/limits_bbDM_combined_2017.root']
+legend=['1b', '2b', 'combined']
 
 histoname1=['expmed']
 
 xtitle='m_{A}[GeV]'
 ytitle='#mu'
 axistitle = [xtitle, ytitle]
-DrawOverlap(files,histoname1,axistitle,legend,'limit_bbDM_jetpT_optimise',[0,1],[10,1000])
-'''
+DrawOverlap(files,histoname1,axistitle,legend,'limit_bbDM_2017_comparison',[0,1],[10,1000])
 
+
+
+
+
+dirname='bin/AllMETHistos_v16_12_00_02'
+files=[dirname+'/limits_bbDM_1b_2016.root', dirname+'/limits_bbDM_2b_2016.root', dirname+'/limits_bbDM_combined_2016.root']
+legend=['1b', '2b', 'combined']
+
+histoname1=['expmed']
+
+xtitle='m_{A}[GeV]'
+ytitle='#mu'
+axistitle = [xtitle, ytitle]
+DrawOverlap(files,histoname1,axistitle,legend,'limit_bbDM_2016_comparison',[0,1],[10,1000])
+
+'''
 
 
 files=["bin/AllMETHistos_v17_12-00-02_noBjetsCond_onlyZ__NO_WCR_In_The_Fit/limits_bbDM_2b_2017.root", "bin/AllMETHistos_v17_12-00-03_withBDT_binset2/limits_bbDM_2b_2017.root"]
@@ -249,7 +264,7 @@ ytitle='#mu'
 axistitle = [xtitle, ytitle]
 DrawOverlap(files,histoname1,axistitle,legend,'limit_bbDM_MET_vs_BDT',[0,1],[10,1000])
 
-
+'''
 
 '''
 

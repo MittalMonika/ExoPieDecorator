@@ -42,6 +42,7 @@ CMS2017_EleID         shape           -            -        -         -         
 CMS2017_EleRECO         shape           -            -        -         -          -          -      -
 
 #CMS2017_MuTRK         shape           1        -     1       1       1      1     1    
+CMS2017_MuISO         shape           1        -     1       1       1      1     1    
 CMS2017_MuID         shape           1        -     1       1       1      1     1     
 
 CMS2017_veto_tau                lnN           1.03        1.03     1.03       1.03       1.03      1.03     1.03   
@@ -57,6 +58,7 @@ JECHF shape 1 - 1  1 1 1 1
 JECHF_2017 shape 1 - 1 1 1 1 1
 JECRelativeBal shape 1 - 1 1 1 1 1
 JECRelativeSample_2017 shape 1 - 1	1 1 1 1
+CMS2017_prefire shape 1 - 1	1 1 1 1
 
 #wj_hf                   lnN           1.05         -        -       -          -          -      -
 #zj_hf                   lnN           -            -        -       -          1.05          -      -
@@ -75,10 +77,6 @@ CMS2017_qcd_norm        lnN - - - 1.5 - - -
 #CMS2017_eff_t           lnN          1.03       1.03       1.03      1.03     1.03  1.03 1.03 
 #CMS2017_eff_met         lnN           1.04        1.04     1.04       1.04       1.04      1.04     1.04
 
-tf1_TOPMU_tt_2b_2017 flatParam
-tf2_TOPMU_tt_2b_2017 flatParam
-tf3_TOPMU_tt_2b_2017 flatParam
-tf4_TOPMU_tt_2b_2017 flatParam
 rrvbc_SR_tt_2b1_2017 flatParam
 rrvbc_SR_tt_2b2_2017 flatParam
 rrvbc_SR_tt_2b3_2017 flatParam
