@@ -10,7 +10,7 @@ kmax *  number of nuisance parameters (sources of systematical uncertainties)
 ## shapes  process   region    path 
 
 shapes *         bbDM2018_1b_ZMUMU       bbDM_2018_WS.root ws_bbDM_1b_2018:bbDM2018_1b_ZMUMU_$PROCESS ws_bbDM_1b_2018:bbDM2018_1b_ZMUMU_$PROCESS_$SYSTEMATIC
-shapes dyjets     bbDM2018_1b_ZMUMU       bbDM_2018_WS.root ws_bbDM_1b_2018:rph_ZMUMU_dyjets_1b
+shapes dyjets     bbDM2018_1b_ZMUMU       bbDM_2018_WS.root ws_bbDM_1b_2018:rph_ZMUMU_dyjets_1b_2018
 
 
 ------------

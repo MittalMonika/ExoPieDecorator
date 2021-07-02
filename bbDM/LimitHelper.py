@@ -94,6 +94,7 @@ class RunLimits:
             datacardsname = datacardsname.replace("AAAMDM",mdm)
             datacardsname = datacardsname.replace("SR",region)
             
+            
         if ('dmsimp' in model) and (len(allparams)==2):
             mphi = str(allparams[0])
             mdm = str(allparams[1])
@@ -123,7 +124,10 @@ class RunLimits:
                 iline  = iline.replace("XXX", mphi)
                 iline  = iline.replace("YYY", mdm)
 
-            
+                if (year=="2016"): 
+                    iline  = iline.replace("CMSYEAR_pdf","#CMS2016_pdf")
+                    iline  = iline.replace("CMSYEAR_mu_scale","#CMS2016_mu_scale")
+                
             
             if region=="SR": iline  = iline.replace("SR", region)
             if region!="SR": iline  = iline.replace("SR_ggF", region)
@@ -183,7 +187,7 @@ class RunLimits:
         print towrite
         os.system ("mkdir -p bin/"+self.postfix_)
         os.system ("mkdir -p plots_limit/"+self.postfix_)
-        outfile="bin/"+self.postfix_+"/limits_"+self.analysis_+"_"+category+"_"+self.year_+".txt"
+        outfile="bin/"+self.postfix_+"/limits_"+self.analysis_+"_"+self.model_+"_"+category+"_"+self.year_+".txt"
         self.limit_text_file = outfile
 
         
@@ -210,6 +214,7 @@ class RunLimits:
         errx=array('f')
     
         for line in f:
+            if len(line.rsplit())<7: continue
             med.append(float(line.rstrip().split()[1]))
             mchi.append(float(line.rstrip().split()[0]))
             
@@ -243,16 +248,25 @@ class RunLimits:
         return limit_root_file
 
     def SaveLimitPdf1D(self,rootfile):
+        setlogX=0
+        yaxis=1000
+        print ("-------------------model: ", self.model_)
+        if (self.model_ == "dmsimp_all") | (self.model_=="dmsimp") :
+            setlogX=1
+            yaxis=10000
+        
         self.setupDirs("configs/limits_dir.txt")
         #rootfile = self.limit_root_file 
         
         rt.gStyle.SetOptTitle(0)
         rt.gStyle.SetOptStat(0)
         rt.gROOT.SetBatch(1)
-        c = rt.TCanvas("c","c",1500, 950)
-        c.SetGrid(1,1)
+        c = rt.TCanvas("c","c",620, 600)
+        c.SetGrid(0,0)
         c.SetLogy(1)
-        leg = rt.TLegend(.15, .65, .35, .890);
+        c.SetLogx(setlogX)
+        c.SetLeftMargin(0.12)
+        #leg = rt.TLegend(.15, .65, .35, .890);
         f = rt.TFile(rootfile,"read")
         exp2s =  f.Get("exp2")
         exp2s.SetMarkerStyle(20)
@@ -260,11 +274,12 @@ class RunLimits:
         exp2s.SetLineWidth(2)
         exp2s.SetFillColor(rt.kYellow);
         exp2s.SetLineColor(rt.kYellow)
-        exp2s.GetXaxis().SetTitle("m_{a} [GeV]");
-        exp2s.GetYaxis().SetRangeUser(.1,1000)
-        exp2s.GetXaxis().SetTitleOffset(1.4)
-        exp2s.GetYaxis().SetTitle("95% C.L. asymptotic limit on #mu=#sigma/#sigma_{theory}");
-        exp2s.GetYaxis().SetTitleOffset(1.2)
+        exp2s.GetXaxis().SetTitle("m_{a} (GeV)");
+        exp2s.GetYaxis().SetRangeUser(.1,yaxis)
+        exp2s.GetXaxis().SetTitleOffset(1.1)
+        #exp2s.GetYaxis().SetTitle("95% C.L. asymptotic limit on #mu=#sigma/#sigma_{theory}");
+        exp2s.GetYaxis().SetTitle("95% C.L. #mu=#sigma/#sigma_{theory}");
+        exp2s.GetYaxis().SetTitleOffset(1.7)
         exp2s.GetYaxis().SetNdivisions(20,5,0);
         #exp2s.GetXaxis().SetNdivisions(505);
         exp2s.GetYaxis().SetMoreLogLabels()
@@ -295,7 +310,8 @@ class RunLimits:
         obs.SetLineWidth(3)
         #obs.Draw("L same")
     
-        leg = rt.TLegend(.15, .65, .40, .890);
+        leg = rt.TLegend(.6, .65, .88, .890);
+        leg.SetBorderSize(0);
         leg.SetFillColor(0);
         leg.SetShadowColor(0);
         leg.SetTextFont(42);
@@ -315,20 +331,48 @@ class RunLimits:
     
         latex =  rt.TLatex();
         latex.SetNDC();
-        latex.SetTextSize(0.04);
+        latex.SetTextFont(42);
+        latex.SetTextSize(0.03);
         latex.SetTextAlign(31);
-        latex.SetTextAlign(11);
+        latex.SetTextAlign(12);
         model_ = '2HDM+a'
-        #MA_    = str(inputstring.split('_')[1].strip('MA'))
-        #category = str(inputstring.split('_')[2])
-        #latex.DrawLatex(0.11, 0.91, "2HDM+a bb+DM  "+category+" category");
-        #latex.DrawLatex(0.53, 0.91, "m_{A}="+MA_+" GeV, tan#beta = 35, sin#theta = 0.7");
         
-        self.limit_pdf_file  = rootfile.replace(".root",".pdf").replace("bin/","plots_limit/")
+        import CMS_lumi
+        CMS_lumi.writeExtraText = 1
+        CMS_lumi.extraText = "Preliminary"
+        CMS_lumi.lumi_sqrtS = "13 TeV" # used with iPeriod = 0, e.g. for simulation-only plots (default is an empty string)
+        iPos = 11
+        if( iPos==0 ): CMS_lumi.relPosX = 0.12
+        iPeriod=int(rootfile.split("/")[-1].split(".")[0].split("_")[-1])
+
+        CMS_lumi.CMS_lumi(c, iPeriod, iPos)
+
+        category=""
+        if "_1b_" in rootfile: category="1b"
+        if "_2b_" in rootfile: category="2b"
+        if "combined" in rootfile: category="1b+2b"
+        
+        if "2hdma" in self.model_:
+            MA_="600"
+            latex.DrawLatex(0.20, 0.7, "bb+p_{T}^{miss}  "+category);
+            latex.DrawLatex(0.20, 0.64, "2HDM+a");
+            latex.DrawLatex(0.15, 0.58, "m_{A}="+MA_+" GeV, tan#beta = 35"); #sin#theta = 0.7, m_{\chi} = 1 GeV");
+            latex.DrawLatex(0.15, 0.52, "sin#theta = 0.7, m_{\chi} = 1 GeV");
+
+        if "dmsimp" in self.model_:
+            MA_="600"
+            latex.DrawLatex(0.21, 0.7, "DMSiMP bb+p_{T}^{miss}  "+category);
+            latex.DrawLatex(0.21, 0.64, "m_{\chi} = 1 GeV");
+            
+                
+        
+        self.limit_pdf_file  = rootfile.replace(".root","_"+self.model_+".pdf").replace("bin/","plots_limit/")
+        
         #c.SetLogx(1)
         c.Update()
         #c.SaveAs(name+".png")
         c.SaveAs(self.limit_pdf_file)
+        c.SaveAs(self.limit_pdf_file.replace(".pdf",".png"))
         c.Close()
         
         return "pdf file is saved"

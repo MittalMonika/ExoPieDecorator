@@ -234,7 +234,7 @@ histoname1=['expmed']
 xtitle='m_{A}[GeV]'
 ytitle='#mu'
 axistitle = [xtitle, ytitle]
-DrawOverlap(files,histoname1,axistitle,legend,'limit_bbDM_2017_comparison',[0,1],[10,1000])
+DrawOverlap(files,histoname1,axistitle,legend,'limit_bbDM_2017_MET_comparison',[0,1],[10,1000])
 
 
 
@@ -250,6 +250,35 @@ xtitle='m_{A}[GeV]'
 ytitle='#mu'
 axistitle = [xtitle, ytitle]
 DrawOverlap(files,histoname1,axistitle,legend,'limit_bbDM_2016_comparison',[0,1],[10,1000])
+
+
+
+
+
+dirname='bin/'
+files=[dirname+'/AllMETHistos_v16_12-00-03_1bMET_2bCTS/limits_bbDM_2hdma_2b_2016.root', dirname+'/AllMETHistos_v17_12-00-03_1bMET_2bCTS/limits_bbDM_2hdma_2b_2017.root', dirname+'/AllMETHistos_v18_12-00-03_1bMET_2bCTS/limits_bbDM_2hdma_2b_2018.root',dirname+'/Run2Combo_2b/limits_bbDM_2hdma_2b_run2.root'] 
+legend=['2016', '2017', '2018','run-2']
+
+histoname1=['expmed']
+
+xtitle='m_{A}[GeV]'
+ytitle='#mu'
+axistitle = [xtitle, ytitle]
+DrawOverlap(files,histoname1,axistitle,legend,'limit_bbDM_2b_2hdma_run2_comparison',[0,1],[10,1000])
+
+
+
+
+dirname='bin/'
+files=[dirname+'/AllMETHistos_v16_12-00-03_1bMET_2bCTS/limits_bbDM_1b_2016.root', dirname+'/AllMETHistos_v17_12-00-03_1bMET_2bCTS/limits_bbDM_1b_2017.root', dirname+'/AllMETHistos_v18_12-00-03_1bMET_2bCTS/limits_bbDM_1b_2018.root',dirname+'/Run2Combo_1b/limits_bbDM_1b_run2.root']
+legend=['2016', '2017', '2018','run-2']
+
+histoname1=['expmed']
+
+xtitle='m_{A}[GeV]'
+ytitle='#mu'
+axistitle = [xtitle, ytitle]
+DrawOverlap(files,histoname1,axistitle,legend,'limit_bbDM_1b_run2_comparison',[0,1],[10,1000])
 
 '''
 

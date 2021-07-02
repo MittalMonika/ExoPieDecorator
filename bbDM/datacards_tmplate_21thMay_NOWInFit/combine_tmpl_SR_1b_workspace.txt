@@ -16,9 +16,9 @@ shapes signal    bbDMYEAR_CATEGORY_SR       bbDM_YEAR_WS.root ws_bbDM_CATEGFULL_
 shapes data_obs  bbDMYEAR_CATEGORY_SR       bbDM_YEAR_WS.root  ws_bbDM_CATEGFULL_YEAR:bbDMYEAR_CATEGORY_SR_data_obs
 
 
-shapes wjets     bbDMYEAR_CATEGORY_SR       bbDM_YEAR_WS.root ws_bbDM_CATEGFULL_YEAR:rph_SR_wjets_1b
-#shapes tt        bbDMYEAR_CATEGORY_SR           bbDM_YEAR_WS.root ws_bbDM_CATEGFULL_YEAR:rph_SR_tt_1b
-shapes zjets     bbDMYEAR_CATEGORY_SR           bbDM_YEAR_WS.root ws_bbDM_CATEGFULL_YEAR:rph_SR_zjets_1b
+shapes wjets     bbDMYEAR_CATEGORY_SR       bbDM_YEAR_WS.root ws_bbDM_CATEGFULL_YEAR:rph_SR_wjets_1b_YEAR
+#shapes tt        bbDMYEAR_CATEGORY_SR           bbDM_YEAR_WS.root ws_bbDM_CATEGFULL_YEAR:rph_SR_tt_1b_YEAR
+shapes zjets     bbDMYEAR_CATEGORY_SR           bbDM_YEAR_WS.root ws_bbDM_CATEGFULL_YEAR:rph_SR_zjets_1b_YEAR
 
 
 

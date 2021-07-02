@@ -85,6 +85,14 @@ void addTemplate(RooWorkspace& ws,  RooArgList& vars, TH1F* hist) {
   std::cout<<" name = "<<hist->GetName()<<std::endl;
   RooDataHist rhist(hist->GetName(), hist->GetName(),  vars, hist);
   std::cout<<" integral of the histogram for "<<hist->GetName()<<" is "<<rhist.sumEntries()<<"  "<<hist->Integral()<<" bins: "<<hist->GetNbinsX()<<std::endl;
+  for (int ibin=1; ibin<hist->GetXaxis()->GetNbins()+1 ;ibin++){
+    if (hist->GetBinContent(ibin)<=0) std::cout<<" histogram: "<<hist->GetName()<<" has negative bin content"<<ibin<<" "<<hist->GetBinContent(ibin)<<endl;
+    std::cout<<" binning histogram: "<<hist->GetName()
+	     <<" ibin: "<<ibin
+	     <<" lowedge: "<<hist->GetBinLowEdge(ibin)
+	     <<" bin content "<<hist->GetBinContent(ibin)
+	     <<std::endl;
+  }
   ws.import(rhist);
 }
 
@@ -117,7 +125,7 @@ void plotSystPrefit(){
 
 
 std::vector<TH1F*> h_vec_tf;
-TFile* f_TF = new TFile("TFnuiusance.root","READ");
+TFile* f_TF = new TFile("TF_v17_12-00-03_1bMET_2bCTS.root","READ");
 
 std::vector<std::string> createnuisance(float value_,int  nbins, int nuisanceCounter){
   std::vector<std::string> logN_nuisance_vec;
@@ -204,12 +212,12 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
 
   // Create a RooParametericHist which contains those yields, last argument is just for the binning, we can use the data TH1 for that
   // RPH for the bkg yield in the SR
-  RooParametricHist rph_sr_bkg("rph_"+region_proc_sr+anacat_, " "+region_proc_sr+" PDF in signal region "+anacat_,met,ralbc_sr_bkg, *h_sr_data);
+  RooParametricHist rph_sr_bkg("rph_"+region_proc_sr+anacat_+"_"+year_, " "+region_proc_sr+" PDF in signal region "+anacat_+year_,met,ralbc_sr_bkg, *h_sr_data);
 
 
   // Always include a _norm term which should be the sum of the yields (thats how combine likes to play with pdfs)
   // not sure yet why is this needed?
-  RooAddition rph_sr_bkg_norm("rph_"+region_proc_sr+anacat_+"_norm","Total Number of events from background in signal region "+anacat_,ralbc_sr_bkg);
+  RooAddition rph_sr_bkg_norm("rph_"+region_proc_sr+anacat_+"_"+year_+"_norm","Total Number of events from background in signal region "+anacat_+year_,ralbc_sr_bkg);
 
 
   wspace.import(rph_sr_bkg);
@@ -240,7 +248,7 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
 
 
   // create roodatahist of the background histogram in CR.
-  RooDataHist dh_cr_bkg("dh_"+region_proc_cr+anacat_,"dh_"+region_proc_cr+anacat_, vars, h_cr_bkg);
+  RooDataHist dh_cr_bkg("dh_"+region_proc_cr+anacat_+"_"+year_,"dh_"+region_proc_cr+anacat_+"_"+year_, vars, h_cr_bkg);
 
   // another copy fo the wjets in wenu CR for division and saving thr TFs central value.
   // transfer factor is defined as ratio of TF =  bkg in CR / bkg in SR
@@ -420,12 +428,14 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
     std::vector<std::string> add_logN_systematic ;
     add_logN_systematic.clear();
     
+    //add_logN_systematic = createnuisance(nuisanceValue[nuisIndex[isys]], nHistbins, syst_counter++);                                                                              
+    
     if (nuisIndex[isys] != 8) add_logN_systematic = createnuisance(nuisanceValue[nuisIndex[isys]], nHistbins, syst_counter++);
     if (nuisIndex[isys] == 8) {
-      TH1F* btagunc = (TH1F*) f_TF->Get("btag");
+      TH1F* btagunc = (TH1F*) f_TF->Get("Unc_tf_2b_SR_zjets_to_2b_ZEE_dyjets_CMS2017_eff_bUp");
       std::vector<float> btaguncvec = GetBinContents(btagunc);
       add_logN_systematic = createnuisance(btaguncvec, nHistbins, syst_counter++);
-    }
+      }
     //for (int i =0; i<4; i++)  std::cout<<" add_logN_systematic = "<<add_logN_systematic[i]<<std::endl;
     rfv_bin1 += "*"+add_logN_systematic[0];
     rfv_bin2 += "*"+add_logN_systematic[1];
@@ -467,16 +477,16 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
   std::cout<<" bin 4 total unc is "<<rfv_bin4<<std::endl;
 
   std::cout<<" RAL = "<<ral_bin1<<std::endl;
-  RooFormulaVar TF1("TF1"+region_proc_cr+anacat_,"Transfer factor",rfv_bin1, ral_bin1);
-  RooFormulaVar TF2("TF2"+region_proc_cr+anacat_,"Transfer factor",rfv_bin2, ral_bin2);
-  RooFormulaVar TF3("TF3"+region_proc_cr+anacat_,"Transfer factor",rfv_bin3, ral_bin3);
-  RooFormulaVar TF4("TF4"+region_proc_cr+anacat_,"Transfer factor",rfv_bin4, ral_bin4);
+  RooFormulaVar TF1("TF1"+region_proc_cr+anacat_+"_"+year_,"Transfer factor",rfv_bin1, ral_bin1);
+  RooFormulaVar TF2("TF2"+region_proc_cr+anacat_+"_"+year_,"Transfer factor",rfv_bin2, ral_bin2);
+  RooFormulaVar TF3("TF3"+region_proc_cr+anacat_+"_"+year_,"Transfer factor",rfv_bin3, ral_bin3);
+  RooFormulaVar TF4("TF4"+region_proc_cr+anacat_+"_"+year_,"Transfer factor",rfv_bin4, ral_bin4);
 
   //  -- Following code is to extend the number of bins
-  //RooFormulaVar TF5("TF5"+region_proc_cr+anacat_,"Transfer factor",rfv_bin5, ral_bin5);
-  //RooFormulaVar TF6("TF6"+region_proc_cr+anacat_,"Transfer factor",rfv_bin6, ral_bin6);
-  //RooFormulaVar TF7("TF7"+region_proc_cr+anacat_,"Transfer factor",rfv_bin7, ral_bin7);
-  //RooFormulaVar TF8("TF8"+region_proc_cr+anacat_,"Transfer factor",rfv_bin8, ral_bin8);
+  //RooFormulaVar TF5("TF5"+region_proc_cr+anacat_+"_"+year_,"Transfer factor",rfv_bin5, ral_bin5);
+  //RooFormulaVar TF6("TF6"+region_proc_cr+anacat_+"_"+year_,"Transfer factor",rfv_bin6, ral_bin6);
+  //RooFormulaVar TF7("TF7"+region_proc_cr+anacat_+"_"+year_,"Transfer factor",rfv_bin7, ral_bin7);
+  //RooFormulaVar TF8("TF8"+region_proc_cr+anacat_+"_"+year_,"Transfer factor",rfv_bin8, ral_bin8);
 
 
   /*
@@ -487,21 +497,21 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
 
 
   //---- This is the usual formula to get the bkg in CR, from 8 Feb 2021 use the inverted implementation
-  // RooFormulaVar rfv_cr_bkg1("rfv_"+region_proc_cr+"1"+anacat_,"Background yield in control region, bin 1","@0*@1",RooArgList(TF1, rrvbc_sr_bkg.at(0)));
-  // RooFormulaVar rfv_cr_bkg2("rfv_"+region_proc_cr+"2"+anacat_,"Background yield in control region, bin 2","@0*@1",RooArgList(TF2,rrvbc_sr_bkg.at(1)));
-  // RooFormulaVar rfv_cr_bkg3("rfv_"+region_proc_cr+"3"+anacat_,"Background yield in control region, bin 3","@0*@1",RooArgList(TF3,rrvbc_sr_bkg.at(2)));
-  // RooFormulaVar rfv_cr_bkg4("rfv_"+region_proc_cr+"4"+anacat_,"Background yield in control region, bin 4","@0*@1",RooArgList(TF4,rrvbc_sr_bkg.at(3)));
+  // RooFormulaVar rfv_cr_bkg1("rfv_"+region_proc_cr+"1"+anacat_+"_"+year_,"Background yield in control region, bin 1","@0*@1",RooArgList(TF1, rrvbc_sr_bkg.at(0)));
+  // RooFormulaVar rfv_cr_bkg2("rfv_"+region_proc_cr+"2"+anacat_+"_"+year_,"Background yield in control region, bin 2","@0*@1",RooArgList(TF2,rrvbc_sr_bkg.at(1)));
+  // RooFormulaVar rfv_cr_bkg3("rfv_"+region_proc_cr+"3"+anacat_+"_"+year_,"Background yield in control region, bin 3","@0*@1",RooArgList(TF3,rrvbc_sr_bkg.at(2)));
+  // RooFormulaVar rfv_cr_bkg4("rfv_"+region_proc_cr+"4"+anacat_+"_"+year_,"Background yield in control region, bin 4","@0*@1",RooArgList(TF4,rrvbc_sr_bkg.at(3)));
 
-  RooFormulaVar rfv_cr_bkg1("rfv_"+region_proc_cr+"1"+anacat_,"Background yield in control region, bin 1","(1.0/@0)*@1",RooArgList(TF1, rrvbc_sr_bkg.at(0)));
-  RooFormulaVar rfv_cr_bkg2("rfv_"+region_proc_cr+"2"+anacat_,"Background yield in control region, bin 2","(1.0/@0)*@1",RooArgList(TF2,rrvbc_sr_bkg.at(1)));
-  RooFormulaVar rfv_cr_bkg3("rfv_"+region_proc_cr+"3"+anacat_,"Background yield in control region, bin 3","(1.0/@0)*@1",RooArgList(TF3,rrvbc_sr_bkg.at(2)));
-  RooFormulaVar rfv_cr_bkg4("rfv_"+region_proc_cr+"4"+anacat_,"Background yield in control region, bin 4","(1.0/@0)*@1",RooArgList(TF4,rrvbc_sr_bkg.at(3)));
+  RooFormulaVar rfv_cr_bkg1("rfv_"+region_proc_cr+"1"+anacat_+"_"+year_,"Background yield in control region, bin 1","(1.0/@0)*@1",RooArgList(TF1, rrvbc_sr_bkg.at(0)));
+  RooFormulaVar rfv_cr_bkg2("rfv_"+region_proc_cr+"2"+anacat_+"_"+year_,"Background yield in control region, bin 2","(1.0/@0)*@1",RooArgList(TF2,rrvbc_sr_bkg.at(1)));
+  RooFormulaVar rfv_cr_bkg3("rfv_"+region_proc_cr+"3"+anacat_+"_"+year_,"Background yield in control region, bin 3","(1.0/@0)*@1",RooArgList(TF3,rrvbc_sr_bkg.at(2)));
+  RooFormulaVar rfv_cr_bkg4("rfv_"+region_proc_cr+"4"+anacat_+"_"+year_,"Background yield in control region, bin 4","(1.0/@0)*@1",RooArgList(TF4,rrvbc_sr_bkg.at(3)));
 
   //  -- Following code is to extend the number of bins
-  //RooFormulaVar rfv_cr_bkg5("rfv_"+region_proc_cr+"5"+anacat_,"Background yield in control region, bin 5","(1.0/@0)*@1",RooArgList(TF5,rrvbc_sr_bkg.at(4)));
-  //RooFormulaVar rfv_cr_bkg6("rfv_"+region_proc_cr+"6"+anacat_,"Background yield in control region, bin 6","(1.0/@0)*@1",RooArgList(TF6,rrvbc_sr_bkg.at(5)));
-  //RooFormulaVar rfv_cr_bkg7("rfv_"+region_proc_cr+"7"+anacat_,"Background yield in control region, bin 7","(1.0/@0)*@1",RooArgList(TF7,rrvbc_sr_bkg.at(6)));
-  //RooFormulaVar rfv_cr_bkg8("rfv_"+region_proc_cr+"8"+anacat_,"Background yield in control region, bin 8","(1.0/@0)*@1",RooArgList(TF8,rrvbc_sr_bkg.at(7)));
+  //RooFormulaVar rfv_cr_bkg5("rfv_"+region_proc_cr+"5"+anacat_+"_"+year_,"Background yield in control region, bin 5","(1.0/@0)*@1",RooArgList(TF5,rrvbc_sr_bkg.at(4)));
+  //RooFormulaVar rfv_cr_bkg6("rfv_"+region_proc_cr+"6"+anacat_+"_"+year_,"Background yield in control region, bin 6","(1.0/@0)*@1",RooArgList(TF6,rrvbc_sr_bkg.at(5)));
+  //RooFormulaVar rfv_cr_bkg7("rfv_"+region_proc_cr+"7"+anacat_+"_"+year_,"Background yield in control region, bin 7","(1.0/@0)*@1",RooArgList(TF7,rrvbc_sr_bkg.at(6)));
+  //RooFormulaVar rfv_cr_bkg8("rfv_"+region_proc_cr+"8"+anacat_+"_"+year_,"Background yield in control region, bin 8","(1.0/@0)*@1",RooArgList(TF8,rrvbc_sr_bkg.at(7)));
 
 
 
@@ -523,8 +533,8 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
 
 
   std::cout<<" before rph "<<std::endl;
-  RooParametricHist rph_cr_bkg("rph_"+region_proc_cr+anacat_, "Background PDF in control region",met,ral_cr_bkg, *h_sr_data);
-  RooAddition rph_cr_bkg_norm("rph_"+region_proc_cr+anacat_+"_norm","Total Number of events from background in control region", ral_cr_bkg);
+  RooParametricHist rph_cr_bkg("rph_"+region_proc_cr+anacat_+"_"+year_, "Background PDF in control region",met,ral_cr_bkg, *h_sr_data);
+  RooAddition rph_cr_bkg_norm("rph_"+region_proc_cr+anacat_+"_"+year_+"_norm","Total Number of events from background in control region", ral_cr_bkg);
 
   std::cout<<" before rph import "<<std::endl;
   wspace.import(rph_cr_bkg);
@@ -539,7 +549,9 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
 
 
 
-void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString analysiscategory_="merged", TString mode__ = "RECREATE", TString inputdir=".", TString inputfile="AllMETHistos.root", TString year="2016", TString version     = "_V0"){
+void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString analysiscategory_="merged", TString mode__ = "RECREATE", TString inputdir=".", TString inputfile="AllMETHistos.root", TString year="2016", int nbins=4,TString version     = "_V0"){
+
+    
   TString anacat_ = analysiscategory_;
 
   TString outputfile  = model_+"_"+year+"_WS.root";
@@ -551,15 +563,41 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
   TString AnaYearCat  = model_ +  year + "_" + cat__ +"_" ;
   std::cout<<" AnaYearCat = "<<AnaYearCat<<std::endl;
   bool usebkgsum = false;
-   int met_low = 250;
-   int met_hi = 1000;
+  
+  
+  // Get the binning from histogram which can be used later in the code throughout. 
+  // Open input file with all the histograms.
+  TFile* fin = OpenRootFile(inputdir+"/"+inputfile);
+  
+  TH1F* h_binning = (TH1F*) fin->Get("bbDM"+year+"_"+anacat_+"_SR_2HDMa_Ma500_MChi1_MA1200_tb35_st_0p7");
+  
+  
+  Double_t bins[nbins+1];
+  int  met_low = h_binning->GetBinLowEdge(1);
+  int  met_hi  = h_binning->GetBinLowEdge(nbins+1);
+  
+  std::cout<< "met_low: met_hi: "<<met_low<<" "<<met_hi<<std::endl;
+  
+  for (int ibin=1; ibin<=nbins+1;ibin++){
+    bins[ibin-1] = h_binning->GetBinLowEdge(ibin);
+    //std::cout<<" bins = "<<ibin<<" "<<bins[ibin-1]<<std::endl;
+  }
+  std::cout<<" integral of the histogram is"<<h_binning->Integral()<<std::endl; 
+  
+  for (int ibin=0; ibin<=nbins;ibin++){
+    std::cout<<" bins = "<<ibin<<" "<<bins[ibin]<<std::endl;
+  }
+  
+  //int met_low = 250;
+  //int met_hi = 1000;
   //int met_low = -1;
   //int met_hi = 1;
+
   h_vec_tf.clear();
 
   // Double_t bins[]={200, 250, 350, 500, 1000};
   //Double_t bins[]={250.,300.,400.,550., 1000.};  // baseline
-  Double_t bins[]={250,275,300,350,400,475,550,775,1000};
+  //Double_t bins[]={250,275,300,350,400,475,550,775,1000};
 
 
 
@@ -581,16 +619,19 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
   TString workspacename = "ws_"+model_+"_"+analysiscategory_+"_"+year;
   TString workspacetitle = "work space for year "+year+", analysis "+model_+", category "+analysiscategory_;
   RooWorkspace wspace(workspacename,workspacetitle);
-
+  
+  TString fitvariable_ = ""; 
+  if (anacat_=="1b") fitvariable_="met";
+  if (anacat_=="2b") fitvariable_="cts";
+  
   // A search in a MET tail, define MET as our variable
-  RooRealVar met("met","p_{T}^{miss}",met_low, met_hi);
+  RooRealVar met(fitvariable_, fitvariable_ ,met_low, met_hi);
   RooArgList vars(met);
 
   std::cout<<" debug 2" <<std::endl;
 
 
-  // Open input file with all the histograms.
-  TFile* fin = OpenRootFile(inputdir+"/"+inputfile);
+
 
 
 
@@ -600,6 +641,7 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
 
   TH1F* h_sr_data = (TH1F*) fin->Get(AnaYearCat+"SR_bkgSum");
 
+  std::cout<< "histogram name binning: "<<h_sr_data->GetName()<<" "<<AnaYearCat+"SR_bkgSum"<<std::endl;
   //the following lines create a freely floating parameter for each of our bins (in this example, there are only 4 bins, defined for our observable met.
   // In this case we vary the normalisation in each bin of the background from N/3 to 3*N,
   // e.g. if actual content in the histogram is 55 then we initialize
@@ -621,12 +663,12 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
   nuisanceName.push_back(nuisancePostfix+"EleID");                nuisanceValue.push_back(0.02) ;  //  2
 
   nuisanceName.push_back(nuisancePostfix+"MuTRK");                nuisanceValue.push_back(0.03) ;   // 3
-  nuisanceName.push_back(nuisancePostfix+"MuID");                 nuisanceValue.push_back(0.007) ;   // 4
-  nuisanceName.push_back(nuisancePostfix+"muISO");                nuisanceValue.push_back(0.008) ;   // 5
+  nuisanceName.push_back(nuisancePostfix+"MuID");                 nuisanceValue.push_back(0.01) ;   // 4
+  nuisanceName.push_back(nuisancePostfix+"MuISO");                nuisanceValue.push_back(0.01) ;   // 5
 
   nuisanceName.push_back(nuisancePostfix+"metTrig");              nuisanceValue.push_back(0.05) ;   // 6
   nuisanceName.push_back(nuisancePostfix+"prefire");            nuisanceValue.push_back(0.005) ;   // 7
-  nuisanceName.push_back(nuisancePostfix+"eff_b");                nuisanceValue.push_back(0.03) ;   // 8
+  nuisanceName.push_back(nuisancePostfix+"eff_b");                nuisanceValue.push_back(0.005) ;   // 8
 
 
   /*
@@ -756,7 +798,7 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
   nuisIndex.push_back(4);
   nuisIndex.push_back(5);
   if (year=="2017") nuisIndex.push_back(7);
-  nuisIndex.push_back(8);
+  //nuisIndex.push_back(8);
 
   std::cout<<" calling function for Zmumu"<<std::endl;
   TH1F* h_sr_Z = (TH1F*) fin->Get(AnaYearCat+"SR_zjets");
@@ -778,7 +820,7 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
   nuisIndex.push_back(2);
   //nuisIndex.push_back(6);
   if (year=="2017") nuisIndex.push_back(7);
-  nuisIndex.push_back(8);
+  //nuisIndex.push_back(8);
   
 
     // Get the top hostogram in the Top mu CR
@@ -877,11 +919,12 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
   std::vector<int> signalpoint;
   signalpoint.clear();
   if (year!="2016"){
-    signalpoint.push_back(10);
+    //signalpoint.push_back(10);
     signalpoint.push_back(450);
   }
 
   if (year=="2017" || year == "2018" || year == "2016") {
+    signalpoint.push_back(10);
     signalpoint.push_back(50);
     signalpoint.push_back(100);
     signalpoint.push_back(150);
@@ -983,8 +1026,10 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
 
   if (!usebkgsum){
     addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"SR_data_obs" ) );
+    if (anacat_=="2b"){
     addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"TOPE_data_obs" ) );
     addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"TOPMU_data_obs" ) );
+    }
     if (anacat_=="1b"){
       addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"WE_data_obs" ) );
       addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"WMU_data_obs" ) );

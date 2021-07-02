@@ -6,16 +6,16 @@ kmax 57 number of nuisance parameters
 shapes *         SR        datacards_bbDM_2017/bbDM_2017_WS.root ws_bbDM_1b_2017:bbDM2017_1b_SR_$PROCESS ws_bbDM_1b_2017:bbDM2017_1b_SR_$PROCESS_$SYSTEMATIC
 shapes data_obs  SR        datacards_bbDM_2017/bbDM_2017_WS.root ws_bbDM_1b_2017:bbDM2017_1b_SR_data_obs
 shapes signal    SR        datacards_bbDM_2017/bbDM_2017_WS.root ws_bbDM_1b_2017:bbDM2017_1b_SR_2HDMa_Ma400_MChi1_MA600_tb35_st_0p7 ws_bbDM_1b_2017:bbDM2017_1b_SR_2HDMa_Ma400_MChi1_MA600_tb35_st_0p7_$SYSTEMATIC
-shapes wjets     SR        datacards_bbDM_2017/bbDM_2017_WS.root ws_bbDM_1b_2017:rph_SR_wjets_1b
-shapes zjets     SR        datacards_bbDM_2017/bbDM_2017_WS.root ws_bbDM_1b_2017:rph_SR_zjets_1b
+shapes wjets     SR        datacards_bbDM_2017/bbDM_2017_WS.root ws_bbDM_1b_2017:rph_SR_wjets_1b_2017
+shapes zjets     SR        datacards_bbDM_2017/bbDM_2017_WS.root ws_bbDM_1b_2017:rph_SR_zjets_1b_2017
 shapes *         WE        datacards_bbDM_2017/bbDM_2017_WS.root ws_bbDM_1b_2017:bbDM2017_1b_WE_$PROCESS ws_bbDM_1b_2017:bbDM2017_1b_WE_$PROCESS_$SYSTEMATIC
-shapes wjets     WE        datacards_bbDM_2017/bbDM_2017_WS.root ws_bbDM_1b_2017:rph_WE_wjets_1b
+shapes wjets     WE        datacards_bbDM_2017/bbDM_2017_WS.root ws_bbDM_1b_2017:rph_WE_wjets_1b_2017
 shapes *         WMU       datacards_bbDM_2017/bbDM_2017_WS.root ws_bbDM_1b_2017:bbDM2017_1b_WMU_$PROCESS ws_bbDM_1b_2017:bbDM2017_1b_WMU_$PROCESS_$SYSTEMATIC
-shapes wjets     WMU       datacards_bbDM_2017/bbDM_2017_WS.root ws_bbDM_1b_2017:rph_WMU_wjets_1b
+shapes wjets     WMU       datacards_bbDM_2017/bbDM_2017_WS.root ws_bbDM_1b_2017:rph_WMU_wjets_1b_2017
 shapes *         ZEE       datacards_bbDM_2017/bbDM_2017_WS.root ws_bbDM_1b_2017:bbDM2017_1b_ZEE_$PROCESS ws_bbDM_1b_2017:bbDM2017_1b_ZEE_$PROCESS_$SYSTEMATIC
-shapes dyjets    ZEE       datacards_bbDM_2017/bbDM_2017_WS.root ws_bbDM_1b_2017:rph_ZEE_dyjets_1b
+shapes dyjets    ZEE       datacards_bbDM_2017/bbDM_2017_WS.root ws_bbDM_1b_2017:rph_ZEE_dyjets_1b_2017
 shapes *         ZMUMU     datacards_bbDM_2017/bbDM_2017_WS.root ws_bbDM_1b_2017:bbDM2017_1b_ZMUMU_$PROCESS ws_bbDM_1b_2017:bbDM2017_1b_ZMUMU_$PROCESS_$SYSTEMATIC
-shapes dyjets    ZMUMU     datacards_bbDM_2017/bbDM_2017_WS.root ws_bbDM_1b_2017:rph_ZMUMU_dyjets_1b
+shapes dyjets    ZMUMU     datacards_bbDM_2017/bbDM_2017_WS.root ws_bbDM_1b_2017:rph_ZMUMU_dyjets_1b_2017
 ----------------------------------------------------------------------------------------------------------------------------------
 bin          SR     WE     WMU    ZEE    ZMUMU
 observation  -1     -1     -1     -1     -1   
