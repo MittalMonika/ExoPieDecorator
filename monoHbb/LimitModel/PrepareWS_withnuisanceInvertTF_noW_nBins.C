@@ -569,7 +569,7 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
   // Open input file with all the histograms.
   TFile* fin = OpenRootFile(inputdir+"/"+inputfile);
   
-  TH1F* h_binning = (TH1F*) fin->Get("bbDM"+year+"_"+anacat_+"_SR_2HDMa_Ma500_MChi1_MA1200_tb35_st_0p7");
+  TH1F* h_binning = (TH1F*) fin->Get("monoHbb"+year+"_"+anacat_+"_SR_ggF_sp_0p9_tb_1p0_mXd_10_mA_600_ma_200");
   
   
   Double_t bins[nbins+1];
@@ -621,8 +621,8 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
   RooWorkspace wspace(workspacename,workspacetitle);
   
   TString fitvariable_ = ""; 
-  if (anacat_=="1b") fitvariable_="met";
-  if (anacat_=="2b") fitvariable_="cts";
+  if (anacat_=="B") fitvariable_="met";
+  if (anacat_=="R") fitvariable_="met";
   
   // A search in a MET tail, define MET as our variable
   RooRealVar met(fitvariable_, fitvariable_ ,met_low, met_hi);
@@ -679,12 +679,12 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
 
   std::vector<int> nuisIndex; nuisIndex.clear(); // this is the index of nuisances which are to be used for mu CR
 
-  if(anacat_=="2b"){
+  if(anacat_=="R"){
     
   std::cout<<" calling function for Top mu: "<<AnaYearCat+"SR_tt"<<std::endl;
   TH1F* h_sr_top = (TH1F*) fin->Get(AnaYearCat+"SR_tt");
   // Get the top hostogram in the Top mu CR
-  TH1F* h_topmu_2b_top = (TH1F*) fin->Get(AnaYearCat+"TOPMU_tt");
+  TH1F* h_topmu_R_top = (TH1F*) fin->Get(AnaYearCat+"TOPMU_tt");
 
 
   // Create all the inputs needed for this CR
@@ -697,7 +697,7 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
 
 
   // mu efficiency for Top mu CR
-  createRegion(met, h_sr_top, h_topmu_2b_top, h_sr_data, wspace, "TOPMU_tt", "SR_tt",  fOut, nuisIndex, nuisanceName, nuisanceValue, anacat_,year);
+  createRegion(met, h_sr_top, h_topmu_R_top, h_sr_data, wspace, "TOPMU_tt", "SR_tt",  fOut, nuisIndex, nuisanceName, nuisanceValue, anacat_,year);
 
 
   /*
@@ -716,10 +716,10 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
 
     std::cout<<" calling function for Top e"<<std::endl;
   // Get the top hostogram in the Top mu CR
-  TH1F* h_tope_2b_top = (TH1F*) fin->Get(AnaYearCat+"TOPE_tt");
+  TH1F* h_tope_R_top = (TH1F*) fin->Get(AnaYearCat+"TOPE_tt");
   // Create all the inputs needed for this CR
-  createRegion(met, h_sr_top, h_tope_2b_top, h_sr_data, wspace, "TOPE_tt", "SR_tt",  fOut, nuisIndex, nuisanceName, nuisanceValue,anacat_,year);
-  }/// if(anacat_=="2b")
+  createRegion(met, h_sr_top, h_tope_R_top, h_sr_data, wspace, "TOPE_tt", "SR_tt",  fOut, nuisIndex, nuisanceName, nuisanceValue,anacat_,year);
+  }/// if(anacat_=="R")
 
   /*
     -------------------------------------------------------------------------------------------------------------------
@@ -728,8 +728,8 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
    */
 
 
-  std::cout<<" anacat_: "<<(anacat_=="1b")<<std::endl;
-  if (anacat_=="1b"){
+  std::cout<<" anacat_: "<<(anacat_=="B")<<std::endl;
+  if (anacat_=="B"){
   nuisIndex.clear();
   nuisIndex.push_back(0);
   nuisIndex.push_back(1);
@@ -744,16 +744,16 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
   TH1F* h_sr_wjets = (TH1F*) fin->Get(AnaYearCat+"SR_wjets");
 
   // Get the wjets hostogram in the Wenu CR
-  TH1F* h_wenu_2b_wjets = (TH1F*) fin->Get(AnaYearCat+"WE_wjets");
+  TH1F* h_wenu_R_wjets = (TH1F*) fin->Get(AnaYearCat+"WE_wjets");
 
-  std::cout<<" integral of wenu : "<<h_sr_wjets->Integral() <<"  "<<h_wenu_2b_wjets->Integral()<<std::endl;
+  std::cout<<" integral of wenu : "<<h_sr_wjets->Integral() <<"  "<<h_wenu_R_wjets->Integral()<<std::endl;
   // Create all the inputs needed for this CR
-  createRegion(met, h_sr_wjets, h_wenu_2b_wjets, h_sr_data, wspace, "WE_wjets", "SR_wjets",  fOut, nuisIndex, nuisanceName, nuisanceValue, anacat_, year);
+  createRegion(met, h_sr_wjets, h_wenu_R_wjets, h_sr_data, wspace, "WE_wjets", "SR_wjets",  fOut, nuisIndex, nuisanceName, nuisanceValue, anacat_, year);
 
   //  fixme, creating new for cross-transfer factors
   // ttbar in SR linked to top in W+Jets
-  //TH1F* h_wenu_2b_top = (TH1F*) fin->Get(AnaYearCat+"WE_tt");
-  //createRegion(met, h_sr_top, h_wenu_2b_top, h_sr_data, wspace, "WE_tt", "SR_tt",  fOut, nuisIndex, nuisanceName, nuisanceValue, anacat_, year);
+  //TH1F* h_wenu_R_top = (TH1F*) fin->Get(AnaYearCat+"WE_tt");
+  //createRegion(met, h_sr_top, h_wenu_R_top, h_sr_data, wspace, "WE_tt", "SR_tt",  fOut, nuisIndex, nuisanceName, nuisanceValue, anacat_, year);
   
   
   /*
@@ -775,14 +775,14 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
 
   std::cout<<" calling function for Wmunu"<<std::endl;
   // Get the wjets hostogram in the Wmunu CR
-  TH1F* h_wmunu_2b_wjets = (TH1F*) fin->Get(AnaYearCat+"WMU_wjets");
+  TH1F* h_wmunu_R_wjets = (TH1F*) fin->Get(AnaYearCat+"WMU_wjets");
   // Create all the inputs needed for this CR
-  createRegion(met, h_sr_wjets, h_wmunu_2b_wjets, h_sr_data, wspace, "WMU_wjets", "SR_wjets",  fOut, nuisIndex, nuisanceName, nuisanceValue, anacat_, year);
+  createRegion(met, h_sr_wjets, h_wmunu_R_wjets, h_sr_data, wspace, "WMU_wjets", "SR_wjets",  fOut, nuisIndex, nuisanceName, nuisanceValue, anacat_, year);
 
   //  fixme, creating new for cross-transfer factors
   // ttbar in SR linked to top in W+Jets
-  //TH1F* h_wmunu_2b_top = (TH1F*) fin->Get(AnaYearCat+"WMU_tt");
-  //createRegion(met, h_sr_top, h_wmunu_2b_top, h_sr_data, wspace, "WMU_tt", "SR_tt",  fOut, nuisIndex, nuisanceName, nuisanceValue, anacat_, year);
+  //TH1F* h_wmunu_R_top = (TH1F*) fin->Get(AnaYearCat+"WMU_tt");
+  //createRegion(met, h_sr_top, h_wmunu_R_top, h_sr_data, wspace, "WMU_tt", "SR_tt",  fOut, nuisIndex, nuisanceName, nuisanceValue, anacat_, year);
 
   }
   /*
@@ -803,9 +803,9 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
   std::cout<<" calling function for Zmumu"<<std::endl;
   TH1F* h_sr_Z = (TH1F*) fin->Get(AnaYearCat+"SR_zjets");
   // Get the top hostogram in the Top mu CR
-  TH1F* h_Zmumu_2b_Z = (TH1F*) fin->Get(AnaYearCat+"ZMUMU_dyjets");
+  TH1F* h_Zmumu_R_Z = (TH1F*) fin->Get(AnaYearCat+"ZMUMU_dyjets");
   // Create all the inputs needed for this CR
-  createRegion(met, h_sr_Z, h_Zmumu_2b_Z, h_sr_data, wspace, "ZMUMU_dyjets", "SR_zjets",  fOut, nuisIndex, nuisanceName, nuisanceValue, anacat_, year);
+  createRegion(met, h_sr_Z, h_Zmumu_R_Z, h_sr_data, wspace, "ZMUMU_dyjets", "SR_zjets",  fOut, nuisIndex, nuisanceName, nuisanceValue, anacat_, year);
 
 
   /*
@@ -824,9 +824,9 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
   
 
     // Get the top hostogram in the Top mu CR
-  TH1F* h_Zee_2b_Z = (TH1F*) fin->Get(AnaYearCat+"ZEE_dyjets");
+  TH1F* h_Zee_R_Z = (TH1F*) fin->Get(AnaYearCat+"ZEE_dyjets");
   // Create all the inputs needed for this CR
-  createRegion(met, h_sr_Z, h_Zee_2b_Z, h_sr_data, wspace, "ZEE_dyjets", "SR_zjets",  fOut, nuisIndex, nuisanceName, nuisanceValue, anacat_, year);
+  createRegion(met, h_sr_Z, h_Zee_R_Z, h_sr_data, wspace, "ZEE_dyjets", "SR_zjets",  fOut, nuisIndex, nuisanceName, nuisanceValue, anacat_, year);
 
 
   std::cout<<" all crs done "<<std::endl;
@@ -916,6 +916,8 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
   //-------------------------------------------------//
   // --------- ADD 2HDM+a signal shapes -------------//
   //-------------------------------------------------//
+
+  /*
   std::vector<int> signalpoint;
   signalpoint.clear();
   if (year!="2016"){
@@ -974,11 +976,41 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
   }
   }
 
-
+  */
   //-------------------------------------------------//
   // --------- ADD DMSIMP signal shapes -------------//
   //-------------------------------------------------//
-  std::vector<int> mphi, mChi;
+  //open root file
+
+
+  ifstream testFile("monohbb2017_datacardslist_"+cat__+"_SR_THDMa_all.txt");
+  string line;
+
+  while (testFile.good()){
+    getline(testFile, line);  
+    TString tmpname=line.c_str();
+    TString tmpname_nuis =" ";
+    if ((TH1F*) fin->Get(tmpname) == 0 ) {
+      std::cout<<" histogram: "<<  tmpname <<" does not exist"<<std::endl;
+    }
+
+    if ((TH1F*) fin->Get(line.c_str()) != 0 )  {                                                                                                                                
+      std::cout<<" histogram nuisance : "<<  tmpname <<" exist and saving "<<std::endl;
+      addTemplate(wspace, vars, (TH1F*) fin->Get(tmpname)  );
+    }  
+    // adding for nuisiances
+    for (auto inuis=0; inuis<nuisancesName.size(); inuis++){                                                                                                                           if (nuisancesName[inuis]!="") tmpname_nuis = tmpname  + "_" +nuisancesName[inuis];    
+      std::cout<<"monika"<<nuisancesName[inuis]<< tmpname_nuis<< std::endl;
+      if ((TH1F*) fin->Get(tmpname_nuis) == 0 ) {
+	std::cout<<" histogram nuisance: "<<  tmpname_nuis <<" does not exist"<<std::endl;
+      }
+      if ((TH1F*) fin->Get(tmpname_nuis) != 0 )  {
+	std::cout<<" histogram nuisance : "<<  tmpname_nuis <<" exist and saving "<<std::endl;
+	addTemplate(wspace, vars, (TH1F*) fin->Get(tmpname_nuis)  );
+      }
+    }
+  }  
+  /*  std::vector<int> mphi, mChi;
   mphi.clear(); mChi.clear();
   
   mphi.push_back(10);
@@ -1008,29 +1040,24 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
 	
 	TString signalname = AnaYearCat+"SR_DMSimp_MPhi"+MPHI+"_MChi"+MCHI;
 	if (nuisancesName[inuis]!="") signalname = signalname  + "_" +nuisancesName[inuis];
-	if ((TH1F*) fin->Get(signalname) == 0 ) {
-	  std::cout<<" histogram : "<<  signalname <<" does not exist"<<std::endl;
-	}
 
-	if ((TH1F*) fin->Get(signalname) != 0 )  {
-	  std::cout<<" histogram : "<<  signalname <<" exist and saving "<<std::endl;
-	  addTemplate(wspace, vars, (TH1F*) fin->Get(signalname)  );
+
 	}
 	std::cout<<" ........ saved"<<std::endl;
 
       }
     }
   }
-
+  */
 
 
   if (!usebkgsum){
     addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"SR_data_obs" ) );
-    if (anacat_=="2b"){
+    if (anacat_=="R"){
     addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"TOPE_data_obs" ) );
     addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"TOPMU_data_obs" ) );
     }
-    if (anacat_=="1b"){
+    if (anacat_=="B"){
       addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"WE_data_obs" ) );
       addTemplate(wspace, vars, (TH1F*) fin->Get(AnaYearCat+"WMU_data_obs" ) );
     }
