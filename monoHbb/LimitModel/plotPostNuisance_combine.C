@@ -21,7 +21,8 @@ void printaline(int index, char* nuiname, Double_t centralval, Double_t uncert){
 
 }
 
-void plotPostNuisance_combine(TString mlfit="fitDiagnostics.root", TString outdir="plots_limit/pulls/", TString postfix="",
+void plotPostNuisance_combine(TString mlfit="fitDiagnostics_2b_2017_fit_CRonly_result_Scaled_tt_1p2.root", TString outdir="plots_limit/pulls/", 
+			      TString postfix="ttInWJets_binnedTF",
 			      double MaxUncertainty = 1.0, 
                               double MaxValue = 10.0, bool skipmu = true) {
 
@@ -56,8 +57,10 @@ void plotPostNuisance_combine(TString mlfit="fitDiagnostics.root", TString outdi
   for(int i=0; i<parlist.getSize(); i++) {
 
     TString name_tstr = parlist[i].GetName(); 
-
+    std::cout<<" name_tstr: "<<name_tstr<<std::endl;
     if( skipmu && name_tstr == "r" ) continue;
+    if (name_tstr == "rrvbc_SR_tt_2b4" || name_tstr == "rrvbc_SR_wjets_2b4" || name_tstr == "rrvbc_SR_zjets_2b4") continue ;
+    if (name_tstr.Contains("rrvbc")) continue ;
     if(((RooRealVar&)parlist[i]).getError() < MaxUncertainty)
       //printaline( i+1, parlist[i].GetName(),  // index here is same as plot (i+1), not parlist (i) 
       //		  ((RooRealVar&)parlist[i]).getVal(), 
@@ -142,10 +145,10 @@ void plotPostNuisance_combine(TString mlfit="fitDiagnostics.root", TString outdi
   h1->SetMarkerStyle(20);
   h1->SetMarkerSize(1.5);
   
-  c->SaveAs(outdir+"/pulls_cronly.pdf");
-  c->SaveAs(outdir+"/pulls_cronly.png");
-  c->SaveAs(outdir+"/pulls_cronly.C");
-  c->SaveAs(outdir+"/pulls_cronly.root");
+  c->SaveAs(outdir+"/pulls_cronly"+postfix+".pdf");
+  c->SaveAs(outdir+"/pulls_cronly"+postfix+".png");
+  c->SaveAs(outdir+"/pulls_cronly"+postfix+".C");
+  c->SaveAs(outdir+"/pulls_cronly"+postfix+".root");
   
 
 }
