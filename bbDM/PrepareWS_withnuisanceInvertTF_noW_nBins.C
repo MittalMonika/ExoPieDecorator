@@ -428,14 +428,14 @@ void createRegion(RooRealVar met, TH1F* h_sr_bkg , TH1F* h_cr_bkg,
     std::vector<std::string> add_logN_systematic ;
     add_logN_systematic.clear();
     
-    //add_logN_systematic = createnuisance(nuisanceValue[nuisIndex[isys]], nHistbins, syst_counter++);                                                                              
+    add_logN_systematic = createnuisance(nuisanceValue[nuisIndex[isys]], nHistbins, syst_counter++);                                                                              
     
-    if (nuisIndex[isys] != 8) add_logN_systematic = createnuisance(nuisanceValue[nuisIndex[isys]], nHistbins, syst_counter++);
+    /*if (nuisIndex[isys] != 8) add_logN_systematic = createnuisance(nuisanceValue[nuisIndex[isys]], nHistbins, syst_counter++);
     if (nuisIndex[isys] == 8) {
       TH1F* btagunc = (TH1F*) f_TF->Get("Unc_tf_2b_SR_zjets_to_2b_ZEE_dyjets_CMS2017_eff_bUp");
       std::vector<float> btaguncvec = GetBinContents(btagunc);
       add_logN_systematic = createnuisance(btaguncvec, nHistbins, syst_counter++);
-      }
+      }*/
     //for (int i =0; i<4; i++)  std::cout<<" add_logN_systematic = "<<add_logN_systematic[i]<<std::endl;
     rfv_bin1 += "*"+add_logN_systematic[0];
     rfv_bin2 += "*"+add_logN_systematic[1];
@@ -798,7 +798,7 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
   nuisIndex.push_back(4);
   nuisIndex.push_back(5);
   if (year=="2017") nuisIndex.push_back(7);
-  //nuisIndex.push_back(8);
+  nuisIndex.push_back(8);
 
   std::cout<<" calling function for Zmumu"<<std::endl;
   TH1F* h_sr_Z = (TH1F*) fin->Get(AnaYearCat+"SR_zjets");
@@ -820,7 +820,7 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
   nuisIndex.push_back(2);
   //nuisIndex.push_back(6);
   if (year=="2017") nuisIndex.push_back(7);
-  //nuisIndex.push_back(8);
+  nuisIndex.push_back(8);
   
 
     // Get the top hostogram in the Top mu CR

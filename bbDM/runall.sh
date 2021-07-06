@@ -8,7 +8,7 @@ echo $nbins
 
 
 #root -l -b -q PrepareWS_withnuisanceInvertTF_noW_8Bins.C"(\"bbDM\", \"1b\", \"RECREATE\", \"AllMETHistos\", \"$rootfile\", \"${year}\", $nbins)"
-root -l -b -q PrepareWS_withnuisanceInvertTF_noW_8Bins.C"(\"bbDM\", \"2b\", \"RECREATE\", \"AllMETHistos\", \"$rootfile\", \"${year}\", $nbins)"
+root -l -b -q PrepareWS_withnuisanceInvertTF_noW_nBins.C"(\"bbDM\", \"2b\", \"RECREATE\", \"AllMETHistos\", \"$rootfile\", \"${year}\", $nbins)"
 
 #root -l -b -q PrepareWS_withnuisanceInvertTF_noW_nBins.C"(\"bbDM\", \"2b_ML\", \"RECREATE\", \"AllMETHistos\", \"$rootfile\", \"${year}\", $nbins)"
 #python RunLimits.py -c --model 2hdma_all --region "SR TOPE TOPMU ZEE ZMUMU" --category=sr2 --year ${year}
@@ -28,7 +28,7 @@ then
     
     # create cards
     #python RunLimits.py -c --model 2hdma_all --region "SR WE WMU ZEE ZMUMU" --category=sr1 --year ${year}
-    #python RunLimits.py -c --model 2hdma_all --region "SR TOPE TOPMU ZEE ZMUMU" --category=sr2 --year ${year}
+    python RunLimits.py -c --model 2hdma_all --region "SR TOPE TOPMU ZEE ZMUMU" --category=sr2 --year ${year}
     #python RunLimits.py -c --model 2hdma_all --region "bbDM${year}_datacardslist_1b_2hdma_all.txt bbDM${year}_datacardslist_2b_2hdma_all.txt" --category=srall --year ${year}
     
     # run limits 
