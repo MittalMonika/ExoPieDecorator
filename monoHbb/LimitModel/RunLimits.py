@@ -1,5 +1,7 @@
 import os 
 import  sys 
+## Add the functionality to mask a given channel by providing the name of the channel 
+## run the limits after making workspace instead of directly the .txt file. 
 
 
 
@@ -14,11 +16,14 @@ usage = "run the script using python -i full/path/to/root/file "
 parser = argparse.ArgumentParser(description=usage)
 
 ## string 
-parser.add_argument("-i", "--inputdatacardpath",  dest="inputdatacardpath",default="monohbb2017_datacardslist.txt") ## this should be a .txt file which include the full path of the datacards
+parser.add_argument("-i", "--inputdatacardpath",  dest="inputdatacardpath",default="bbDMYEAR_datacardslist.txt") ## this should be a .txt file which include the full path of the datacards
 
 parser.add_argument("-limitTextFile", "--limitTextFile", dest="limitTextFile", default="NONEBYCHOICE") ## the limit text file
 parser.add_argument("-model", "--model",  dest="model",default="2hdma") 
 parser.add_argument("-region", "--region",  dest="region",default="SR_default") ## default should lead to crash.  
+parser.add_argument("-postfix", "--postfix",  dest="postfix",default="forgottenpostfix") ## default should lead to crash.  
+
+parser.add_argument("-year", "--year",  dest="year",default="year") 
 
 ## booleans 
 parser.add_argument("-B", "--runblind",  action="store_true", dest="runblind")
@@ -39,12 +44,14 @@ parser.add_argument("-CR", "--cronly",  action="store_true", dest="cronly") ## o
 
 parser.add_argument("-c", "--createdatacards",  action="store_true", dest="createdatacards")
 
-'''
-now provided using describe.py
-parser.add_argument("-m", "--merged",  action="store_true", dest="merged")
-parser.add_argument("-r", "--resolved",  action="store_true", dest="resolved")
-parser.add_argument("-C", "--combined",  action="store_true", dest="combined")
-'''
+
+parser.add_argument("-category", "--category",  dest="category",default="NULL") ## possible values: sr1, sr2, srall
+
+
+#parser.add_argument("-sr1"  , "--sr1",    action="store_true", dest="sr1")
+#parser.add_argument("-sr2"  , "--sr2",    action="store_true", dest="sr2")
+#parser.add_argument("-srall", "--srall",  action="store_true", dest="srall")
+
 
 ## integers 
 parser.add_argument("-v", "--verbose",  dest="verbose", type=int, default=0)
@@ -101,9 +108,17 @@ def main():
     
     ## reading the description file 
     ## resolved/merged/combined analysis 
-    category        = dcb.anadetails["categories"][0] ## this is list at this moment
-    analysis_tag    = dcb.anadetails["categories_short"][0]
-    year            = dcb.anadetails["yearStr"]
+    
+    cat__ = args.category
+    category= dcb.anadetails[cat__]["categories"][0]
+    analysis_tag= dcb.anadetails[cat__]["categories_short"][0]
+    regionStr =    dcb.anadetails[cat__]["categories_input"]
+    #category        = dcb.anadetails["categories"][0] ## this is list at this moment
+    #analysis_tag    = dcb.anadetails["categories_short"][0]
+    year            = args.year ##dcb.anadetails["yearStr"]
+    #dcb.anadetails["plotsDir"]["bin"]= args.postfix
+    inputdatacardpath_ = args.inputdatacardpath.replace("YEAR",year)
+    
     
     ## region tag: SR, ZEE, TOPE, WE, ZMUMU, TOPMU, WMU
     #if args.region == : region_tag = 'SR'
@@ -113,18 +128,26 @@ def main():
     
     
     ## this can be different for each model. But for now lets keep it like this. 
-    datacardtemplatename_ = 'datacards_monoHbb_'+str(year)+'/datacard_monoHbb'+str(year)+analysis_tag+'_SR_ggF_sp_YYYSP_tb_ZZZTB_mXd_AAAMDM_mA_XXXMA_ma_BBBMa.txt'
+    ## move this to describe.py 
+    datacardtemplatename_=""
+    if "2hdma" in args.model:
+        datacardtemplatename_ = 'datacards_bbDM_'+year+'/datacard_bbDM'+year+''+analysis_tag+'_SR_sp_YYYSP_tb_ZZZTB_mXd_AAAMDM_mA_XXXMA_ma_BBBMa.txt'
+    if "dmsimp" in args.model:
+        datacardtemplatename_ = 'datacards_bbDM_'+year+'/datacard_bbDM'+year+''+analysis_tag+'_SR_mphi_YYYMPHI_mchi_ZZZMDM.txt'
+
     
     ## object of the RunLimits class
-    rl = RunLimits(datacardtemplatename_)
+    rl = RunLimits(datacardtemplatename_,year, dcb.anadetails["analysisName"], category, args.postfix, args.model)
     rl.setupdir()
     rl.writeChangeLog()
     
     
     if args.createdatacards:
         
+        ## move the parameters file to describe.py 
         fparam = open("parameters/params_"+args.model+".txt","r") 
         datacardtextfile = (args.inputdatacardpath.replace(".txt", analysis_tag+"_"+args.model+".txt"))
+        datacardtextfile = datacardtextfile.replace("YEAR",year)
         os.system('rm '+datacardtextfile)
         ftxt = open(datacardtextfile,'w')
         for iparam in fparam:
@@ -134,19 +157,27 @@ def main():
             ## to use boosted or resolved 
             datacards=[]
             
-            dataCardName  = 'datacards_tmplate/combine_tmpl_{}{}_workspace.txt'
+            #dataCardName  = 'datacards_tmplate/combine_tmpl_{}{}_workspace.txt'
+            #dataCardName  = 'datacards_tmplate_6thMay_With_TopInW_TF/combine_tmpl_{}{}_workspace.txt' 
+            dataCardName  = 'datacards_tmplate_21thMay_NOWInFit/combine_tmpl_{}{}_workspace.txt' 
+            #dataCardName  = 'datacards_tmplate_21thMay_NOWInFit_2b_ML/combine_tmpl_{}{}_workspace.txt' 
+            #dataCardName  = 'datacards_tmplate_21thMay_NOWInFit_RateParam/combine_tmpl_{}{}_workspace.txt' 
+
             #'datacards_tmplate/combine_tmpl_'+iregion+analysis_tag+'_workspace.txt'
             ## for resolved and merged it can be run by creating each region data card and then merge them 
             if category != "combined":
                 for iregion in regions:
+                    print "datacard name is:", dataCardName.format(iregion, analysis_tag)
+
                     datacardname = rl.makedatacards(dataCardName.format(iregion, analysis_tag),\
                                                     iparam.split(), \
                                                     iregion, \
                                                     year,\
                                                     analysis_tag, \
-                                                    category)
+                                                    category, 
+                                                    args.model)
                     if iregion == "SR":
-                        mergeddatacardmname = datacardname.replace("SR_ggF","Merged")
+                        mergeddatacardmname = datacardname.replace("SR","Merged")
                         ftxt.write(mergeddatacardmname+' \n')
                     datacards.append(" "+iregion+"="+datacardname)
                 
@@ -154,7 +185,7 @@ def main():
                 if len(datacards)>0:
                     for idc in datacards:
                         combostr = combostr + idc
-                print "datacards will me creating using categories: ",regions, " parameters: ", iparam.rstrip(), " datacard: ", mergeddatacardmname
+                print "datacards will be creating using categories: ",regions, " parameters: ", iparam.rstrip(), " datacard: ", mergeddatacardmname
                 os.system("combineCards.py "+combostr+" > "+mergeddatacardmname+"\n")
                 ## instead of datacard name write the combostr into .text file to make the combined card
                 
@@ -179,7 +210,7 @@ def main():
                 datacardsList.append(idatacard)
             #print "datacardsList = ",datacardsList
             
-            regionStr =    dcb.anadetails["categories_input"]
+            #regionStr =    dcb.anadetails["categories_input"]
             rStr = dcb.myjoin(regionStr)
             
             
@@ -195,7 +226,7 @@ def main():
                         ## set the default name as boosted datacard only once in  the loop 
                         if idx_==0: 
                             mergeddatacardmname = idc[0]
-                        combostr = combostr + " "+regionStr[idx_]+"=" +icategory
+                        combostr = combostr + " cat_"+regionStr[idx_]+"=" +icategory
                         idx_ += 1
                     
                     dirname_ = mergeddatacardmname.split("/")[0]
@@ -221,7 +252,7 @@ def main():
     ''' datacards path in a text file is converted into a list''' 
     datacardnameslist=[]
     if args.runlimits:
-        datacardnameslist = [iline.rstrip() for iline in open(args.inputdatacardpath)]
+        datacardnameslist = [iline.rstrip() for iline in open(inputdatacardpath_)]
         datacardCounter  = 0
         for idatacard in datacardnameslist :
             print rl.getfullcommand(commandpre, idatacard, command_, commandpost)
@@ -236,7 +267,7 @@ def main():
             if datacardCounter > 0: mode = "a"
             
                         
-            
+            print "logfilename:", logfilename
             limit_textfilename = rl.LogToLimitList(logfilename,category,mode)
             datacardCounter += 1
             print "-----------------------------------------------------------------------------------------------------------------------"
@@ -255,7 +286,7 @@ def main():
 
 
     if args.impact:
-        datacardnameslist = [iline.rstrip() for iline in open(args.inputdatacardpath)]
+        datacardnameslist = [iline.rstrip() for iline in open(inputdatacardpath_)]
         for idatacard in datacardnameslist :
             logfilename = "logs/impacts/"+idatacard.replace(".txt",".log")
             rl.RunImpacts(idatacard,logfilename,args.runmode)
@@ -265,7 +296,7 @@ def main():
             print "-----------------------------------------------------------------------------------------------------------------------"
             
     if args.pulls:
-        datacardnameslist = [iline.rstrip() for iline in open(args.inputdatacardpath)]
+        datacardnameslist = [iline.rstrip() for iline in open(inputdatacardpath_)]
         for idatacard in datacardnameslist :
             #logfilename = "logs/impacts/"+idatacard.replace(".txt",".log")
             outdir = dcb.anadetails["plotsDir"]
