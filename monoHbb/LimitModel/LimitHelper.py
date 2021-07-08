@@ -146,7 +146,7 @@ class RunLimits:
         print ("LimitHelper.py::datacard_to_mparameters: ",analysis_, self.analysis_, self.model_, name_)
         
         if ("2hdma" in self.model_) and (analysis_ == self.analysis_):
-            mparameters_ = ((name_.split("combo")[1]).replace(".log","")).split("_")
+            mparameters_ = ((name_.split("allregion")[1]).replace(".log","")).split("_")
             mparameters_ = [mp.replace("p",".") for mp in mparameters_]
             ## ma, mA, tb, st, mdm
             return ([mparameters_[11], mparameters_[9], mparameters_[5], mparameters_[3], mparameters_[7]])

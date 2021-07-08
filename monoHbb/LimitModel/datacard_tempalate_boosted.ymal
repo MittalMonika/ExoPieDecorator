@@ -15,8 +15,7 @@ SR:
 
   rate:
 
-      -  -1       1         -1        1       -1         -1          -1        -1        -1	
-
+      -  -1       1         -1        1       -1         -1          -1        -1        -1
 
   NuisForProc:
     - lumi : [signal, wjets, singlet, qcd, diboson, smh,dyjets]
@@ -26,7 +25,7 @@ SR:
     - CMSYEAR_fake_b : []
     - CMSYEAR_veto_b : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
     - CMSYEAR_double_b : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
-    - CMSYEAR_EleID : []
+#    - CMSYEAR_EleID : []
     - CMSYEAR_EleRECO : []
     - CMSYEAR_MuISO : []
     - CMSYEAR_MuID  : []
@@ -62,7 +61,7 @@ SR:
     - CMSYEAR_fake_b 1.05
     - CMSYEAR_veto_b 1.05
     - CMSYEAR_double_b 1.15
-    - CMSYEAR_EleID shape
+#    - CMSYEAR_EleID shape
     - CMSYEAR_EleRECO shape
     - CMSYEAR_MuISO shape
     - CMSYEAR_MuID shape
@@ -86,8 +85,8 @@ SR:
     - CMSYEAR_pdf shape
     - CMSYEAR_mu_scale shape
     - CMSYEAR_qcd_norm 1.5
-    - CMSYEAR_eff_met shape
-    - CMSYEAR_eff_t shape
+#    - CMSYEAR_eff_met shape
+#    - CMSYEAR_eff_t shape
 
 
 # TOPE REGION  
@@ -108,9 +107,7 @@ TOPE:
 
   rate:
 
-     - -1        -1         1        -1         -1        -1         -1        -1	
-
-
+     - -1        -1         1        -1         -1        -1         -1        -1
 
   NuisForProc:
     - lumi : [signal, wjets, singlet, qcd, diboson, smh,dyjets]
@@ -120,7 +117,7 @@ TOPE:
     - CMSYEAR_fake_b : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
     - CMSYEAR_veto_b : []
     - CMSYEAR_double_b : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
-    - CMSYEAR_EleID : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
+ #   - CMSYEAR_EleID : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
     - CMSYEAR_EleRECO : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
     - CMSYEAR_MuISO : []
     - CMSYEAR_MuID  : []
@@ -144,8 +141,8 @@ TOPE:
     - CMSYEAR_pdf : [signal,smh]
     - CMSYEAR_mu_scale : [signal,smh]
     - CMSYEAR_qcd_norm : [qcd]
-    - CMSYEAR_eff_met : []
-    - CMSYEAR_eff_t : [singlet]
+#    - CMSYEAR_eff_met : []
+#    - CMSYEAR_eff_t : [singlet]
   UnclnN:
     - lumi 1.025
     - CMSYEAR_PU shape
@@ -154,7 +151,7 @@ TOPE:
     - CMSYEAR_fake_b 1.05
     - CMSYEAR_veto_b 1.05
     - CMSYEAR_double_b 1.15
-    - CMSYEAR_EleID shape
+  #  - CMSYEAR_EleID shape
     - CMSYEAR_EleRECO shape
     - CMSYEAR_MuISO shape
     - CMSYEAR_MuID shape
@@ -178,8 +175,8 @@ TOPE:
     - CMSYEAR_pdf shape
     - CMSYEAR_mu_scale shape
     - CMSYEAR_qcd_norm 1.5
-    - CMSYEAR_eff_met shape
-    - CMSYEAR_eff_t shape
+#    - CMSYEAR_eff_met shape
+#    - CMSYEAR_eff_t shape
 
 
 # TOP MU REGION
@@ -199,9 +196,7 @@ TOPMU:
 
   rate:
 
-      - -1        -1         1        -1         -1        -1         -1        -1	
-
-
+      - -1        -1         1        -1         -1        -1         -1        -1
   NuisForProc:
     - lumi : [signal, wjets, singlet, qcd, diboson, smh,dyjets]
     - CMSYEAR_PU : [signal, wjets, singlet, qcd, diboson, smh,dyjets]
@@ -210,7 +205,7 @@ TOPMU:
     - CMSYEAR_fake_b : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
     - CMSYEAR_veto_b : []
     - CMSYEAR_double_b : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
-    - CMSYEAR_EleID : []
+   # - CMSYEAR_EleID : []
     - CMSYEAR_EleRECO : []
     - CMSYEAR_MuISO : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
     - CMSYEAR_MuID  : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
@@ -234,8 +229,8 @@ TOPMU:
     - CMSYEAR_pdf : [signal,smh]
     - CMSYEAR_mu_scale : [signal,smh]
     - CMSYEAR_qcd_norm : [qcd]
-    - CMSYEAR_eff_met : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
-    - CMSYEAR_eff_t : [singlet]
+#    - CMSYEAR_eff_met : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
+#    - CMSYEAR_eff_t : [singlet]
 
 
   UnclnN:
@@ -246,7 +241,7 @@ TOPMU:
     - CMSYEAR_fake_b 1.05
     - CMSYEAR_veto_b 1.05
     - CMSYEAR_double_b 1.15
-    - CMSYEAR_EleID shape
+    #- CMSYEAR_EleID shape
     - CMSYEAR_EleRECO shape
     - CMSYEAR_MuISO shape
     - CMSYEAR_MuID shape
@@ -270,8 +265,8 @@ TOPMU:
     - CMSYEAR_pdf shape
     - CMSYEAR_mu_scale shape
     - CMSYEAR_qcd_norm 1.5
-    - CMSYEAR_eff_met shape
-    - CMSYEAR_eff_t shape
+#    - CMSYEAR_eff_met shape
+#    - CMSYEAR_eff_t shape
 
 #WE REGION
 
@@ -302,7 +297,7 @@ WE:
     - CMSYEAR_fake_b : []
     - CMSYEAR_veto_b : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
     - CMSYEAR_double_b : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
-    - CMSYEAR_EleID : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
+   # - CMSYEAR_EleID : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
     - CMSYEAR_EleRECO : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
     - CMSYEAR_MuISO : []
     - CMSYEAR_MuID  : []
@@ -326,8 +321,8 @@ WE:
     - CMSYEAR_pdf : [signal,smh]
     - CMSYEAR_mu_scale : [signal,smh]
     - CMSYEAR_qcd_norm : [qcd]
-    - CMSYEAR_eff_met : []
-    - CMSYEAR_eff_t : [singlet]
+#    - CMSYEAR_eff_met : []
+#    - CMSYEAR_eff_t : [singlet]
 
 
   UnclnN:
@@ -338,7 +333,7 @@ WE:
     - CMSYEAR_fake_b 1.05
     - CMSYEAR_veto_b 1.05
     - CMSYEAR_double_b 1.15
-    - CMSYEAR_EleID shape
+    #- CMSYEAR_EleID shape
     - CMSYEAR_EleRECO shape
     - CMSYEAR_MuISO shape
     - CMSYEAR_MuID shape
@@ -362,8 +357,8 @@ WE:
     - CMSYEAR_pdf shape
     - CMSYEAR_mu_scale shape
     - CMSYEAR_qcd_norm 1.5
-    - CMSYEAR_eff_met shape
-    - CMSYEAR_eff_t shape
+#    - CMSYEAR_eff_met shape
+#    - CMSYEAR_eff_t shape
 
 # WMU REGION
 
@@ -418,8 +413,8 @@ WMU:
     - CMSYEAR_pdf : [signal,smh]
     - CMSYEAR_mu_scale : [signal,smh]
     - CMSYEAR_qcd_norm : [qcd]
-    - CMSYEAR_eff_met : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
-    - CMSYEAR_eff_t : [singlet]
+#    - CMSYEAR_eff_met : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
+#    - CMSYEAR_eff_t : [singlet]
 
 
   UnclnN:
@@ -454,8 +449,8 @@ WMU:
     - CMSYEAR_pdf shape
     - CMSYEAR_mu_scale shape
     - CMSYEAR_qcd_norm 1.5
-    - CMSYEAR_eff_met shape
-    - CMSYEAR_eff_t shape
+#    - CMSYEAR_eff_met shape
+#    - CMSYEAR_eff_t shape
 
 # ZEE
 
@@ -475,8 +470,7 @@ ZEE:
 
   rate:
 
-      - -1        -1        -1        -1         -1        -1         -1        1	
-
+      - -1        -1        -1        -1         -1        -1         -1        1
 
   NuisForProc:
     - lumi : [signal, wjets, singlet, qcd, diboson, smh,dyjets]
@@ -486,7 +480,7 @@ ZEE:
     - CMSYEAR_fake_b : []
     - CMSYEAR_veto_b : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
     - CMSYEAR_double_b : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
-    - CMSYEAR_EleID : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
+    #- CMSYEAR_EleID : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
     - CMSYEAR_EleRECO : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
     - CMSYEAR_MuISO : []
     - CMSYEAR_MuID  : []
@@ -510,8 +504,8 @@ ZEE:
     - CMSYEAR_pdf : [signal,smh]
     - CMSYEAR_mu_scale : [signal,smh]
     - CMSYEAR_qcd_norm : [qcd]
-    - CMSYEAR_eff_met : []
-    - CMSYEAR_eff_t : [singlet]
+#    - CMSYEAR_eff_met : []
+#    - CMSYEAR_eff_t : [singlet]
 
   UnclnN:
     - lumi 1.025
@@ -521,7 +515,7 @@ ZEE:
     - CMSYEAR_fake_b 1.05
     - CMSYEAR_veto_b 1.05
     - CMSYEAR_double_b 1.15
-    - CMSYEAR_EleID shape
+    #- CMSYEAR_EleID shape
     - CMSYEAR_EleRECO shape
     - CMSYEAR_MuISO shape
     - CMSYEAR_MuID shape
@@ -545,8 +539,8 @@ ZEE:
     - CMSYEAR_pdf shape
     - CMSYEAR_mu_scale shape
     - CMSYEAR_qcd_norm 1.5
-    - CMSYEAR_eff_met shape
-    - CMSYEAR_eff_t shape
+#    - CMSYEAR_eff_met shape
+#    - CMSYEAR_eff_t shape
 
 # ZMUMU REGION
 
@@ -566,8 +560,7 @@ ZMUMU:
 
   rate:
 
-     - -1        -1         -1        -1         -1        -1         -1        1	
-
+     - -1        -1         -1        -1         -1        -1         -1        1
 
   NuisForProc:
     - lumi : [signal, wjets, singlet, qcd, diboson, smh,dyjets]
@@ -577,7 +570,7 @@ ZMUMU:
     - CMSYEAR_fake_b : []
     - CMSYEAR_veto_b : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
     - CMSYEAR_double_b : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
-    - CMSYEAR_EleID : []
+    #- CMSYEAR_EleID : []
     - CMSYEAR_EleRECO : []
     - CMSYEAR_MuISO : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
     - CMSYEAR_MuID  : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
@@ -601,8 +594,8 @@ ZMUMU:
     - CMSYEAR_pdf : [signal,smh]
     - CMSYEAR_mu_scale : [signal,smh]
     - CMSYEAR_qcd_norm : [qcd]
-    - CMSYEAR_eff_met : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
-    - CMSYEAR_eff_t : [singlet]
+#    - CMSYEAR_eff_met : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
+#    - CMSYEAR_eff_t : [singlet]
 
   UnclnN:
     - lumi 1.025
@@ -612,7 +605,7 @@ ZMUMU:
     - CMSYEAR_fake_b 1.05
     - CMSYEAR_veto_b 1.05
     - CMSYEAR_double_b 1.15
-    - CMSYEAR_EleID shape
+    #- CMSYEAR_EleID shape
     - CMSYEAR_EleRECO shape
     - CMSYEAR_MuISO shape
     - CMSYEAR_MuID shape
@@ -636,5 +629,5 @@ ZMUMU:
     - CMSYEAR_pdf shape
     - CMSYEAR_mu_scale shape
     - CMSYEAR_qcd_norm 1.5
-    - CMSYEAR_eff_met shape
-    - CMSYEAR_eff_t shape
+#    - CMSYEAR_eff_met shape
+#    - CMSYEAR_eff_t shape
