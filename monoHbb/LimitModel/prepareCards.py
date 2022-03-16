@@ -9,7 +9,7 @@ import sys, optparse,argparse
 usage = "python -y 2017 -c R -reg ['SR']"
 parser = argparse.ArgumentParser(description=usage)
 parser.add_argument("-y", "--year", dest="year", default="2017")
-parser.add_argument("-m", "--model", dest="model", default="THDMa")
+parser.add_argument("-m", "--model", dest="model", default="2hdma")
 parser.add_argument("-c", "--category",  dest="category",default="B")
 # parser.add_argument("-r", "--region", dest="region", default=['SR'])
 parser.add_argument("-reg", nargs="+", default=["a", "b"])
@@ -19,6 +19,11 @@ year     = args.year
 category = args.category
 regions  = args.reg
 modelName = args.model
+
+print("performing mAscan")
+mAscan=True
+zp2hdm_mzpscan =True
+zp2hdm_fullscan =False
 
 
 print (year, category, regions)
@@ -38,7 +43,7 @@ top_ = '''
 imax *  number of channels
 jmax *  number of backgrounds
 
-kmax *  number of nuisance parameters (sources of systematical uncertainties)
+kmax *  number of nuisance parameterS (sources of systematical uncertainties)
 '''
 
 def getEndPart(reg):
@@ -248,11 +253,22 @@ def getSignalHists(doc,model):
 	parameters = doc[model]
 	print ("parameters   :  %s"%parameters)
 	samples  = []
-	if model=="THDMa":
+	if model=="2hdma":
 		tb_list  = parameters[0]['tb']
 		st_list  = parameters[1]['st']
 		ma_list  = parameters[2]['ma']
 		mA_list  = parameters[3]['mA']
+
+                if(mAscan) :
+                    for mA in mA_list:
+                        #if int(ma) != 150: continue
+                        ma='150'
+                        st='0p35'
+                        tb='1p0'
+                        samp = 'ggF_sp_'+st+'_tb_'+tb+'_mXd_10_mA_'+str(mA)+'_ma_'+str(ma)
+                        samples.append(samp)
+                        
+
 
 		# for tb in tb_list:
 		# 	for st in st_list:
@@ -260,8 +276,10 @@ def getSignalHists(doc,model):
 		# 			for mA in mA_list:
 		# 				# print ('tb',tb,'st',st,'ma',ma,'mA',mA)
 		# 				samp = 'ggF_sp_'+st+'_tb_'+tb+'_mXd_10_mA_'+str(mA)+'_ma_'+str(ma)
-		# 				samples.append(samp)
+	
 
+                # 				samples.append(samp)
+                '''
 		for ma in ma_list:
 			for tb in tb_list:
 				if int(ma)==350 or int(ma)==200:continue
@@ -281,12 +299,12 @@ def getSignalHists(doc,model):
 				tb='1p0'
 				samp = 'ggF_sp_'+st+'_tb_'+tb+'_mXd_10_mA_'+str(mA)+'_ma_'+str(ma)
 				samples.append(samp)
+                '''
 
 
 
 
-
-	elif model=="ZpB":
+	elif model=="zpb":
 		mchi_list = parameters[0]['mchi']
 		mzp_list  = parameters[1]['mzp']
 		for mzp in mzp_list:
@@ -310,22 +328,35 @@ def getSignalHists(doc,model):
 					samp = 'MZp_'+str(mzp)+'_Mchi_'+str(mchi)
 					samples.append(samp)
 
-	elif model=="ZpTHDM":
+	elif model=="zp2hdm":
 		mA_list = parameters[0]['mA']
 		mzp_list  = parameters[1]['mzp']
-		for mzp in mzp_list:
+
+                if(zp2hdm_mzpscan):
+                    for mzp in mzp_list:
+                        mA ='300'
+                        samp = 'MZp'+str(mzp)+'_MA0'+str(mA)
+                        samples.append(samp)
+                        
+        
+                if(zp2hdm_fullscan) :
+                    for mzp in mzp_list:
 			for mA in mA_list:
-				# print (mA,mzp)
-				isfill=False
-				if  (int(mzp)==1000 and (int(mA)==300 or int(mA)==800)):isfill=True
-				if (int(mzp)==1200 and (int(mA)==300 or int(mA)==500 or int(mA)==900 or int(mA)==1000)):isfill=True
-				if (int(mzp)==1400 and (int(mA)==300 or int(mA)==400 or int(mA)==500 or int(mA)==600 or int(mA)==800 or int(mA)==900 or int(mA)==1000 or int(mA)==1200)) :isfill=True
-				if (int(mzp)==1700 and (int(mA)==300 or int(mA)==400 or int(mA)==500 or int(mA)==600 or int(mA)==700 or int(mA)==800 or int(mA)==900 or int(mA)==1000 or int(mA)==1200 or int(mA)==1400)) :isfill=True
-				if (int(mzp)==2000 and (int(mA)==300 or int(mA)==700 or int(mA)==1000 or int(mA)==1200 or int(mA)==1400 or int(mA)==1600)):isfill=True
-				if (int(mzp)==2500 and (int(mA)==300 or int(mA)==400 or int(mA)==500 or int(mA)==600 or int(mA)==700 or int(mA)==1000 or int(mA)==1200 or int(mA)==1600)):isfill=True
-				if isfill:
-					samp = 'MZp'+str(mzp)+'_MA0'+str(mA)
-					samples.append(samp)
+                            # print (mA,mzp)
+                            isfill=False
+                            if  (int(mzp)==450 and (int(mA)==300)):isfill=True
+                            if  (int(mzp)==550 and (int(mA)==300)):isfill=True
+                            if  (int(mzp)==600 and (int(mA)==300)):isfill=True
+                            if  (int(mzp)==800 and (int(mA)==300)):isfill=True
+                            if  (int(mzp)==1000 and (int(mA)==300 or int(mA)==800)):isfill=True
+                            if (int(mzp)==1200 and (int(mA)==300 or int(mA)==500 or int(mA)==900 or int(mA)==1000)):isfill=True
+                            if (int(mzp)==1400 and (int(mA)==300 or int(mA)==400 or int(mA)==500 or int(mA)==600 or int(mA)==800 or int(mA)==900 or int(mA)==1000 or int(mA)==1200)) :isfill=True
+                            if (int(mzp)==1700 and (int(mA)==300 or int(mA)==400 or int(mA)==500 or int(mA)==600 or int(mA)==700 or int(mA)==800 or int(mA)==900 or int(mA)==1000 or int(mA)==1200 or int(mA)==1400)) :isfill=True
+                            if (int(mzp)==2000 and (int(mA)==300 or int(mA)==700 or int(mA)==1000 or int(mA)==1200 or int(mA)==1400 or int(mA)==1600)):isfill=True
+                            if (int(mzp)==2500 and (int(mA)==300 or int(mA)==400 or int(mA)==500 or int(mA)==600 or int(mA)==700 or int(mA)==1000 or int(mA)==1200 or int(mA)==1600)):isfill=True
+                            if isfill:
+                                samp = 'MZp'+str(mzp)+'_MA0'+str(mA)
+                                samples.append(samp)
 	print ("samples  ",samples)
 	print ("total samples   ",len(samples))
 
@@ -445,8 +476,8 @@ if modelName == 'THDMa' :
     modelRename = '2hdma'
 
 
-monohbb_file='monohbb'+year+'_datacardslist_'+category+'_'+'allregion_'+modelRename+'_all.txt'
-monohbb_file_SR='monohbb'+year+'_datacardslist_'+category+'_'+'SR_'+modelRename+'_all.txt'
+monohbb_file='monohbb'+year+'_datacardslist_'+category+'_'+'allregion_'+modelName+'_all.txt'
+monohbb_file_SR='monohbb'+year+'_datacardslist_'+category+'_'+'SR_'+modelName+'_all.txt'
 #monohbb_file='monohbb'+year+'_datacardslist_'+category+'_'+modelName+'_all.txt'
 
 #monoHbb2017_R_SR_ggF_sp_0p8_tb_1p0_mXd_10_mA_600_ma_200
@@ -458,7 +489,7 @@ ftxt_SR= open(monohbb_file_SR,'w')
 for sigHist in getSignalHists(signalDoc,modelName):
     outfile_SR = 'monoHbb'+year+'_'+category+'_SR_'+sigHist
     srfile = 'monoHbb_datacard_'+year+'_SR_'+category+'_'+sigHist+'.txt'
-    outfile= 'monoHbb_datacard_'+year+'_'+modelRename+'_'+category+'_allregion_'+sigHist+'.txt'
+    outfile= 'monoHbb_datacard_'+year+'_'+modelName+'_'+category+'_allregion_'+sigHist+'.txt'
     # os.system('combineCards.py sr='+outdir+'/'+srfile+' zee='+outdir+'/monoHbb_datacard_2017_ZEE_R.txt  zmumu='+outdir+'/monoHbb_datacard_2017_ZMUMU_R.txt wmu='+outdir+'/monoHbb_datacard_2017_WMU_R.txt we='+outdir+'/monoHbb_datacard_2017_WE_R.txt topmu='+outdir+'/monoHbb_datacard_2017_TOPMU_R.txt tope='+outdir+'/monoHbb_datacard_2017_TOPE_R.txt >'+outdir+'/'+outfile)
     os.system('combineCards.py sr='+outdir+'/'+srfile+' zee='+outdir+'/monoHbb_datacard_2017_ZEE_'+category+'.txt  zmumu='+outdir+'/monoHbb_datacard_2017_ZMUMU_'+category+'.txt topmu='+outdir+'/monoHbb_datacard_2017_TOPMU_'+category+'.txt tope='+outdir+'/monoHbb_datacard_2017_TOPE_'+category+'.txt >'+outdir+'/'+outfile)
     ftxt.write(outdir+'/'+outfile+' \n')

@@ -101,7 +101,7 @@ def drawenergy():
     return [pt, pt1, pt2]
 
 def myPad():
-    c = TCanvas("c", "", 800, 900)
+    c = TCanvas("c", "", 650, 600)
     c.SetTopMargin(0.4)
     c.SetBottomMargin(0.05)
     c.SetRightMargin(0.1)
@@ -230,7 +230,8 @@ def myStack(fname_, region_, isSR, prefitbackgroundlist_, legendname_, colorlist
     data_integral  = data_.GetMaximum()
     
     #data_.SetMaximum(pad1ymax_)
-    data_.SetMaximum(data_integral*3)
+    data_.SetMaximum(data_integral*10)
+    data_.SetMinimum(0.01)
     data_.GetYaxis().SetTitle("Events/GeV")
     data_.Draw("e1")
     
@@ -324,6 +325,8 @@ def myStack(fname_, region_, isSR, prefitbackgroundlist_, legendname_, colorlist
     if not os.path.exists(dirName_):
         os.mkdir(dirName_)
 
+    pad[0].SetTicky(1)
+    pad[0].SetTickx(1)
     pad[0].Modified()
     pad[0].Update()
     #    if isMerged:
@@ -359,17 +362,17 @@ for i in range(len(regionlist_2b)):
         isSR = True
         prefitbkglist = ["diboson", "qcd", "singlet", "smh", "tt", "wjets", "zjets"]
         legendlist = ["WW/WZ/ZZ", "QCD", "Single t", "SM H", "t#bar{t}", "W(l#nu)+Jets", "Z(ll)+Jets"]
-        color = [601, 922, 802, 631, 799, 878, 856]
+        color = [30,ROOT.kGray+1,ROOT.kRed+3,5,2,ROOT.kBlue+2,ROOT.kGreen+2]#[601, 922, 802, 631, 799, 878, 856]
     if (i == 1) or (i == 2) or (i == 3) or (i == 4):
         isSR = False
         prefitbkglist = ["diboson", "qcd", "singlet", "smh", "tt", "wjets", "dyjets"]
         legendlist = ["WW/WZ/ZZ", "QCD", "Single t", "SM H", "t#bar{t}", "W(l#nu)+Jets", "DY+Jets"]
-        color = [601, 922, 802, 631, 799, 878, 417]
+        color = [30,ROOT.kGray+1,ROOT.kRed+3,5,2,ROOT.kBlue+2,ROOT.kGreen+2]#[601, 922, 802, 631, 799, 878, 417]
     if (i == 5) or (i == 6):
         isSR = False
         prefitbkglist = ["diboson", "singlet", "smh", "tt", "dyjets"]
         legendlist = ["WW/WZ/ZZ", "Single t", "SM H", "t#bar{t}", "DY+Jets"]
-        color = [601, 802, 631, 799, 417]
+        color = [30,ROOT.kGray+1,ROOT.kRed+3,5,2,ROOT.kBlue+2,ROOT.kGreen+2]#[601, 802, 631, 799, 417]
 
         
     print ("region: ", regionlist_2b[i])

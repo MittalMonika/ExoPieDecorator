@@ -216,7 +216,7 @@ def main():
             
             #" "+iregion+"="
             if len(datacardsList)>0:
-                #print "datacardsList", datacardsList
+                print "datacardsList", datacardsList
                 for idc in datacardsList:
                     print "idc = ",idc
                     combostr = ""
@@ -231,10 +231,11 @@ def main():
                     
                     dirname_ = mergeddatacardmname.split("/")[0]
                     replacedoubledir = dirname_+"/"+dirname_
+                    print ("rreplace text:  _"+regionStr[0], analysis_tag)
                     mergeddatacardmname = (mergeddatacardmname.replace("_"+regionStr[0], analysis_tag))
                     ftxt.write(mergeddatacardmname+' \n')
                     
-                    print (combostr+" > "+mergeddatacardmname+"\n\n")
+                    #print ("combostr: ",combostr+" > "+mergeddatacardmname+"\n\n")
                     os.system("combineCards.py "+combostr+" > "+mergeddatacardmname+"\n")
                     f_dc = open(mergeddatacardmname,"r") ; f_dc_data = f_dc.read(); f_dc.close()
                     f_dc_data_new = f_dc_data.replace(replacedoubledir, dirname_)

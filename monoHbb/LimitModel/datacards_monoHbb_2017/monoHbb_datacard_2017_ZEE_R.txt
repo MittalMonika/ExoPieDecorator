@@ -5,9 +5,7 @@ jmax *  number of backgrounds
 kmax *  number of nuisance parameters (sources of systematical uncertainties)
 
 ------------
-shapes * ZEE monoHbb_2017_WS.root ws_monoHbb_R_2017:monoHbb2017_R_ZEE_$PROCESS ws_monoHbb_R_2017:monoHbb2017_R_ZEE_$PROCESS_$SYSTEMATIC
-shapes  dyjets ZEE monoHbb_2017_WS.root ws_monoHbb_R_2017:rph_ZEE_dyjets_R_2017
-
+shapes * ZEE   AllMETHistos_monohbb_v12_08_21_UpdatedMetTrigUnc.root  monoHbb2017_R_ZEE_$PROCESS monoHbb2017_R_ZEE_$PROCESS_$SYSTEMATIC
 ------------
 bin ZEE
 observation -1
@@ -15,44 +13,40 @@ observation -1
 bin         ZEE    ZEE  ZEE      ZEE  ZEE      ZEE  ZEE     ZEE
 process   zjets  wjets   tt  singlet  qcd  diboson  smh  dyjets
 process       1      2    3        4    5        6    7       8
-rate         -1     -1   -1       -1   -1       -1   -1       1
+rate         -1     -1   -1       -1   -1       -1   -1      -1
 ------------
-lumi                      lnN  1.025  1.025  1.025  1.025  1.025  1.025  1.025  -
-CMS2017_PU              shape      1      1      1      1      1      1      1  -
-CMS2017_trig_ele        shape      -      -      -      -      -      -      -  -
-CMS2017_eff_b           shape      1      1      1      1      1      1      1  -
-CMS2017_fake_b            lnN   1.05   1.05   1.05   1.05   1.05   1.05   1.05  -
-CMS2017_EleID           shape      1      1      1      1      1      1      1  -
-CMS2017_EleRECO         shape      1      1      1      1      1      1      1  -
-CMS2017_MuISO           shape      -      -      -      -      -      -      -  -
-CMS2017_MuID            shape      -      -      -      -      -      -      -  -
-CMS2017_veto_tau          lnN   1.02   1.02   1.02   1.02   1.02   1.02   1.02  -
-JECAbsolute             shape      1      1      1      1      1      1      1  -
-JECAbsolute_2017        shape      1      1      1      1      1      1      1  -
-JECBBEC1                shape      1      1      1      1      1      1      1  -
-JECBBEC1_2017           shape      1      1      1      1      1      1      1  -
-JECEC2                  shape      1      1      1      1      1      1      1  -
-JECEC2_2017             shape      1      1      1      1      1      1      1  -
-JECFlavorQCD            shape      1      1      1      1      1      1      1  -
-JECHF                   shape      1      1      1      1      1      1      1  -
-JECHF_2017              shape      1      1      1      1      1      1      1  -
-JECRelativeBal          shape      1      1      1      1      1      1      1  -
-JECRelativeSample_2017  shape      1      1      1      1      1      1      1  -
-wj_hf                     lnN      -      -      -      -      -      -      -  -
-zj_hf                     lnN      -      -      -      -      -      -      -  -
-norm_stop                 lnN      -      -      -    1.1      -      -      -  -
-norm_diboson              lnN      -      -      -      -      -    1.2      -  -
-norm_smh                  lnN      -      -      -      -      -      -    1.2  -
-CMS2017_pdf             shape      -      -      -      -      -      -      1  -
-CMS2017_mu_scale        shape      -      -      -      -      -      -      1  -
-CMS2017_qcd_norm          lnN      -      -      -      -    1.5      -      -  -
-
-rrvbc_SR_zjets_R1_2017 flatParam
-rrvbc_SR_zjets_R2_2017 flatParam
-rrvbc_SR_zjets_R3_2017 flatParam
-rrvbc_SR_zjets_R4_2017 flatParam
-tf1_ZEE_dyjets_R_2017 flatParam
-tf2_ZEE_dyjets_R_2017 flatParam
-tf3_ZEE_dyjets_R_2017 flatParam
-tf4_ZEE_dyjets_R_2017 flatParam
+lumi                      lnN  1.025  1.025  1.025  1.025  1.025  1.025  1.025     -
+CMS2017_PU              shape      1      1      1      1      1      1      1     -
+CMS2017_EleTrig         shape      1      1      1      1      1      1      1     -
+CMS2017_eff_b           shape      1      1      1      1      1      1      1     -
+CMS2017_fake_b          shape      1      1      1      1      1      1      1     -
+CMS2017_veto_b            lnN   1.05   1.05   1.05   1.05   1.05   1.05   1.05     -
+CMS2017_EleID           shape      1      1      1      1      1      1      1     -
+CMS2017_EleRECO         shape      1      1      1      1      1      1      1     -
+CMS2017_MuISO           shape      -      -      -      -      -      -      -     -
+CMS2017_MuID            shape      -      -      -      -      -      -      -     -
+CMS2017_veto_tau          lnN   1.02   1.02   1.02   1.02   1.02   1.02   1.02     -
+JECAbsolute             shape      1      1      1      1      1      1      1     -
+JECAbsolute_2017        shape      1      1      1      1      1      1      1     -
+JECBBEC1                shape      1      1      1      1      1      1      1     -
+JECBBEC1_2017           shape      1      1      1      1      1      1      1     -
+JECEC2                  shape      1      1      1      1      1      1      1     -
+JECEC2_2017             shape      1      1      1      1      1      1      1     -
+JECFlavorQCD            shape      1      1      1      1      1      1      1     -
+JECHF                   shape      1      1      1      1      1      1      1     -
+JECHF_2017              shape      1      1      1      1      1      1      1     -
+JECRelativeBal          shape      1      1      1      1      1      1      1     -
+JECRelativeSample_2017  shape      1      1      1      1      1      1      1     -
+wj_hf                     lnN      -   1.05      -      -      -      -      -     -
+zj_hf                     lnN      -      -      -      -      -      -      -  1.05
+norm_stop                 lnN      -      -      -    1.1      -      -      -     -
+norm_diboson              lnN      -      -      -      -      -    1.2      -     -
+norm_smh                  lnN      -      -      -      -      -      -    1.2     -
+CMS2017_pdf             shape      -      -      -      -      -      -      1     -
+CMS2017_mu_scale        shape      -      -      -      -      -      -      1     -
+CMS2017_qcd_norm          lnN      -      -      -      -    1.5      -      -     -
+CMS2017_trig_met        shape      -      -      -      -      -      -      -     -
+ 
+ratezjets_R_2017  rateParam ZEE dyjets 1. [0.5,1.5]        
+* autoMCStats 10 0 1
 

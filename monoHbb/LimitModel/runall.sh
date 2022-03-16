@@ -3,48 +3,98 @@ year=$2
 postfix=$3
 nbins=$4
 model=$5
+#cat=$6
+limitmodel=$6
 
 echo $nbins
 
 
 
+#catRB=" "
+#if [[ $cat == "R" ]]
+#then
+#    catRB="sr2"
+#fi
+#
+#if [[ $cat == "B" ]]
+#then
+#    catRB="sr1"
+#fi
+#
+#if [[ $cat == "combo" ]]
+#then
+#    catRB="srall"
+#fi
 
 
+echo $cat, $limitmodel, $catRB
 
 
-if [[ $model == "2hdma" ]]
-then 
-    echo "preparing datacards for :", $model
-    #sleep 2
     
     #####################    #####################    #####################    #####################    #####################
-    # create cards for resolved 
-#    python prepareCards.py -c R  -m THDMa -reg SR TOPE TOPMU ZEE ZMUMU -y ${year}
-    # create cards for boosted 
-    python prepareCards.py -c B  -m THDMa -reg SR TOPE TOPMU ZEE ZMUMU -y ${year}
-    
-    #####################    #####################    #####################    #####################    #####################
-    ## create workspace for resolved 
- #   root -l -b -q PrepareWS_withnuisanceInvertTF_noW_nBins.C"(\"monoHbb\", \"R\", \"RECREATE\", \"AllMETHistos\", \"$rootfile\", \"${year}\", $nbins)"
-    ## create workspace for boosted 
-    root -l -b -q PrepareWS_withnuisanceInvertTF_noW_nBins.C"(\"monoHbb\", \"B\", \"RECREATE\", \"AllMETHistos\", \"$rootfile\", \"${year}\", $nbins)"
-    
-    #####################    #####################    #####################    #####################    #####################
-    ## copy the workspace 
-    cp monoHbb_${year}_WS.root datacards_monoHbb_${year}/monoHbb_${year}_WS.root
-    
-    #####################    #####################    #####################    #####################    #####################
-    ## run limits for resolved 
-    #python RunLimits.py -A -L -v 0 -i  monohbb${year}_datacardslist_R_allregion_THDMa_all_ma150.txt --category=sr2 --postfix $postfix --savepdf --outlog="running limits for R"  --year ${year}
-    ## run limits for boosted 
-    python RunLimits.py -A -L -v 0 -i  monohbb${year}_datacardslist_B_allregion_THDMa_all_ma150.txt --category=sr1 --postfix $postfix --savepdf --outlog="running limits for B"  --year ${year}
-    
-    
-    ## create combination cards resolved + boosted 
-    #python RunLimits.py -c --model 2hdma_all --region "monohbb${year}_datacardslist_R_allregion_THDMa_all_ma600.txt monohbb${year}_datacardslist_B_region_THDMa_all_ma600.txt" --category=srall --year ${year}
-    #python RunLimits.py -A -L -v 0 -i bbDM${year}_datacardslist_C_2hdma_all.txt --category=srall --postfix $postfix --savepdf --outlog="running limits for R and B"  --year ${year} --model 2hdma_all
+    ###For RateParam
+    if [ $limitmodel == "RP" ]
+    then 
+	#python prepareCards_RP.py -c B  -m ${model} -reg SR TOPE TOPMU ZEE ZMUMU -y ${year} -d AllMETHistos_monohbb_v12_07_16_unrolled_45BinsHist_BoostedCROnly.root
+	#python prepareCards_RP.py -c R  -m ${model} -reg SR TOPE TOPMU ZEE ZMUMU -y ${year} -d AllMETHistos_monohbb_v12_07_16_unrolled_43RVs61BRebinBinsHist.root  
+	#python prepareCards_RP.py -c F  -m ${model} -reg SR TOPE TOPMU ZEE ZMUMU -y ${year} -d AllMETHistos_monohbb_v12_07_16_lowMETCat_25bins_UpdatedMetTrig_v2.root
 
-fi 
+	#farrootfile="AllMETHistos_monohbb_v12_08_20_FarCat_25bins.root"
+	farrootfile="AllMETHistos_2018_monohbb_v12_08_20_FarCat_25bins.root"
+	echo ${farrootfile}
+	#python prepareCards_RP.py -c B  -m ${model} -reg SR TOPE TOPMU ZEE ZMUMU -y ${year} -d ${rootfile}
+	python prepareCards_RP.py -c R  -m ${model} -reg SR TOPE TOPMU ZEE ZMUMU -y ${year} -d ${rootfile}
+	#python prepareCards_RP.py -c F  -m ${model} -reg SR TOPE TOPMU ZEE ZMUMU -y ${year} -d ${farrootfile}
+	#python prepareCards_RP.py -c F  -m ${model} -reg SR TOPE TOPMU ZEE ZMUMU -y ${year} -d ${rootfile}
+
+
+	cp AllMETHistos/${rootfile} datacards_monoHbb_${year}/
+	#cp AllMETHistos/${farrootfile} datacards_monoHbb_${year}/
+	
+	#python RunLimits.py -A -L -v 0 -i  monohbb${year}_datacardslist_B_allregion_${model}_all.txt --category=sr1 --postfix $postfix --savepdf --outlog="running limits for Boosted"  --year ${year} --model ${model}
+	python RunLimits.py -A -L -v 0 -i  monohbb${year}_datacardslist_R_allregion_${model}_all.txt --category=sr2 --postfix $postfix --savepdf --outlog="running limits for Resolved"  --year ${year} --model ${model}	
+	#python RunLimits.py -A -L -v 0 -i  monohbb${year}_datacardslist_F_allregion_${model}_all.txt --category=sr3 --postfix $postfix --savepdf --outlog="running limits for lowmet"  --year ${year} --model ${model}
+	#python RunLimits.py -c  --region "monohbb${year}_datacardslist_B_allregion_${model}_all.txt monohbb${year}_datacardslist_R_allregion_${model}_all.txt monohbb${year}_datacardslist_F_allregion_${model}_all.txt" --category=srall --year ${year} --model ${model}
+	#python RunLimits.py -c  --region "monohbb${year}_datacardslist_B_allregion_${model}_all.txt monohbb${year}_datacardslist_R_allregion_${model}_all.txt" --category=srall --year ${year} --model ${model}
+	#python RunLimits.py -A -L -v 0 -i bbDM${year}_datacardslist_C_${model}.txt --category=srall --postfix $postfix --savepdf --outlog="running limits for R and B"  --year ${year} --model ${model}
+
+    fi
+
+
+    #for TF R or B doesn't make diffeernce it will run for both
+    if [[ $limitmodel == "TF" ]] 
+    then 
+	echo $limitmodel , "in TF 1 "
+	python prepareCards.py -c B  -m ${model} -reg SR TOPE TOPMU ZEE ZMUMU -y ${year}
+	python prepareCards.py -c R  -m ${model} -reg SR TOPE TOPMU ZEE ZMUMU -y ${year}
+	## create workspace 
+	
+
+
+        root -l -b -q PrepareWS_withnuisanceInvertTF_noW_nBins.C"(\"monoHbb\", \"B\", \"RECREATE\", \"AllMETHistos\", \"$rootfile\", \"${year}\", $nbins)"
+        root -l -b -q PrepareWS_withnuisanceInvertTF_noW_nBins.C"(\"monoHbb\", \"R\", \"UPDATE\", \"AllMETHistos\", \"$rootfile\", \"${year}\", $nbins)"
+	## copy the workspace 
+	cp monoHbb_${year}_WS.root datacards_monoHbb_${year}/monoHbb_${year}_WS.root
+        ## run limits 
+	python RunLimits.py -A -L -v 0 -i  monohbb${year}_datacardslist_B_allregion_${model}_all.txt --category=sr1 --postfix $postfix --savepdf --outlog="running limits for Boosted"  --year ${year} --model ${model}
+	python RunLimits.py -A -L -v 0 -i  monohbb${year}_datacardslist_R_allregion_${model}_all.txt --category=sr2 --postfix $postfix --savepdf --outlog="running limits for Resolved"  --year ${year} --model ${model}
+	python RunLimits.py -c  --region "monohbb${year}_datacardslist_B_allregion_${model}_all.txt monohbb${year}_datacardslist_R_allregion_${model}_all.txt" --category=srall --year ${year} --model ${model}
+	python RunLimits.py -A -L -v 0 -i bbDM${year}_datacardslist_C_${model}.txt --category=srall --postfix $postfix --savepdf --outlog="running limits for R and B"  --year ${year} --model ${model}
+	
+    fi
+
+    
+    ## create combination cards resolved + boosted we run run it for now
+#
+#    if [ $cat == "combo"  ]
+#    then
+#	echo " I am in combo for ", $model
+#	python RunLimits.py -c  --region "monohbb${year}_datacardslist_B_allregion_${model}_all.txt monohbb${year}_datacardslist_R_allregion_${model}_all.txt" --category=$catRB --year ${year} --model ${model}
+#	python RunLimits.py -A -L -v 0 -i bbDM${year}_datacardslist_C_${model}_all.txt --category=$catRB --postfix $postfix --savepdf --outlog="running limits for R and B"  --year ${year} --model ${model}
+#    fi
+    
+
+#fi 
 
 
 

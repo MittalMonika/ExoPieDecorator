@@ -981,14 +981,14 @@ void PrepareWS_withnuisanceInvertTF_noW_nBins(TString model_="monoHbb",TString a
   //-------------------------------------------------//
   //open root file
 
-
-  ifstream testFile("monohbb2017_datacardslist_"+cat__+"_SR_2hdma_all.txt");
-  std::cout<<"monika opening file "<<"monohbb2017_datacardslist_"+cat__+"_SR_THDMa_all.txt" <<std::endl;
+  TString outhz = "monohbb2017_datacardslist_"+cat__+"_SR_model_all.txt";
+  gSystem->Exec("cat monohbb2017_datacardslist_"+cat__+"_SR_zp2hdm_all.txt monohbb2017_datacardslist_"+cat__+"_SR_2hdma_all.txt >  " +outhz);
+  
+  ifstream testFile("monohbb2017_datacardslist_"+cat__+"_SR_model_all.txt");
+  std::cout<<"monika opening file "<<outhz <<std::endl;
   string line;
 
   while (testFile.good()){
-    std::cout<<"monika  file is good " <<std::endl;
-
     getline(testFile, line);  
     TString tmpname=line.c_str();
     TString tmpname_nuis =" ";

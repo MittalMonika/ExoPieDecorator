@@ -1,0 +1,98 @@
+## ma, mA, 
+##tan beta, sin theta,
+##  mchi
+2hdma:
+  oned:
+     tanbetaScan250:
+      fileN: limits_monoHbb_2hdmaScan_tanbetaScan_ma_250_mA_600_sinth_0p35.txt
+      xaxis: tan#beta
+      yaxis: \mu=\sigma/\sigma_{theory}
+      legend: 
+        - m_{a}=250 GeV, m_{#chi}=1 GeV
+        - tan#beta=1, sin#theta=0.35
+      filepath: bin/scan_2d
+      rangeY:
+        - 0.1
+        - 600 
+
+     tanbetaScan150: 
+      fileN: limits_monoHbb_2hdmaScan_tanbetaScan_ma_150_mA_600_sinth_0p35.txt
+      xaxis: tan#beta
+      yaxis: \mu=\sigma/\sigma_{theory}
+      legend: 
+        - m_{a}=150 GeV, m_{#chi}=1 GeV
+        - tan#beta=1, sin#theta=0.35
+      filepath: bin/scan_2d
+      rangeY:
+        - 0.1
+        - 600 
+
+     sinthetaScanma200: 
+      fileN: limits_monoHbb_2hdmaScan_sinthetaScan_ma_200_mA_600_tanbeta_1.txt
+      xaxis: sin#theta
+      yaxis: \mu=\sigma/\sigma_{theory}
+      legend: 
+        - m_{a}=200 GeV, m_{#chi}=1 GeV
+        - tan#beta=1, m_{A}=600 GeV
+      filepath: bin/scan_2d
+      rangeY:
+        - 0.1
+        - 600 
+
+     mAScanma150: 
+      fileN: limits_monoHbb_2hdmaScan_ma_150_tanbeta_1p0_sinth_0p35.txt
+      xaxis: m_{A}
+      yaxis: \mu=\sigma/\sigma_{theory}
+      legend: 
+        - m_{a}=150 GeV, m_{#chi}=1 GeV
+        - tan#beta=1, sin#theta=0.35
+      filepath: bin/scan_2d
+      rangeY:
+        - 0.1
+        - 600 
+
+
+     mAScanma250: 
+      fileN: limits_monoHbb_2hdmaScan_ma_250_tanbeta_1p0_sinth_0p35.txt
+      xaxis: m_{A}
+      yaxis: \mu=\sigma/\sigma_{theory}
+      legend: 
+        - m_{a}=250 GeV, m_{#chi}=1 GeV
+        - tan#beta=1, sin#theta=0.35
+      filepath: bin/scan_2d
+      rangeY:
+        - 0.1
+        - 600 
+
+
+     mAScanma350: 
+      fileN: limits_monoHbb_2hdmaScan_ma_350_tanbeta_1p0_sinth_0p35.txt
+      xaxis: m_{A}
+      yaxis: \mu=\sigma/\sigma_{theory}
+      legend: 
+        - m_{a}=350 GeV, m_{#chi}=1 GeV
+        - tan#beta=1, sin#theta=0.35
+      filepath: bin/scan_2d
+      rangeY:
+        - 0.1
+        - 600 
+
+
+  twod: 
+     maVsmA: 
+      fileN: limits_monoHbb_2hdmaScan_ma_vs_mA_tanbeta_1p0_sinth_0p35.txt
+      xaxis: m_{a} (in GeV)
+      yaxis: m_{A} (in GeV)
+      legend: sin#theta=0.35
+      filepath: bin/scan_2d
+
+
+
+zpb:
+  oned:
+    mzpScan:
+      fileN: limits_monoHbb_zpbScan_nothing.txt
+      xaxis: m_{Z'}
+      yaxis: 95% C.L. #mu=#sigma/#sigma_{theory}
+      legend: m_{#chi} = 1 GeV
+      filepath: bin/scan_2d

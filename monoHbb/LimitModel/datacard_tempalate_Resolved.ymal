@@ -48,7 +48,7 @@ SR:
     - CMSYEAR_pdf : [signal,smh]
     - CMSYEAR_mu_scale : [signal,smh]
     - CMSYEAR_qcd_norm : [qcd]
-#    - CMSYEAR_eff_met : [signal ,  wjets,  singlet, qcd , diboson, smh, dyjets]
+    - CMSYEAR_eff_met : [signal ,  wjets,  singlet, qcd , diboson, smh, dyjets]
 #    - CMSYEAR_eff_t : [singlet]
 
 
@@ -82,7 +82,7 @@ SR:
     - CMSYEAR_pdf shape
     - CMSYEAR_mu_scale shape
     - CMSYEAR_qcd_norm 1.5
-#    - CMSYEAR_eff_met shape
+    - CMSYEAR_eff_met shape
 #    - CMSYEAR_eff_t shape
 
 
@@ -224,7 +224,7 @@ TOPMU:
     - CMSYEAR_pdf : [signal,smh]
     - CMSYEAR_mu_scale : [signal,smh]
     - CMSYEAR_qcd_norm : [qcd]
-#    - CMSYEAR_eff_met : [signal ,zjets,  wjets,  singlet, qcd , diboson, smh, dyjets]
+    - CMSYEAR_eff_met : [signal ,zjets,  wjets,  singlet, qcd , diboson, smh, dyjets]
 #    - CMSYEAR_eff_t : [singlet]
 
 
@@ -258,7 +258,7 @@ TOPMU:
     - CMSYEAR_pdf shape
     - CMSYEAR_mu_scale shape
     - CMSYEAR_qcd_norm 1.5
-#    - CMSYEAR_eff_met shape
+    - CMSYEAR_eff_met shape
 #    - CMSYEAR_eff_t shape
 
 #WE REGION
@@ -575,7 +575,7 @@ ZMUMU:
     - CMSYEAR_pdf : [signal,smh]
     - CMSYEAR_mu_scale : [signal,smh]
     - CMSYEAR_qcd_norm : [qcd]
-#    - CMSYEAR_eff_met : [signal ,zjets,  wjets, tt, singlet, qcd , diboson, smh]
+    - CMSYEAR_eff_met : [signal ,zjets,  wjets, tt, singlet, qcd , diboson, smh]
 #    - CMSYEAR_eff_t : [singlet]
 
   UnclnN:
@@ -608,5 +608,5 @@ ZMUMU:
     - CMSYEAR_pdf shape
     - CMSYEAR_mu_scale shape
     - CMSYEAR_qcd_norm 1.5
-#   - CMSYEAR_eff_met shape
+   - CMSYEAR_eff_met shape
 #    - CMSYEAR_eff_t shape

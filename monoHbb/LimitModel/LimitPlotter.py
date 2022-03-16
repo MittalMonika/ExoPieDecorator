@@ -6,213 +6,44 @@ import ROOT as rt
 import argparse
 import csv 
 import describe as dcb
-class RunLimits:
+
+
+class LimitPlotter:
     ''' class to perform all tasks related to the limits once datacards are prepared '''
     ''' this class exepcts that all the steps needed to prepare the datacards and prepration of its inputs are already performed '''
     
     ''' instantiation of the class is done here ''' 
-    def __init__(self, datacardtemplatename, Year, Analysis, Analysisbin, Postfix, Model):
-        self.datacardtemplatename_ = datacardtemplatename
-        self.Year_                 = Year
-        self.analysis_             = Analysis 
-        self.analysisbin_          = Analysisbin 
-        self.postfix_              = Postfix
-        self.model_                = Model
+    def __init__(self, model_):
         
-        #self.runmode = runmode
+        self.model_    = model_ 
         print "class instantiation done"
         
     ''' get the full command to be run for a given datacards '''
-    def getfullcommand(self, commandpre, datacard, command_, commandpost):
-        return commandpre+datacard+command_+commandpost
+
+    def SetParameters(self, scan_dict):
+        self.fileN = scan_dict["fileN"]
+        self.xaxis = scan_dict["xaxis"]
+        self.yaxis = scan_dict["yaxis"]
+        self.legend = scan_dict["legend"]
+        self.filepath = scan_dict["filepath"]
+        self.rangeY = scan_dict["rangeY"]
         
-    ''' convert a text file with just one columns into a list '''
-    def TextFileToList(self, textfile):
-        return [iline.rstrip() for iline in open (textfile)]
+        self.limit_text_file = self.filepath + "/" + self.fileN
+        self.limit_root_file = self.limit_text_file.replace(".txt",".root")
         
-    #def GetDataCardsForCombination(self, index_, listOflist):
+        return 0;
         
-    def PrintSpacing(self, nLine=1):
-        for iline in range(nLine):
-            print "***************************************************************************************************************************************"
-            
-    def TimeFormat(self):
-        from datetime import datetime
-        now = datetime.now()
-        date_str = ((str(now)).replace("-","_")).split(":")  
-        date_format = (date_str[0]).replace(" ","_") + "_" + str(date_str[1])
-        return date_format
-    
-    
-    def setupDirs(self, txtfile):
-        for idir in open(txtfile):
-            os.system('mkdir -p '+idir.rstrip())
-            os.system('cp index.php '+idir.rstrip())
-        return 0
-    def setupdir(self):
-        plotdirs  = dcb.anadetails["plotsDir"]
-        for idir in plotdirs:
-            if not os.path.exists(plotdirs[idir]):
-                os.system("mkdir "+plotdirs[idir])
-                os.system("cp index.php "+plotdirs[idir])
-    
 
 
-
-
-    def writeChangeLog(self):
-        fversion = csv.writer(open('version.csv',"a"))
-        for key_, value_ in dcb.anadetails["version"].items():
-            fversion.writerow([key_,value_])
-
-
-    def makedatacards(self, templatecards, allparams, region, year, category,catefull, model ):
+    def TextFileToRootGraphs1D(self, scan_dict):
+        self.SetParameters(scan_dict)
         
-        ## default values for the parameters 
-        ma=""
-        mA=""
-        tb=""
-        st=""
-        mdm=""
+        print ("plotting limits for: ",self.fileN)
+        #limit_text_file = self.filepath + "/" + self.fileN
+        #filename = limit_text_file #limit_text_filename
+        #limit_root_file = limit_text_file.replace(".txt",".root")
         
-        mphi=""
-        
-        datacardsname=""
-        
-        if ("2hdma" in model) and (len(allparams)==5):
-            ma  = str(allparams[0])
-            mA  = str(allparams[1])
-            tb  = (str(allparams[2])).replace(".","p")
-            st  = (str(allparams[3])).replace(".","p")
-            mdm = str(allparams[4])
-            
-            ## get datacard name for 2HDM+a model
-            datacardsname = self.datacardtemplatename_.replace("XXXMA", mA)
-            datacardsname = datacardsname.replace("BBBMa",ma)
-            datacardsname = datacardsname.replace("ZZZTB",tb)
-            datacardsname = datacardsname.replace("YYYSP",st)
-            datacardsname = datacardsname.replace("AAAMDM",mdm)
-            datacardsname = datacardsname.replace("SR",region)
-            
-            
-        if ('dmsimp' in model) and (len(allparams)==2):
-            mphi = str(allparams[0])
-            mdm = str(allparams[1])
-            
-            ## get datacard name for DMSIMP model
-            datacardsname = self.datacardtemplatename_.replace("YYYMPHI", mphi)
-            datacardsname = datacardsname.replace("ZZZMDM",mdm)
-            datacardsname = datacardsname.replace("SR",region)
-
-            
-
-        
-        #print 'data card name is ===',datacardsname
-        os.system('rm '+datacardsname)
-        fout = open(datacardsname,"a")
-        for iline in open(templatecards): 
-            
-            if ("2hdma" in model) and (len(allparams)==5):
-                iline  = iline.replace("XXX", ma)
-                iline  = iline.replace("YYY", mA)
-                iline  = iline.replace("CCC", mdm)
-                iline  = iline.replace("TTT", tb)
-                iline  = iline.replace("SSS", st)
-
-            if ("dmsimp" in model) and (len(allparams)==2):
-                iline  = iline.replace("2HDMa_MaXXX_MChiCCC_MAYYY_tbTTT_st_SSS", "DMSimp_MPhiXXX_MChiYYY")
-                iline  = iline.replace("XXX", mphi)
-                iline  = iline.replace("YYY", mdm)
-
-                if (year=="2016"): 
-                    iline  = iline.replace("CMSYEAR_pdf","#CMS2016_pdf")
-                    iline  = iline.replace("CMSYEAR_mu_scale","#CMS2016_mu_scale")
-                
-            
-            if region=="SR": iline  = iline.replace("SR", region)
-            if region!="SR": iline  = iline.replace("SR_ggF", region)
-            ## add other params 
-            iline = iline.replace("YEAR",year)
-            iline = iline.replace("_CATEGORY",category)
-            iline = iline.replace("CATEGFULL",catefull)
-            
-            fout.write(iline)
-        fout.close()
-        return datacardsname
-        
-        
-    
-    def datacard_to_mparameters(self, name_, analysis_ = "monoHbb"):
-        print ("LimitHelper.py::datacard_to_mparameters: ",analysis_, self.analysis_, self.model_, name_)
-        
-        if ("2hdma" in self.model_) and (analysis_ == self.analysis_):
-            mparameters_ = ((name_.split("allregion")[1]).replace(".log","")).split("_")
-            mparameters_ = [mp.replace("p",".") for mp in mparameters_]
-            ## ma, mA, tb, st, mdm
-            return ([mparameters_[11], mparameters_[9], mparameters_[5], mparameters_[3], mparameters_[7]])
-
-        if ("zp2hdm" in self.model_) and (analysis_ == self.analysis_):
-            mparameters_ = ((name_.split("allregion")[1]).replace(".log","")).split("_")
-            ## ma, mA, tb, st, mdm
-            return (mparameters_[2].split("MA0")[1],mparameters_[1].split("MZp")[1])
-
-        if ("zpb" in self.model_) and (analysis_ == self.analysis_):
-            mparameters_ = ((name_.split("allregion")[1]).replace(".log","")).split("_")
-            ## ma, mA, tb, st, mdm
-            #return (mparameters_[2].split("Mchi")[1],mparameters_[1].split("MZp")[1])
-            return((mparameters_[4], mparameters_[2]))
-                    
-    ## category can be merged/resolved/combined
-    def LogToLimitList(self, logfile, category="merged", mode="a"):
-        expected25_="" 
-        expected16_="" 
-        expected50_="" 
-        expected84_="" 
-        expected975_=""
-        observed_=""
-        for ilongline in open(logfile):
-            if "Observed Limit: r < " in ilongline:
-                observed_ = ilongline.replace("Observed Limit: r < ","").rstrip()
-            if "Expected  2.5%: r < " in ilongline:
-                expected25_ = ilongline.replace("Expected  2.5%: r < ","").rstrip()
-            if "Expected 16.0%: r < " in ilongline:
-                expected16_ = ilongline.replace("Expected 16.0%: r < ","").rstrip()
-            if "Expected 50.0%: r < " in ilongline:
-                expected50_ = ilongline.replace("Expected 50.0%: r < ","").rstrip()
-            if "Expected 84.0%: r < " in ilongline:
-                expected84_ = ilongline.replace("Expected 84.0%: r < ","").rstrip()
-            if "Expected 97.5%: r < " in ilongline:
-                expected975_ = ilongline.replace("Expected 97.5%: r < ","").rstrip()
-        
-        allparameters  = self.datacard_to_mparameters(logfile)
-        print "allparameters:", allparameters
-        params=""
-        if '2hdma' in self.model_:
-            params = str(allparameters[0])+" "+str(allparameters[1])+" "+str(allparameters[2])+" "+str(allparameters[3])+" "+str(allparameters[4])
-        if 'zpb' in self.model_:
-            params = str(allparameters[0])+" "+str(allparameters[1])
-        
-        towrite =  params+" "+expected25_+" "+expected16_+" "+ expected50_+" "+ expected84_+" "+ expected975_+" "+ observed_+"\n"
-        
-        print towrite
-        os.system ("mkdir -p bin/"+self.postfix_)
-        os.system ("mkdir -p plots_limit/"+self.postfix_)
-        outfile="bin/"+self.postfix_+"/limits_"+self.analysis_+"_"+self.model_+"_"+category+"_"+self.Year_+".txt"
-        self.limit_text_file = outfile
-
-        
-        fout = open(outfile,mode)
-        fout.write(towrite)
-        fout.close()
-        return outfile
-    
-
-
-    def TextFileToRootGraphs(self, limit_text_file,med_idx=0):#, limit_text_filename):
-        filename = limit_text_file #limit_text_filename
-        limit_root_file = limit_text_file.replace(".txt",".root")
-        
-        f = open(filename,"r")
+        f = open(self.limit_text_file,"r")
         med=array('f')
         mchi=array('f')
         expm2=array('f')
@@ -224,7 +55,7 @@ class RunLimits:
         errx=array('f')
     
         for line in f:
-            if len(line.rsplit())<7: continue
+            if len(line.rsplit())<8: continue
             med.append(float(line.rstrip().split()[1]))
             mchi.append(float(line.rstrip().split()[0]))
             
@@ -248,25 +79,24 @@ class RunLimits:
         g_expmed = TGraphAsymmErrors(int(len(med)), med, expmed)   ;  g_expmed.SetName("expmed")
         g_obs    = TGraphAsymmErrors(int(len(med)), med, obs   )   ;  g_obs.SetName("obs")
     
-        f1 = TFile(limit_root_file,'RECREATE')
+        f1 = TFile(self.limit_root_file,'RECREATE')
         g_exp2.Write()
         g_exp1.Write()
         g_expmed.Write()
         g_obs.Write()
         f1.Write()
         f1.Close()
-        return limit_root_file
+        return 0;
 
-    def SaveLimitPdf1D(self,rootfile):
+    def SaveLimitPdf1D(self):#,rootfile):
+        limit_text_file = self.filepath + "/" + self.fileN
+        filename = limit_text_file #limit_text_filename
+        limit_root_file = limit_text_file.replace(".txt",".root")
+        rootfile = limit_root_file
+        
+        
         setlogX=0
         yaxis=1000
-        print ("-------------------model: ", self.model_)
-        if (self.model_ == "dmsimp_all") | (self.model_=="dmsimp") :
-            setlogX=1
-            yaxis=10000
-        
-        self.setupDirs("configs/limits_dir.txt")
-        #rootfile = self.limit_root_file 
         
         rt.gStyle.SetOptTitle(0)
         rt.gStyle.SetOptStat(0)
@@ -277,18 +107,19 @@ class RunLimits:
         c.SetLogx(setlogX)
         c.SetLeftMargin(0.12)
         #leg = rt.TLegend(.15, .65, .35, .890);
-        f = rt.TFile(rootfile,"read")
+        f = rt.TFile(self.limit_root_file,"read")
         exp2s =  f.Get("exp2")
         exp2s.SetMarkerStyle(20)
         exp2s.SetMarkerSize(1.1)
         exp2s.SetLineWidth(2)
         exp2s.SetFillColor(rt.kYellow);
         exp2s.SetLineColor(rt.kYellow)
-        exp2s.GetXaxis().SetTitle("m_{Z'} (GeV)");
-        exp2s.GetYaxis().SetRangeUser(.01,yaxis)
+        exp2s.GetXaxis().SetTitle(self.xaxis);
+        exp2s.GetYaxis().SetRangeUser(self.rangeY[0], self.rangeY[1])
         exp2s.GetXaxis().SetTitleOffset(1.1)
         #exp2s.GetYaxis().SetTitle("95% C.L. asymptotic limit on #mu=#sigma/#sigma_{theory}");
-        exp2s.GetYaxis().SetTitle("95% C.L. #mu=#sigma/#sigma_{theory}");
+        print ("-------------",self.yaxis)
+        exp2s.GetYaxis().SetTitle(self.yaxis);
         exp2s.GetYaxis().SetTitleOffset(1.7)
         exp2s.GetYaxis().SetNdivisions(20,5,0);
         #exp2s.GetXaxis().SetNdivisions(505);
@@ -353,10 +184,12 @@ class RunLimits:
         CMS_lumi.lumi_sqrtS = "13 TeV" # used with iPeriod = 0, e.g. for simulation-only plots (default is an empty string)
         iPos = 11
         if( iPos==0 ): CMS_lumi.relPosX = 0.12
+        
+        ''' fix this
         iPeriod=int(rootfile.split("/")[-1].split(".")[0].split("_")[-1])
-
         CMS_lumi.CMS_lumi(c, iPeriod, iPos)
-
+        '''
+        
         category=""
         if "_R_" in rootfile: category="Resolved"
         if "_B_" in rootfile: category="Boosted"
@@ -364,10 +197,10 @@ class RunLimits:
         
         if "2hdma" in self.model_:
             MA_="150"
-            latex.DrawLatex(0.20, 0.7, "mono-h bb "+category);
-            latex.DrawLatex(0.20, 0.64, "2HDM+a");
-            latex.DrawLatex(0.15, 0.58, "m_{a}="+MA_+" GeV, tan#beta = 1"); #sin#theta = 0.7, m_{\chi} = 1 GeV");
-            latex.DrawLatex(0.15, 0.52, "sin#theta = 0.35, m_{\chi} = 1 GeV");
+            latex.DrawLatex(0.20, 0.77, "mono-h bb "+category);
+            latex.DrawLatex(0.20, 0.72, "2HDM+a");
+            if len(self.legend)>=1: latex.DrawLatex(0.15, 0.67, self.legend[0])
+            if len(self.legend)>=2: latex.DrawLatex(0.17, 0.62, self.legend[1])
 
         if "dmsimp" in self.model_:
             MA_="600"
