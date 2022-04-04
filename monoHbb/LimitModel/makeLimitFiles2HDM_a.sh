@@ -8,7 +8,7 @@
 ## only unique rows are accpeted, remaining are killed. 
 
 
-inputScan=bin/scan_2d/limits_monoHbb_2hdma_R_2017.txt
+inputScan=bin/Run2Combo_C/limits_monoHbb_2hdma_C_1718.txt
 
 ## -k1n is for field 1, -o for output, both syntax for -k are equivalent , -u  is to remove duplicate, i..e take unique entries 
 

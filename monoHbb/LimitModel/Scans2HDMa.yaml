@@ -88,11 +88,199 @@
 
 
 
+
+
+zp2hdm:
+  oned:
+     mZpScanmA300:
+      fileN: limits_monoHbb_Zp2hdmScan_mA_300.txt
+      xaxis: m_{Z'}
+      yaxis: \mu=\sigma/\sigma_{theory}
+      legend: 
+        - m_{A}=300 GeV, m_{#chi}=1 GeV
+        - tan#beta=1
+      filepath: bin/scan_2d
+      rangeY:
+        - 0.01
+        - 100 
+      rangeX:
+        - 450 
+        - 4000
+
+
+     mZpScanmA400:
+      fileN: limits_monoHbb_Zp2hdmScan_mA_400.txt
+      xaxis: m_{Z'}
+      yaxis: \mu=\sigma/\sigma_{theory}
+      legend: 
+        - m_{A}=400 GeV, m_{#chi}=1 GeV
+        - tan#beta=1
+      filepath: bin/scan_2d
+      rangeY:
+        - 0.01
+        - 100
+      rangeX:
+        - 450 
+        - 4000
+
+
+     mZpScanmA500:
+      fileN: limits_monoHbb_Zp2hdmScan_mA_500.txt
+      xaxis: m_{Z'}
+      yaxis: \mu=\sigma/\sigma_{theory}
+      legend: 
+        - m_{A}=500 GeV, m_{#chi}=1 GeV
+        - tan#beta=1
+      filepath: bin/scan_2d
+      rangeY:
+        - 0.1
+        - 1000
+      rangeX:
+        - 450 
+        - 4000
+
+
+
+     mZpScanmA600:
+      fileN: limits_monoHbb_Zp2hdmScan_mA_600.txt
+      xaxis: m_{Z'}
+      yaxis: \mu=\sigma/\sigma_{theory}
+      legend: 
+        - m_{A}=600 GeV, m_{#chi}=1 GeV
+        - tan#beta=1
+      filepath: bin/scan_2d
+      rangeY:
+        - 0.1
+        - 1000
+      rangeX:
+        - 450 
+        - 4000
+
+
+     mZpScanmA700:
+      fileN: limits_monoHbb_Zp2hdmScan_mA_700.txt
+      xaxis: m_{Z'}
+      yaxis: \mu=\sigma/\sigma_{theory}
+      legend: 
+        - m_{A}=700 GeV, m_{#chi}=1 GeV
+        - tan#beta=1
+      filepath: bin/scan_2d
+      rangeY:
+        - 0.1
+        - 10000
+      rangeX:
+        - 450 
+        - 4000
+
+
+     mZpScanmA800:
+      fileN: limits_monoHbb_Zp2hdmScan_mA_800.txt
+      xaxis: m_{Z'}
+      yaxis: \mu=\sigma/\sigma_{theory}
+      legend: 
+        - m_{A}=800 GeV, m_{#chi}=1 GeV
+        - tan#beta=1
+      filepath: bin/scan_2d
+      rangeY:
+        - 0.1
+        - 1000
+      rangeX:
+        - 450 
+        - 4000
+
+
+     mZpScanmA900:
+      fileN: limits_monoHbb_Zp2hdmScan_mA_900.txt
+      xaxis: m_{Z'}
+      yaxis: \mu=\sigma/\sigma_{theory}
+      legend: 
+        - m_{A}=900 GeV, m_{#chi}=1 GeV
+        - tan#beta=1
+      filepath: bin/scan_2d
+      rangeY:
+        - 0.1
+        - 1000
+      rangeX:
+        - 450 
+        - 4000
+
+
+     mZpScanmA1000:
+      fileN: limits_monoHbb_Zp2hdmScan_mA_1000.txt
+      xaxis: m_{Z'}
+      yaxis: \mu=\sigma/\sigma_{theory}
+      legend: 
+        - m_{A}=1000 GeV, m_{#chi}=1 GeV
+        - tan#beta=1
+      filepath: bin/scan_2d
+      rangeY:
+        - 0.1
+        - 1000 
+      rangeX:
+        - 450 
+        - 4000
+
+ 
+
+
+
 zpb:
   oned:
-    mzpScan:
-      fileN: limits_monoHbb_zpbScan_nothing.txt
+     mZpScanmChi1:
+      fileN: limits_monoHbb_ZpBScan_mChi_1.txt
       xaxis: m_{Z'}
-      yaxis: 95% C.L. #mu=#sigma/#sigma_{theory}
-      legend: m_{#chi} = 1 GeV
+      yaxis: \mu=\sigma/\sigma_{theory}
+      legend: 
+        -  m_{#chi}=1 GeV
       filepath: bin/scan_2d
+      rangeY:
+        - 0.01
+        - 100 
+      rangeX:
+        - 100 
+        - 3000
+
+
+     mZpScanmChi100:
+      fileN: limits_monoHbb_ZpBScan_mChi_100.txt
+      xaxis: m_{Z'}
+      yaxis: \mu=\sigma/\sigma_{theory}
+      legend: 
+        -  m_{#chi}=100 GeV
+      filepath: bin/scan_2d
+      rangeY:
+        - 0.01
+        - 100 
+      rangeX:
+        - 100 
+        - 3000
+
+
+     mZpScanmChi200:
+      fileN: limits_monoHbb_ZpBScan_mChi_200.txt
+      xaxis: m_{Z'}
+      yaxis: \mu=\sigma/\sigma_{theory}
+      legend: 
+        -  m_{#chi}=200 GeV
+      filepath: bin/scan_2d
+      rangeY:
+        - 0.01
+        - 100 
+      rangeX:
+        - 100 
+        - 3000
+
+
+     mZpScanmChi400:
+      fileN: limits_monoHbb_ZpBScan_mChi_400.txt
+      xaxis: m_{Z'}
+      yaxis: \mu=\sigma/\sigma_{theory}
+      legend: 
+        -  m_{#chi}=400 GeV
+      filepath: bin/scan_2d
+      rangeY:
+        - 0.01
+        - 100 
+      rangeX:
+        - 100 
+        - 3000

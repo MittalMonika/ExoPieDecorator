@@ -27,6 +27,9 @@ class LimitPlotter:
         self.legend = scan_dict["legend"]
         self.filepath = scan_dict["filepath"]
         self.rangeY = scan_dict["rangeY"]
+        self.rangeX = []
+        if "rangeX" in scan_dict.keys():
+            self.rangeX = scan_dict["rangeX"]
         
         self.limit_text_file = self.filepath + "/" + self.fileN
         self.limit_root_file = self.limit_text_file.replace(".txt",".root")
@@ -116,6 +119,7 @@ class LimitPlotter:
         exp2s.SetLineColor(rt.kYellow)
         exp2s.GetXaxis().SetTitle(self.xaxis);
         exp2s.GetYaxis().SetRangeUser(self.rangeY[0], self.rangeY[1])
+        if len(self.rangeX)>0:  exp2s.GetXaxis().SetRangeUser(self.rangeX[0], self.rangeX[1])
         exp2s.GetXaxis().SetTitleOffset(1.1)
         #exp2s.GetYaxis().SetTitle("95% C.L. asymptotic limit on #mu=#sigma/#sigma_{theory}");
         print ("-------------",self.yaxis)

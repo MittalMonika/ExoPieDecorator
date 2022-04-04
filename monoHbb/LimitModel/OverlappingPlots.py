@@ -423,11 +423,23 @@ DrawOverlap(files,histoname1,axistitle,legend,'limit_monoHbb_combined_2018',[0,1
 ###
 
 
+
+
+#dirname2018='bin/AllMETHistos_monohbb_v12_08_21_UpdatedMetTrigUnc_2018_2hdma_RP_datacard_fix/'
+dirname2018='bin/AllMETHistos_2018_monohbb_v12_08_21_addedMorePointsForZp2HDM/'
+dirname2017='bin/AllMETHistos_monohbb_v12_08_21_UpdatedMetTrigUnc_2017_2hdma_RP_datacard_fix/'
+files=[dirname2017+'limits_monoHbb_2hdma_combined_2017.root',
+dirname2018+'limits_monoHbb_2hdma_combined_2018.root'
+]
+legend=['Combined(2017)','Combined(2018)']
+histoname1=['expmed']
+xtitle='m_{A}[GeV]'
+ytitle='#mu'
+axistitle = [xtitle, ytitle]
+DrawOverlap(files,histoname1,axistitle,legend,'limit_monoHbb_combined_2017_2018_new',[0,1],[200,3000],[300,0.1],[2017])
+
+
 '''
-
-
-
-
 dirname_='bin/AllMETHistos_monohbb_2017_CRbinning_2hdma_all_cat_RP/'
 dirname__='bin/AllMETHistos_monohbb_v12_08_21_UpdatedMetTrigUnc_2017_2hdma_RP_test/'
 dirname___='bin/AllMETHistos_monohbb_v12_08_21_UpdatedMetTrigUnc_2018_2hdma_RP_test/'

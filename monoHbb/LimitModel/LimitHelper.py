@@ -11,14 +11,14 @@ class RunLimits:
     ''' this class exepcts that all the steps needed to prepare the datacards and prepration of its inputs are already performed '''
     
     ''' instantiation of the class is done here ''' 
-    def __init__(self, datacardtemplatename, Year, Analysis, Analysisbin, Postfix, Model):
+    def __init__(self, datacardtemplatename, Year, Analysis, Analysisbin, Postfix, Model, oned=True):
         self.datacardtemplatename_ = datacardtemplatename
         self.Year_                 = Year
         self.analysis_             = Analysis 
         self.analysisbin_          = Analysisbin 
         self.postfix_              = Postfix
         self.model_                = Model
-        
+        self.oned                  = oned
         #self.runmode = runmode
         print "class instantiation done"
         
@@ -188,8 +188,13 @@ class RunLimits:
         print "allparameters:", allparameters
         params=""
         if '2hdma' in self.model_:
-            params = str(allparameters[0])+" "+str(allparameters[1])+" "+str(allparameters[2])+" "+str(allparameters[3])+" "+str(allparameters[4])
+            if (self.oned):
+                params = str(allparameters[0])+" "+str(allparameters[1])
+            if not (self.oned):
+                params = str(allparameters[0])+" "+str(allparameters[1])+" "+str(allparameters[2])+" "+str(allparameters[3])+" "+str(allparameters[4])
         if 'zpb' in self.model_:
+            params = str(allparameters[0])+" "+str(allparameters[1])
+        if 'zp2hdm' in self.model_:
             params = str(allparameters[0])+" "+str(allparameters[1])
         
         towrite =  params+" "+expected25_+" "+expected16_+" "+ expected50_+" "+ expected84_+" "+ expected975_+" "+ observed_+"\n"
