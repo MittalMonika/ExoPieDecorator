@@ -1,0 +1,41 @@
+>>> including systematics
+>>> method used to compute upper limit is Asymptotic
+>>> random number generator seed is 123456
+Redefining the POIs to be: RooArgSet:: = (r)
+Freezing the following nuisance parameters: RooArgSet:: = (zlleffSF,track_ele,vhScale,trig_met,zjethf,monohiggs_stat_error_singleelectronwModel_bin0,norm_QCDsig,monohiggs_stat_error_singleelectronwModel_bin2,monohiggs_stat_error_singleelectronwModel_bin3,monohiggs_stat_error_dielectronModelCR_bin2,monohiggs_stat_error_dielectronModelCR_bin3,monohiggs_stat_error_dielectronModelCR_bin0,monohiggs_stat_error_dielectronModelCR_bin1,monohiggs_stat_error_singleelectronwfailModel_bin0,monohiggs_stat_error_singleelectronwfailModel_bin1,monohiggs_stat_error_singleelectronwfailModel_bin2,monohiggs_stat_error_singleelectronwfailModel_bin3,norm_QCDe,monohiggs_stat_error_dimuonModelCR_bin1,monohiggs_stat_error_dimuonModelCR_bin0,monohiggs_stat_error_dimuonModelCR_bin3,monohiggs_stat_error_dimuonModelCR_bin2,mistag,monohiggs_doubleb_zjets,sf_ele,monohiggs_stat_error_singleelectrontopModelCR_bin3,monohiggs_stat_error_singleelectrontopModelCR_bin2,monohiggs_stat_error_singleelectrontopModelCR_bin1,monohiggs_stat_error_singleelectrontopModelCR_bin0,track_mu,ttbareffSF,monohiggs_stat_error_singlemuonwfailModel_bin1,met,monohiggs_stat_error_singlemuonwfailModel_bin3,monohiggs_stat_error_singlemuonwfailModel_bin2,monohiggs_stat_error_singleelectrontopwfailModel_bin0,monohiggs_stat_error_singleelectrontopwfailModel_bin1,monohiggs_stat_error_singleelectrontopwfailModel_bin2,monohiggs_stat_error_singlemuonwfailModel_bin0,monohiggs_doubleb_wjets,monohiggs_stat_error_singleelectronwtopModelCR_bin3,monohiggs_stat_error_singleelectronwtopModelCR_bin2,monohiggs_stat_error_singleelectronwtopModelCR_bin1,monohiggs_stat_error_singleelectronwtopModelCR_bin0,monohiggs_stat_error_singleelectrontopfailModelCR_bin3,monohiggs_stat_error_singleelectrontopfailModelCR_bin2,monohiggs_stat_error_singleelectrontopfailModelCR_bin1,monohiggs_stat_error_singleelectrontopfailModelCR_bin0,wjetseff,wjethf,monohiggs_stat_error_singleelectronwModel_bin1,monohiggs_stat_error_singlemuontopwfailModel_bin3,monohiggs_stat_error_singlemuontopwfailModel_bin2,monohiggs_stat_error_singlemuontopwfailModel_bin1,monohiggs_stat_error_singlemuontopwfailModel_bin0,monohiggs_stat_error_singlemuontopModelCR_bin2,monohiggs_stat_error_singlemuontopModelCR_bin3,monohiggs_stat_error_singlemuontopModelCR_bin0,monohiggs_stat_error_singlemuontopModelCR_bin1,zjetsScale,monohiggs_stat_error_singlemuontopfailModelCR_bin2,monohiggs_stat_error_singlemuontopfailModelCR_bin3,monohiggs_stat_error_singlemuontopfailModelCR_bin0,monohiggs_stat_error_singlemuontopfailModelCR_bin1,PDF,norm_QCDmu,tthScale,DoubleB,monohiggs_stat_error_singleelectrontopwfailModel_bin3,ecf_tag,veto_tau,norm_stop,ca15_jec,ttbarScale,monohiggs_stat_error_dielectronfailModelCR_bin2,monohiggs_stat_error_dielectronfailModelCR_bin3,monohiggs_stat_error_dielectronfailModelCR_bin0,monohiggs_stat_error_dielectronfailModelCR_bin1,ttbar_doubleb_eff,monohiggs_stat_error_singlemuonwtopModelCR_bin0,monohiggs_stat_error_singlemuonwtopModelCR_bin1,monohiggs_stat_error_singlemuonwtopModelCR_bin2,monohiggs_stat_error_singlemuonwtopModelCR_bin3,norm_vv,mettrig,monohiggs_stat_error_singlemuonwModel_bin1,monohiggs_stat_error_singlemuonwModel_bin0,monohiggs_stat_error_singlemuonwModel_bin3,monohiggs_stat_error_singlemuonwModel_bin2,monohiggs_stat_error_dimuonfailModelCR_bin1,monohiggs_stat_error_dimuonfailModelCR_bin0,monohiggs_stat_error_dimuonfailModelCR_bin3,monohiggs_stat_error_dimuonfailModelCR_bin2,sf_mu,wlneffSF,lumi,btag,trig_ele,wjetsScale,zjetseff)
+Computing limit starting from observation
+Will compute both limit(s) using minimizer Minuit2 with strategy 0 and tolerance 0.01
+Constraints of type RooGaussian: 70
+Constraints of type SimpleGaussianConstraint: 27
+Median for expected limits: 0.816406
+Sigma  for expected limits: 0.416541
+Constraints of type RooGaussian: 70
+Constraints of type SimpleGaussianConstraint: 27
+Constraints of type RooGaussian: 70
+Constraints of type SimpleGaussianConstraint: 27
+Restricting r to positive values.
+
+Make global fit of real data
+NLL at global minimum of data: -2.91854 (r = 0.428914)
+
+Make global fit of asimov data
+NLL at global minimum of asimov: -6.68973 (r = 0.0016448)
+At r = 1.629595:	q_mu = 6.20951	q_A  = 12.33101	CLsb = 0.00635	CLb  = 0.84606	CLs  = 0.00751
+At r = 1.029255:	q_mu = 1.78915	q_A  = 5.71224	CLsb = 0.09051	CLb  = 0.85370	CLs  = 0.10603
+At r = 1.329425:	q_mu = 3.73956	q_A  = 8.81745	CLsb = 0.02657	CLb  = 0.84981	CLs  = 0.03126
+At r = 1.177062:	q_mu = 2.67760	q_A  = 7.18453	CLsb = 0.05088	CLb  = 0.85177	CLs  = 0.05974
+At r = 1.241038:	q_mu = 3.10634	q_A  = 7.85667	CLsb = 0.03899	CLb  = 0.85094	CLs  = 0.04582
+At r = 1.211412:	q_mu = 2.90462	q_A  = 7.54291	CLsb = 0.04416	CLb  = 0.85133	CLs  = 0.05188
+At r = 1.224374:	q_mu = 2.99221	q_A  = 7.67966	CLsb = 0.04183	CLb  = 0.85116	CLs  = 0.04915
+At r = 1.218482:	q_mu = 2.95227	q_A  = 7.61740	CLsb = 0.04288	CLb  = 0.85124	CLs  = 0.05037
+At r = 1.221082:	q_mu = 2.96986	q_A  = 7.64485	CLsb = 0.04241	CLb  = 0.85120	CLs  = 0.04983
+
+ -- Asymptotic -- 
+Observed Limit: r < 1.2211
+Expected  2.5%: r < 0.4194
+Expected 16.0%: r < 0.5698
+Expected 50.0%: r < 0.8164
+Expected 84.0%: r < 1.1972
+Expected 97.5%: r < 1.6942
+
+Done in 0.01 min (cpu), 0.01 min (real)
