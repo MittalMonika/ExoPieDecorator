@@ -32,7 +32,7 @@ a.TextFileToRootGraphs1D(doc['2hdma']['oned']['mAScanma350'])
 a.SaveLimitPdf1D()
 
 
-
+'''
 
 zp2hdm = lp.LimitPlotter("zp2hdm")
 
@@ -79,8 +79,8 @@ zpb.SaveLimitPdf1D()
 zpb.TextFileToRootGraphs1D(doc['zpb']['oned']['mZpScanmChi400'])
 zpb.SaveLimitPdf1D()
 
+'''
 
-
-os.system("cp plots_limit/scan_2d/* /eos/user/m/mmittal/www/MonoHbb/scan_2d/")
+os.system("cp plots_limit/scan_2d_13May2022/* /eos/user/m/mmittal/www/MonoHbb/scan_2d_13May2022/")
 #a.TextFileToRootGraphs1D(tanb250)
 #a.SaveLimitPdf1D()

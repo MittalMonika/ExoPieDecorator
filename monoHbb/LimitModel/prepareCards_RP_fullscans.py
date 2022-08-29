@@ -441,7 +441,11 @@ for reg in regions:
 			outputfile = 'monoHbb_datacard_'+year+'_'+reg+'_'+category+'_'+sigHist+'.txt'
 			df0 = pd.DataFrame(getbinProcRate(doc[reg]))
 			# df1 = pd.DataFrame(getProcRate(doc[reg]))
-			df0['process'] = df0['process'].replace(['signal'],sigHist)
+                        df0['process'] = df0['process'].replace(['signal1'],sigHist)
+                        sigHist_bb = sigHist.replace("ggF","bbF")
+                        df0['process'] = df0['process'].replace(['signal2'],sigHist_bb)
+			
+                        #df0['process'] = df0['process'].replace(['signal'],sigHist)
 
 
 

@@ -32,10 +32,11 @@ if category=='R':
     f = open('datacard_tempalate_Resolved_RP.ymal')
 
 ## added Far category
-if category=='F':  
-    f = open('datacard_tempalate_Far_RP.ymal')
+#if category=='F':  
+#    f = open('datacard_tempalate_Far_RP.ymal')
 
 if category=="B":
+#    f = open('datacard_tempalate_boosted_RP_backup17082022.ymal')
     f = open('datacard_tempalate_boosted_RP.ymal')
 
 doc = yaml.safe_load(f)
@@ -226,20 +227,24 @@ def getProcSyst(lists):
 	NuisForProc = lists['NuisForProc']
 	uncertainties  = lists['UnclnN']
 	procs   = getDic(lists,'Process')
-
+        
+        #print ("uncertainties: ", uncertainties)
+        
 	# print 'NuisForProc',NuisForProc
 	for ij, istring in enumerate(uncertainties):
+                #print ("ij, istring: ", ij, istring)
 		nuis = istring.split()[0]
 		syst = istring.split()[1]
-		# print 'nuis, syst',nuis, syst
+                #print ('nuis, syst',nuis, syst)
 		values=[]
 		if syst=='shape':values.append('shape')
 		else:values.append('lnN')
 		
 		for proc in procs:
-			# print nuis,NuisForProc[ij]
+                        #print ("processes: ", nuis,NuisForProc[ij], NuisForProc[ij][nuis])
 
 			if proc in  (NuisForProc[ij])[nuis]:
+                                print ("this is proc:", proc, values)
 				if syst=='shape':
 					values.append(1)
 				else:
@@ -438,11 +443,14 @@ for reg in regions:
 			outputfile = 'monoHbb_datacard_'+year+'_'+reg+'_'+category+'_'+sigHist+'.txt'
 			df0 = pd.DataFrame(getbinProcRate(doc[reg]))
 			# df1 = pd.DataFrame(getProcRate(doc[reg]))
-			df0['process'] = df0['process'].replace(['signal'],sigHist)
+			df0['process'] = df0['process'].replace(['signal1'],sigHist)
+                        sigHist_bb = sigHist.replace("ggF","bbF")
+                        df0['process'] = df0['process'].replace(['signal2'],sigHist_bb)
 
 
 
 			# df =  pd.DataFrame(getSyst(doc))
+                        print ("doc[reg]: ", doc[reg])
 			df =  pd.DataFrame(getProcSyst(doc[reg]))
 			# df = pd.merge(df0,df1)
 

@@ -10,7 +10,7 @@
 // added multi canvas : Deepak
 
 // using  a weird default name so that code crash in cse a correct rootfile is not provided 
-void PlotPulls(TString filename="pulls_none.root", TString outdir="", TString postfix_="",int numberOfCanvas=8){ 
+void PlotPulls(TString filename="pulls_none.root", TString outdir="", TString postfix_="",int numberOfCanvas=9){ 
   
   TString plotdir = outdir;
     TFile file(filename,"READ");

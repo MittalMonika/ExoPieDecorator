@@ -5,47 +5,57 @@ jmax *  number of backgrounds
 kmax *  number of nuisance parameters (sources of systematical uncertainties)
 
 ------------
-shapes * SR   AllMETHistos_monohbb_v12_08_21_UpdatedMetTrigUnc.root  monoHbb2017_R_SR_$PROCESS monoHbb2017_R_SR_$PROCESS_$SYSTEMATIC
+shapes * SR   AllMETHistos_2017_monohbb_v12_09_21_JER_reNormScale_v3_2hdma.root  monoHbb2017_R_SR_$PROCESS monoHbb2017_R_SR_$PROCESS_$SYSTEMATIC
 ------------
 bin SR
 observation -1
 ------------
-bin                                             SR     SR     SR  SR       SR   SR       SR   SR      SR
-process   ggF_sp_0p35_tb_1p0_mXd_10_mA_1000_ma_350  zjets  wjets  tt  singlet  qcd  diboson  smh  dyjets
-process                                          0      1      2   3        4    5        6    7       8
-rate                                            -1     -1     -1  -1       -1   -1       -1   -1      -1
+bin                                             SR                                        SR     SR     SR  SR       SR   SR       SR   SR
+process   ggF_sp_0p35_tb_1p0_mXd_10_mA_1000_ma_350  bbF_sp_0p35_tb_1p0_mXd_10_mA_1000_ma_350  zjets  wjets  tt  singlet  qcd  diboson  smh
+process                                          0                                        -1      1      2   3        4    5        6    7
+rate                                            -1                                        -1     -1     -1  -1       -1   -1       -1   -1
 ------------
-lumi                      lnN  1.025     -  1.025  -  1.025  1.025  1.025  1.025  1.025
-CMS2017_PU              shape      1     -      1  -      1      1      1      1      1
-CMS2017_EleTrig         shape      -     -      -  -      -      -      -      -      -
-CMS2017_eff_b           shape      1     -      1  -      1      1      1      1      1
-CMS2017_fake_b          shape      1     -      1  -      1      1      1      1      1
-CMS2017_veto_b            lnN   1.05     -   1.05  -   1.05   1.05   1.05   1.05   1.05
-CMS2017_EleID           shape      -     -      -  -      -      -      -      -      -
-CMS2017_EleRECO         shape      -     -      -  -      -      -      -      -      -
-CMS2017_MuISO           shape      -     -      -  -      -      -      -      -      -
-CMS2017_MuID            shape      -     -      -  -      -      -      -      -      -
-CMS2017_veto_tau          lnN   1.02     -   1.02  -   1.02   1.02   1.02   1.02   1.02
-JECAbsolute             shape      1     -      1  -      1      1      1      1      1
-JECAbsolute_2017        shape      1     -      1  -      1      1      1      1      1
-JECBBEC1                shape      1     -      1  -      1      1      1      1      1
-JECBBEC1_2017           shape      1     -      1  -      1      1      1      1      1
-JECEC2                  shape      1     -      1  -      1      1      1      1      1
-JECEC2_2017             shape      1     -      1  -      1      1      1      1      1
-JECFlavorQCD            shape      1     -      1  -      1      1      1      1      1
-JECHF                   shape      1     -      1  -      1      1      1      1      1
-JECHF_2017              shape      1     -      1  -      1      1      1      1      1
-JECRelativeBal          shape      1     -      1  -      1      1      1      1      1
-JECRelativeSample_2017  shape      1     -      1  -      1      1      1      1      1
-wj_hf                     lnN      -     -   1.05  -      -      -      -      -      -
-zj_hf                     lnN      -  1.05      -  -      -      -      -      -      -
-norm_stop                 lnN      -     -      -  -    1.1      -      -      -      -
-norm_diboson              lnN      -     -      -  -      -      -    1.2      -      -
-norm_smh                  lnN      -     -      -  -      -      -      -    1.2      -
-CMS2017_pdf             shape      1     -      -  -      -      -      -      1      -
-CMS2017_mu_scale        shape      1     -      -  -      -      -      -      1      -
-CMS2017_qcd_norm          lnN      -     -      -  -      -    1.5      -      -      -
-CMS2017_trig_met        shape      1     -      1  -      1      1      1      1      1
+lumi_2017                   lnN  1.025  1.025  -  1.025  -  1.025  1.025  1.025  1.025
+CMS2017_PU                shape      1      1  -      1  -      1      1      1      1
+CMS2017_EleTrig           shape      -      -  -      -  -      -      -      -      -
+CMS2017_eff_b             shape      1      1  -      1  -      1      1      1      1
+CMS2017_fake_b            shape      1      1  -      1  -      1      1      1      1
+CMS2017_veto_b              lnN      -      -  -      -  -      -      -      -      -
+CMS2017_EleID             shape      -      -  -      -  -      -      -      -      -
+CMS2017_EleRECO           shape      -      -  -      -  -      -      -      -      -
+CMS2017_MuISO             shape      -      -  -      -  -      -      -      -      -
+CMS2017_MuID              shape      -      -  -      -  -      -      -      -      -
+CMS2017_veto_tau            lnN   1.06   1.06  -   1.06  -   1.06   1.06   1.06   1.06
+JECAbsolute               shape      1      1  -      1  -      1      1      1      1
+JECAbsolute_2017          shape      1      1  -      1  -      1      1      1      1
+JECBBEC1                  shape      1      1  -      1  -      1      1      1      1
+JECBBEC1_2017             shape      1      1  -      1  -      1      1      1      1
+JECEC2                    shape      1      1  -      1  -      1      1      1      1
+JECEC2_2017               shape      1      1  -      1  -      1      1      1      1
+JECFlavorQCD              shape      1      1  -      1  -      1      1      1      1
+JECHF                     shape      1      1  -      1  -      1      1      1      1
+JECHF_2017                shape      1      1  -      1  -      1      1      1      1
+JECRelativeBal            shape      1      1  -      1  -      1      1      1      1
+JECRelativeSample_2017    shape      1      1  -      1  -      1      1      1      1
+wj_hf                       lnN      -      -  -      -  -      -      -      -      -
+zj_hf                       lnN      -      -  -      -  -      -      -      -      -
+norm_stop                   lnN      -      -  -      -  -      -      -      -      -
+norm_diboson                lnN      -      -  -      -  -      -      -      -      -
+norm_smh                    lnN      -      -  -      -  -      -      -      -      -
+CMS2017_pdf               shape      -      -  1      1  1      1      1      1      1
+CMS2017_mu_scale          shape      -      -  -      -  -      -      -      -      -
+CMS2017_mu_scale_zjets    shape      -      -  1      -  -      -      -      -      -
+CMS2017_mu_scale_wjets    shape      -      -  -      1  -      -      -      -      -
+CMS2017_mu_scale_tt       shape      -      -  -      -  1      -      -      -      -
+CMS2017_mu_scale_singlet  shape      -      -  -      -  -      1      -      -      -
+CMS2017_mu_scale_qcd      shape      -      -  -      -  -      -      1      -      -
+CMS2017_mu_scale_diboson  shape      -      -  -      -  -      -      -      1      -
+CMS2017_mu_scale_smh      shape      -      -  -      -  -      -      -      -      1
+CMS2017_qcd_norm            lnN      -      -  -      -  -      -    1.5      -      -
+CMS2017_trig_met          shape      1      1  -      1  -      1      1      1      1
+CMS2017_muon_prefiring      lnN      -      -  -      -  -      -      -      -      -
+CMS2017_prefire           shape      1      1  -      1  -      1      1      1      1
+CMS2017_jer                 lnN   1.05   1.05  -   1.05  -   1.05   1.05   1.05   1.05
 
 ratett_R_2017 rateParam SR tt 1. [0.5,1.5]        
 ratezjets_R_2017 rateParam SR zjets 1. [0.5,1.5]

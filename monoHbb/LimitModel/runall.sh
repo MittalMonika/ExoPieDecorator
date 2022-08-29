@@ -40,9 +40,13 @@ echo $cat, $limitmodel, $catRB
 	#python prepareCards_RP.py -c F  -m ${model} -reg SR TOPE TOPMU ZEE ZMUMU -y ${year} -d AllMETHistos_monohbb_v12_07_16_lowMETCat_25bins_UpdatedMetTrig_v2.root
 
 	#farrootfile="AllMETHistos_monohbb_v12_08_20_FarCat_25bins.root"
-	farrootfile="AllMETHistos_2018_monohbb_v12_08_20_FarCat_25bins.root"
-	echo ${farrootfile}
+	#farrootfile="AllMETHistos_2018_monohbb_v12_08_20_FarCat_25bins.root"
+	#echo ${farrootfile}
+	#boosted
+	echo "prepareCards_RP.py -c B  -m ${model} -reg SR TOPE TOPMU ZEE ZMUMU -y ${year} -d ${rootfile}"
 	python prepareCards_RP.py -c B  -m ${model} -reg SR TOPE TOPMU ZEE ZMUMU -y ${year} -d ${rootfile}
+	#python prepareCards_RP_fullscans.py -c B  -m ${model} -reg SR TOPE TOPMU ZEE ZMUMU -y ${year} -d ${rootfile}
+	#resolved
 	python prepareCards_RP.py -c R  -m ${model} -reg SR TOPE TOPMU ZEE ZMUMU -y ${year} -d ${rootfile}
 	#python prepareCards_RP.py -c F  -m ${model} -reg SR TOPE TOPMU ZEE ZMUMU -y ${year} -d ${farrootfile}
 	#python prepareCards_RP.py -c F  -m ${model} -reg SR TOPE TOPMU ZEE ZMUMU -y ${year} -d ${rootfile}
@@ -51,12 +55,15 @@ echo $cat, $limitmodel, $catRB
 	cp AllMETHistos/${rootfile} datacards_monoHbb_${year}/
 	#cp AllMETHistos/${farrootfile} datacards_monoHbb_${year}/
 	
-	python RunLimits.py -A -L -v 0 -i  monohbb${year}_datacardslist_B_allregion_${model}_all.txt --category=sr1 --postfix $postfix --savepdf --outlog="running limits for Boosted"  --year ${year} --model ${model}
-	python RunLimits.py -A -L -v 0 -i  monohbb${year}_datacardslist_R_allregion_${model}_all.txt --category=sr2 --postfix $postfix --savepdf --outlog="running limits for Resolved"  --year ${year} --model ${model}	
+	python RunLimits.py -A -L -v 0 -i  monohbb${year}_datacardslist_B_allregion_${model}_all.txt --category=sr1 --postfix $postfix --savepdf --outlog="running limits for Boosted"  --year ${year} --model ${model} --oned
+	python RunLimits.py -A -L -v 0 -i  monohbb${year}_datacardslist_R_allregion_${model}_all.txt --category=sr2 --postfix $postfix --savepdf --outlog="running limits for Resolved"  --year ${year} --model ${model} --oned	
+
+
 	#python RunLimits.py -A -L -v 0 -i  monohbb${year}_datacardslist_F_allregion_${model}_all.txt --category=sr3 --postfix $postfix --savepdf --outlog="running limits for lowmet"  --year ${year} --model ${model}
 	#python RunLimits.py -c  --region "monohbb${year}_datacardslist_B_allregion_${model}_all.txt monohbb${year}_datacardslist_R_allregion_${model}_all.txt monohbb${year}_datacardslist_F_allregion_${model}_all.txt" --category=srall --year ${year} --model ${model}
+
 	python RunLimits.py -c  --region "monohbb${year}_datacardslist_B_allregion_${model}_all.txt monohbb${year}_datacardslist_R_allregion_${model}_all.txt" --category=srall --year ${year} --model ${model}
-	python RunLimits.py -A -L -v 0 -i bbDM${year}_datacardslist_C_${model}.txt --category=srall --postfix $postfix --savepdf --outlog="running limits for R and B"  --year ${year} --model ${model}
+	python RunLimits.py -A -L -v 0 -i bbDM${year}_datacardslist_C_${model}.txt --category=srall --postfix $postfix --savepdf --outlog="running limits for R and B"  --year ${year} --model ${model} --oned
 
     fi
 

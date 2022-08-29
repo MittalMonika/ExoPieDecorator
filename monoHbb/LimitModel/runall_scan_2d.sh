@@ -53,8 +53,12 @@ echo $cat, $limitmodel, $catRB
 	
 	#python RunLimits.py -A -L -v 0 -i  monohbb${year}_datacardslist_B_allregion_${model}_all.txt --category=sr1 --postfix $postfix --savepdf --outlog="running limits for Boosted"  --year ${year} --model ${model}
 	#python RunLimits.py -A -L -v 0 -i  monohbb${year}_datacardslist_R_allregion_${model}_all.txt --category=sr2 --postfix $postfix --savepdf --outlog="running limits for Resolved"  --year ${year} --model ${model}	
-	#python RunLimits.py -A -L -v 0 -i  monohbb${year}_datacardslist_F_allregion_${model}_all.txt --category=sr3 --postfix $postfix --savepdf --outlog="running limits for lowmet"  --year ${year} --model ${model}
-	#python RunLimits.py -c  --region "monohbb${year}_datacardslist_B_allregion_${model}_all.txt monohbb${year}_datacardslist_R_allregion_${model}_all.txt monohbb${year}_datacardslist_F_allregion_${model}_all.txt" --category=srall --year ${year} --model ${model}
+	
+	#####python RunLimits.py -A -L -v 0 -i  monohbb${year}_datacardslist_F_allregion_${model}_all.txt --category=sr3 --postfix $postfix --savepdf --outlog="running limits for lowmet"  --year ${year} --model ${model}
+	#####python RunLimits.py -c  --region "monohbb${year}_datacardslist_B_allregion_${model}_all.txt monohbb${year}_datacardslist_R_allregion_${model}_all.txt monohbb${year}_datacardslist_F_allregion_${model}_all.txt" --category=srall --year ${year} --model ${model}
+	
+	
+	
 	python RunLimits.py -c  --region "monohbb${year}_datacardslist_B_allregion_${model}_all.txt monohbb${year}_datacardslist_R_allregion_${model}_all.txt" --category=srall --year ${year} --model ${model}
 	#python RunLimits.py -A -L -v 0 -i bbDM${year}_datacardslist_C_${model}.txt --category=srall --postfix $postfix --savepdf --outlog="running limits for R and B"  --year ${year} --model ${model}
 

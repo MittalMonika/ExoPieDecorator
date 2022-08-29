@@ -10,7 +10,7 @@
       legend: 
         - m_{a}=250 GeV, m_{#chi}=1 GeV
         - tan#beta=1, sin#theta=0.35
-      filepath: bin/scan_2d
+      filepath: bin/scan_2d_13May2022
       rangeY:
         - 0.1
         - 600 
@@ -22,7 +22,7 @@
       legend: 
         - m_{a}=150 GeV, m_{#chi}=1 GeV
         - tan#beta=1, sin#theta=0.35
-      filepath: bin/scan_2d
+      filepath: bin/scan_2d_13May2022
       rangeY:
         - 0.1
         - 600 
@@ -34,7 +34,7 @@
       legend: 
         - m_{a}=200 GeV, m_{#chi}=1 GeV
         - tan#beta=1, m_{A}=600 GeV
-      filepath: bin/scan_2d
+      filepath: bin/scan_2d_13May2022
       rangeY:
         - 0.1
         - 600 
@@ -46,7 +46,7 @@
       legend: 
         - m_{a}=150 GeV, m_{#chi}=1 GeV
         - tan#beta=1, sin#theta=0.35
-      filepath: bin/scan_2d
+      filepath: bin/scan_2d_13May2022
       rangeY:
         - 0.1
         - 600 
@@ -59,7 +59,7 @@
       legend: 
         - m_{a}=250 GeV, m_{#chi}=1 GeV
         - tan#beta=1, sin#theta=0.35
-      filepath: bin/scan_2d
+      filepath: bin/scan_2d_13May2022
       rangeY:
         - 0.1
         - 600 
@@ -72,7 +72,7 @@
       legend: 
         - m_{a}=350 GeV, m_{#chi}=1 GeV
         - tan#beta=1, sin#theta=0.35
-      filepath: bin/scan_2d
+      filepath: bin/scan_2d_13May2022
       rangeY:
         - 0.1
         - 600 
@@ -84,7 +84,7 @@
       xaxis: m_{a} (in GeV)
       yaxis: m_{A} (in GeV)
       legend: sin#theta=0.35
-      filepath: bin/scan_2d
+      filepath: bin/scan_2d_13May2022
 
 
 
@@ -99,7 +99,7 @@ zp2hdm:
       legend: 
         - m_{A}=300 GeV, m_{#chi}=1 GeV
         - tan#beta=1
-      filepath: bin/scan_2d
+      filepath: bin/scan_2d_13May2022
       rangeY:
         - 0.01
         - 100 
@@ -115,7 +115,7 @@ zp2hdm:
       legend: 
         - m_{A}=400 GeV, m_{#chi}=1 GeV
         - tan#beta=1
-      filepath: bin/scan_2d
+      filepath: bin/scan_2d_13May2022
       rangeY:
         - 0.01
         - 100
@@ -131,7 +131,7 @@ zp2hdm:
       legend: 
         - m_{A}=500 GeV, m_{#chi}=1 GeV
         - tan#beta=1
-      filepath: bin/scan_2d
+      filepath: bin/scan_2d_13May2022
       rangeY:
         - 0.1
         - 1000
@@ -148,7 +148,7 @@ zp2hdm:
       legend: 
         - m_{A}=600 GeV, m_{#chi}=1 GeV
         - tan#beta=1
-      filepath: bin/scan_2d
+      filepath: bin/scan_2d_13May2022
       rangeY:
         - 0.1
         - 1000
@@ -164,7 +164,7 @@ zp2hdm:
       legend: 
         - m_{A}=700 GeV, m_{#chi}=1 GeV
         - tan#beta=1
-      filepath: bin/scan_2d
+      filepath: bin/scan_2d_13May2022
       rangeY:
         - 0.1
         - 10000
@@ -180,7 +180,7 @@ zp2hdm:
       legend: 
         - m_{A}=800 GeV, m_{#chi}=1 GeV
         - tan#beta=1
-      filepath: bin/scan_2d
+      filepath: bin/scan_2d_13May2022
       rangeY:
         - 0.1
         - 1000
@@ -196,7 +196,7 @@ zp2hdm:
       legend: 
         - m_{A}=900 GeV, m_{#chi}=1 GeV
         - tan#beta=1
-      filepath: bin/scan_2d
+      filepath: bin/scan_2d_13May2022
       rangeY:
         - 0.1
         - 1000
@@ -212,7 +212,7 @@ zp2hdm:
       legend: 
         - m_{A}=1000 GeV, m_{#chi}=1 GeV
         - tan#beta=1
-      filepath: bin/scan_2d
+      filepath: bin/scan_2d_13May2022
       rangeY:
         - 0.1
         - 1000 
@@ -232,7 +232,7 @@ zpb:
       yaxis: \mu=\sigma/\sigma_{theory}
       legend: 
         -  m_{#chi}=1 GeV
-      filepath: bin/scan_2d
+      filepath: bin/scan_2d_13May2022
       rangeY:
         - 0.01
         - 100 
@@ -247,7 +247,7 @@ zpb:
       yaxis: \mu=\sigma/\sigma_{theory}
       legend: 
         -  m_{#chi}=100 GeV
-      filepath: bin/scan_2d
+      filepath: bin/scan_2d_13May2022
       rangeY:
         - 0.01
         - 100 
@@ -262,7 +262,7 @@ zpb:
       yaxis: \mu=\sigma/\sigma_{theory}
       legend: 
         -  m_{#chi}=200 GeV
-      filepath: bin/scan_2d
+      filepath: bin/scan_2d_13May2022
       rangeY:
         - 0.01
         - 100 
@@ -277,7 +277,7 @@ zpb:
       yaxis: \mu=\sigma/\sigma_{theory}
       legend: 
         -  m_{#chi}=400 GeV
-      filepath: bin/scan_2d
+      filepath: bin/scan_2d_13May2022
       rangeY:
         - 0.01
         - 100 

@@ -35,6 +35,8 @@ def DrawOverlap(fileVec, histVec, titleVec,legendtext,pngname,logstatus=[0,0],xR
     #gStyle.SetTitleOffset(1.9,"X");
     gStyle.SetLineWidth(3)
     gStyle.SetFrameLineWidth(3); 
+    #gStyle.SetGridx()
+    #gStyle.SetGridy()
 
     i=0
 
@@ -395,34 +397,68 @@ DrawOverlap(files,histoname1,axistitle,legend,'limit_monoHbb_2017_2hdma_RP_1binv
 '''
 
 
+dirname2018_='bin/AllMETHistos_2018_monohbb_v12_09_21_NoJER_reNormScale_fixedBinBug_finalcheck_2hdma/'
+files=[dirname2018_+'limits_monoHbb_2hdma_R_2018.root',
+dirname2018_+'limits_monoHbb_2hdma_B_2018.root',
+dirname2018_+'limits_monoHbb_2hdma_combined_2018.root']
+
+legend=['Resolved', 'Boosted','Combined']
+histoname1=['expmed']
+xtitle='m_{A}[GeV]'
+ytitle='#mu'
+axistitle = [xtitle, ytitle]
+DrawOverlap(files,histoname1,axistitle,legend,'limit_monoHbb_combined_2018_revised',[0,1],[200,3000],[300,0.1], [2018])
+
+
+dirname2017_jer='bin/AllMETHistos_monohbb_v12_09_21_JEROnBKG_reNormScale_2hdma_RP/'
 dirname2017='bin/AllMETHistos_monohbb_v12_08_21_UpdatedMetTrigUnc_2017_2hdma_RP_datacard_fix/'
+dirname2017_jer_all='bin/AllMETHistos_2017_monohbb_v12_09_21_JER_reNormScale_v2_2hdma_RP/'
 dirname2018='bin/AllMETHistos_monohbb_v12_08_21_UpdatedMetTrigUnc_2018_2hdma_RP_datacard_fix/'
-files=[dirname2017+'limits_monoHbb_2hdma_R_2017.root',
-dirname2017+'limits_monoHbb_2hdma_B_2017.root',
+dirname2018_nojer='bin/AllMETHistos_2018_monohbb_v12_09_21_NoJER_reNormScale_2hdma_RP/'
+files=[dirname2017_jer+'limits_monoHbb_2hdma_R_2017.root',
+dirname2017_jer+'limits_monoHbb_2hdma_B_2017.root',
+dirname2017_jer+'limits_monoHbb_2hdma_combined_2017.root']
+
+legend=['Resolved', 'Boosted','Combined']
+histoname1=['expmed']
+xtitle='m_{A}[GeV]'
+ytitle='#mu'
+axistitle = [xtitle, ytitle]
+DrawOverlap(files,histoname1,axistitle,legend,'limit_monoHbb_combined_2017_jer',[0,1],[200,3000],[300,0.1],[2017])
+
+
+files=[dirname2017_jer_all+'limits_monoHbb_2hdma_combined_2017.root',
+dirname2017_jer+'limits_monoHbb_2hdma_combined_2017.root',
 dirname2017+'limits_monoHbb_2hdma_combined_2017.root']
 
-legend=['Resolved', 'Boosted','Combined']
+
+legend=['Combined(JERv2)','Combined(JEROnBKG)', 'Combined(previous)']
 histoname1=['expmed']
 xtitle='m_{A}[GeV]'
 ytitle='#mu'
 axistitle = [xtitle, ytitle]
-DrawOverlap(files,histoname1,axistitle,legend,'limit_monoHbb_combined_2017',[0,1],[200,3000],[300,0.1],[2017])
+DrawOverlap(files,histoname1,axistitle,legend,'limit_monoHbb_combined_2017_jer_com',[0,1],[200,3000],[300,0.1],[2017])
 
 
 
-files=[dirname2018+'limits_monoHbb_2hdma_R_2018.root',
-dirname2018+'limits_monoHbb_2hdma_B_2018.root',
-dirname2018+'limits_monoHbb_2hdma_combined_2018.root']
 
-legend=['Resolved', 'Boosted','Combined']
-histoname1=['expmed']
-xtitle='m_{A}[GeV]'
-ytitle='#mu'
-axistitle = [xtitle, ytitle]
-DrawOverlap(files,histoname1,axistitle,legend,'limit_monoHbb_combined_2018',[0,1],[200,3000],[300,0.1], [2018])
 ###
 
 
+
+
+
+
+
+files=[dirname2018_nojer+'limits_monoHbb_2hdma_combined_2018.root',
+dirname2018+'limits_monoHbb_2hdma_combined_2018.root'
+]
+legend=['Combined(2018)(recent:nojer)','Combined(2018)(previous)']
+histoname1=['expmed']
+xtitle='m_{A}[GeV]'
+ytitle='#mu'
+axistitle = [xtitle, ytitle]
+DrawOverlap(files,histoname1,axistitle,legend,'limit_monoHbb_combined_2018_comp',[0,1],[200,3000],[300,0.1],[2017])
 
 
 #dirname2018='bin/AllMETHistos_monohbb_v12_08_21_UpdatedMetTrigUnc_2018_2hdma_RP_datacard_fix/'

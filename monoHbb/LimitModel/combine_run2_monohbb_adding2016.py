@@ -33,7 +33,7 @@ def getmAma(dc):
 category="C"
 model="2hdma"
 
-limithelp=RunLimits("","1718","monoHbb",category,"Run2Combo_"+category,model )
+limithelp=RunLimits("","161718","monoHbb",category,"Run2Combo_"+category,model )
 
 datacards_2017 = 'bbDM2017_datacardslist_C_'+model+'.txt'
 datacards_2016 = 'datacards_monoHbb_2016/thdma/monoHbb_datacard_2016_2hdma_C_allregion_2HDMa-gg-sinp-0p35-tanb-1-mXd-10-MH3-{}-MH4-{}-MH2-{}-MHC-{}.txt'
@@ -65,11 +65,13 @@ if thdma==True:
         
         if os.path.isfile(dc_2017) and os.path.isfile(dc_2018) and os.path.isfile(dc_2016) :
             print ("data card for 2017 and 2018 exist ")
+            '''
             combodatacard  = "combineCards.py  d2016="+dc_2016+" d2017="+dc_2017+" d2018="+dc_2018+" > "+dc_run2
             print (combodatacard)
             os.system(combodatacard)
+            '''
             log_run2 = dc_run2.replace(".txt",".log")
-            
+            '''
             fout=open("tmp.txt","w")
             for iline in open(dc_run2):
                 iline=iline.replace("datacards_monoHbb_2017/datacards_monoHbb_2017", "datacards_monoHbb_2017")
@@ -77,14 +79,16 @@ if thdma==True:
                 fout.write(iline)
             fout.close()
             os.system("mv tmp.txt "+ dc_run2)
-            
+            '''
             
     
-            #os.system ('combine -M AsymptoticLimits '+dc_run2+' --noFitAsimov -t -1 > '+log_run2)
-            '''
+            os.system ('combine -M AsymptoticLimits '+dc_run2+' --noFitAsimov -t -1 > '+log_run2)
+            
             if datacardCounter ==0: mode = "w"
             if datacardCounter > 0: mode = "a"
+            
             datacardCounter=datacardCounter+1
+            
             limit_textfilename=limithelp.LogToLimitList(log_run2,category,mode)
             print ("output limit text file name", limit_textfilename)
             limit_rootfilename = limithelp.TextFileToRootGraphs(limit_textfilename)
@@ -92,7 +96,7 @@ if thdma==True:
 
         else: 
             print (dc_2017, dc_2018, "one of these datacard does not exist")
-            '''
+            
 
     
     

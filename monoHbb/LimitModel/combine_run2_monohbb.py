@@ -28,7 +28,7 @@ What to change: There are few parameters which needs to be changed:
 category="C"
 model="2hdma"
 
-limithelp=RunLimits("","1718","monoHbb",category,"Run2Combo_"+category,"2hdma" )
+limithelp=RunLimits("","1718","monoHbb",category,"Run2Combo_"+category,"2hdma",False )
 
 datacards_2017 = 'bbDM2017_datacardslist_C_2hdma.txt'
 if thdma==True:
@@ -76,7 +76,7 @@ if thdma==True:
             limit_textfilename=limithelp.LogToLimitList(log_run2,category,mode)
             print ("output limit text file name", limit_textfilename)
             limit_rootfilename = limithelp.TextFileToRootGraphs(limit_textfilename)
-            #limithelp.SaveLimitPdf1D(limit_rootfilename)
+            limithelp.SaveLimitPdf1D(limit_rootfilename)
 
         else: 
             print (dc_2017, dc_2018, "one of these datacard does not exist")

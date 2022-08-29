@@ -47,6 +47,7 @@ parser.add_argument("-c", "--createdatacards",  action="store_true", dest="creat
 
 parser.add_argument("-category", "--category",  dest="category",default="NULL") ## possible values: sr1, sr2, srall
 
+parser.add_argument("-oned", "--oned",action="store_true",dest="oned")
 
 #parser.add_argument("-sr1"  , "--sr1",    action="store_true", dest="sr1")
 #parser.add_argument("-sr2"  , "--sr2",    action="store_true", dest="sr2")
@@ -137,7 +138,7 @@ def main():
 
     
     ## object of the RunLimits class
-    rl = RunLimits(datacardtemplatename_,year, dcb.anadetails["analysisName"], category, args.postfix, args.model)
+    rl = RunLimits(datacardtemplatename_,year, dcb.anadetails["analysisName"], category, args.postfix, args.model, args.oned)
     rl.setupdir()
     rl.writeChangeLog()
     
