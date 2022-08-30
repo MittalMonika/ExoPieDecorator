@@ -30,13 +30,13 @@ zpb_mzpscan=True
 zpb_fullscan=False
 if category=='R':
     f = open('datacard_tempalate_Resolved_RP.ymal')
-
+    #f = open('datacard_tempalate_Resolved_RP_backup29082022.ymal')
 ## added Far category
 #if category=='F':  
 #    f = open('datacard_tempalate_Far_RP.ymal')
 
 if category=="B":
-#    f = open('datacard_tempalate_boosted_RP_backup17082022.ymal')
+    #f = open('datacard_tempalate_boosted_RP_backup29082022.ymal')
     f = open('datacard_tempalate_boosted_RP.ymal')
 
 doc = yaml.safe_load(f)

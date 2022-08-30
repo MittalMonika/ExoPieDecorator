@@ -64,12 +64,13 @@ if thdma==True:
         dc_run2 = dc_list_2017[i].replace("2017","run2")
         
         if os.path.isfile(dc_2017) and os.path.isfile(dc_2018) and os.path.isfile(dc_2016) :
-            print ("data card for 2017 and 2018 exist ")
-            '''
+            print ("data card for 2016, 2017 and 2018 exist ")
+
+            
             combodatacard  = "combineCards.py  d2016="+dc_2016+" d2017="+dc_2017+" d2018="+dc_2018+" > "+dc_run2
             print (combodatacard)
             os.system(combodatacard)
-            '''
+            
             log_run2 = dc_run2.replace(".txt",".log")
             '''
             fout=open("tmp.txt","w")

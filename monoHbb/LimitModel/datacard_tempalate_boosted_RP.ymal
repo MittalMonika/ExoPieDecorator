@@ -1,0 +1,601 @@
+# SIGNAL REGION
+SR:
+  bin:
+
+    - SR:9
+
+  Process:
+
+    - signal1 signal2 zjets  wjets    tt     singlet        qcd      diboson    smh       
+
+  process1:
+
+      - 0    -1  1        2         3         4         5          6          7      
+
+
+  rate:
+
+      -  -1    -1   -1         -1        -1       -1         -1          -1        -1      
+
+  NuisForProc:
+    - lumi_YEAR : [signal1, signal2, wjets, singlet, qcd, diboson, smh]
+    - CMSYEAR_PU : [signal1, signal2, wjets, singlet, qcd, diboson, smh]
+    - CMSYEAR_EleTrig : []
+    - CMSYEAR_eff_b : []
+    - CMSYEAR_fake_b : []
+    - CMSYEAR_veto_b : [signal1, signal2 , wjets, singlet, qcd , diboson, smh]
+#    - CMSYEAR_double_b : [signal1, signal2 ,wjets, singlet, qcd , diboson, smh]
+    - CMSYEAR_EleID : []
+    - CMSYEAR_EleRECO : []
+    - CMSYEAR_MuISO : []
+    - CMSYEAR_MuID  : []
+    - CMSYEAR_veto_tau : [signal1, signal2, wjets, singlet, qcd, diboson, smh]
+    - JECAbsolute : [signal1, signal2, wjets, singlet, qcd, diboson, smh]
+    - JECAbsolute_YEAR : [signal1, signal2, wjets, singlet, qcd, diboson, smh]
+    - JECBBEC1 : [signal1, signal2, wjets, singlet, qcd, diboson, smh]
+    - JECBBEC1_YEAR : [signal1, signal2, wjets, singlet, qcd, diboson, smh]
+    - JECEC2 : [signal1, signal2, wjets, singlet, qcd, diboson, smh]
+    - JECEC2_YEAR : [signal1, signal2, wjets, singlet, qcd, diboson, smh]
+    - JECFlavorQCD : [signal1, signal2, wjets, singlet, qcd, diboson, smh]
+    - JECHF : [signal1, signal2, wjets, singlet, qcd, diboson, smh]
+    - JECHF_YEAR : [signal1, signal2, wjets, singlet, qcd, diboson, smh]
+    - JECRelativeBal : [signal1, signal2, wjets, singlet, qcd, diboson, smh]
+    - JECRelativeSample_YEAR : [signal1, signal2, wjets, singlet, qcd, diboson, smh]
+    - wj_hf : []
+    - zj_hf : []
+    - norm_stop : []
+    - norm_diboson : []
+    - norm_smh : []
+    - CMSYEAR_pdf : [zjets, wjets, tt,singlet, qcd, diboson, smh]
+    - CMSYEAR_mu_scale : []
+    - CMSYEAR_mu_scale_zjets: [zjets]
+    - CMSYEAR_mu_scale_wjets: [wjets]
+    - CMSYEAR_mu_scale_tt: [tt]
+    - CMSYEAR_mu_scale_singlet: [singlet]
+    - CMSYEAR_mu_scale_qcd: [qcd]
+    - CMSYEAR_mu_scale_diboson: [diboson]
+    - CMSYEAR_mu_scale_smh: [smh]
+#    - CMSYEAR_mu_scale_dyjets: [dyjets]
+
+    - CMSYEAR_qcd_norm : [qcd]
+    - CMSYEAR_trig_met : [signal1, signal2 , wjets, singlet, qcd , diboson, smh]
+#    - CMSYEAR_eff_t : [tt]
+    - CMSYEAR_muon_prefiring: []
+    - CMSYEAR_DoubleB_eff: [signal1, signal2]
+    - CMSYEAR_DoubleB_mistag: [wjets, singlet, qcd , diboson, smh]
+    - CMSYEAR_prefire : [wjets, singlet, qcd , diboson, smh]
+    - CMSYEAR_jer: [signal1, signal2,  wjets,  singlet, qcd, diboson, smh]
+#    - norm_dyjets: [dyjets]
+    - norm_zjets: [zjets] 
+
+
+  UnclnN:
+    - lumi_YEAR 1.025
+    - CMSYEAR_PU shape
+    - CMSYEAR_EleTrig  shape
+    - CMSYEAR_eff_b  shape
+    - CMSYEAR_fake_b shape
+    - CMSYEAR_veto_b 1.05
+#    - CMSYEAR_double_b 1.15
+    - CMSYEAR_EleID shape
+    - CMSYEAR_EleRECO shape
+    - CMSYEAR_MuISO shape
+    - CMSYEAR_MuID shape
+    - CMSYEAR_veto_tau 1.06
+    - JECAbsolute shape
+    - JECAbsolute_YEAR shape
+    - JECBBEC1 shape
+    - JECBBEC1_YEAR shape
+    - JECEC2 shape
+    - JECEC2_YEAR shape
+    - JECFlavorQCD shape
+    - JECHF shape
+    - JECHF_YEAR shape
+    - JECRelativeBal shape
+    - JECRelativeSample_YEAR shape
+    - wj_hf 1.05
+    - zj_hf 1.05
+    - norm_stop 1.1
+    - norm_diboson 1.2
+    - norm_smh 1.2
+    - CMSYEAR_pdf shape
+    - CMSYEAR_mu_scale shape
+
+    - CMSYEAR_mu_scale_zjets shape
+    - CMSYEAR_mu_scale_wjets shape
+    - CMSYEAR_mu_scale_tt shape
+    - CMSYEAR_mu_scale_singlet shape
+    - CMSYEAR_mu_scale_qcd shape
+    - CMSYEAR_mu_scale_diboson shape
+    - CMSYEAR_mu_scale_smh shape
+#    - CMSYEAR_mu_scale_dyjets shape
+
+    - CMSYEAR_qcd_norm 1.5
+    - CMSYEAR_trig_met shape
+    - CMSYEAR_muon_prefiring 1.005 
+#    - CMSYEAR_eff_t shape
+    - CMSYEAR_DoubleB_eff shape
+    - CMSYEAR_DoubleB_mistag 1.05
+    - CMSYEAR_prefire shape
+    - CMSYEAR_jer 1.05
+#    - norm_dyjets 1.05
+    - norm_zjets 1.05
+
+# TOPE REGION  
+
+TOPE:
+  bin:
+
+    - TOPE:8
+
+  Process:
+
+    - zjets  wjets    tt     singlet        qcd      diboson    smh         dyjets
+
+  process1:
+
+      - 1        2         3         4         5          6          7         8
+
+
+  rate:
+
+     - -1        -1         -1        -1         -1        -1         -1        -1
+
+  NuisForProc:
+    - lumi_YEAR : [signal, zjets, wjets, singlet, qcd, diboson, smh,dyjets]
+    - CMSYEAR_PU : [signal, zjets, wjets, singlet, qcd, diboson, smh,dyjets]
+    - CMSYEAR_EleTrig : [signal, zjets, wjets, singlet, qcd, diboson, smh,dyjets]
+    - CMSYEAR_eff_b : []
+    - CMSYEAR_fake_b : []
+    - CMSYEAR_veto_b : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
+#    - CMSYEAR_double_b : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
+    - CMSYEAR_EleID : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
+    - CMSYEAR_EleRECO : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
+    - CMSYEAR_MuISO : []
+    - CMSYEAR_MuID  : []
+    - CMSYEAR_veto_tau : [signal, zjets, wjets, singlet, qcd, diboson, smh,dyjets]
+    - JECAbsolute : [signal, zjets, wjets, singlet, qcd, diboson, smh,dyjets]
+    - JECAbsolute_YEAR : [signal, zjets, wjets, singlet, qcd, diboson, smh,dyjets]
+    - JECBBEC1 : [signal, zjets, wjets, singlet, qcd, diboson, smh,dyjets]
+    - JECBBEC1_YEAR : [signal, zjets, wjets, singlet, qcd, diboson, smh,dyjets]
+    - JECEC2 : [signal, zjets, wjets, singlet, qcd, diboson, smh,dyjets]
+    - JECEC2_YEAR : [signal, zjets, wjets, singlet, qcd, diboson, smh,dyjets]
+    - JECFlavorQCD : [signal, zjets, wjets, singlet, qcd, diboson, smh,dyjets]
+    - JECHF : [signal, zjets, wjets, singlet, qcd, diboson, smh,dyjets]
+    - JECHF_YEAR : [signal, zjets, wjets, singlet, qcd, diboson, smh,dyjets]
+    - JECRelativeBal : [signal, zjets, wjets, singlet, qcd, diboson, smh,dyjets]
+    - JECRelativeSample_YEAR : [signal, zjets, wjets, singlet, qcd, diboson, smh,dyjets]
+    - wj_hf : []
+    - zj_hf : []
+    - norm_stop : []
+    - norm_diboson : []
+    - norm_smh : []
+    - CMSYEAR_pdf : [signal, zjets, wjets, tt,singlet, qcd, diboson, smh,dyjets]
+    - CMSYEAR_mu_scale : [signal]
+    - CMSYEAR_mu_scale_zjets: [zjets]
+    - CMSYEAR_mu_scale_wjets: [wjets]
+    - CMSYEAR_mu_scale_tt: [tt]
+    - CMSYEAR_mu_scale_singlet: [singlet]
+    - CMSYEAR_mu_scale_qcd: [qcd]
+    - CMSYEAR_mu_scale_diboson: [diboson]
+    - CMSYEAR_mu_scale_smh: [smh]
+    - CMSYEAR_mu_scale_dyjets: [dyjets]
+
+    - CMSYEAR_qcd_norm : [qcd]
+    - CMSYEAR_trig_met : []
+#    - CMSYEAR_eff_t : [tt]
+    - CMSYEAR_muon_prefiring: [] 
+    - CMSYEAR_DoubleB_mistag: [wjets, singlet, qcd, diboson, smh,dyjets]
+    - CMSYEAR_prefire : [signal, zjets, wjets, tt,singlet, qcd, diboson, smh,dyjets]
+    - CMSYEAR_jer : [ signal, zjets, wjets, tt,singlet, qcd, diboson, smh,dyjets]
+    - norm_dyjets : [ dyjets]
+    - norm_zjets : [ zjets]	
+
+
+  UnclnN:
+    - lumi_YEAR 1.025
+    - CMSYEAR_PU shape
+    - CMSYEAR_EleTrig  shape
+    - CMSYEAR_eff_b  shape
+    - CMSYEAR_fake_b shape
+    - CMSYEAR_veto_b 1.05
+#    - CMSYEAR_double_b 1.15
+    - CMSYEAR_EleID shape
+    - CMSYEAR_EleRECO shape
+    - CMSYEAR_MuISO shape
+    - CMSYEAR_MuID shape
+    - CMSYEAR_veto_tau 1.06
+    - JECAbsolute shape
+    - JECAbsolute_YEAR shape
+    - JECBBEC1 shape
+    - JECBBEC1_YEAR shape
+    - JECEC2 shape
+    - JECEC2_YEAR shape
+    - JECFlavorQCD shape
+    - JECHF shape
+    - JECHF_YEAR shape
+    - JECRelativeBal shape
+    - JECRelativeSample_YEAR shape
+    - wj_hf 1.05
+    - zj_hf 1.05
+    - norm_stop 1.1
+    - norm_diboson 1.2
+    - norm_smh 1.2
+    - CMSYEAR_pdf shape
+    - CMSYEAR_mu_scale shape
+    - CMSYEAR_mu_scale_zjets shape
+    - CMSYEAR_mu_scale_wjets shape
+    - CMSYEAR_mu_scale_tt shape
+    - CMSYEAR_mu_scale_singlet shape
+    - CMSYEAR_mu_scale_qcd shape
+    - CMSYEAR_mu_scale_diboson shape
+    - CMSYEAR_mu_scale_smh shape
+    - CMSYEAR_mu_scale_dyjets shape
+
+    - CMSYEAR_qcd_norm 1.5
+    - CMSYEAR_trig_met shape
+#    - CMSYEAR_eff_t shape
+    - CMSYEAR_muon_prefiring 1.005 
+    - CMSYEAR_DoubleB_mistag 1.05
+    - CMSYEAR_prefire shape
+    - CMSYEAR_jer 1.05
+    - norm_dyjets 1.05
+    - norm_zjets 1.05
+
+# TOP MU REGION
+TOPMU:
+  bin:
+
+    - TOPMU:8
+
+  Process:
+
+    - zjets  wjets    tt     singlet        qcd      diboson    smh         dyjets
+
+  process1:
+
+      - 1        2         3         4         5          6          7         8
+
+
+  rate:
+
+      - -1        -1         -1        -1         -1        -1         -1        -1
+  NuisForProc:
+    - lumi_YEAR : [signal, zjets, wjets, singlet, qcd, diboson, smh,dyjets]
+    - CMSYEAR_PU : [signal, zjets, wjets, singlet, qcd, diboson, smh,dyjets]
+    - CMSYEAR_EleTrig : []
+    - CMSYEAR_eff_b : []
+    - CMSYEAR_fake_b : []
+    - CMSYEAR_veto_b : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
+#    - CMSYEAR_double_b : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
+    - CMSYEAR_EleID : []
+    - CMSYEAR_EleRECO : []
+    - CMSYEAR_MuISO : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
+    - CMSYEAR_MuID  : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
+    - CMSYEAR_veto_tau : [signal, zjets, wjets, singlet, qcd, diboson, smh,dyjets]
+    - JECAbsolute : [signal, zjets, wjets, singlet, qcd, diboson, smh,dyjets]
+    - JECAbsolute_YEAR : [signal, zjets, wjets, singlet, qcd, diboson, smh,dyjets]
+    - JECBBEC1 : [signal, zjets, wjets, singlet, qcd, diboson, smh,dyjets]
+    - JECBBEC1_YEAR : [signal, zjets, wjets, singlet, qcd, diboson, smh,dyjets]
+    - JECEC2 : [signal, zjets, wjets, singlet, qcd, diboson, smh,dyjets]
+    - JECEC2_YEAR : [signal, zjets, wjets, singlet, qcd, diboson, smh,dyjets]
+    - JECFlavorQCD : [signal, zjets, wjets, singlet, qcd, diboson, smh,dyjets]
+    - JECHF : [signal, zjets, wjets, singlet, qcd, diboson, smh,dyjets]
+    - JECHF_YEAR : [signal, zjets, wjets, singlet, qcd, diboson, smh,dyjets]
+    - JECRelativeBal : [signal, zjets, wjets, singlet, qcd, diboson, smh,dyjets]
+    - JECRelativeSample_YEAR : [signal, zjets, wjets, singlet, qcd, diboson, smh,dyjets]
+    - wj_hf : []
+    - zj_hf : []
+    - norm_stop : []
+    - norm_diboson : []
+    - norm_smh : []
+    - CMSYEAR_pdf : [signal, zjets, wjets, tt,singlet, qcd, diboson, smh,dyjets]
+    - CMSYEAR_mu_scale : [signal]
+    - CMSYEAR_mu_scale_zjets: [zjets]
+    - CMSYEAR_mu_scale_wjets: [wjets]
+    - CMSYEAR_mu_scale_tt: [tt]
+    - CMSYEAR_mu_scale_singlet: [singlet]
+    - CMSYEAR_mu_scale_qcd: [qcd]
+    - CMSYEAR_mu_scale_diboson: [diboson]
+    - CMSYEAR_mu_scale_smh: [smh]
+    - CMSYEAR_mu_scale_dyjets: [dyjets]
+
+    - CMSYEAR_qcd_norm : [qcd]
+    - CMSYEAR_trig_met : [signal , wjets, singlet, qcd , diboson, smh, dyjets]
+    - CMSYEAR_eff_t : []
+    - CMSYEAR_muon_prefiring: [signal, wjets, singlet, qcd, diboson, smh,dyjets]
+    - CMSYEAR_DoubleB_mistag: [wjets, singlet, qcd, diboson, smh,dyjets]
+    - CMSYEAR_prefire : [signal, wjets, singlet, qcd, diboson, smh,dyjets]
+    - CMSYEAR_jer : [  wjets,  singlet, qcd, diboson, smh,dyjets]
+    - norm_dyjets : [ dyjets]
+    - norm_zjets : [ zjets]
+
+
+  UnclnN:
+    - lumi_YEAR 1.025
+    - CMSYEAR_PU shape
+    - CMSYEAR_EleTrig  shape
+    - CMSYEAR_eff_b  shape
+    - CMSYEAR_fake_b shape
+    - CMSYEAR_veto_b 1.05
+#    - CMSYEAR_double_b 1.15
+    - CMSYEAR_EleID shape
+    - CMSYEAR_EleRECO shape
+    - CMSYEAR_MuISO shape
+    - CMSYEAR_MuID shape
+    - CMSYEAR_veto_tau 1.06
+    - JECAbsolute shape
+    - JECAbsolute_YEAR shape
+    - JECBBEC1 shape
+    - JECBBEC1_YEAR shape
+    - JECEC2 shape
+    - JECEC2_YEAR shape
+    - JECFlavorQCD shape
+    - JECHF shape
+    - JECHF_YEAR shape
+    - JECRelativeBal shape
+    - JECRelativeSample_YEAR shape
+    - wj_hf 1.05
+    - zj_hf 1.05
+    - norm_stop 1.1
+    - norm_diboson 1.2
+    - norm_smh 1.2
+    - CMSYEAR_pdf shape
+    - CMSYEAR_mu_scale shape
+
+    - CMSYEAR_mu_scale_zjets shape
+    - CMSYEAR_mu_scale_wjets shape
+    - CMSYEAR_mu_scale_tt shape
+    - CMSYEAR_mu_scale_singlet shape
+    - CMSYEAR_mu_scale_qcd shape
+    - CMSYEAR_mu_scale_diboson shape
+    - CMSYEAR_mu_scale_smh shape
+    - CMSYEAR_mu_scale_dyjets shape
+
+    - CMSYEAR_qcd_norm 1.5
+    - CMSYEAR_trig_met shape
+    - CMSYEAR_eff_t shape
+    - CMSYEAR_muon_prefiring 1.005
+    - CMSYEAR_DoubleB_mistag 1.05
+    - CMSYEAR_prefire shape
+    - CMSYEAR_jer 1.05
+    - norm_dyjets 1.05
+    - norm_zjets 1.05
+
+# ZEE
+
+ZEE:
+  bin:
+
+    - ZEE:8
+
+  Process:
+
+    - zjets  wjets    tt     singlet        qcd      diboson    smh         dyjets
+
+  process1:
+
+      - 1        2         3         4         5          6          7         8
+
+
+  rate:
+
+      - -1        -1        -1        -1         -1        -1         -1        -1
+
+  NuisForProc:
+    - lumi_YEAR : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - CMSYEAR_PU : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - CMSYEAR_EleTrig : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - CMSYEAR_eff_b : []
+    - CMSYEAR_fake_b : []
+    - CMSYEAR_veto_b : []
+#    - CMSYEAR_double_b : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - CMSYEAR_EleID : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - CMSYEAR_EleRECO : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - CMSYEAR_MuISO : []
+    - CMSYEAR_MuID  : []
+    - CMSYEAR_veto_tau : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - JECAbsolute : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - JECAbsolute_YEAR : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - JECBBEC1 : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - JECBBEC1_YEAR : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - JECEC2 : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - JECEC2_YEAR : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - JECFlavorQCD : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - JECHF : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - JECHF_YEAR : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - JECRelativeBal : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - JECRelativeSample_YEAR : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - wj_hf : []
+    - zj_hf : []
+    - norm_stop : []
+    - norm_diboson : []
+    - norm_smh : []
+    - CMSYEAR_pdf : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - CMSYEAR_mu_scale : []
+    - CMSYEAR_mu_scale_zjets: [zjets]
+    - CMSYEAR_mu_scale_wjets: [wjets]
+    - CMSYEAR_mu_scale_tt: [tt]
+    - CMSYEAR_mu_scale_singlet: [singlet]
+    - CMSYEAR_mu_scale_qcd: [qcd]
+    - CMSYEAR_mu_scale_diboson: [diboson]
+    - CMSYEAR_mu_scale_smh: [smh]
+    - CMSYEAR_mu_scale_dyjets: [dyjets]
+
+    - CMSYEAR_qcd_norm : [qcd]
+    - CMSYEAR_trig_met : []
+#    - CMSYEAR_eff_t : [tt]
+    - CMSYEAR_muon_prefiring : []
+    - CMSYEAR_prefire : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - CMSYEAR_jer : [ zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - norm_dyjets : [1.05]
+    - norm_zjets : [1.05]
+
+
+  UnclnN:
+    - lumi_YEAR 1.025
+    - CMSYEAR_PU shape
+    - CMSYEAR_EleTrig  shape
+    - CMSYEAR_eff_b  shape
+    - CMSYEAR_fake_b shape
+    - CMSYEAR_veto_b 1.05
+#    - CMSYEAR_double_b 1.15
+    - CMSYEAR_EleID shape
+    - CMSYEAR_EleRECO shape
+    - CMSYEAR_MuISO shape
+    - CMSYEAR_MuID shape
+    - CMSYEAR_veto_tau 1.06
+    - JECAbsolute shape
+    - JECAbsolute_YEAR shape
+    - JECBBEC1 shape
+    - JECBBEC1_YEAR shape
+    - JECEC2 shape
+    - JECEC2_YEAR shape
+    - JECFlavorQCD shape
+    - JECHF shape
+    - JECHF_YEAR shape
+    - JECRelativeBal shape
+    - JECRelativeSample_YEAR shape
+    - wj_hf 1.05
+    - zj_hf 1.05
+    - norm_stop 1.1
+    - norm_diboson 1.2
+    - norm_smh 1.2
+    - CMSYEAR_pdf shape
+    - CMSYEAR_mu_scale shape
+    - CMSYEAR_mu_scale_zjets shape
+    - CMSYEAR_mu_scale_wjets shape
+    - CMSYEAR_mu_scale_tt shape
+    - CMSYEAR_mu_scale_singlet shape
+    - CMSYEAR_mu_scale_qcd shape
+    - CMSYEAR_mu_scale_diboson shape
+    - CMSYEAR_mu_scale_smh shape
+    - CMSYEAR_mu_scale_dyjets shape
+
+    - CMSYEAR_qcd_norm 1.5
+    - CMSYEAR_trig_met shape
+#    - CMSYEAR_eff_t shape
+    - CMSYEAR_muon_prefiring 1.005 
+    - CMSYEAR_prefire shape
+    - CMSYEAR_jer 1.05
+    - norm_dyjets 1.05
+    - norm_zjets 1.05
+
+# ZMUMU REGION
+
+ZMUMU:
+  bin:
+
+    - ZMUMU:8
+
+  Process:
+
+    - zjets  wjets    tt     singlet        qcd      diboson    smh         dyjets
+
+  process1:
+
+      - 1        2         3         4         5          6          7         8
+
+
+  rate:
+
+     - -1        -1         -1        -1         -1        -1         -1        -1
+
+  NuisForProc:
+    - lumi_YEAR : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - CMSYEAR_PU : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - CMSYEAR_EleTrig : []
+    - CMSYEAR_eff_b : []
+    - CMSYEAR_fake_b : []
+    - CMSYEAR_veto_b : []
+#    - CMSYEAR_double_b : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - CMSYEAR_EleID : []
+    - CMSYEAR_EleRECO : []
+    - CMSYEAR_MuISO : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - CMSYEAR_MuID  : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - CMSYEAR_veto_tau : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - JECAbsolute : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - JECAbsolute_YEAR : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - JECBBEC1 : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - JECBBEC1_YEAR : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - JECEC2 : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - JECEC2_YEAR : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - JECFlavorQCD : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - JECHF : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - JECHF_YEAR : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - JECRelativeBal : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - JECRelativeSample_YEAR : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - wj_hf : []
+    - zj_hf : []
+    - norm_stop : []
+    - norm_diboson : []
+    - norm_smh : []
+    - CMSYEAR_pdf : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - CMSYEAR_mu_scale : []
+    - CMSYEAR_mu_scale_zjets: [zjets]
+    - CMSYEAR_mu_scale_wjets: [wjets]
+    - CMSYEAR_mu_scale_tt: [tt]
+    - CMSYEAR_mu_scale_singlet: [singlet]
+    - CMSYEAR_mu_scale_qcd: [qcd]
+    - CMSYEAR_mu_scale_diboson: [diboson]
+    - CMSYEAR_mu_scale_smh: [smh]
+    - CMSYEAR_mu_scale_dyjets: [dyjets]
+
+    - CMSYEAR_qcd_norm : [qcd]
+    - CMSYEAR_trig_met : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+#    - CMSYEAR_eff_t : [tt]
+    - CMSYEAR_muon_prefiring : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - CMSYEAR_prefire : [signal, zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - CMSYEAR_jer : [ zjets, wjets, tt, singlet, qcd, diboson, smh]
+    - norm_dyjets : [1.05]
+    - norm_zjets : [1.05]
+
+
+  UnclnN:
+    - lumi_YEAR 1.025
+    - CMSYEAR_PU shape
+    - CMSYEAR_EleTrig  shape
+    - CMSYEAR_eff_b  shape
+    - CMSYEAR_fake_b shape
+    - CMSYEAR_veto_b 1.05
+#    - CMSYEAR_double_b 1.15
+    - CMSYEAR_EleID shape
+    - CMSYEAR_EleRECO shape
+    - CMSYEAR_MuISO shape
+    - CMSYEAR_MuID shape
+    - CMSYEAR_veto_tau 1.06
+    - JECAbsolute shape
+    - JECAbsolute_YEAR shape
+    - JECBBEC1 shape
+    - JECBBEC1_YEAR shape
+    - JECEC2 shape
+    - JECEC2_YEAR shape
+    - JECFlavorQCD shape
+    - JECHF shape
+    - JECHF_YEAR shape
+    - JECRelativeBal shape
+    - JECRelativeSample_YEAR shape
+    - wj_hf 1.05
+    - zj_hf 1.05
+    - norm_stop 1.1
+    - norm_diboson 1.2
+    - norm_smh 1.2
+    - CMSYEAR_pdf shape
+    - CMSYEAR_mu_scale shape
+    - CMSYEAR_mu_scale_zjets shape
+    - CMSYEAR_mu_scale_wjets shape
+    - CMSYEAR_mu_scale_tt shape
+    - CMSYEAR_mu_scale_singlet shape
+    - CMSYEAR_mu_scale_qcd shape
+    - CMSYEAR_mu_scale_diboson shape
+    - CMSYEAR_mu_scale_smh shape
+    - CMSYEAR_mu_scale_dyjets shape
+
+    - CMSYEAR_qcd_norm 1.5
+    - CMSYEAR_trig_met shape
+#    - CMSYEAR_eff_t shape
+    - CMSYEAR_muon_prefiring 1.005 
+    - CMSYEAR_prefire shape
+    - CMSYEAR_jer 1.05
+    - norm_dyjets 1.05
+    - norm_zjets 1.05
