@@ -12,50 +12,50 @@ observation -1
 ------------
 bin         ZEE    ZEE  ZEE      ZEE  ZEE      ZEE  ZEE     ZEE
 process   zjets  wjets   tt  singlet  qcd  diboson  smh  dyjets
-process       1      2    3        4    5        6    7       8
+process1      1      2    3        4    5        6    7       8
 rate         -1     -1   -1       -1   -1       -1   -1      -1
 ------------
-lumi_2017                   lnN  1.025  1.025  1.025  1.025  1.025  1.025  1.025     -
-CMS2017_PU                shape      1      1      1      1      1      1      1     -
-CMS2017_EleTrig           shape      1      1      1      1      1      1      1     -
-CMS2017_eff_b             shape      -      -      -      -      -      -      -     -
-CMS2017_fake_b            shape      -      -      -      -      -      -      -     -
-CMS2017_veto_b              lnN      -      -      -      -      -      -      -     -
-CMS2017_EleID             shape      1      1      1      1      1      1      1     -
-CMS2017_EleRECO           shape      1      1      1      1      1      1      1     -
-CMS2017_MuISO             shape      -      -      -      -      -      -      -     -
-CMS2017_MuID              shape      -      -      -      -      -      -      -     -
-CMS2017_veto_tau            lnN   1.06   1.06   1.06   1.06   1.06   1.06   1.06     -
+lumi_YEAR                   lnN  1.025  1.025  1.025  1.025  1.025  1.025  1.025     -
+CMSYEAR_PU                shape      1      1      1      1      1      1      1     -
+CMSYEAR_EleTrig           shape      1      1      1      1      1      1      1     -
+CMSYEAR_eff_b             shape      -      -      -      -      -      -      -     -
+CMSYEAR_fake_b            shape      -      -      -      -      -      -      -     -
+CMSYEAR_veto_b              lnN      -      -      -      -      -      -      -     -
+CMSYEAR_EleID             shape      1      1      1      1      1      1      1     -
+CMSYEAR_EleRECO           shape      1      1      1      1      1      1      1     -
+CMSYEAR_MuISO             shape      -      -      -      -      -      -      -     -
+CMSYEAR_MuID              shape      -      -      -      -      -      -      -     -
+CMSYEAR_veto_tau            lnN   1.06   1.06   1.06   1.06   1.06   1.06   1.06     -
 JECAbsolute               shape      1      1      1      1      1      1      1     -
-JECAbsolute_2017          shape      1      1      1      1      1      1      1     -
+JECAbsolute_YEAR          shape      1      1      1      1      1      1      1     -
 JECBBEC1                  shape      1      1      1      1      1      1      1     -
-JECBBEC1_2017             shape      1      1      1      1      1      1      1     -
+JECBBEC1_YEAR             shape      1      1      1      1      1      1      1     -
 JECEC2                    shape      1      1      1      1      1      1      1     -
-JECEC2_2017               shape      1      1      1      1      1      1      1     -
+JECEC2_YEAR               shape      1      1      1      1      1      1      1     -
 JECFlavorQCD              shape      1      1      1      1      1      1      1     -
 JECHF                     shape      1      1      1      1      1      1      1     -
-JECHF_2017                shape      1      1      1      1      1      1      1     -
+JECHF_YEAR                shape      1      1      1      1      1      1      1     -
 JECRelativeBal            shape      1      1      1      1      1      1      1     -
-JECRelativeSample_2017    shape      1      1      1      1      1      1      1     -
+JECRelativeSample_YEAR    shape      1      1      1      1      1      1      1     -
 wj_hf                       lnN      -      -      -      -      -      -      -     -
 zj_hf                       lnN      -      -      -      -      -      -      -     -
 norm_stop                   lnN      -      -      -      -      -      -      -     -
 norm_diboson                lnN      -      -      -      -      -      -      -     -
 norm_smh                    lnN      -      -      -      -      -      -      -     -
-CMS2017_pdf               shape      1      1      1      1      1      1      1     1
-CMS2017_mu_scale          shape      -      -      -      -      -      -      -     -
-CMS2017_mu_scale_wjets    shape      -      1      -      -      -      -      -     -
-CMS2017_mu_scale_tt       shape      -      -      1      -      -      -      -     -
-CMS2017_mu_scale_singlet  shape      -      -      -      1      -      -      -     -
-CMS2017_mu_scale_qcd      shape      -      -      -      -      1      -      -     -
-CMS2017_mu_scale_diboson  shape      -      -      -      -      -      1      -     -
-CMS2017_mu_scale_smh      shape      -      -      -      -      -      -      1     -
-CMS2017_mu_scale_dyjets   shape      1      -      -      -      -      -      -     1
-CMS2017_qcd_norm            lnN      -      -      -      -    1.5      -      -     -
-CMS2017_trig_met          shape      -      -      -      -      -      -      -     -
-CMS2017_muon_prefiring      lnN      -      -      -      -      -      -      -     -
-CMS2017_prefire           shape      1      1      1      1      1      1      1     -
-CMS2017_jer                 lnN   1.05   1.05   1.05   1.05   1.05   1.05   1.05     -
+CMSYEAR_pdf               shape      1      1      1      1      1      1      1     1
+CMSYEAR_mu_scale          shape      -      -      -      -      -      -      -     -
+CMSYEAR_mu_scale_wjets    shape      -      1      -      -      -      -      -     -
+CMSYEAR_mu_scale_tt       shape      -      -      1      -      -      -      -     -
+CMSYEAR_mu_scale_singlet  shape      -      -      -      1      -      -      -     -
+CMSYEAR_mu_scale_qcd      shape      -      -      -      -      1      -      -     -
+CMSYEAR_mu_scale_diboson  shape      -      -      -      -      -      1      -     -
+CMSYEAR_mu_scale_smh      shape      -      -      -      -      -      -      1     -
+CMSYEAR_mu_scale_dyjets   shape      1      -      -      -      -      -      -     1
+CMSYEAR_qcd_norm            lnN      -      -      -      -    1.5      -      -     -
+CMSYEAR_trig_met          shape      -      -      -      -      -      -      -     -
+CMSYEAR_muon_prefiring      lnN      -      -      -      -      -      -      -     -
+CMSYEAR_prefire           shape      1      1      1      1      1      1      1     -
+CMSYEAR_jer                 lnN   1.05   1.05   1.05   1.05   1.05   1.05   1.05     -
 norm_dyjets                 lnN      -      -      -      -      -      -      -  1.05
  
 ratezjets_R_2017  rateParam ZEE dyjets 1. [0.5,1.5]        
