@@ -29,15 +29,15 @@ zp2hdm_fullscan =False
 zpb_mzpscan=True
 zpb_fullscan=False
 if category=='R':
-    f = open('datacard_tempalate_Resolved_RP.ymal')
-    #f = open('datacard_tempalate_Resolved_RP_backup29082022.ymal')
+    #f = open('datacard_tempalate_Resolved_RP.ymal')
+    f = open('datacard_tempalate_Resolved_RP_cor.ymal')
 ## added Far category
 #if category=='F':  
 #    f = open('datacard_tempalate_Far_RP.ymal')
 
 if category=="B":
-    #f = open('datacard_tempalate_boosted_RP_backup29082022.ymal')
-    f = open('datacard_tempalate_boosted_RP.ymal')
+    f = open('datacard_tempalate_boosted_RP_cor.ymal')
+    #f = open('datacard_tempalate_boosted_RP.ymal')
 
 doc = yaml.safe_load(f)
 signalFile = open('datacard_tempalate_signal.ymal','r')

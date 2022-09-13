@@ -5,7 +5,7 @@ jmax *  number of backgrounds
 kmax *  number of nuisance parameters (sources of systematical uncertainties)
 
 ------------
-shapes * SR   AllMETHistos_2017_monohbb_v12_09_21_mjj100To150_UnCorreMu_scale.root  monoHbb2017_R_SR_$PROCESS monoHbb2017_R_SR_$PROCESS_$SYSTEMATIC
+shapes * SR   AllMETHistos_2017_monohbb_v12_09_21_mjj100To150.root  monoHbb2017_R_SR_$PROCESS monoHbb2017_R_SR_$PROCESS_$SYSTEMATIC
 ------------
 bin SR
 observation -1
@@ -44,7 +44,7 @@ norm_diboson                lnN      -      -     -      -  -      -      -     
 norm_smh                    lnN      -      -     -      -  -      -      -      -      -
 CMS2017_pdf               shape      -      -     1      1  1      1      1      1      1
 CMS2017_mu_scale          shape      -      -     -      -  -      -      -      -      -
-CMS2017_mu_scale_zjets    shape      -      -     1      -  -      -      -      -      -
+CMS2017_mu_scale_dyjets   shape      -      -     1      -  -      -      -      -      -
 CMS2017_mu_scale_wjets    shape      -      -     -      1  -      -      -      -      -
 CMS2017_mu_scale_tt       shape      -      -     -      -  1      -      -      -      -
 CMS2017_mu_scale_singlet  shape      -      -     -      -  -      1      -      -      -
@@ -56,7 +56,7 @@ CMS2017_trig_met          shape      1      1     -      1  -      1      1     
 CMS2017_muon_prefiring      lnN      -      -     -      -  -      -      -      -      -
 CMS2017_prefire           shape      1      1     -      1  -      1      1      1      1
 CMS2017_jer                 lnN   1.05   1.05     -   1.05  -   1.05   1.05   1.05   1.05
-norm_zjets                  lnN      -      -  1.05      -  -      -      -      -      -
+norm_dyjets                 lnN      -      -  1.05      -  -      -      -      -      -
 
 ratett_R_2017 rateParam SR tt 1. [0.5,1.5]        
 ratezjets_R_2017 rateParam SR zjets 1. [0.5,1.5]
